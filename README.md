@@ -29,4 +29,3 @@ Los médicos podrán atender las citas ,administrar tratamientos de los paciente
 4. Clona el repositorio en una carpeta cualquiera.
 5. Realiza una instalación de CodeIgniter.
 6. Copia **todo** el contenido de la carpeta del paso 4 a la carpeta del paso 5, sustituyendo los archivos que te solicite.
-7. 
