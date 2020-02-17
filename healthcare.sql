@@ -243,8 +243,7 @@ ALTER TABLE `analiticas`
 --
 -- AUTO_INCREMENT de la tabla `centros`
 --
-ALTER TABLE `centros`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `centros` ADD PRIMARY KEY(`id`);
 
 --
 -- AUTO_INCREMENT de la tabla `citas`
