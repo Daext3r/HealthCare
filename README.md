@@ -26,6 +26,7 @@ Los médicos podrán atender las citas ,administrar tratamientos de los paciente
 1. Instala un servidor Web con Apache y MySQL.
 2. Crea una base de datos llamada `HealthCare`. 
 3. Importa el archivo .sql en el SGBD.
-4. Clona el repositorio en una carpeta cualquiera.
-5. Realiza una instalación de CodeIgniter.
-6. Copia **todo** el contenido de la carpeta del paso 4 a la carpeta del paso 5, sustituyendo los archivos que te solicite.
+4. Realiza una instalación de CodeIgniter.
+5. Descarga el repositorio* y copia todos los archivos en la carpeta de CodeIgniter, sustituyendo todo lo que sea necesario.
+
+* Nota: Por el momento te tendrás que descargar la rama *master*. En un futuro, se habilitará la opción de lanzamientos (releases).
