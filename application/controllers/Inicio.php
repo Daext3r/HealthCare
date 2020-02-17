@@ -8,7 +8,7 @@ class Inicio extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view("head");
+		$this->load->view("modules/head");
 		$this->load->view("Inicio_v");
 	}
 }
