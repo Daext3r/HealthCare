@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    width: 50%;
+}
+
+.row {
+    height: 90vh;
+    width: 80%;
+    text-align: center;
+    align-items: center;
+    padding: 2em;
+    margin-top: 2em;
+    justify-content: center;
+}
+
+img {
+    width: 55%;
+}
+
+input[type=password] {
+    font-size: 18px;
+}
