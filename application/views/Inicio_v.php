@@ -1,10 +1,4 @@
 <body>
-    <!--
-        Estilos: assets/inicio/estilos.css
-        Script: assets/inicio/script.js
-    -->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/styles/inicio.css">
-
     <div class="row shadow p-3 mb-5 bg-white rounded">
         <div class="mini-row">
             <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="logo">

@@ -22,4 +22,15 @@
             font-family: 'Rubik';
         }
     </style>
+<!--carga hojas de estilos de forma dinamica-->
+        <?php
+            //si hay hojas...
+            if(isset($hojas)) {
+                //carga cada hoja
+                foreach($hojas as $hoja) {
+                    $link = '<link rel="stylesheet" href="'.base_url().'assets/styles/' .$hoja. '.css">';
+                    echo $link;
+                }
+            }
+        ?>
 </head>

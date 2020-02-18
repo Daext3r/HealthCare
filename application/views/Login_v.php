@@ -1,5 +1,4 @@
 <body>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/styles/login.css">
     <div class="row shadow-lg p-3 mb-5 bg-white rounded">
         <img src="<?php echo base_url()?>assets/img/logo.png" alt="" srcset="">
         <form method="POST" action="<?php echo base_url() ?>login/autenticar">

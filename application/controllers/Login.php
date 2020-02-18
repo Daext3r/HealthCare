@@ -8,7 +8,10 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-        $this->load->view("modules/head");
+		//carga el head con una hoja de estilos
+		$this->load->view("modules/head", array("hojas" => array("login")));
+		
+		//carga la vista de login
         $this->load->view("Login_v");
 	}
 

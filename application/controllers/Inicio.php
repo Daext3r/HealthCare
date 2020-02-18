@@ -8,7 +8,10 @@ class Inicio extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view("modules/head");
+		//carga el head con una hoja de estilos
+		$this->load->view("modules/head", array("hojas" => array("inicio")));
+
+		//carga la vista de inicio
 		$this->load->view("Inicio_v");
 	}
 }
