@@ -15,10 +15,12 @@ form {
     padding: 2em;
     margin-top: 2em;
     justify-content: center;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 img {
-    width: 55%;
+    width: 38%;
 }
 
 input[type=password] {
