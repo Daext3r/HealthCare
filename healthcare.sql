@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-02-2020 a las 11:37:15
+-- Tiempo de generación: 18-02-2020 a las 09:43:06
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -48,7 +48,7 @@ CREATE TABLE `analiticas` (
 --
 
 CREATE TABLE `centros` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY,
   `nombre` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
   `calle` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
   `telefonos` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
@@ -150,11 +150,12 @@ CREATE TABLE `personal_laboratorio` (
 --
 
 CREATE TABLE `tratamientos` (
+  `id` int(11) NOT NULL,
   `CIU_paciente` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
   `fecha_inicio` date NOT NULL,
   `fecha_fin` date NOT NULL,
   `dosis` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -185,19 +186,26 @@ CREATE TABLE `usuarios` (
 -- Indices de la tabla `analiticas`
 --
 ALTER TABLE `analiticas`
-  ADD PRIMARY KEY (`codigo_analitica`);
+  ADD PRIMARY KEY (`codigo_analitica`),
+  ADD KEY `analiticas_pacientes` (`CIU_paciente`),
+  ADD KEY `analiticas_personal_laboratorio` (`CIU_personal`),
+  ADD KEY `analiticas_facultativo` (`CIU_medico_solicitante`);
 
 --
 -- Indices de la tabla `citas`
 --
 ALTER TABLE `citas`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `citas_pacientes` (`CIU_paciente`),
+  ADD KEY `citas_facultativos` (`CIU_medico`);
 
 --
 -- Indices de la tabla `consultas`
 --
 ALTER TABLE `consultas`
-  ADD PRIMARY KEY (`identificador`,`centro`);
+  ADD PRIMARY KEY (`identificador`,`centro`),
+  ADD KEY `consultas_centro` (`centro`),
+  ADD KEY `consulta_facultativo` (`facultativo`);
 
 --
 -- Indices de la tabla `especialidades`
@@ -210,19 +218,36 @@ ALTER TABLE `especialidades`
 --
 ALTER TABLE `facultativos`
   ADD PRIMARY KEY (`CIU_medico`),
-  ADD UNIQUE KEY `numero_colegiado` (`numero_colegiado`);
+  ADD UNIQUE KEY `numero_colegiado` (`numero_colegiado`),
+  ADD KEY `facultativos_especialidades` (`especialidad`);
 
 --
 -- Indices de la tabla `informes`
 --
 ALTER TABLE `informes`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `informes_citas` (`cita`);
 
 --
 -- Indices de la tabla `pacientes`
 --
 ALTER TABLE `pacientes`
-  ADD PRIMARY KEY (`CIU_paciente`);
+  ADD PRIMARY KEY (`CIU_paciente`),
+  ADD KEY `pacientes_facultativos` (`CIU_medico_referencia`);
+
+--
+-- Indices de la tabla `personal_laboratorio`
+--
+ALTER TABLE `personal_laboratorio`
+  ADD KEY `personal_usuario` (`CIU_personal`),
+  ADD KEY `personal_centro` (`centro`);
+
+--
+-- Indices de la tabla `tratamientos`
+--
+ALTER TABLE `tratamientos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tratamientos_pacientes` (`CIU_paciente`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -243,7 +268,8 @@ ALTER TABLE `analiticas`
 --
 -- AUTO_INCREMENT de la tabla `centros`
 --
-ALTER TABLE `centros` ADD PRIMARY KEY(`id`);
+ALTER TABLE `centros`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `citas`
@@ -262,6 +288,71 @@ ALTER TABLE `especialidades`
 --
 ALTER TABLE `informes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `tratamientos`
+--
+ALTER TABLE `tratamientos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `analiticas`
+--
+ALTER TABLE `analiticas`
+  ADD CONSTRAINT `analiticas_facultativo` FOREIGN KEY (`CIU_medico_solicitante`) REFERENCES `facultativos` (`CIU_medico`),
+  ADD CONSTRAINT `analiticas_pacientes` FOREIGN KEY (`CIU_paciente`) REFERENCES `pacientes` (`CIU_paciente`),
+  ADD CONSTRAINT `analiticas_personal_laboratorio` FOREIGN KEY (`CIU_personal`) REFERENCES `personal_laboratorio` (`CIU_personal`);
+
+--
+-- Filtros para la tabla `citas`
+--
+ALTER TABLE `citas`
+  ADD CONSTRAINT `citas_facultativos` FOREIGN KEY (`CIU_medico`) REFERENCES `facultativos` (`CIU_medico`),
+  ADD CONSTRAINT `citas_pacientes` FOREIGN KEY (`CIU_paciente`) REFERENCES `pacientes` (`CIU_paciente`);
+
+--
+-- Filtros para la tabla `consultas`
+--
+ALTER TABLE `consultas`
+  ADD CONSTRAINT `consulta_facultativo` FOREIGN KEY (`facultativo`) REFERENCES `facultativos` (`CIU_medico`),
+  ADD CONSTRAINT `consultas_centro` FOREIGN KEY (`centro`) REFERENCES `centros` (`id`);
+
+--
+-- Filtros para la tabla `facultativos`
+--
+ALTER TABLE `facultativos`
+  ADD CONSTRAINT `facultativos_especialidades` FOREIGN KEY (`especialidad`) REFERENCES `especialidades` (`id`),
+  ADD CONSTRAINT `facultativos_usuarios` FOREIGN KEY (`CIU_medico`) REFERENCES `usuarios` (`CIU`);
+
+--
+-- Filtros para la tabla `informes`
+--
+ALTER TABLE `informes`
+  ADD CONSTRAINT `informes_citas` FOREIGN KEY (`cita`) REFERENCES `citas` (`id`);
+
+--
+-- Filtros para la tabla `pacientes`
+--
+ALTER TABLE `pacientes`
+  ADD CONSTRAINT `pacientes_facultativos` FOREIGN KEY (`CIU_medico_referencia`) REFERENCES `facultativos` (`CIU_medico`),
+  ADD CONSTRAINT `pacientes_usuarios` FOREIGN KEY (`CIU_paciente`) REFERENCES `usuarios` (`CIU`);
+
+--
+-- Filtros para la tabla `personal_laboratorio`
+--
+ALTER TABLE `personal_laboratorio`
+  ADD CONSTRAINT `personal_centro` FOREIGN KEY (`centro`) REFERENCES `centros` (`id`),
+  ADD CONSTRAINT `personal_usuario` FOREIGN KEY (`CIU_personal`) REFERENCES `usuarios` (`CIU`);
+
+--
+-- Filtros para la tabla `tratamientos`
+--
+ALTER TABLE `tratamientos`
+  ADD CONSTRAINT `tratamientos_pacientes` FOREIGN KEY (`CIU_paciente`) REFERENCES `pacientes` (`CIU_paciente`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
