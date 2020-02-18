@@ -15,7 +15,7 @@
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Recuérdame</label>
             </div>
-            <button id="qr" class="btn btn-outline-primary">Escanear QR</button>
+            <button id="qr" class="btn btn-outline-primary disabled">Escanear QR</button>
             <button type="submit" class="btn btn-success">Iniciar sesión</button>
         </form>
     </div>
@@ -25,8 +25,9 @@
         //evento de documento cargado
         $(document).ready(() => {
             //evitamos que al pulsar el boton de escanear qr envie el formulario
-            $("#qr").on("click", function () {
-                
+            $("#qr").on("click", function (event) {
+                //evitamos que envie el formulario
+                event.preventDefault();
             })
         });
     </script>

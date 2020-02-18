@@ -21,7 +21,10 @@ class Login extends CI_Controller {
 		$clave = hash("sha512", $this->input->post("clave"));
 
 		$this->load->model("Login_m");
-		$this->Login_m->autenticar($correo, $clave);
+
+		$resultado = $this->Login_m->autenticar($correo, $clave);
+
+		var_dump($resultado);
 
 	}
 }
