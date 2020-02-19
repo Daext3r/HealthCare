@@ -32,10 +32,6 @@ class Login_m extends CI_Model
             //si no lo tiene devolvemos false
             return false;
         }
-        
-
-
-        
     }
 
     public function leerPerfiles($ciu)
