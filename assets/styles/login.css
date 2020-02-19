@@ -14,7 +14,6 @@ form {
     align-items: center;
     padding: 2em;
     margin-top: 2em;
-    justify-content: center;
     display: flex;
     justify-content: space-evenly;
 }
@@ -25,4 +24,8 @@ img {
 
 input[type=password] {
     font-size: 18px;
+}
+
+.alert {
+    width: 100%;
 }

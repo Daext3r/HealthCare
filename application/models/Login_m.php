@@ -15,7 +15,7 @@ class Login_m extends CI_Model
 
         //TODO: verificar la identidad del usuario, ver si estar registrado y llamar a self::leerPerfiles
 
-        $result = $this->db->query("SELECT * FROM usuarios WHERE correo = ? AND clave = ? LIMIT 1", array($correo, $clave));
+        $result = $this->db->query("SELECT CIU FROM usuarios WHERE correo = ? AND clave = ? LIMIT 1", array($correo, $clave));
 
         //leemos una fila
         //si quisieramos leer varias usariamos result()
@@ -43,17 +43,23 @@ class Login_m extends CI_Model
         
         $result = $this->db->query("SELECT CIU_paciente FROM pacientes WHERE CIU_paciente = '$ciu'");
         if($result->row()) {
-            array_push($perfiles,'paciente');
+            $perfiles['paciente'] = true;
+        } else {
+            $perfiles['paciente'] = false;
         }
 
         $result = $this->db->query("SELECT CIU_medico FROM facultativos WHERE CIU_medico = '$ciu'");
         if($result->row()) {
-            array_push($perfiles,'medico');
+            $perfiles['medico'] = true;
+        } else {
+            $perfiles['medico'] = false;
         }
 
         $result = $this->db->query("SELECT CIU_personal FROM personal_laboratorio WHERE CIU_personal = '$ciu'");
         if($result->row()) {
-            array_push($perfiles,'personal');
+            $perfiles['personal_lab'] = true;
+        } else {
+            $perfiles['personal_lab'] = false;
         }
 
         return $perfiles;

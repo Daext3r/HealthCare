@@ -1,7 +1,14 @@
 <body>
     <div class="row shadow-lg p-3 mb-5 bg-white rounded">
-        <img src="<?php echo base_url()?>assets/img/logo.png" alt="" srcset="">
+
+        <img src="<?php echo base_url() ?>assets/img/logo.png" alt="" srcset="">
+
         <form method="POST" action="<?php echo base_url() ?>login/autenticar">
+            <?php if ($this->session->flashdata('error') == 'no_user') { ?>
+                <div class="alert alert-danger" role="alert">
+                    Datos de acceso incorrectos. Prueba de nuevo.
+                </div>
+            <?php } ?>
             <div class="form-group">
                 <label for="email">Correo electrónico</label>
                 <input type="email" class="form-control" id="email" name="email">
@@ -16,7 +23,7 @@
                 <label class="form-check-label" for="exampleCheck1">Recuérdame</label>
             </div>
             <button id="qr" class="btn btn-outline-primary disabled">Escanear QR</button>
-            <button type="submit" class="btn btn-success">Iniciar sesión</button>
+            <input type="submit" class="btn btn-success" value="Iniciar sesión">
         </form>
     </div>
 
@@ -25,7 +32,7 @@
         //evento de documento cargado
         $(document).ready(() => {
             //evitamos que al pulsar el boton de escanear qr envie el formulario
-            $("#qr").on("click", function (event) {
+            $("#qr").on("click", function(event) {
                 //evitamos que envie el formulario
                 event.preventDefault();
             })
