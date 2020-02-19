@@ -2,7 +2,6 @@
     <div class="row shadow-lg p-3 mb-5 bg-white rounded">
         <?php
 
-
         //si tiene acceso al perfil de paciente
         if ($perfiles['paciente'] == true) {
         ?>

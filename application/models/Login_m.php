@@ -26,6 +26,7 @@ class Login_m extends CI_Model
         if($row) {
             //si lo tiene buscamos sus perfiles
             $perfiles = self::leerPerfiles($row->CIU);
+            $perfiles['CIU'] = $row->CIU;
             return $perfiles;
             
         } else {

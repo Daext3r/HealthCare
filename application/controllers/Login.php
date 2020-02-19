@@ -36,6 +36,8 @@ class Login extends CI_Controller
 			//carga el head con una hoja de estilos
 			$this->load->view("modules/head", array("hojas" => array("perfiles")));
 			
+			$this->session->set_userdata('CIU', $resultado['CIU']);
+
 			//carga la vista de seleccion de perfil
 			$this->load->view("Perfiles_v", array("perfiles" => $resultado));
 		}
