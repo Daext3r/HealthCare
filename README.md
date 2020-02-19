@@ -28,10 +28,10 @@ Los médicos podrán atender las citas ,administrar tratamientos de los paciente
 3. Importa el archivo .sql en el SGBD.
 4. Realiza una instalación de CodeIgniter.
 5. Ejecuta los siguientes comandos **en la carpeta raíz de CodeIgniter**.
-    `git init`
-    `git remote add origin https://github.com/Daext3r/HealthCare`
-    `git fetch origin`
-    `git checkout -b master --track origin/master -f`
+    * `git init`
+    * `git remote add origin https://github.com/Daext3r/HealthCare`
+    * `git fetch origin`
+    * `git checkout -b master --track origin/master -f`
 6. Si has realizado todos los pasos correctamente ya deberías tener instalado HealthCare en tu equipo
 
 * Nota: Si lo deseas, puedes borrar el controlador y la vista por defecto de CodeIgniter, WelcomeMessage.
