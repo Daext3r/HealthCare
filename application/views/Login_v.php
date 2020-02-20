@@ -11,7 +11,7 @@
             <?php } ?>
             <div class="form-group">
                 <label for="email">Correo electrónico</label>
-                <input type="email" class="form-control" id="email" name="email">
+                <input type="email" class="form-control" id="email" name="email" required>
             </div>
             <div class="form-group">
                 <label for="clave">Contraseña</label>
@@ -22,7 +22,7 @@
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Recuérdame</label>
             </div>
-            <button id="qr" class="btn btn-outline-primary disabled">Escanear QR</button>
+            <button id="qr" class="btn btn-outline-primary" type="button">Escanear QR</button>
             <input type="submit" class="btn btn-success" value="Iniciar sesión">
         </form>
     </div>
