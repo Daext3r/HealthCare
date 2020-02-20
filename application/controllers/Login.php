@@ -10,6 +10,9 @@ class Login extends CI_Controller
 
 	public function index()
 	{
+		//borramos todos los datos de sesión que existan
+		$this->session->sess_destroy();
+
 		//carga el head con una hoja de estilos
 		$this->load->view("modules/head", array("hojas" => array("login")));
 

@@ -13,8 +13,6 @@ class Login_m extends CI_Model
         //recibe por parametros el correo y la clave con la que se debe autenticar el usuario
         //en este punto la clave ya está cifrada en SHA512
 
-        //TODO: verificar la identidad del usuario, ver si estar registrado y llamar a self::leerPerfiles
-
         $result = $this->db->query("SELECT CIU FROM usuarios WHERE correo = ? AND clave = ? LIMIT 1", array($correo, $clave));
 
         //leemos una fila
