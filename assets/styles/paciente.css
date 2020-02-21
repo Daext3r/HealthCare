@@ -40,12 +40,28 @@ body {
 }
 
 .headerItem {
-    flex-basis: 33.33%;
+    flex-basis: 30.33%;
     height: 100%;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#logout {
+    flex-basis: 9%;
+    height: 100%;
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#logout p {
+    padding-left: 0.5em;
+    margin: 0;
 }
 
 .badge {
@@ -54,5 +70,5 @@ body {
 }
 
 .hover {
-    cursor:pointer;
+    cursor: pointer;
 }
