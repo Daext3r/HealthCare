@@ -3,7 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Paciente extends CI_Controller {
 	public function __construct() {
-		parent::__construct();
+        parent::__construct();
+        
+        //si no tiene CIU es que no ha pasado por el login, lo redirigimos al mismo
+        if(!$this->session->userdata("CIU")){
+            //redirigimos al login
+			redirect(base_url() . "login");
+        }
 	}
 
 	public function index()

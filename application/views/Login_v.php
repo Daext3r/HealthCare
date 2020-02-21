@@ -15,8 +15,8 @@
             </div>
             <div class="form-group">
                 <label for="clave">Contraseña</label>
-                <input type="password" class="form-control" id="clave" name="clave">
-                <small class="form-text text-muted">Déjalo en blanco si no tienes contraseña</small>
+                <input type="password" class="form-control" id="clave" name="clave" required>
+                
             </div>
             <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
