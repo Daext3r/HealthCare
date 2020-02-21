@@ -1,0 +1,48 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #f6f6f6;    
+}
+
+#menu {
+    height: 100%;
+    flex-basis: 15%;
+    box-shadow: 21px 0px 10px -21px rgba(0, 0, 0, 0.30);
+    background-color: white;
+}
+
+#pagina {
+    flex-basis: 83%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#header {
+    height: 5%;
+    width: 80%;
+    box-shadow: 0px 10px 35px -15px rgba(0,0,0,0.75);;
+    display: flex;
+    background-color: white;
+}
+
+#contenido {
+    height: 85%;
+    width: 95%;
+    align-self: auto;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.30);
+    border-radius: 5px;
+    background-color: white;
+}
+
+.headerItem {
+    flex-basis: 33.33%;
+    height: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
