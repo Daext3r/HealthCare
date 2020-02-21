@@ -7,6 +7,9 @@ body {
 
 .row {
     padding: 3em;
+    width: auto;
+    display: flex;
+    justify-content: center;
 }
 
 .card {
@@ -24,4 +27,10 @@ i {
     font-size: 8em;
     text-align: center;
     width: 100%;
+}
+
+@media only screen and (max-width: 715px) {
+    .row {
+        width: 90vw;
+    }
 }

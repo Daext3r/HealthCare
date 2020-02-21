@@ -5,7 +5,7 @@
         //si tiene acceso al perfil de paciente
         if ($perfiles['paciente'] == true) {
         ?>
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 18em;">
                 <div class="card-logo">
                     <i class="fas fa-briefcase-medical"></i>
                 </div>
@@ -24,7 +24,7 @@
         //si tiene acceso al perfil de medico
         if ($perfiles['medico'] == true) {
         ?>
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 18em;">
                 <div class="card-logo">
                     <i class="fas fa-user-md"></i>
                 </div>

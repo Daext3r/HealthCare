@@ -28,9 +28,3 @@ body::-webkit-scrollbar{
 a[href="#info"] {
     margin: 5em;
 }
-
-@media only screen and (max-width: 600px) {
-    .mini-row {
-      
-    }
-  }
