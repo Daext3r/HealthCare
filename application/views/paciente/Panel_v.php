@@ -9,7 +9,7 @@
         <nav id="header">
             <div class="headerItem"><?php echo $this->session->userdata("nombre") . " " . $this->session->userdata("apellidos")?></div>
             <div class="headerItem" id="reloj"></div>
-            <div class="headerItem">Tienes 0 notificaciones pendientes</div>
+            <div class="headerItem hover" id="notificaciones">Tienes <span id="notificaciones" class="badge badge-pill badge-danger">0</span> notificaciones pendientes</div>
         </nav>
 
         <section id="contenido">

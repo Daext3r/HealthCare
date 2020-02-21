@@ -4,7 +4,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    background-color: #f6f6f6;    
+    background-color: #f6f6f6;
 }
 
 #menu {
@@ -24,7 +24,8 @@ body {
 #header {
     height: 5%;
     width: 80%;
-    box-shadow: 0px 10px 35px -15px rgba(0,0,0,0.75);;
+    box-shadow: 0px 10px 35px -15px rgba(0, 0, 0, 0.75);
+    ;
     display: flex;
     background-color: white;
 }
@@ -45,4 +46,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.badge {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+.hover {
+    cursor:pointer;
 }
