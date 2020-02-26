@@ -33,13 +33,15 @@ class Login extends CI_Controller
 		if (!$resultado) {
 			//si el resultado es false, recargamos la pagina mostrando un mensaje de error
 			$this->session->set_flashdata('error', 'no_user');
-			self::index();
+			
+			//redirigimos al login
+			redirect(base_url() . "login");
 		} else {
 			
 			//carga el head con una hoja de estilos
 			$this->load->view("modules/head", array("hojas" => array("perfiles")));
 			
-			$this->session->set_userdata('CIU', $resultado['CIU']);
+			$this->session->set_userdata('ciu', $resultado['ciu']);
 
 			//carga la vista de seleccion de perfil
 			$this->load->view("Perfiles_v", array("perfiles" => $resultado));

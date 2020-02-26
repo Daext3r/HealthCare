@@ -14,7 +14,7 @@
                     <h5 class="card-title">Paciente</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Entrar como paciente</h6>
                     <p class="card-text">Accede a la plataforma como paciente de tu centro de salud</p>
-                    <a href="<?php echo base_url()?>paciente" class="btn btn-primary">Entrar</a>
+                    <a href="<?php echo base_url()?>paciente/inicio" class="btn btn-primary">Entrar</a>
 
                 </div>
             </div>

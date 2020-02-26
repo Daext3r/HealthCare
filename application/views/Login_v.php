@@ -1,9 +1,9 @@
 <body>
     <div class="row shadow-lg p-3 mb-5 bg-white rounded">
 
-        <img src="<?php echo base_url() ?>assets/img/logo.png" alt="" srcset="" class="img-fluid">
+        <img src="<?php echo base_url() ?>assets/img/logo.png" alt="" srcset="" class="col-12 col-md-8 col-l-7 col-xl-5">
 
-        <form method="POST" action="<?php echo base_url() ?>login/autenticar" class="col-md-12 col-xl-7">
+        <form method="POST" action="<?php echo base_url() ?>login/autenticar" class="col-md-12 col-xl-5">
             <?php if ($this->session->flashdata('error') == 'no_user') { ?>
                 <div class="alert alert-danger" role="alert">
                     Datos de acceso incorrectos. Prueba de nuevo.
@@ -15,8 +15,8 @@
             </div>
             <div class="form-group">
                 <label for="clave">Contraseña</label>
-                <input type="password" class="form-control" id="clave" name="clave">
-                <small class="form-text text-muted">Déjalo en blanco si no tienes contraseña</small>
+                <input type="password" class="form-control" id="clave" name="clave" required>
+                
             </div>
             <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -33,7 +33,7 @@
         $(document).ready(() => {
             //evitamos que al pulsar el boton de escanear qr envie el formulario
             $("#qr").on("click", function(event) {
-                //evitamos que envie el formulario al pulsar el boton de escanear qe
+                //evitamos que envie el formulario al pulsar el boton de escanear qr
                 event.preventDefault();
             })
         });
