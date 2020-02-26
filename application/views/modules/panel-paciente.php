@@ -2,10 +2,11 @@
     <!--Scripts necesarios para el reloj y navegacion-->
     <script src="<?php echo base_url() ?>assets/scripts/paciente.js"></script>
     <script>
-        $("#logout").on("click", () => {
-            //si hace clic en el boton de logout, redirigimos al login
-            window.location = "<?php echo base_url() ?>" + "paciente/logout";
-            console.log("a");
+        $(document).ready(() => {
+            $("#logout").on("click", () => {
+                //si hace clic en el boton de logout, redirigimos al login
+                window.location = "<?php echo base_url() ?>paciente/logout";
+            });
         });
     </script>
 
@@ -17,8 +18,8 @@
             </div>
 
             <div id="nombre">
-                    
-            <?php echo $this->session->userdata("nombre") . " " . $this->session->userdata("apellidos")?>
+
+                <?php echo $this->session->userdata("nombre") . " " . $this->session->userdata("apellidos") ?>
             </div>
 
             <div class="separador"></div>

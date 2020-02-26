@@ -20,4 +20,16 @@ class Paciente_m extends CI_Model
         } else {
         }
     }
+
+    public function leerCitas($ciu)
+    {
+        //buscamos todas las citas de este paciente
+        $consulta = $this->db->query("SELECT * FROM vista_citas_pacientes_medicos WHERE CIU_paciente = '$ciu' AND estado = '0'");
+
+        //ejecutamos la consulta y devolvemos el array de citas
+        $citas = $consulta->result_array();
+
+        return $citas;
+
+    }
 }

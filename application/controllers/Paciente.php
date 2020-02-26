@@ -47,8 +47,11 @@ class Paciente extends CI_Controller
 
     public function citas()
     {
+        $this->load->model("Paciente_m");
+        $citas = $this->Paciente_m->leerCitas($this->session->userdata("ciu"));
+        
         //carga la vista de inicio
-        $this->load->view("paciente/Citas_v", array("hojasEstilos" => array("paciente/citas")));
+        $this->load->view("paciente/Citas_v", array("hojasEstilos" => array("paciente/panel-paciente", "paciente/panel-paciente-responsive"), "citas" => $citas));
     }
 
     public function tratamientos()
