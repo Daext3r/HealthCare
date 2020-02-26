@@ -116,3 +116,7 @@ body {
 .list-group {
     border-radius: 0px !important;
 }
+
+a.seccion {
+    color: white !important;
+}

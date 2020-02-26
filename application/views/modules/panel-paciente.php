@@ -15,10 +15,22 @@
 
         <div id="secciones">
             <ul class="list-group">
-                <li class="list-group-item active">Citas</li>
-                <li class="list-group-item">Tratamientos</li>
-                <li class="list-group-item">Informes</li>
-                <li class="list-group-item">Mis Datos</li>
+                <a href="<?php echo base_url() ?>paciente/inicio">
+                    <li class="list-group-item active seccion">Inicio</li>
+                </a>
+                <a href="<?php echo base_url() ?>paciente/citas">
+                    <li class="list-group-item">Citas</li>
+                </a>
+                <a href="<?php echo base_url() ?>paciente/tratamientos">
+                    <li class="list-group-item">Tratamientos</li>
+                </a>
+                <a href="<?php echo base_url() ?>paciente/informes">
+                    <li class="list-group-item">Informes</li>
+                </a>
+                <a href="<?php echo base_url() ?>paciente/misdatos">
+                    <li class="list-group-item">Mis Datos</li>
+                </a>
+
             </ul>
         </div>
     </section>
@@ -34,17 +46,3 @@
                 <p>Salir</p>
             </div>
         </nav>
-
-        <section id="contenido">
-
-        </section>
-    </div>
-
-    <script src="<?php echo base_url() ?>assets/scripts/paciente.js"></script>
-    <script>
-        $("#logout").on("click", () => {
-            //si hace clic en el boton de logout, redirigimos al login
-            window.location = "<?php echo base_url() ?>" + "paciente/logout";
-        });
-    </script>
-</body>
