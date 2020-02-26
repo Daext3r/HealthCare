@@ -12,6 +12,11 @@ body {
     flex-basis: 15%;
     box-shadow: 21px 0px 10px -21px rgba(0, 0, 0, 0.30);
     background-color: white;
+    
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
 }
 
 #pagina {
@@ -71,4 +76,29 @@ body {
 
 .hover {
     cursor: pointer;
+}
+
+#perfil {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#imgperfil img {
+    width: 50%;
+    border-radius: 50%;
+    margin: 2em;
+}
+
+#secciones {
+
+}
+
+.separador {
+    border-top: 1px solid gray;
+    width: 90%;
 }
