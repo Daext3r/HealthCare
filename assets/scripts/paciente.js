@@ -35,9 +35,4 @@ $(document).ready(function () {
     $("#notificaciones").on("click", () => {
         //TODO: mostrar listado con notificaciones
     })
-
-    $("#logout").on("click", () => {
-        //si hace clic en el boton de logout, redirigimos al login
-        window.location = "";
-    });
 });

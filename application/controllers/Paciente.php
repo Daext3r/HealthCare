@@ -30,6 +30,9 @@ class Paciente extends CI_Controller {
 
 		//carga la vista de inicio
         $this->load->view("paciente/Panel_v");
-        
-	}
+    }
+    
+    public function logout() {
+        redirect(base_url() . "login");
+    }
 }
