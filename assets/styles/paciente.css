@@ -12,7 +12,6 @@ body {
     flex-basis: 15%;
     box-shadow: 21px 0px 10px -21px rgba(0, 0, 0, 0.30);
     background-color: white;
-    
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -28,24 +27,14 @@ body {
 
 #header {
     height: 5%;
-    width: 80%;
-    box-shadow: 0px 10px 35px -15px rgba(0, 0, 0, 0.75);
-    ;
+    width: 53%;
+    box-shadow: 0px 10px 15px -15px rgba(0, 0, 0, 0.75);
     display: flex;
     background-color: white;
-}
-
-#contenido {
-    height: 85%;
-    width: 95%;
-    align-self: auto;
-    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.30);
-    border-radius: 5px;
-    background-color: white;
+    align-items: center;
 }
 
 .headerItem {
-    flex-basis: 30.33%;
     height: 100%;
     text-align: center;
     display: flex;
@@ -53,17 +42,23 @@ body {
     align-items: center;
 }
 
+#reloj {
+    flex-basis: 50%;
+}
+
 #logout {
-    flex-basis: 9%;
+    flex-basis: 10%;
     height: 100%;
     text-align: center;
-
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
 }
-
+#notificaciones {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
 #logout p {
     padding-left: 0.5em;
     margin: 0;
@@ -74,15 +69,23 @@ body {
     margin-right: 0.5em;
 }
 
+#contenido {
+    height: 85%;
+    width: 95%;
+    align-self: auto;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.30);
+    border-radius: 5px;
+    background-color: white;
+}
+
 .hover {
     cursor: pointer;
 }
 
 #perfil {
     width: 100%;
-    height: auto;
+    height: 35%;
     text-align: center;
-    
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -95,10 +98,21 @@ body {
 }
 
 #secciones {
-
+    width: 100%;
+    justify-self: flex-start;
+    height: 65%;
 }
 
 .separador {
     border-top: 1px solid gray;
     width: 90%;
+}
+
+.separador-v {
+    border-right: 1px solid gray;
+    height: 80%;
+}
+
+.list-group {
+    border-radius: 0px !important;
 }

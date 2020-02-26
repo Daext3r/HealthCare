@@ -12,18 +12,24 @@
 
             <div class="separador"></div>
         </div>
-        
-        <div id="secciones">
 
+        <div id="secciones">
+            <ul class="list-group">
+                <li class="list-group-item active">Citas</li>
+                <li class="list-group-item">Tratamientos</li>
+                <li class="list-group-item">Informes</li>
+                <li class="list-group-item">Mis Datos</li>
+            </ul>
         </div>
     </section>
 
     <!--seccion del contenido-->
     <div id="pagina">
         <nav id="header">
-            <div class="headerItem"></div>
             <div class="headerItem" id="reloj"></div>
+            <div class="separador-v"></div>
             <div class="headerItem hover" id="notificaciones">Tienes <span id="notificaciones" class="badge badge-pill badge-danger">0</span> notificaciones pendientes</div>
+            <div class="separador-v"></div>
             <div id="logout"><i class="fas fa-sign-out-alt"></i>
                 <p>Salir</p>
             </div>
