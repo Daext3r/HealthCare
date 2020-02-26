@@ -1,4 +1,13 @@
 <body>
+    <!--Scripts necesarios para el reloj y navegacion-->
+    <script src="<?php echo base_url() ?>assets/scripts/paciente.js"></script>
+    <script>
+        $("#logout").on("click", () => {
+            //si hace clic en el boton de logout, redirigimos al login
+            window.location = "<?php echo base_url() ?>" + "paciente/logout";
+        });
+    </script>
+
     <!--seccion del menu lateral-->
     <section id="menu">
         <div id="perfil">

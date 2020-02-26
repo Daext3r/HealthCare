@@ -1,5 +1,5 @@
         <section id="contenido">
-            inicio
+            informes
         </section>
     </div>
 </body>

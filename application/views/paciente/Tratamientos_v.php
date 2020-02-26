@@ -1,5 +1,5 @@
         <section id="contenido">
-            inicio
+            tratamietnos
         </section>
     </div>
 </body>
