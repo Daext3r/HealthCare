@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-02-2020 a las 08:54:28
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.9
+-- Tiempo de generación: 26-02-2020 a las 16:46:16
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -36,11 +36,11 @@ CREATE TABLE `analiticas` (
   `CIU_personal` varchar(64) COLLATE utf8_spanish_ci DEFAULT NULL,
   `CIU_medico_solicitante` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
   `pruebas` text COLLATE utf8_spanish_ci NOT NULL,
-  `resultados` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `resultados` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `fecha_solicitud` date NOT NULL,
   `fecha_resultado` date DEFAULT NULL,
   `observaciones_medico` text COLLATE utf8_spanish_ci NOT NULL,
-  `observaciones_personal` text COLLATE utf8_spanish_ci DEFAULT NULL
+  `observaciones_personal` text COLLATE utf8_spanish_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -50,11 +50,11 @@ CREATE TABLE `analiticas` (
 --
 
 CREATE TABLE `centros` (
-  `id` int(11) NOT NULL PRIMARY KEY,
+  `id` int(11) NOT NULL,
   `nombre` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
   `calle` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
   `telefonos` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -134,6 +134,18 @@ CREATE TABLE `informes` (
   `id` int(11) NOT NULL,
   `cita` int(11) NOT NULL,
   `contenido` text COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `notificaciones`
+--
+
+CREATE TABLE `notificaciones` (
+  `id` int(11) NOT NULL,
+  `CIU_usuario` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
+  `informacion` text COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -224,6 +236,12 @@ ALTER TABLE `analiticas`
   ADD KEY `analiticas_facultativo` (`CIU_medico_solicitante`);
 
 --
+-- Indices de la tabla `centros`
+--
+ALTER TABLE `centros`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `citas`
 --
 ALTER TABLE `citas`
@@ -259,6 +277,13 @@ ALTER TABLE `facultativos`
 ALTER TABLE `informes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `informes_citas` (`cita`);
+
+--
+-- Indices de la tabla `notificaciones`
+--
+ALTER TABLE `notificaciones`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `notificaciones-usuarios` (`CIU_usuario`);
 
 --
 -- Indices de la tabla `pacientes`
@@ -322,6 +347,12 @@ ALTER TABLE `informes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `notificaciones`
+--
+ALTER TABLE `notificaciones`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `tratamientos`
 --
 ALTER TABLE `tratamientos`
@@ -365,6 +396,12 @@ ALTER TABLE `facultativos`
 --
 ALTER TABLE `informes`
   ADD CONSTRAINT `informes_citas` FOREIGN KEY (`cita`) REFERENCES `citas` (`id`);
+
+--
+-- Filtros para la tabla `notificaciones`
+--
+ALTER TABLE `notificaciones`
+  ADD CONSTRAINT `notificaciones-usuarios` FOREIGN KEY (`CIU_usuario`) REFERENCES `usuarios` (`CIU`);
 
 --
 -- Filtros para la tabla `pacientes`
