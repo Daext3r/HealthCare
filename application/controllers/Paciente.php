@@ -50,8 +50,10 @@ class Paciente extends CI_Controller
         $this->load->model("Paciente_m");
         $citas = $this->Paciente_m->leerCitas($this->session->userdata("ciu"));
         
+        $facultativos = $this->Paciente_m->leerFacultativos($this->session->userdata("ciu"));
+        
         //carga la vista de inicio
-        $this->load->view("paciente/Citas_v", array("hojasEstilos" => array("paciente/panel-paciente", "paciente/panel-paciente-responsive"), "citas" => $citas));
+        $this->load->view("paciente/Citas_v", array("hojasEstilos" => array("paciente/panel-paciente", "paciente/panel-paciente-responsive"), "citas" => $citas, "facultativos" => $facultativos));
     }
 
     public function tratamientos()
