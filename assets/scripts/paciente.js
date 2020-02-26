@@ -26,13 +26,26 @@ $(document).ready(function () {
         }
         $("#reloj").text(cadena);
     }
+
     //ejecutamos la funcion de la fecha una vez
     actualizarFecha();
 
-    //intervalo de ejecucion del reloj
-    setInterval(actualizarFecha, 10000);
+    //intervalo de ejecucion del reloj, cada minuto
+    setInterval(actualizarFecha, 60000);
 
     $("#notificaciones").on("click", () => {
         //TODO: mostrar listado con notificaciones
     })
+
+    
+    //para cada elemento del menu
+    for (let a of document.getElementsByClassName("list-group")[0].children) {
+
+        //si el href coincide con la url actual
+        if (a.href == window.location.href) {
+
+            //añade la clase active para que resalte en azul
+            a.children[0].classList.add("active");
+        }
+    }
 });

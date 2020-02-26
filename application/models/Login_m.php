@@ -13,7 +13,7 @@ class Login_m extends CI_Model
         //recibe por parametros el correo y la clave con la que se debe autenticar el usuario
         //en este punto la clave ya está cifrada en SHA512
 
-        $result = $this->db->query("SELECT CIU FROM usuarios WHERE correo = ? AND clave = ? LIMIT 1", array($correo, $clave));
+        $result = $this->db->query("SELECT ciu FROM usuarios WHERE correo = ? AND clave = ? LIMIT 1", array($correo, $clave));
 
         //leemos una fila
         //si quisieramos leer varias usariamos result()
@@ -23,8 +23,8 @@ class Login_m extends CI_Model
         //comprobamos que $row tenga un registro
         if($row) {
             //si lo tiene buscamos sus perfiles
-            $perfiles = self::leerPerfiles($row->CIU);
-            $perfiles['CIU'] = $row->CIU;
+            $perfiles = self::leerPerfiles($row->ciu);
+            $perfiles['ciu'] = $row->ciu;
             return $perfiles;
             
         } else {
@@ -40,21 +40,21 @@ class Login_m extends CI_Model
 
         //si el usuario se ha autenticado correctamente, leemos y devolvemos los perfiles a los que tiene acceso
         
-        $result = $this->db->query("SELECT CIU_paciente FROM pacientes WHERE CIU_paciente = '$ciu'");
+        $result = $this->db->query("SELECT ciu_paciente FROM pacientes WHERE ciu_paciente = '$ciu'");
         if($result->row()) {
             $perfiles['paciente'] = true;
         } else {
             $perfiles['paciente'] = false;
         }
 
-        $result = $this->db->query("SELECT CIU_medico FROM facultativos WHERE CIU_medico = '$ciu'");
+        $result = $this->db->query("SELECT ciu_medico FROM facultativos WHERE ciu_medico = '$ciu'");
         if($result->row()) {
             $perfiles['medico'] = true;
         } else {
             $perfiles['medico'] = false;
         }
 
-        $result = $this->db->query("SELECT CIU_personal FROM personal_laboratorio WHERE CIU_personal = '$ciu'");
+        $result = $this->db->query("SELECT ciu_personal FROM personal_laboratorio WHERE ciu_personal = '$ciu'");
         if($result->row()) {
             $perfiles['personal_lab'] = true;
         } else {

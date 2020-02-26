@@ -5,21 +5,7 @@
         $("#logout").on("click", () => {
             //si hace clic en el boton de logout, redirigimos al login
             window.location = "<?php echo base_url() ?>" + "paciente/logout";
-        });
-
-        //cuando se cargue el documento
-        $(document).ready(function() {
-
-            //para cada elemento del menu
-            for (let a of document.getElementsByClassName("list-group")[0].children) {
-                
-                //si el href coincide con la url actual
-                if (a.href == window.location.href) {
-
-                    //añade la clase active para que resalte en azul
-                    a.children[0].classList.add("active");
-                }
-            }
+            console.log("a");
         });
     </script>
 
@@ -31,7 +17,8 @@
             </div>
 
             <div id="nombre">
-                <?php echo $this->session->userdata("nombre") . " " . $this->session->userdata("apellidos") ?>
+                    
+            <?php echo $this->session->userdata("nombre") . " " . $this->session->userdata("apellidos")?>
             </div>
 
             <div class="separador"></div>
@@ -40,7 +27,7 @@
         <div id="secciones">
             <ul class="list-group">
                 <a href="<?php echo base_url() ?>paciente/inicio">
-                    <li class="list-group-item seccion">Inicio</li>
+                    <li class="list-group-item">Inicio</li>
                 </a>
                 <a href="<?php echo base_url() ?>paciente/citas">
                     <li class="list-group-item">Citas</li>
@@ -52,7 +39,7 @@
                     <li class="list-group-item">Informes</li>
                 </a>
                 <a href="<?php echo base_url() ?>paciente/misdatos">
-                    <li class="list-group-item">Mis Datos</li>
+                    <li class="list-group-item last">Mis Datos</li>
                 </a>
 
             </ul>
