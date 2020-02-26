@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-02-2020 a las 09:43:06
+-- Tiempo de generación: 26-02-2020 a las 08:54:28
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `healthcare`
 --
+CREATE DATABASE IF NOT EXISTS `healthcare` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+USE `healthcare`;
 
 -- --------------------------------------------------------
 
@@ -95,6 +97,13 @@ CREATE TABLE `especialidades` (
   `identificacion` varchar(8) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `especialidades`
+--
+
+INSERT INTO `especialidades` (`id`, `denominacion`, `identificacion`) VALUES
+(1, 'Medicina General', 'MG');
+
 -- --------------------------------------------------------
 
 --
@@ -107,6 +116,13 @@ CREATE TABLE `facultativos` (
   `especialidad` int(11) NOT NULL,
   `activo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `facultativos`
+--
+
+INSERT INTO `facultativos` (`CIU_medico`, `numero_colegiado`, `especialidad`, `activo`) VALUES
+('CIURAFA', 1213, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -131,6 +147,14 @@ CREATE TABLE `pacientes` (
   `CIU_medico_referencia` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
   `grupo_sanguineo` varchar(2) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `pacientes`
+--
+
+INSERT INTO `pacientes` (`CIU_paciente`, `CIU_medico_referencia`, `grupo_sanguineo`) VALUES
+('CIUALEX', 'CIURAFA', 'A+'),
+('CIURAFA', 'CIURAFA', 'AB');
 
 -- --------------------------------------------------------
 
@@ -177,6 +201,14 @@ CREATE TABLE `usuarios` (
   `clave` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
   `correo` varchar(64) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`CIU`, `nombre`, `apellidos`, `dni`, `sexo`, `nacionalidad`, `direccion`, `telefono`, `fijo`, `fecha_nacimiento`, `clave`, `correo`) VALUES
+('CIUALEX', 'Alejandro', 'Rodriguez Sanchez', '543765345A', 'H', 'Española', 'Fake St. 123', '666335906', '954623157', '1999-12-17', 'd404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db', 'paciente@gmail.com'),
+('CIURAFA', 'Rafael', 'Apellido Surname', '123456789A', 'H', 'Española', 'C/ Falsa 123', '666555444', '927215984', '1965-05-01', 'd404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db', 'medico@gmail.com');
 
 --
 -- Índices para tablas volcadas
@@ -281,7 +313,7 @@ ALTER TABLE `citas`
 -- AUTO_INCREMENT de la tabla `especialidades`
 --
 ALTER TABLE `especialidades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `informes`
