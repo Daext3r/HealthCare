@@ -49,23 +49,22 @@ $(document).ready(function () {
         }
     }
 
-    $(".anular").on("click", function () {
+    $("#cambiarClave").on("click", function () {
+       //mostramos un pop-up
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.value) {
-                Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
+            icon: 'info',
+            title: 'Cambiar clave',
+            text: 'No podrás deshacer esta opción',
+            input: 'password',
+            inputPlaceholder: 'Introduce tu contraseña',
+            inputAttributes: {
+              maxlength: 10,
+              autocapitalize: 'off',
+              autocorrect: 'off'
             }
-        })
+          }).then(password => {
+              //cuando se introduzca una contraseña
+              $("#clave").val(password.value);
+          })
     });
 });

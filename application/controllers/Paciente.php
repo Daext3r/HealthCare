@@ -73,4 +73,9 @@ class Paciente extends CI_Controller
         //carga la vista de inicio
         $this->load->view("paciente/MisDatos_v");
     }
+
+    public function actualizarDatos() {
+        //TODO: si no tiene datos por POST redirigimos a inicio
+        //si los tiene verificamos los datos
+    }
 }

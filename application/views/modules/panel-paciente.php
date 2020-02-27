@@ -1,4 +1,5 @@
-<body>
+<!--Es necesario poner un height aqui para que una libreria no cambie el height del body-->
+<body style="height: 100vh!important">
     <!--Scripts necesarios para el reloj y navegacion-->
     <script src="<?php echo base_url() ?>assets/scripts/paciente.js"></script>
     <script>
