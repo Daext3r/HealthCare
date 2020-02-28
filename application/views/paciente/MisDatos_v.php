@@ -1,5 +1,32 @@
         <section id="misdatos-contenido">
-            <form action="<?php echo base_url(); ?>controllers/paciente/actualizarDatos" method="POST">
+            <?php
+
+
+            switch ($this->session->flashdata("info")) {
+                case "error_clave":
+                    ?>
+                        <div class="alert alert-danger w-75" role="alert">
+                            No puedes dejar la clave vacia.
+                        </div>
+                    <?php
+                break;
+                case "error_unk":
+                    ?>
+                        <div class="alert alert-danger w-75" role="alert">
+                            Ha ocurrido un error desconocido. Comuníquelo a un administrativo de su centro de salud
+                        </div>
+                    <?php
+                break;
+                case "ok":
+                    ?>
+                        <div class="alert alert-success w-75" role="alert">
+                            Se han modificado los datos correctamente
+                        </div>
+                    <?php
+                break;
+            }
+            ?>
+            <form action="<?php echo base_url(); ?>paciente/actualizarDatos" method="POST">
                 <div class="form-row">
                     <div class="col misdatos-col">
                         <label for="ciu">Código de identificación</label>
@@ -15,7 +42,7 @@
 
                     <div class="col misdatos-col">
                         <label for="nacionalidad">Nacionalidad</label>
-                        <input type="text"id="nacionalidad" class="form-control" placeholder="Nacionalidad" value="<?php echo $this->session->userdata("nacionalidad") ?>" readonly>
+                        <input type="text" id="nacionalidad" class="form-control" placeholder="Nacionalidad" value="<?php echo $this->session->userdata("nacionalidad") ?>" readonly>
                     </div>
                     <div class="col misdatos-col">
                         <label for="apellidos">Apellidos</label>
@@ -30,7 +57,7 @@
                     </div>
                     <div class="col misdatos-col">
                         <label for="fecha_nacimiento">Fecha de nacimiento</label>
-                        <input type="date" class="form-control"id="fecha_nacimiento" value="<?php echo $this->session->userdata("fecha_nacimiento") ?>" readonly>
+                        <input type="date" class="form-control" id="fecha_nacimiento" value="<?php echo $this->session->userdata("fecha_nacimiento") ?>" readonly>
                     </div>
                 </div>
 
@@ -45,7 +72,9 @@
 
                         <label for="clave">Clave</label>
                         <button type="button" class="btn btn-primary w-100" id="cambiarClave">Cambiar clave</button>
-                        <input type="hidden" name="clave" id="clave">
+
+                        <!--Campo de la clave, oculto-->
+                        <input type="hidden" name="clave" id="clave" value="null">
                     </div>
 
                 </div>
@@ -56,7 +85,7 @@
                     </div>
                     <div class="col misdatos-col">
                         <label for="dni">Teléfono fijo</label>
-                        <input type="text" class="form-control" name="fijo" id="fijo" placeholder="T. Fijo" value="<?php echo $this->session->userdata("fijo") ?>" pattern="[0-9]">
+                        <input type="text" class="form-control" name="fijo" id="fijo" placeholder="T. Fijo" value="<?php echo $this->session->userdata("fijo") ?>">
                     </div>
                 </div>
 
@@ -71,6 +100,4 @@
 
         </section>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-
         </body>

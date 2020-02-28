@@ -42,4 +42,21 @@ class Paciente_m extends CI_Model
 
         return $facultativos;
     }
+
+    public function actualizarDatos($datos, $ciu) {
+        
+        foreach($datos as $campo => $valor) {
+            $this->db->set($campo, $valor);
+        }
+
+        $this->db->where('ciu', $ciu);
+
+        if($this->db->update("usuarios")) {
+            return true;
+        } else {
+            return false;
+        }
+
+        
+    }
 }

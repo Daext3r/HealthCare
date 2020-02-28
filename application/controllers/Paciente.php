@@ -49,9 +49,9 @@ class Paciente extends CI_Controller
     {
         $this->load->model("Paciente_m");
         $citas = $this->Paciente_m->leerCitas($this->session->userdata("ciu"));
-        
+
         $facultativos = $this->Paciente_m->leerFacultativos($this->session->userdata("ciu"));
-        
+
         //carga la vista de inicio
         $this->load->view("paciente/Citas_v", array("hojasEstilos" => array("paciente/panel-paciente", "paciente/panel-paciente-responsive"), "citas" => $citas, "facultativos" => $facultativos));
     }
@@ -74,8 +74,45 @@ class Paciente extends CI_Controller
         $this->load->view("paciente/MisDatos_v");
     }
 
-    public function actualizarDatos() {
-        //TODO: si no tiene datos por POST redirigimos a inicio
-        //si los tiene verificamos los datos
+
+    public function actualizarDatos()
+    {
+        //si no hay datos POST es que ha accedido directamente por la URL, lo redirigimos a inicio
+        if (count($_POST) == 0) {
+            redirect(base_url() . "paciente/inicio");
+            return;
+        }
+
+        //añadimos la clave al array solo si el usuario ha introducido una nueva y ha cambiado el campo
+        if ($this->input->post("clave") != "null") {
+            if ($this->input->post("clave") != "") {
+                $datos['clave'] = hash("sha512", $this->input->post("clave"));
+            } else {
+                //sesion temporal que servirá para mostrar un mensaje de error
+                $this->session->set_flashdata("info", "error_clave");
+                redirect(base_url() . "paciente/misdatos");
+            }
+        }
+
+
+        $datos['correo'] = $this->input->post("correo");
+        $datos['telefono'] = $this->input->post("telefono");
+        $datos['fijo'] = $this->input->post("fijo");
+        $datos['direccion'] = $this->input->post("direccion");
+
+
+        //leemos de la session para usarlo en la clausula where
+        $ciu = $this->session->userdata("ciu");
+        $this->load->model("Paciente_m");
+
+        if($this->Paciente_m->actualizarDatos($datos, $ciu)) {
+           //sesion temporal que servirá para mostrar un mensaje de error
+           $this->session->set_flashdata("info", "ok");
+           redirect(base_url() . "paciente/misdatos"); 
+        } else {
+            //sesion temporal que servirá para mostrar un mensaje de error
+           $this->session->set_flashdata("info", "error_unk");
+           redirect(base_url() . "paciente/misdatos");
+        }
     }
 }
