@@ -35,7 +35,10 @@
             $("#qr").on("click", function(event) {
                 //evitamos que envie el formulario al pulsar el boton de escanear qr
                 event.preventDefault();
-            })
+            });
+
+            //añadimos al localstorage la url base. lo hacemos aqui ya que se usará en varias partes de la aplicación
+            localStorage.setItem("hc_base_url", "http://localhost/HealthCare/");
         });
     </script>
 </body>
