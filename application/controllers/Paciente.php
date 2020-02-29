@@ -107,7 +107,7 @@ class Paciente extends CI_Controller
         $this->load->model("Paciente_m");
 
         if($this->Paciente_m->actualizarDatos($datos, $ciu)) {
-           //sesion temporal que servirá para mostrar un mensaje de error
+           //sesion temporal que servirá para mostrar un mensaje de informacion
            $this->session->set_flashdata("info", "ok");
            redirect(base_url() . "paciente/misdatos"); 
         } else {

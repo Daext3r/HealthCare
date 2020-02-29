@@ -1,15 +1,7 @@
 <!--Es necesario poner un height aqui para que una libreria no cambie el height del body-->
 <body style="height: 100vh!important">
-    <!--Scripts necesarios para el reloj y navegacion-->
+    <!--Scripts necesarios para la navegacion-->
     <script src="<?php echo base_url() ?>assets/scripts/paciente.js"></script>
-    <script>
-        $(document).ready(() => {
-           /*  $("#logout").on("click", () => {
-                //si hace clic en el boton de logout, redirigimos al login
-                window.location = "<?php echo base_url() ?>paciente/logout";
-            }); */
-        });
-    </script>
 
     <!--seccion del menu lateral-->
     <section id="menu">
