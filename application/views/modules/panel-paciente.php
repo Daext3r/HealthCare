@@ -4,10 +4,10 @@
     <script src="<?php echo base_url() ?>assets/scripts/paciente.js"></script>
     <script>
         $(document).ready(() => {
-            $("#logout").on("click", () => {
+           /*  $("#logout").on("click", () => {
                 //si hace clic en el boton de logout, redirigimos al login
                 window.location = "<?php echo base_url() ?>paciente/logout";
-            });
+            }); */
         });
     </script>
 

@@ -17,7 +17,7 @@
                         $html .= "<td>$cita[nombre_medico]</td>";
                         $html .= "<td>" . date('d-m-Y', strtotime($cita['fecha'])) . "</td>";
                         $html .= "<td>$cita[hora]</td>";
-                        $html .= "<td class='citas-anular'><button class='btn btn-danger w-75 anular' data-id-cita='$cita[id]'>&times;</button></td>";
+                        $html .= "<td class='citas-anular'><button class='btn btn-danger w-75 anular-cita-btn' data-id-cita='$cita[id]'>&times;</button></td>";
                         $html .= "</tr>";
                         echo $html;
                     }

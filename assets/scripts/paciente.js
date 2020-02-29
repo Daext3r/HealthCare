@@ -75,10 +75,10 @@ $(document).ready(function () {
 
 
     //botones de anular cita
-    $(".anular-cita").on("click", function () {
+    $(".anular-cita-btn").on("click", function () {
         //cogemos el tr, que es la cita que tiene todos los datos
         let cita = $(this).parent().parent();
-
+        let id_cita = $(this).data("id-cita");
         let medico = $(cita).children().eq(0).text();
         let fecha = $(cita).children().eq(1).text();
         let hora = $(cita).children().eq(2).text();
@@ -88,19 +88,38 @@ $(document).ready(function () {
             text: `¿Quieres cancelar la cita con ${medico} el ${fecha} a las ${hora}?`,
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
+            confirmButtonColor: '#218838',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Si, estoy seguro',
+            cancelButtonText: "Cancelar"
         }).then((result) => {
-            
 
+            //propia indica al controlador si se quire borrar una cita propia o de otra persona.
+            //hay que recordar que el controlador lo usaran varios tipos de usuario.
+            $.post(localStorage.getItem("hc_base_url") + "Citas_controller/borrarCita", { cita: id_cita, ajax: true, propia: true }, function (data) {
+                //si se ha borrado correctamente
+                if (data == 1) {
+                    $(cita).fadeOut(500);
+                    Swal.fire(
+                        'Cita borrada correctamente',
+                        `Acabas de anular la cita con ${medico}`,
+                        'success'
+                      );
+                } else {
+                    Swal.fire(
+                        'Error',
+                        `Ha ocurrido un error al borrar la cita. Inténtalo en unos minutos.`,
+                        'error'
+                      );
+                }
+            });
         })
     });
 
     //boton de logout
     $("#logout").on("click", () => {
         //si hace clic en el boton de logout, redirigimos al login
-        window.location =  localStorage.getItem("hc_base_url") + "login";
+        window.location = localStorage.getItem("hc_base_url") + "login";
     });
 
 });
