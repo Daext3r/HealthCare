@@ -1,3 +1,5 @@
+//script que se cargará en el apartado misdatos del paciente
+
 $(document).ready(function () {
     $("#cambiarClave").on("click", function () {
         //mostramos un pop-up

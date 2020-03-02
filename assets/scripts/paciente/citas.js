@@ -1,3 +1,4 @@
+//script que se cargará en el apartado citas del paciente
 $(document).ready(function () {
     //botones de anular cita
     $(".anular-cita-btn").on("click", function () {

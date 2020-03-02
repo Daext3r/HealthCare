@@ -1,4 +1,4 @@
-
+//script que se cargara en todas las paginas del paciente
 
 $(document).ready(function () {
     // MENU LATERAL

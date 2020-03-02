@@ -1,3 +1,5 @@
+//script que se cargará en el apartado inicio del paciente
+
 $(document).ready(function () {
     //si estamos en la pagina de inicio
     if (window.location.href == localStorage.getItem("hc_base_url") + "paciente/inicio") {
