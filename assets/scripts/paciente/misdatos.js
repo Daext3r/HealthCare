@@ -1,6 +1,7 @@
 //script que se cargará en el apartado misdatos del paciente
 
 $(document).ready(function () {
+
     $("#cambiarClave").on("click", function () {
         //mostramos un pop-up
         Swal.fire({
@@ -17,7 +18,7 @@ $(document).ready(function () {
         }).then(password => {
             //cuando se introduzca una contraseña
             $("#clave").val(password.value);
-        })
+        });
     });
 
 });

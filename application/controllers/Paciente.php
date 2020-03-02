@@ -43,7 +43,7 @@ class Paciente extends CI_Controller
 
         //carga el head con las hojas de estilos y scripts necesarios
         $this->load->view("modules/head", array(
-            "hojas" => array("paciente/panel-paciente", "paciente/panel-paciente-responsive"),
+            "hojas" => array("paciente/index", "paciente/inicio", "paciente/panel-paciente-responsive"),
             "scripts" => array("paciente/index", "paciente/inicio")
         ));
 
@@ -63,7 +63,7 @@ class Paciente extends CI_Controller
 
         //carga el head con las hojas de estilos y scripts necesarios
         $this->load->view("modules/head", array("hojas" => array(
-            "paciente/panel-paciente", "paciente/panel-paciente-responsive"),
+            "paciente/index", "paciente/citas", "paciente/panel-paciente-responsive"),
             "scripts" => array("paciente/index", "paciente/citas")
         ));
 
@@ -72,7 +72,6 @@ class Paciente extends CI_Controller
 
         //carga la vista de inicio
         $this->load->view("paciente/Citas_v", array(
-            "hojasEstilos" => array("paciente/panel-paciente", "paciente/panel-paciente-responsive"),
             "citas" => $citas, "facultativos" => $facultativos
         ));
     }
@@ -81,7 +80,7 @@ class Paciente extends CI_Controller
     {
         //carga el head con las hojas de estilos y scripts necesarios
         $this->load->view("modules/head", array(
-            "hojas" => array("paciente/panel-paciente", "paciente/panel-paciente-responsive"),
+            "hojas" => array("paciente/index", "paciente/panel-paciente-responsive"),
             "scripts" => array("paciente/index", "paciente/tratamientos")
         ));
 
@@ -96,7 +95,7 @@ class Paciente extends CI_Controller
     {
         //carga el head con las hojas de estilos y scripts necesarios
         $this->load->view("modules/head", array("hojas" => array(
-            "paciente/panel-paciente", "paciente/panel-paciente-responsive"),
+            "paciente/index", "paciente/panel-paciente-responsive"),
             "scripts" => array("paciente/index", "paciente/informes")
         ));
 
@@ -111,7 +110,7 @@ class Paciente extends CI_Controller
     {
         //carga el head con las hojas de estilos y scripts necesarios
         $this->load->view("modules/head", array("hojas" => array(
-            "paciente/panel-paciente", "paciente/panel-paciente-responsive"),
+            "paciente/index", "paciente/misdatos", "paciente/panel-paciente-responsive"),
             "scripts" => array("paciente/index", "paciente/misdatos")
         ));
 
