@@ -21,7 +21,7 @@ Los médicos podrán atender las citas ,administrar tratamientos de los paciente
 5. Crear un sistema de gestión de citas.
 6. Crear un sistema de gestión de informes.
 
-### Instalación
+## Instalación
 
 1. Instala un servidor Web con Apache y MySQL. Si no lo tienes, debes instalar Git.
 2. Crea una base de datos llamada `HealthCare`. 
@@ -35,3 +35,11 @@ Los médicos podrán atender las citas ,administrar tratamientos de los paciente
 6. Si has realizado todos los pasos correctamente ya deberías tener instalado HealthCare en tu equipo
 
 * Nota: Si lo deseas, puedes borrar el controlador y la vista por defecto de CodeIgniter, WelcomeMessage.
+
+
+# Licencias | Licenses
+All code here was made from scratch by Alejandro D. (Daext3r) excetp the following things in the list:
+1. [CodeIgniter](https://codeigniter.com)
+2. [Bootstrap](https://getbootstrap.com)
+3. [jQuery](https://jquery.com)
+4. [Twemoji](https://github.com/twitter/twemoji)
