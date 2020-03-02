@@ -56,7 +56,8 @@ body {
     align-items: center;
     cursor: pointer;
 }
-#notificaciones {
+
+#notificaciones-text {
     margin-left: 0.5em;
     margin-right: 0.5em;
 }
@@ -70,7 +71,7 @@ body {
     margin-right: 0.5em;
 }
 
-#inicio-contenido, #citas-contenido, #informes-contenido, #mistados-contenido, #tratamientos-contenido {
+#inicio-contenido, #citas-contenido, #informes-contenido, #misdatos-contenido, #tratamientos-contenido {
     height: 85%;
     width: 95%;
     align-self: auto;
@@ -121,35 +122,4 @@ body {
 
 .last {
     border-bottom: 1px solid rgba(0,0,0,.125);
-}
-
-/* ===== FIN DE ESTILOS GENERALES DEL PANEL ===== */
-
-/* ===== ESTILOS DE INICIO ===== */
-/* Nota: todos los estilos las subcategorias tendran el siguiente formato: .inicio-x o #inicio-x */
-#inicio-contenido {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-
-}
-
-.inicio-card {
-    width: 25%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.inicio-card .card-header {
-    width: 100%;
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.5em;
-}
-
-.inicio-card .card-title {
-    width: 100%;
-    font-size: 6em;
-    text-align: center;
 }

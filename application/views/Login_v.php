@@ -19,23 +19,11 @@
                 
             </div>
             <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <input type="checkbox" class="form-check-input" id="recuerdame">
                 <label class="form-check-label" for="exampleCheck1">Recuérdame</label>
             </div>
             <button id="qr" class="btn btn-outline-primary" type="button">Escanear QR</button>
-            <input type="submit" class="btn btn-success" value="Iniciar sesión">
+            <input type="submit" class="btn btn-success" value="Iniciar sesión" id="iniciar-sesion">
         </form>
     </div>
-
-
-    <script>
-        //evento de documento cargado
-        $(document).ready(() => {
-            //evitamos que al pulsar el boton de escanear qr envie el formulario
-            $("#qr").on("click", function(event) {
-                //evitamos que envie el formulario al pulsar el boton de escanear qr
-                event.preventDefault();
-            })
-        });
-    </script>
 </body>

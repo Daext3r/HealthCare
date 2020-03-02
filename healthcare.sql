@@ -50,7 +50,7 @@ CREATE TABLE `analiticas` (
 --
 
 CREATE TABLE `centros` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY,
   `nombre` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
   `calle` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
   `telefonos` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL

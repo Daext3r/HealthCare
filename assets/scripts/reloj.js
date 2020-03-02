@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     let dias = new Array("lunes", "martes", "miércoles", "jueves", "viernes", "sabado", "domingo");
     let meses = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
 
@@ -32,20 +31,4 @@ $(document).ready(function () {
 
     //intervalo de ejecucion del reloj, cada minuto
     setInterval(actualizarFecha, 60000);
-
-    $("#notificaciones").on("click", () => {
-        //TODO: mostrar listado con notificaciones
-    })
-
-    
-    //para cada elemento del menu
-    for (let a of document.getElementsByClassName("list-group")[0].children) {
-
-        //si el href coincide con la url actual
-        if (a.href == window.location.href) {
-
-            //añade la clase active para que resalte en azul
-            a.children[0].classList.add("active");
-        }
-    }
 });
