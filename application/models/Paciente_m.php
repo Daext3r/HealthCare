@@ -65,7 +65,7 @@ class Paciente_m extends CI_Model
         $notificaciones = $consulta->row();
         $datos['notificaciones'] = $notificaciones->cantidad;
 
-        $consulta = $this->db->query("SELECT COUNT(id) AS cantidad FROM citas WHERE CIU_paciente = ?", array($ciu));
+        $consulta = $this->db->query("SELECT COUNT(id) AS cantidad FROM citas WHERE CIU_paciente = ? AND estado = '0'", array($ciu));
         $notificaciones = $consulta->row();
         $datos['citas'] = $notificaciones->cantidad;
         
