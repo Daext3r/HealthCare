@@ -59,7 +59,8 @@ $(document).ready(function () {
             confirmButtonText: 'Si, estoy seguro',
             cancelButtonText: "Cancelar"
         }).then((result) => {
-
+            //si el resultado no es true, no continua ejecutando
+            if(!result.value) return;
             //propia indica al controlador si se quire borrar una cita propia o de otra persona.
             //hay que recordar que el controlador lo usaran varios tipos de usuario.
             $.post(localStorage.getItem("hc_base_url") + "Citas_controller/borrarCita", { cita: id_cita, ajax: true, propia: true }, function (data) {
@@ -88,4 +89,85 @@ $(document).ready(function () {
         window.location = localStorage.getItem("hc_base_url") + "login";
     });
 
+    $("#citas-buscar-cita").on("click", function () {
+        //cogemos todos los datos del formulario
+        //todos tendrán un valor por defecto, por lo que no hace falta comprobar su valor
+        let medico = $("#medico").val();
+        let fecha = $("#fecha").val();
+        let hora = $("#hora").val();
+        let minuto = $("#minuto").val();
+
+        //cerramos la ventana modal
+        $("#citas-cerrar-form").click();
+
+        //mostramos una ventana de espera
+        Swal.fire({
+            title: 'Buscando cita',
+            html: 'Te estamos buscando una cita lo más cerca posible a los datos solicitados',
+            onBeforeOpen: () => {
+                //hacemos que se muestre el icono de carga
+                Swal.showLoading();
+            }
+        });
+
+
+        //hacemos la peticion ajax al servidor con los datos solicitados
+        $.post(localStorage.getItem("hc_base_url") + "Citas_controller/buscarLibres", { ajax: true, medico: medico, fecha: fecha, hora: hora, minuto: minuto }, function (data) {
+            //cerramos la ventana de espera
+            Swal.close();
+
+            //parseamos a JSON
+            data = JSON.parse(data);
+
+            $("#mostrarListaCitas").click();
+            let tabla_citas = $("#horas");
+
+            for (let hora of data) {
+                let fila = document.createElement("TR");
+                let fecha = document.createElement("TD");
+                let horaCita = document.createElement("TD");
+
+                //=== APARTADO PARA EL BOTON DE SOLICITAR CITA ===
+                let accion = document.createElement("TD");
+
+                let btn = document.createElement("BUTTON");
+                btn.classList.add("btn");
+                btn.classList.add("btn-success");
+                btn.classList.add("citas-btn-solicitar-cita");
+
+                btn.dataset.info_cita = hora;
+
+                btn.innerText = "Solicitar Cita";
+                accion.appendChild(btn);
+
+
+                btn.addEventListener("click", function () {
+                    $.post(localStorage.getItem("hc_base_url") + "Citas_controller/seleccionarCita", { ajax: true, info: this.dataset.info_cita, medico: medico }, function (data) {
+                        if (data == 1) {
+                            $("#citas-cerrar-buscador").click();
+                            Swal.fire({
+                                title: 'Cita reservada',
+                                text: 'Se ha confirmado tu cita con' + $("#medico").text(),
+                                icon: 'success',
+                                onClose: function () { window.location.reload(); }
+                            }
+                            )
+                        }
+                    });
+                });
+                //================================================
+
+                fecha.innerText = hora[1];
+                horaCita.innerText = hora[0];
+
+
+                fila.appendChild(fecha);
+                fila.appendChild(horaCita);
+                fila.appendChild(accion);
+
+                document.getElementById("horas").appendChild(fila);
+            }
+        });
+    });
 });
+
