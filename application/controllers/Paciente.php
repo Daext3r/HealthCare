@@ -27,7 +27,7 @@ class Paciente extends CI_Controller
 
 
         //carga el head con la hoja de estilos general
-        $this->load->view("modules/head", array("hojas" => array("paciente/panel-paciente", "paciente/panel-paciente-responsive")));
+        $this->load->view("modules/head", array("hojas" => array("paciente/panel-paciente", "paciente/panel-paciente-responsive"), "scripts" => array("paciente")));
 
         //carga el modulo principal
         $this->load->view("modules/panel-paciente");
@@ -41,8 +41,15 @@ class Paciente extends CI_Controller
 
     public function inicio()
     {
+        //carga el modelo de la base de datos
+        $this->load->model("Paciente_m");
+
+        //leemos los datos de inicio
+        $datos = $this->Paciente_m->leerDatosInicio($this->session->userdata("ciu"));
+
+        
         //carga la vista de inicio
-        $this->load->view("paciente/Inicio_v");
+        $this->load->view("paciente/Inicio_v", array("datos" => $datos));
     }
 
     public function citas()

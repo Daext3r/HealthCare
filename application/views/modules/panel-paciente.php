@@ -1,8 +1,5 @@
 <!--Es necesario poner un height aqui para que una libreria no cambie el height del body-->
 <body style="height: 100vh!important">
-    <!--Scripts necesarios para la navegacion-->
-    <script src="<?php echo base_url() ?>assets/scripts/paciente.js"></script>
-
     <!--seccion del menu lateral-->
     <section id="menu">
         <div id="perfil">
@@ -45,7 +42,7 @@
         <nav id="header">
             <div class="headerItem" id="reloj"></div>
             <div class="separador-v"></div>
-            <div class="headerItem hover" id="notificaciones">Tienes <span id="notificaciones" class="badge badge-pill badge-danger">0</span> notificaciones pendientes</div>
+            <div class="headerItem hover" id="notificaciones-text">Tienes <span id="notificaciones" class="badge badge-pill badge-danger">0</span> notificaciones pendientes</div>
             <div class="separador-v"></div>
             <div id="logout"><i class="fas fa-sign-out-alt"></i>
                 <p>Salir</p>

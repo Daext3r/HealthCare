@@ -56,7 +56,23 @@ class Paciente_m extends CI_Model
         } else {
             return false;
         }
+    }
 
+    public function leerDatosInicio($ciu) {
+        $datos = array();
+
+        $consulta = $this->db->query("SELECT COUNT(id) AS cantidad FROM notificaciones WHERE CIU_usuario = ?", array($ciu));
+        $notificaciones = $consulta->row();
+        $datos['notificaciones'] = $notificaciones->cantidad;
+
+        $consulta = $this->db->query("SELECT COUNT(id) AS cantidad FROM citas WHERE CIU_paciente = ?", array($ciu));
+        $notificaciones = $consulta->row();
+        $datos['citas'] = $notificaciones->cantidad;
         
+        $consulta = $this->db->query("SELECT COUNT(id) AS cantidad FROM tratamientos WHERE CIU_paciente = ?", array($ciu));
+        $notificaciones = $consulta->row();
+        $datos['tratamientos'] = $notificaciones->cantidad;
+
+        return $datos;
     }
 }
