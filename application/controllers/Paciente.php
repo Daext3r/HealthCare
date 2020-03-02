@@ -24,13 +24,6 @@ class Paciente extends CI_Controller
 
             $this->session->set_userdata($datos);
         }
-
-
-        //carga el head con la hoja de estilos general
-        $this->load->view("modules/head", array("hojas" => array("paciente/panel-paciente", "paciente/panel-paciente-responsive"), "scripts" => array("paciente")));
-
-        //carga el modulo principal
-        $this->load->view("modules/panel-paciente");
     }
 
     public function logout()
@@ -47,7 +40,16 @@ class Paciente extends CI_Controller
         //leemos los datos de inicio
         $datos = $this->Paciente_m->leerDatosInicio($this->session->userdata("ciu"));
 
-        
+
+        //carga el head con las hojas de estilos y scripts necesarios
+        $this->load->view("modules/head", array(
+            "hojas" => array("paciente/panel-paciente", "paciente/panel-paciente-responsive"),
+            "scripts" => array("paciente/index", "paciente/inicio")
+        ));
+
+        //carga el modulo principal
+        $this->load->view("modules/panel-paciente");
+
         //carga la vista de inicio
         $this->load->view("paciente/Inicio_v", array("datos" => $datos));
     }
@@ -59,25 +61,63 @@ class Paciente extends CI_Controller
 
         $facultativos = $this->Paciente_m->leerFacultativos($this->session->userdata("ciu"));
 
+        //carga el head con las hojas de estilos y scripts necesarios
+        $this->load->view("modules/head", array("hojas" => array(
+            "paciente/panel-paciente", "paciente/panel-paciente-responsive"),
+            "scripts" => array("paciente/index", "paciente/citas")
+        ));
+
+        //carga el modulo principal
+        $this->load->view("modules/panel-paciente");
+
         //carga la vista de inicio
-        $this->load->view("paciente/Citas_v", array("hojasEstilos" => array("paciente/panel-paciente", "paciente/panel-paciente-responsive"),
-        "citas" => $citas, "facultativos" => $facultativos));
+        $this->load->view("paciente/Citas_v", array(
+            "hojasEstilos" => array("paciente/panel-paciente", "paciente/panel-paciente-responsive"),
+            "citas" => $citas, "facultativos" => $facultativos
+        ));
     }
 
     public function tratamientos()
     {
+        //carga el head con las hojas de estilos y scripts necesarios
+        $this->load->view("modules/head", array(
+            "hojas" => array("paciente/panel-paciente", "paciente/panel-paciente-responsive"),
+            "scripts" => array("paciente/index", "paciente/tratamientos")
+        ));
+
+        //carga el modulo principal
+        $this->load->view("modules/panel-paciente");
+
         //carga la vista de inicio
         $this->load->view("paciente/Tratamientos_v");
     }
 
     public function informes()
     {
+        //carga el head con las hojas de estilos y scripts necesarios
+        $this->load->view("modules/head", array("hojas" => array(
+            "paciente/panel-paciente", "paciente/panel-paciente-responsive"),
+            "scripts" => array("paciente/index", "paciente/informes")
+        ));
+
+        //carga el modulo principal
+        $this->load->view("modules/panel-paciente");
+
         //carga la vista de inicio
         $this->load->view("paciente/Informes_v");
     }
 
     public function misdatos()
     {
+        //carga el head con las hojas de estilos y scripts necesarios
+        $this->load->view("modules/head", array("hojas" => array(
+            "paciente/panel-paciente", "paciente/panel-paciente-responsive"),
+            "scripts" => array("paciente/index", "paciente/misdatos")
+        ));
+
+        //carga el modulo principal
+        $this->load->view("modules/panel-paciente");
+
         //carga la vista de inicio
         $this->load->view("paciente/MisDatos_v");
     }
@@ -113,14 +153,14 @@ class Paciente extends CI_Controller
         $ciu = $this->session->userdata("ciu");
         $this->load->model("Paciente_m");
 
-        if($this->Paciente_m->actualizarDatos($datos, $ciu)) {
-           //sesion temporal que servirá para mostrar un mensaje de informacion
-           $this->session->set_flashdata("info", "ok");
-           redirect(base_url() . "paciente/misdatos"); 
+        if ($this->Paciente_m->actualizarDatos($datos, $ciu)) {
+            //sesion temporal que servirá para mostrar un mensaje de informacion
+            $this->session->set_flashdata("info", "ok");
+            redirect(base_url() . "paciente/misdatos");
         } else {
             //sesion temporal que servirá para mostrar un mensaje de error
-           $this->session->set_flashdata("info", "error_unk");
-           redirect(base_url() . "paciente/misdatos");
+            $this->session->set_flashdata("info", "error_unk");
+            redirect(base_url() . "paciente/misdatos");
         }
     }
 }
