@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-02-2020 a las 16:46:16
--- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.3.3
+-- Tiempo de generación: 03-03-2020 a las 09:43:34
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -36,11 +36,11 @@ CREATE TABLE `analiticas` (
   `CIU_personal` varchar(64) COLLATE utf8_spanish_ci DEFAULT NULL,
   `CIU_medico_solicitante` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
   `pruebas` text COLLATE utf8_spanish_ci NOT NULL,
-  `resultados` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `resultados` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `fecha_solicitud` date NOT NULL,
   `fecha_resultado` date DEFAULT NULL,
   `observaciones_medico` text COLLATE utf8_spanish_ci NOT NULL,
-  `observaciones_personal` text COLLATE utf8_spanish_ci
+  `observaciones_personal` text COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -50,7 +50,7 @@ CREATE TABLE `analiticas` (
 --
 
 CREATE TABLE `centros` (
-  `id` int(11) NOT NULL PRIMARY KEY,
+  `id` int(11) NOT NULL,
   `nombre` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
   `calle` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
   `telefonos` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
@@ -132,7 +132,10 @@ INSERT INTO `facultativos` (`CIU_medico`, `numero_colegiado`, `especialidad`, `a
 
 CREATE TABLE `informes` (
   `id` int(11) NOT NULL,
-  `cita` int(11) NOT NULL,
+  `CIU_medico` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
+  `CIU_paciente` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
   `contenido` text COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -147,6 +150,13 @@ CREATE TABLE `notificaciones` (
   `CIU_usuario` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
   `informacion` text COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `notificaciones`
+--
+
+INSERT INTO `notificaciones` (`id`, `CIU_usuario`, `informacion`) VALUES
+(1, 'CIUALEX', 'Eres tonto');
 
 -- --------------------------------------------------------
 
@@ -222,6 +232,73 @@ INSERT INTO `usuarios` (`CIU`, `nombre`, `apellidos`, `dni`, `sexo`, `nacionalid
 ('CIUALEX', 'Alejandro', 'Rodriguez Sanchez', '543765345A', 'H', 'Española', 'Fake St. 123', '666335906', '954623157', '1999-12-17', 'd404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db', 'paciente@gmail.com'),
 ('CIURAFA', 'Rafael', 'Apellido Surname', '123456789A', 'H', 'Española', 'C/ Falsa 123', '666555444', '927215984', '1965-05-01', 'd404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db', 'medico@gmail.com');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `vista_citas_pacientes_medicos`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `vista_citas_pacientes_medicos` (
+`nombre_paciente` varchar(97)
+,`nombre_medico` varchar(97)
+,`fecha` date
+,`hora` time
+,`id` int(11)
+,`CIU_paciente` varchar(64)
+,`estado` set('0','1','2')
+,`observaciones` text
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `vista_usuarios_medicos`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `vista_usuarios_medicos` (
+`CIU` varchar(64)
+,`nombre_completo` varchar(97)
+,`especialidad` varchar(32)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `vista_usuarios_pacientes`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `vista_usuarios_pacientes` (
+`CIU` varchar(64)
+,`nombre_completo` varchar(97)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `vista_citas_pacientes_medicos`
+--
+DROP TABLE IF EXISTS `vista_citas_pacientes_medicos`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_citas_pacientes_medicos`  AS  select (select `vista_usuarios_pacientes`.`nombre_completo` from `vista_usuarios_pacientes` where `vista_usuarios_pacientes`.`CIU` = `citas`.`CIU_paciente`) AS `nombre_paciente`,(select `vista_usuarios_medicos`.`nombre_completo` from `vista_usuarios_medicos` where `vista_usuarios_medicos`.`CIU` = `citas`.`CIU_medico`) AS `nombre_medico`,`citas`.`fecha` AS `fecha`,`citas`.`hora` AS `hora`,`citas`.`id` AS `id`,`citas`.`CIU_paciente` AS `CIU_paciente`,`citas`.`estado` AS `estado`,`citas`.`observaciones` AS `observaciones` from `citas` ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `vista_usuarios_medicos`
+--
+DROP TABLE IF EXISTS `vista_usuarios_medicos`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_usuarios_medicos`  AS  select `usuarios`.`CIU` AS `CIU`,concat(`usuarios`.`nombre`,' ',`usuarios`.`apellidos`) AS `nombre_completo`,(select `especialidades`.`denominacion` AS `especialidad` from `especialidades` where `especialidades`.`id` = `facultativos`.`especialidad`) AS `especialidad` from (`usuarios` join `facultativos` on(`usuarios`.`CIU` = `facultativos`.`CIU_medico`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `vista_usuarios_pacientes`
+--
+DROP TABLE IF EXISTS `vista_usuarios_pacientes`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_usuarios_pacientes`  AS  select `usuarios`.`CIU` AS `CIU`,concat(`usuarios`.`nombre`,' ',`usuarios`.`apellidos`) AS `nombre_completo` from (`usuarios` join `pacientes` on(`usuarios`.`CIU` = `pacientes`.`CIU_paciente`)) ;
+
 --
 -- Índices para tablas volcadas
 --
@@ -276,7 +353,8 @@ ALTER TABLE `facultativos`
 --
 ALTER TABLE `informes`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `informes_citas` (`cita`);
+  ADD KEY `informes_paciente` (`CIU_paciente`),
+  ADD KEY `informes_facultativos` (`CIU_medico`);
 
 --
 -- Indices de la tabla `notificaciones`
@@ -332,7 +410,7 @@ ALTER TABLE `centros`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `especialidades`
@@ -350,7 +428,7 @@ ALTER TABLE `informes`
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `tratamientos`
@@ -395,7 +473,8 @@ ALTER TABLE `facultativos`
 -- Filtros para la tabla `informes`
 --
 ALTER TABLE `informes`
-  ADD CONSTRAINT `informes_citas` FOREIGN KEY (`cita`) REFERENCES `citas` (`id`);
+  ADD CONSTRAINT `informes_facultativos` FOREIGN KEY (`CIU_medico`) REFERENCES `facultativos` (`CIU_medico`),
+  ADD CONSTRAINT `informes_paciente` FOREIGN KEY (`CIU_paciente`) REFERENCES `pacientes` (`CIU_paciente`);
 
 --
 -- Filtros para la tabla `notificaciones`
