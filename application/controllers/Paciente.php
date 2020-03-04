@@ -81,7 +81,7 @@ class Paciente extends CI_Controller
         //carga el head con las hojas de estilos y scripts necesarios
         $this->load->view("modules/head", array(
             "hojas" => array("paciente/index", "paciente/tratamientos", "paciente/panel-paciente-responsive"),
-            "scripts" => array("paciente/index", "paciente/tratamientos", "paciente/tratamientos")
+            "scripts" => array("paciente/index", "paciente/tratamientos")
         ));
 
         //carga el modulo principal
