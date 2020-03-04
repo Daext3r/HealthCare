@@ -8,6 +8,6 @@ $(document).ready(function () {
         //si no hay datos, no ejecutamos nada
         if(data.length == 0) return;
         
-        
+             
     })
 });

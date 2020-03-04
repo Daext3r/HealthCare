@@ -9,7 +9,7 @@ $max->add(new DateInterval('P14D'));
 $max = $max->format("Y-m-d");
 ?>
 <section id="citas-contenido">
-    <table class="table">
+    <table class="table table-bordered">
 
         <tr class="table-primary">
             <th scope="col">Médico</th>
