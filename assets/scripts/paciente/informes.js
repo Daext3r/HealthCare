@@ -8,7 +8,7 @@ $(document).ready(function () {
                 done(JSON.parse(data));
             });
         },
-        pageSize: 1,
+        pageSize: 5,
         showPageNumbers: false,
         showNavigator: true,
         showPrevious: true,
@@ -22,13 +22,16 @@ $(document).ready(function () {
             //para cada informe
             for(let informe of data) {
                 let elemento = document.createElement("li");
+                elemento.classList.add("elemento-lista");
+                elemento.classList.add("alert");
+                elemento.classList.add("alert-secondary");
 
                 let enlace = document.createElement("a");
                 enlace.href = localStorage.getItem("hc_base_url") + `Informes_controller/verInforme/${informe.id}`;
                 enlace.innerText = "Ir al informe";
 
-                let especialidad = document.createElement("p");
-                especialidad.innerText = `Informe de ${informe.especialidad}`;
+                let cabecera = document.createElement("p");
+                cabecera.innerHTML = `Informe de ${informe.especialidad}. <a href="${localStorage.getItem("hc_base_url")}Informes_controller/verInforme/${informe.id}">Ver informe</a>`;
 
                 let fecha = document.createElement("small");
                 fecha.innerText = `Fecha: ${new Date(informe.fecha).toLocaleDateString()}`
@@ -36,10 +39,10 @@ $(document).ready(function () {
                 let medico = document.createElement("p");
                 medico.innerText = `Facultativo: ${informe.nombre_completo_medico}`;
                 
-                elemento.appendChild(especialidad);
-                elemento.appendChild(enlace);
-                elemento.appendChild(fecha);
+                elemento.appendChild(cabecera);
                 elemento.appendChild(medico);
+                elemento.appendChild(fecha);
+                
 
                 $(elemento).appendTo($("#lista"));
 

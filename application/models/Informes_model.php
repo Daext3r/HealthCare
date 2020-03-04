@@ -12,6 +12,7 @@ class Informes_model extends CI_Model
     {
         //leemos todos los informes de este usuario
         $this->db->where("CIU_paciente", $ciu);
+        $this->db->order_by("fecha", "DESC");
         $query = $this->db->get("vista_resumen_informes");
         
         $informes = $query->result_array();

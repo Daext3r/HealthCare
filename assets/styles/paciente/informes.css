@@ -8,9 +8,32 @@
 #container {
     width: 95%;
     height: 85%;
-    border: 1px solid black;
 }
 
+p {
+    margin-bottom: 0;
+}
+
+.elemento-lista {
+    width: 80%;
+    list-style-type: none;
+}
+
+.elemento-lista:first-child {
+margin-top: 16px;
+}
+
+#lista {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    height: 100%;
+    
+}
+
+/*Estilos de la botonera*/
 #paginas {
     height: 85%;   
 }
@@ -21,7 +44,6 @@
     bottom: 0;
 }
 
-/*Modificando estilos de la botonera*/
 .paginationjs-prev, .paginationjs-next, .paginationjs-page {
     list-style-type: none;
     float: left;
