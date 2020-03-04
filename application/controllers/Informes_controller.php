@@ -9,7 +9,7 @@ class Informes_controller extends CI_Controller
     {
         parent::__construct();
 
-        if (!$this->input->post("ajax")) {
+        if (!$this->input->is_ajax_request()) {
             redirect(base_url());
             return;
         }
