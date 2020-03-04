@@ -8,9 +8,5 @@ $(document).ready(function () {
 
         //mostramos las notificaciones en la barra superior
         $("#notificaciones").text($("#card-notificaciones").text());
-    } else {
-        //de lo contrario, estaremos en cualquier otra pagina y simplemente lo mostramos
-        $("#notificaciones").text(localStorage.getItem("notificaciones"));
     }
-
 });

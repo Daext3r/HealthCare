@@ -1,4 +1,4 @@
-        <section id="contenido">
+        <section id="tratamientos-contenido">
             tratamietnos
         </section>
     </div>

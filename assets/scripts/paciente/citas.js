@@ -1,5 +1,8 @@
 //script que se cargará en el apartado citas del paciente
 $(document).ready(function () {
+    //mostramos la cantidad de notificaciones
+    $("#notificaciones").text(localStorage.getItem("notificaciones"));
+
     //botones de anular cita
     $(".anular-cita-btn").on("click", function () {
         //cogemos el tr, que es la cita que tiene todos los datos

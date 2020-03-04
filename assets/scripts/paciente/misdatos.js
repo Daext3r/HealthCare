@@ -1,6 +1,8 @@
 //script que se cargará en el apartado misdatos del paciente
 
 $(document).ready(function () {
+    //mostramos la cantidad de notificaciones
+    $("#notificaciones").text(localStorage.getItem("notificaciones"));
 
     $("#cambiarClave").on("click", function () {
         //mostramos un pop-up
