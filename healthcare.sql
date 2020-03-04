@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-03-2020 a las 09:43:34
+-- Tiempo de generación: 04-03-2020 a las 09:00:37
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -139,6 +139,26 @@ CREATE TABLE `informes` (
   `contenido` text COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `informes`
+--
+
+INSERT INTO `informes` (`id`, `CIU_medico`, `CIU_paciente`, `fecha`, `hora`, `contenido`) VALUES
+(1, 'CIURAFA', 'CIUALEX', '2020-03-04', '09:00:00', 'esto es un informe de prueba'),
+(2, 'CIURAFA', 'CIUALEX', '2020-03-05', '12:17:00', 'esto es otro informe de prueba'),
+(3, 'CIURAFA', 'CIUALEX', '2020-03-10', '11:32:00', 'Texto de prueba'),
+(4, 'CIURAFA', 'CIUALEX', '2020-03-11', '11:32:00', 'Texto de prueba'),
+(5, 'CIURAFA', 'CIUALEX', '2020-03-12', '11:32:00', 'Texto de prueba'),
+(6, 'CIURAFA', 'CIUALEX', '2020-03-13', '11:32:00', 'Texto de prueba'),
+(7, 'CIURAFA', 'CIUALEX', '2020-03-14', '11:32:00', 'Texto de prueba'),
+(8, 'CIURAFA', 'CIUALEX', '2020-03-15', '11:32:00', 'Texto de prueba'),
+(9, 'CIURAFA', 'CIUALEX', '2020-03-16', '11:32:00', 'Texto de prueba'),
+(10, 'CIURAFA', 'CIUALEX', '2020-03-17', '11:32:00', 'Texto de prueba'),
+(11, 'CIURAFA', 'CIUALEX', '2020-03-18', '11:32:00', 'Texto de prueba'),
+(12, 'CIURAFA', 'CIUALEX', '2020-03-19', '11:32:00', 'Texto de prueba'),
+(13, 'CIURAFA', 'CIUALEX', '2020-03-20', '11:32:00', 'Texto de prueba'),
+(14, 'CIURAFA', 'CIUALEX', '2020-03-21', '11:32:00', 'Texto de prueba');
+
 -- --------------------------------------------------------
 
 --
@@ -252,6 +272,23 @@ CREATE TABLE `vista_citas_pacientes_medicos` (
 -- --------------------------------------------------------
 
 --
+-- Estructura Stand-in para la vista `vista_resumen_informes`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `vista_resumen_informes` (
+`id` int(11)
+,`CIU_medico` varchar(64)
+,`CIU_paciente` varchar(64)
+,`fecha` date
+,`hora` time
+,`contenido` text
+,`nombre_completo_medico` varchar(97)
+,`especialidad` varchar(32)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura Stand-in para la vista `vista_usuarios_medicos`
 -- (Véase abajo para la vista actual)
 --
@@ -280,6 +317,15 @@ CREATE TABLE `vista_usuarios_pacientes` (
 DROP TABLE IF EXISTS `vista_citas_pacientes_medicos`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_citas_pacientes_medicos`  AS  select (select `vista_usuarios_pacientes`.`nombre_completo` from `vista_usuarios_pacientes` where `vista_usuarios_pacientes`.`CIU` = `citas`.`CIU_paciente`) AS `nombre_paciente`,(select `vista_usuarios_medicos`.`nombre_completo` from `vista_usuarios_medicos` where `vista_usuarios_medicos`.`CIU` = `citas`.`CIU_medico`) AS `nombre_medico`,`citas`.`fecha` AS `fecha`,`citas`.`hora` AS `hora`,`citas`.`id` AS `id`,`citas`.`CIU_paciente` AS `CIU_paciente`,`citas`.`estado` AS `estado`,`citas`.`observaciones` AS `observaciones` from `citas` ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `vista_resumen_informes`
+--
+DROP TABLE IF EXISTS `vista_resumen_informes`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_resumen_informes`  AS  (select `informes`.`id` AS `id`,`informes`.`CIU_medico` AS `CIU_medico`,`informes`.`CIU_paciente` AS `CIU_paciente`,`informes`.`fecha` AS `fecha`,`informes`.`hora` AS `hora`,`informes`.`contenido` AS `contenido`,`vista_usuarios_medicos`.`nombre_completo` AS `nombre_completo_medico`,`vista_usuarios_medicos`.`especialidad` AS `especialidad` from (`informes` join `vista_usuarios_medicos` on(`informes`.`CIU_medico` = `vista_usuarios_medicos`.`CIU`))) ;
 
 -- --------------------------------------------------------
 
@@ -422,7 +468,7 @@ ALTER TABLE `especialidades`
 -- AUTO_INCREMENT de la tabla `informes`
 --
 ALTER TABLE `informes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
