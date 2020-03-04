@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-03-2020 a las 09:00:37
+-- Tiempo de generación: 04-03-2020 a las 09:44:43
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -217,11 +217,20 @@ CREATE TABLE `personal_laboratorio` (
 
 CREATE TABLE `tratamientos` (
   `id` int(11) NOT NULL,
+  `nregistro` int(11) NOT NULL,
   `CIU_paciente` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
   `fecha_inicio` date NOT NULL,
   `fecha_fin` date NOT NULL,
   `dosis` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tratamientos`
+--
+
+INSERT INTO `tratamientos` (`id`, `nregistro`, `CIU_paciente`, `fecha_inicio`, `fecha_fin`, `dosis`) VALUES
+(1, 51347, 'CIUALEX', '2020-03-04', '2020-03-11', '[{\"hora\":\"9\",\"dosis\":\"1\",\"presentacion\":\"pastilla\"},\"hora\":\"15\",\"dosis\":\"1\",\"presentacion\":\"pastilla\"},\"hora\":\"22\",\"dosis\":\"1\",\"presentacion\":\"pastilla\"}]'),
+(2, 100133034, 'CIUALEX', '2020-02-28', '2021-02-28', '[{\"hora\":\"7\",\"dosis\":\"25\",\"presentacion\":\"unidades\"},\"hora\":\"15\",\"dosis\":\"25\",\"presentacion\":\"unidades\"},\"hora\":\"23\",\"dosis\":\"25\",\"presentacion\":\"unidades\"}]');
 
 -- --------------------------------------------------------
 
@@ -480,7 +489,7 @@ ALTER TABLE `notificaciones`
 -- AUTO_INCREMENT de la tabla `tratamientos`
 --
 ALTER TABLE `tratamientos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
