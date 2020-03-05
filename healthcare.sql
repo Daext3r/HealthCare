@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-03-2020 a las 09:44:43
+-- Tiempo de generación: 05-03-2020 a las 09:31:14
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -229,8 +229,8 @@ CREATE TABLE `tratamientos` (
 --
 
 INSERT INTO `tratamientos` (`id`, `nregistro`, `CIU_paciente`, `fecha_inicio`, `fecha_fin`, `dosis`) VALUES
-(1, 51347, 'CIUALEX', '2020-03-04', '2020-03-11', '[{\"hora\":\"9\",\"dosis\":\"1\",\"presentacion\":\"pastilla\"},\"hora\":\"15\",\"dosis\":\"1\",\"presentacion\":\"pastilla\"},\"hora\":\"22\",\"dosis\":\"1\",\"presentacion\":\"pastilla\"}]'),
-(2, 100133034, 'CIUALEX', '2020-02-28', '2021-02-28', '[{\"hora\":\"7\",\"dosis\":\"25\",\"presentacion\":\"unidades\"},\"hora\":\"15\",\"dosis\":\"25\",\"presentacion\":\"unidades\"},\"hora\":\"23\",\"dosis\":\"25\",\"presentacion\":\"unidades\"}]');
+(1, 51347, 'CIUALEX', '2020-03-04', '2020-03-11', '{\"presentacion\":\"pastillas\",\"dosis\":\"1\",\"horas\":[\"10:00\",\"22:00\"]}\r\n'),
+(2, 100133034, 'CIUALEX', '2020-02-28', '2021-02-28', '{\"presentacion\":\"unidades\",\"dosis\":\"25\",\"horas\":[\"7:00\",\"15:00\",\"23:00\"]}\r\n');
 
 -- --------------------------------------------------------
 
@@ -465,7 +465,7 @@ ALTER TABLE `centros`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `especialidades`
