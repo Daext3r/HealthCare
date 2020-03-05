@@ -4,9 +4,11 @@ $(document).ready(function () {
 
     $.post(localStorage.getItem("hc_base_url") + "Tratamientos_controller/leerTratamientos", {}, function (data) {
         data = JSON.parse(data);
-        console.log(data);
-        //si no hay datos, no ejecutamos nada
-        if (data.length == 0) return;
+
+        //si no hay datos, mostramos un mensaje de informacion y paramos la ejecucion
+        if (data.length == 0) {
+            $("#lista").append("<h3>No tienes tratamientos activos, ¡Genial!</h3>");
+        };
 
         //borramos el contenido del cuerpo
         $("#tratamientos").html("");
@@ -31,15 +33,26 @@ $(document).ready(function () {
                     $(enlace).appendTo(li);
                     $(li).appendTo("#lista");
 
+                    let dosis = JSON.parse(tratamiento.dosis);
+
+                    let contenidoModal = "";
+                    contenidoModal += `<p>Fecha de inicio del tratamiento ${new Date(tratamiento.fecha_inicio).toLocaleDateString()}</p><br>`;
+                    contenidoModal += `<p>Fecha de fin del tratamiento ${new Date(tratamiento.fecha_fin).toLocaleDateString()}</p><br>`;
+                    contenidoModal += `<p>Dosis: ${dosis.dosis} ${dosis.presentacion} en las siguientes horas:</p>`;
+                    
+                    contenidoModal += "<ul class='ul-modal'>";
+                    for(let hora of dosis.horas){
+                        contenidoModal += `<li class='li-modal'>${hora}</li>`;
+                    }
+                    contenidoModal += "</ul>";
+
+                    //"{"presentacion":"unidades","dosis":[{"hora":"7","cantidad":"25"},{"hora":"15","cantidad":"25"},{"hora":"23","cantidad":"25"}]}
                     //VENTANA POPUP
                     $(enlace).on("click", function (e) {
                         e.preventDefault();
                         Swal.fire({
                             title: 'Tratamiento',
-                            html:
-                                `Fecha de inicio del tratamiento ${new Date(tratamiento.fecha_inicio).toLocaleDateString()}<br>
-                                Fecha de fin del tratamiento ${new Date(tratamiento.fecha_fin).toLocaleDateString()}<br>`,
-                                //hacer bucle for para las horas en un ul
+                            html: contenidoModal,
                             showCloseButton: true,
                             showCancelButton: false,
                             focusConfirm: true,
