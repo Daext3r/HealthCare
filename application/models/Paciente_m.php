@@ -34,8 +34,7 @@ class Paciente_m extends CI_Model
     }
 
     public function leerFacultativos($ciu)
-    {
-        
+    {   
         $consulta = $this->db->query("SELECT (SELECT nombre_completo FROM vista_usuarios_medicos WHERE CIU = pacientes.CIU_medico_referencia) AS medico, CIU_medico_referencia AS CIU_medico FROM pacientes WHERE CIU_paciente = ?", array($ciu));
 
         //como queremos leer solo una fila, usamos ->row()
