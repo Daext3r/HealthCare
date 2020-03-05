@@ -60,18 +60,18 @@ class Paciente_m extends CI_Model
 
     public function leerDatosInicio($ciu) {
         $datos = array();
-
-        $consulta = $this->db->query("SELECT COUNT(id) AS cantidad FROM notificaciones WHERE CIU_usuario = ?", array($ciu));
-        $notificaciones = $consulta->row();
-        $datos['notificaciones'] = $notificaciones->cantidad;
-
-        $consulta = $this->db->query("SELECT COUNT(id) AS cantidad FROM citas WHERE CIU_paciente = ? AND estado = '0'", array($ciu));
-        $notificaciones = $consulta->row();
-        $datos['citas'] = $notificaciones->cantidad;
         
-        $consulta = $this->db->query("SELECT COUNT(id) AS cantidad FROM tratamientos WHERE CIU_paciente = ?", array($ciu));
-        $notificaciones = $consulta->row();
-        $datos['tratamientos'] = $notificaciones->cantidad;
+        $this->db->like("CIU_usuario", $ciu);
+        $this->db->from("notificaciones");
+        $datos['notificaciones'] = $this->db->count_all_results();
+
+        $this->db->like("CIU_paciente", $ciu);
+        $this->db->from("citas");
+        $datos['citas'] = $this->db->count_all_results();
+        
+        $this->db->like("CIU_paciente", $ciu);
+        $this->db->from("tratamientos");
+        $datos['tratamientos'] = $this->db->count_all_results();
 
         return $datos;
     }
