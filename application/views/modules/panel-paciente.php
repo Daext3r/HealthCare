@@ -1,4 +1,5 @@
 <!--Es necesario poner un height aqui para que una libreria no cambie el height del body-->
+
 <body style="height: 100vh!important">
     <!--seccion del menu lateral-->
     <section id="menu">
@@ -42,7 +43,20 @@
         <nav id="header">
             <div class="headerItem" id="reloj"></div>
             <div class="separador-v"></div>
-            <div class="headerItem hover" id="notificaciones-text">Tienes <span id="notificaciones" class="badge badge-pill badge-danger">0</span> notificaciones pendientes</div>
+
+            <div class="dropdown">
+                <div class="dropbtn headerItem hover" id="notificaciones-text">Tienes <span id="notificaciones" class="badge badge-pill badge-danger">0</span> notificaciones pendientes</div>
+                <div class="dropdown-content">
+                    <a href="">Notificación de prueba</a>
+                    <a href="">Notificación de prueba</a>
+                    <a href="">Notificación de prueba</a>
+                    <a href="">Notificación de prueba</a>
+                    <a href="">Notificación de prueba</a>
+                    <a href="">Notificación de prueba</a>
+                    <a href="">Notificación de prueba</a>
+                </div>
+            </div>
+
             <div class="separador-v"></div>
             <div id="logout"><i class="fas fa-sign-out-alt"></i>
                 <p>Salir</p>
