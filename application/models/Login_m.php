@@ -39,22 +39,31 @@ class Login_m extends CI_Model
         $perfiles = array();
 
         //si el usuario se ha autenticado correctamente, leemos y devolvemos los perfiles a los que tiene acceso
-        
-        $result = $this->db->query("SELECT ciu_paciente FROM pacientes WHERE ciu_paciente = '$ciu'");
-        if($result->row()) {
+        $this->db->select("ciu_paciente");
+        $this->db->where("ciu_paciente", $ciu);
+        $result = $this->db->get("pacientes");
+
+        if($result->result()) {
             $perfiles['paciente'] = true;
         } else {
             $perfiles['paciente'] = false;
         }
 
-        $result = $this->db->query("SELECT ciu_medico FROM facultativos WHERE ciu_medico = '$ciu'");
+        $this->db->select("ciu_medico");
+        $this->db->where("ciu_medico", $ciu);
+        $result = $this->db->get("facultativos");
+
         if($result->row()) {
             $perfiles['medico'] = true;
         } else {
             $perfiles['medico'] = false;
         }
 
-        $result = $this->db->query("SELECT ciu_personal FROM personal_laboratorio WHERE ciu_personal = '$ciu'");
+        
+        
+        $this->db->select("ciu_personal");
+        $this->db->where("ciu_personal", $ciu);
+        $result = $this->db->get("personal_laboratorio");
         if($result->row()) {
             $perfiles['personal_lab'] = true;
         } else {
