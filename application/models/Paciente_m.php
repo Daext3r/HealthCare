@@ -25,16 +25,17 @@ class Paciente_m extends CI_Model
     public function leerCitas($ciu)
     {
         //buscamos todas las citas de este paciente
-        $consulta = $this->db->query("SELECT * FROM vista_citas_pacientes_medicos WHERE CIU_paciente = ? AND estado = '0'", array($ciu));
+        $this->db->where("CIU_paciente", $ciu);
+        $this->db->where("estado", '0');
 
         //ejecutamos la consulta y devolvemos el array de citas
-        $citas = $consulta->result_array();
-
+        $citas = $this->db->get("vista_citas_pacientes_medicos")->result_array();
         return $citas;
     }
 
     public function leerFacultativos($ciu)
     {
+        
         $consulta = $this->db->query("SELECT (SELECT nombre_completo FROM vista_usuarios_medicos WHERE CIU = pacientes.CIU_medico_referencia) AS medico, CIU_medico_referencia AS CIU_medico FROM pacientes WHERE CIU_paciente = ?", array($ciu));
 
         //como queremos leer solo una fila, usamos ->row()
