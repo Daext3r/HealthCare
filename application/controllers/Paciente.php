@@ -14,16 +14,15 @@ class Paciente extends CI_Controller
             return;
         }
 
-        //si no tiene nombre, carga los datos
-        if ($this->session->userdata("ciu")) {
+        
 
-            //cargamos los datos del usuario llamando al modelo
-            $this->load->model("Paciente_m");
+        //cargamos los datos del usuario llamando al modelo
+        $this->load->model("Paciente_m");
 
-            $datos = $this->Paciente_m->leerDatos($this->session->userdata("ciu"));
+        $datos = $this->Paciente_m->leerDatos($this->session->userdata("ciu"));
 
-            $this->session->set_userdata($datos);
-        }
+        $this->session->set_userdata($datos);
+        
     }
 
     public function logout()
@@ -161,5 +160,30 @@ class Paciente extends CI_Controller
             $this->session->set_flashdata("info", "error_unk");
             redirect(base_url() . "paciente/misdatos");
         }
+    }
+
+    public function leerNotificaciones() {
+        
+        //si no es una peticion ajax redirigimos al inicio
+        if(!$this->input->is_ajax_request()) {
+            redirect(base_url() . "paciente/inicio");
+            return;
+        }
+
+        //cargamos las notificaciones y las devolvemos
+        $notifs = $this->Paciente_m->leerNotificaciones($this->session->userdata("ciu"));
+        echo json_encode($notifs);
+
+    }
+
+    public function borrarNotificacion(){
+         //si no es una peticion ajax redirigimos al inicio
+         if(!$this->input->is_ajax_request()) {
+            redirect(base_url() . "paciente/inicio");
+            return;
+        }
+
+        //borramos la notifiacion
+        $this->Paciente_m->borrarNotificacion($this->input->post("id"));
     }
 }

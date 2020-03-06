@@ -46,14 +46,7 @@
 
             <div class="dropdown">
                 <div class="dropbtn headerItem hover" id="notificaciones-text">Tienes <span id="notificaciones" class="badge badge-pill badge-danger">0</span> notificaciones pendientes</div>
-                <div class="dropdown-content">
-                    <a href="">Notificación de prueba</a>
-                    <a href="">Notificación de prueba</a>
-                    <a href="">Notificación de prueba</a>
-                    <a href="">Notificación de prueba</a>
-                    <a href="">Notificación de prueba</a>
-                    <a href="">Notificación de prueba</a>
-                    <a href="">Notificación de prueba</a>
+                <div class="dropdown-content" id="listaNotificaciones">
                 </div>
             </div>
 

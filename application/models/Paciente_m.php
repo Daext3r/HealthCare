@@ -75,4 +75,17 @@ class Paciente_m extends CI_Model
 
         return $datos;
     }
+
+    public function leerNotificaciones($ciu) {
+        $this->db->where("CIU_usuario", $ciu);
+        $this->db->select("id, resumen, informacion");
+        $datos = $this->db->get("notificaciones")->result_array();
+        return $datos;
+        
+    }
+
+    public function borrarNotificacion($id) {
+        
+        $this->db->delete('notificaciones', array("id" => $id));
+    }
 }
