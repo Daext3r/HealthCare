@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-03-2020 a las 09:31:14
+-- Tiempo de generación: 06-03-2020 a las 11:29:15
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -71,6 +71,14 @@ CREATE TABLE `citas` (
   `estado` set('0','1','2') COLLATE utf8_spanish_ci NOT NULL,
   `observaciones` text COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Disparadores `citas`
+--
+DELIMITER $$
+CREATE TRIGGER `citas_borrar` AFTER DELETE ON `citas` FOR EACH ROW INSERT INTO notificaciones (id, CIU_usuario, resumen, informacion) VALUES (NULL, old.CIU_paciente, "Cita anulada", CONCAT("La cita prevista para el ", old.fecha, " con ", (SELECT nombre_completo FROM vista_usuarios_medicos WHERE  CIU = old.CIU_medico), " ha sido cancelada."))
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -168,6 +176,7 @@ INSERT INTO `informes` (`id`, `CIU_medico`, `CIU_paciente`, `fecha`, `hora`, `co
 CREATE TABLE `notificaciones` (
   `id` int(11) NOT NULL,
   `CIU_usuario` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
+  `resumen` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
   `informacion` text COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -175,8 +184,8 @@ CREATE TABLE `notificaciones` (
 -- Volcado de datos para la tabla `notificaciones`
 --
 
-INSERT INTO `notificaciones` (`id`, `CIU_usuario`, `informacion`) VALUES
-(1, 'CIUALEX', 'Eres tonto');
+INSERT INTO `notificaciones` (`id`, `CIU_usuario`, `resumen`, `informacion`) VALUES
+(16, 'CIUALEX', 'Cita anulada', 'La cita prevista para el 2020-03-08 con Rafael Apellido Surname ha sido cancelada.');
 
 -- --------------------------------------------------------
 
@@ -465,7 +474,7 @@ ALTER TABLE `centros`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `especialidades`
@@ -483,7 +492,7 @@ ALTER TABLE `informes`
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `tratamientos`
