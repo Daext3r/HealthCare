@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-03-2020 a las 11:29:15
+-- Tiempo de generación: 09-03-2020 a las 13:49:45
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -179,13 +179,6 @@ CREATE TABLE `notificaciones` (
   `resumen` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
   `informacion` text COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `notificaciones`
---
-
-INSERT INTO `notificaciones` (`id`, `CIU_usuario`, `resumen`, `informacion`) VALUES
-(16, 'CIUALEX', 'Cita anulada', 'La cita prevista para el 2020-03-08 con Rafael Apellido Surname ha sido cancelada.');
 
 -- --------------------------------------------------------
 
@@ -474,7 +467,7 @@ ALTER TABLE `centros`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `especialidades`
@@ -492,7 +485,7 @@ ALTER TABLE `informes`
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `tratamientos`
