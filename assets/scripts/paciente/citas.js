@@ -24,6 +24,7 @@ $(document).ready(function () {
         }).then((result) => {
             //si el resultado no es true, no continua ejecutando
             if (!result.value) return;
+
             //propia indica al controlador si se quire borrar una cita propia o de otra persona.
             //hay que recordar que el controlador lo usaran varios tipos de usuario.
             $.post(localStorage.getItem("hc_base_url") + "Citas_controller/borrarCita", { cita: id_cita, propia: true }, function (data) {
@@ -31,10 +32,14 @@ $(document).ready(function () {
                 if (data == 1) {
                     $(cita).fadeOut(500);
                     Swal.fire(
-                        'Cita borrada correctamente',
-                        `Acabas de anular la cita con ${medico}`,
-                        'success'
+                        {
+                            title : 'Cita borrada correctamente',
+                            html : `Acabas de anular la cita con ${medico}`,
+                            icon: 'success',
+                            onDestroy : function() {window.location = localStorage.getItem("hc_base_url") + "paciente/inicio";}
+                        }
                     );
+                    //redirigimos al inicio
                 } else {
                     Swal.fire(
                         'Error',
