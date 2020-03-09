@@ -19,11 +19,17 @@ $(document).ready(function () {
     });
 
 
-    //cargamos las notificaciones que tenga el paciente 
+    //event listener de las notificaciones
+    $("#notificaciones-text").on("click", function() {
+        //cargamos las notificaciones que tenga el paciente 
     $.post(localStorage.getItem("hc_base_url") + "paciente/leerNotificaciones", {}, function (data) {
         data = JSON.parse(data);
+        
+        //borramos todas las notificaciones existentex
+        $("#listaNotificaciones").html("");
 
         for (let notificacion of data) {
+            console.log(notificacion);
             //creamos la notificacion con todos los datos correspondientes
             let notif = document.createElement("a");
             notif.innerText = notificacion.resumen;
@@ -39,19 +45,26 @@ $(document).ready(function () {
 
                 Swal.fire(
                     {
-                        'confirmButtonText' : "Cerrar",
+                        'confirmButtonText': "Cerrar",
                         'icon': 'warning',
-                        'title' : `${notificacion.resumen}`,
-                        'text' : `${notificacion.informacion}`,
-                        'onClose' : (event) => {
+                        'title': `${notificacion.resumen}`,
+                        'text': `${notificacion.informacion}`,
+                        'onClose': (event) => {
                             //cuando cierra la notificacion es que ya la ha leido
                             //mandamos borrarla de la bbdd
 
-                            $.post(localStorage.getItem("hc_base_url") + "paciente/borrarNotificacion", {id:notificacion.id},(data) => {
+                            $.post(localStorage.getItem("hc_base_url") + "paciente/borrarNotificacion", { id: notificacion.id }, (data) => {
+
+                                //reducimos la cantidad de notificaciones en uno en el localstorage
+                                localStorage.setItem("notificaciones", parseInt(localStorage.getItem("notificaciones")) - 1);
+
                                 //cuando se haya completado, actualizamos los contadores
-                                $("#notificaciones").text(parseInt($("#notificaciones").text())-1);
-                                $("#card-notificaciones").text(parseInt($("#card-notificaciones").text())-1);
-                               
+                                $("#notificaciones").text(localStorage.getItem("notificaciones"));
+
+                                $("#card-notificaciones").text(localStorage.getItem("notificaciones"));
+
+
+
                                 //this es el enlace al que hacemos clic, puesto que despues de el enlace usamos funciones lambda para no generar un nuevo this
                                 $(this).remove();
                             });
@@ -61,7 +74,10 @@ $(document).ready(function () {
             });
 
         }
+    }); 
     });
+
+    
 });
 
 

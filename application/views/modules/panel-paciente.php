@@ -42,15 +42,16 @@
     <div id="pagina">
         <nav id="header">
             <div class="headerItem" id="reloj"></div>
+            
             <div class="separador-v"></div>
 
             <div class="dropdown">
                 <div class="dropbtn headerItem hover" id="notificaciones-text">Tienes <span id="notificaciones" class="badge badge-pill badge-danger">0</span> notificaciones pendientes</div>
-                <div class="dropdown-content" id="listaNotificaciones">
-                </div>
+                <div class="dropdown-content" id="listaNotificaciones"></div>
             </div>
 
             <div class="separador-v"></div>
+
             <div id="logout"><i class="fas fa-sign-out-alt"></i>
                 <p>Salir</p>
             </div>
