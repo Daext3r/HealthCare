@@ -63,8 +63,6 @@ $(document).ready(function () {
 
                                 $("#card-notificaciones").text(localStorage.getItem("notificaciones"));
 
-
-
                                 //this es el enlace al que hacemos clic, puesto que despues de el enlace usamos funciones lambda para no generar un nuevo this
                                 $(this).remove();
                             });

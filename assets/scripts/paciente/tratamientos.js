@@ -46,7 +46,6 @@ $(document).ready(function () {
                     }
                     contenidoModal += "</ul>";
 
-                    //"{"presentacion":"unidades","dosis":[{"hora":"7","cantidad":"25"},{"hora":"15","cantidad":"25"},{"hora":"23","cantidad":"25"}]}
                     //VENTANA POPUP
                     $(enlace).on("click", function (e) {
                         e.preventDefault();
