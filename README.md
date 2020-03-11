@@ -32,13 +32,21 @@ Los médicos podrán atender las citas ,administrar tratamientos de los paciente
     * `git fetch origin`
     * `git checkout -b master --track origin/master -f`
 5. Si has realizado todos los pasos correctamente ya deberías tener instalado HealthCare en tu equipo
-
 * Nota: Si lo deseas, puedes borrar el controlador y la vista por defecto de CodeIgniter, WelcomeMessage.
+
+## Configuración
+- Antes de acceder a la página, es necesaria una configuración previa. Sin esta configuración, la aplicación no funcionará correctamente
+
+1. En el archivo `/application/config/config.php`, debes ajustar el valor de `config['base_url']`. Por defecto está puesto el nombre del servidor y debería funcionar, pero puede ser necesario que lo cambies.
+2. En el archivo `/assets/js/login.js` debes editar la linea en la que pone `localStorage.setItem("hc_base_url", "http://localhost/HealthCare/");` y el nombre del servidor si está en la red. Si estás trabajando en local para probar la aplicación, déjalo como está. 
 
 
 # Licencias | Licenses
-All code here was made from scratch by Alejandro D. (Daext3r) excetp the following things in the list:
+All code here was made from scratch by Alejandro D. (Daext3r) except the following things in the list:
+Todo el código ha sido hecho desde cero por Alejandro D. (Daext3r) excepto los siguientes elementos en la lista:
+
 1. [CodeIgniter](https://codeigniter.com)
 2. [Bootstrap](https://getbootstrap.com)
 3. [jQuery](https://jquery.com)
 4. [Twemoji](https://github.com/twitter/twemoji)
+4. [SweetAlert](https://sweetalert2.github.io)
