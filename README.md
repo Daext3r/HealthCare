@@ -6,12 +6,6 @@ HealthCare es una aplicación pensada para llevar la administración de un centr
 ## ¿Cuál es el objetivo del proyecto?
 
 ### General y descripción
-El objetivo de esta aplicación es hacer más fácil las diferentes opciones que se pueden realizar en un centro de salud.
-
-Los pacientes podrán realizar accioens como administrar sus citas con los médicos (solicitar, modificar o cancelar), consultar tratamientos activos, ver el hiotorial de análisis o consultar los informes realizados.
-
-Los médicos podrán atender las citas ,administrar tratamientos de los pacientes, ordenar análisis, o solicitar citas con los especialistas, entre otros.
-
 La aplicación está pensada desde un alto punto de vista, es decir, está pensada para ser intalada en un servidor que debe ser administrado por una entidad superior como puede ser el Servicio Extremeño de Salud o el Sistema Nacional de Salud. Esto es así por la cantidad de funciones que tiene.
 
 Las funciones serán enumeradas según los perfiles:
