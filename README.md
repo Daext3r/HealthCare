@@ -15,25 +15,25 @@ Los médicos podrán atender las citas ,administrar tratamientos de los paciente
 La aplicación está pensada desde un alto punto de vista, es decir, está pensada para ser intalada en un servidor que debe ser administrado por una entidad superior como puede ser el Servicio Extremeño de Salud o el Sistema Nacional de Salud. Esto es así por la cantidad de funciones que tiene.
 
 Las funciones serán enumeradas según los perfiles:
-1. Root
+1. Root: 
     Este usuario es el administrador del sitio. Solo puede crear nuevos centros, y crear nuevos usuarios. Se recomienda que los usuarios que cree solo sea para darle los permisos de gerente (punto 2). Además de esto, también será el encargado de crear nuevas especialidades que serán usadas por los administrativos para asignarlas a un facultativo.
 
-2. Gerente
+2. Gerente: 
     Los gerentes son los directores de los centros, ya sea un hospital, residencia, o centro de salud. No hay diferencia. Los gerentes podrán cambiar la configuración del centro y crear nuevos usuarios. Se recomienda que los usuarios creados sean solo administrativos (punto 3).
 
-3. Administrativo
+3. Administrativo: 
     Los administrativos podrán realizar distintas tareas en el centro, tales como crear perfiles de paciente, de facultativo, cambiar datos de un perfil, cambiar permisos, pedir cita en nombre de un paciente... A pesar de todas estas acciones, no podrán ver informes o tratamientos de los pacientes.
 
-4. Facultativo
+4. Facultativo: 
     Se entiende por facultativo a cualquier profesional médico de cualquier especialidad que no sea un enfermero. Medicina general, traumatología u oftalmología son algunas de las especialidades, por ejemplo. Los facultativos podrán derivar (solicitar cita) un paciente a otro facultativo que sea especialista. Además, al derivar se permite el añadir una descripción o motivo de cita.
 
-5. Enfermero
+5. Enfermero: 
     El perfil de enfermero tiene permisos mucho más limitados que un facultativo. Aún por determinar. 
 
-6. Paciente
+6. Paciente: 
     Los pacientes es parte del usuario base de la aplicación. Cuando se registra un usuario, por defecto se crea un perfil de paciente. El paciente en su mayoría puede consultar datos. Tratamientos, informes, resultados de analíticas o citas pendientes. Además, puede solicitar nuevas citas y editar datos de su perfil tales como el correo electrónico, teléfono o dirección.
 
-7. Personal de laboratorio
+7. Personal de laboratorio: 
     El personal de laboratorio será el encargado de cumplimentar las analíticas. Por el momento no tiene más funciones.
 
     * Nota: Está pendiente añadir más funcionalidades al paciente y al personal de laboratorio.
