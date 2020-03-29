@@ -50,7 +50,7 @@ class Paciente extends CI_Controller
         //carga el head con las hojas de estilos y scripts necesarios
         $this->load->view("modules/head", array(
             "hojas" => array("modules/panel", "paciente/inicio", "modules/panel-responsive"),
-            "scripts" => array("common", "paciente/inicio")
+            "scripts" => array("utils/common", "paciente/inicio")
         ));
 
         //carga el modulo principal
@@ -70,7 +70,7 @@ class Paciente extends CI_Controller
         //carga el head con las hojas de estilos y scripts necesarios
         $this->load->view("modules/head", array(
             "hojas" => array("modules/panel", "paciente/citas", "modules/panel-responsive"),
-            "scripts" => array("common", "paciente/citas")
+            "scripts" => array("utils/common", "paciente/citas")
         ));
 
         //carga el modulo principal
@@ -87,7 +87,7 @@ class Paciente extends CI_Controller
         //carga el head con las hojas de estilos y scripts necesarios
         $this->load->view("modules/head", array(
             "hojas" => array("modules/panel", "paciente/tratamientos", "modules/panel-responsive"),
-            "scripts" => array("common", "paciente/tratamientos")
+            "scripts" => array("utils/common", "paciente/tratamientos")
         ));
 
         //carga el modulo principal
@@ -102,7 +102,7 @@ class Paciente extends CI_Controller
         //carga el head con las hojas de estilos y scripts necesarios
         $this->load->view("modules/head", array("hojas" => array(
             "modules/panel", "paciente/informes", "modules/panel-responsive"),
-            "scripts" => array("common", "paciente/informes", "lib/pagination")
+            "scripts" => array("utils/common", "paciente/informes", "lib/pagination")
         ));
 
         //carga el modulo principal
@@ -117,7 +117,7 @@ class Paciente extends CI_Controller
         //carga el head con las hojas de estilos y scripts necesarios
         $this->load->view("modules/head", array("hojas" => array(
             "modules/panel", "paciente/misdatos", "modules/panel-responsive"),
-            "scripts" => array("common", "paciente/misdatos")
+            "scripts" => array("utils/common", "paciente/misdatos")
         ));
 
         //carga el modulo principal

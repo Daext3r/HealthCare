@@ -14,7 +14,7 @@ class Login extends CI_Controller
 		$this->session->sess_destroy();
 
 		//carga el head con una hoja de estilos
-		$this->load->view("modules/head", array("hojas" => array("login"), "scripts" => array("login")));
+		$this->load->view("modules/head", array("hojas" => array("utils/login"), "scripts" => array("utils/login")));
 
 		//carga la vista de login
 		$this->load->view("Login_v");
@@ -44,7 +44,7 @@ class Login extends CI_Controller
 				$this->session->set_userdata('ciu', $resultado['ciu']);
 
 				//carga el head con una hoja de estilos
-				$this->load->view("modules/head", array("hojas" => array("perfiles")));
+				$this->load->view("modules/head", array("hojas" => array("utils/perfiles")));
 
 				//carga la vista de seleccion de perfil
 				$this->load->view("Perfiles_v", array("perfiles" => $resultado));

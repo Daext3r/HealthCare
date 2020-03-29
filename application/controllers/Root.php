@@ -28,7 +28,7 @@ class Root extends CI_Controller
         //carga el head con las hojas de estilos y scripts necesarios
         $this->load->view("modules/head", array(
             "hojas" => array("modules/panel", "modules/panel-responsive"),
-            "scripts" => array("common")
+            "scripts" => array("utils/common")
         ));
 
         //carga el modulo principal
@@ -42,7 +42,7 @@ class Root extends CI_Controller
             //carga el head con las hojas de estilos y scripts necesarios
             $this->load->view("modules/head", array(
                 "hojas" => array("modules/panel", "modules/panel-responsive"),
-                "scripts" => array("common")
+                "scripts" => array("utils/common")
             ));
 
             //carga el modulo principal
