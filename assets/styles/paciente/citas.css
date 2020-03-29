@@ -1,6 +1,6 @@
 /* ===== ESTILOS DE CITAS ===== */
 /* Nota: todos los estilos las subcategorias tendran el siguiente formato: .citas-x o #citas-x */
-#citas-contenido {
+#contenido {
     display: flex;
     justify-content: center;
     align-items: center;

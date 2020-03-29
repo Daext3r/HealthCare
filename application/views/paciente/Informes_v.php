@@ -1,4 +1,4 @@
-        <section id="informes-contenido">
+        <section id="contenido">
                 <div id="container">
                     <div id="paginas">
                         <ul id="lista"></ul>

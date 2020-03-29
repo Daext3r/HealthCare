@@ -71,7 +71,7 @@ body {
     margin-right: 0.5em;
 }
 
-#inicio-contenido, #citas-contenido, #informes-contenido, #misdatos-contenido, #tratamientos-contenido {
+#contenido {
     height: 85%;
     width: 95%;
     align-self: auto;

@@ -1,4 +1,4 @@
-        <section id="misdatos-contenido">
+        <section id="contenido">
             <?php
 
 
