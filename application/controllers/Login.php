@@ -33,18 +33,27 @@ class Login extends CI_Controller
 		if (!$resultado) {
 			//si el resultado es false, recargamos la pagina mostrando un mensaje de error
 			$this->session->set_flashdata('error', 'no_user');
-			
+
 			//redirigimos al login
 			redirect(base_url() . "login");
 		} else {
-			
-			//carga el head con una hoja de estilos
-			$this->load->view("modules/head", array("hojas" => array("perfiles")));
-			
-			$this->session->set_userdata('ciu', $resultado['ciu']);
+			//si el usuario no es root
+			if ($resultado != 'root') {
 
-			//carga la vista de seleccion de perfil
-			$this->load->view("Perfiles_v", array("perfiles" => $resultado));
+				//escribimos la variable de CIU
+				$this->session->set_userdata('ciu', $resultado['ciu']);
+
+				//carga el head con una hoja de estilos
+				$this->load->view("modules/head", array("hojas" => array("perfiles")));
+
+				//carga la vista de seleccion de perfil
+				$this->load->view("Perfiles_v", array("perfiles" => $resultado));
+			} else {
+
+				//si el usuario es root, escribimos el ciu y lo redirigimos a su panel
+				$this->session->set_userdata("ciu", 'root');
+				redirect(base_url() . 'root/inicio');
+			}
 		}
 	}
 }

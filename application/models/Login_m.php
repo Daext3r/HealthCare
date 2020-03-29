@@ -21,14 +21,20 @@ class Login_m extends CI_Model
 
 
         //comprobamos que $row tenga un registro
-        if($row) {
-            //si lo tiene buscamos sus perfiles
-            $perfiles = self::leerPerfiles($row->ciu);
-            $perfiles['ciu'] = $row->ciu;
-            return $perfiles;
-            
+        if ($row) {
+            //si no es el usuario root leemos sus perfiles
+            if ($row->ciu != 'root') {
+                //si lo tiene buscamos sus perfiles
+                $perfiles = self::leerPerfiles($row->ciu);
+                $perfiles['ciu'] = $row->ciu;
+                return $perfiles;
+            } else {
+                //si es root devolvemos 'root'
+                return 'root';
+            }
+
         } else {
-            //si no lo tiene devolvemos false
+            //si no hay resultados en row devolvemos false
             return false;
         }
     }
@@ -42,8 +48,7 @@ class Login_m extends CI_Model
         $this->db->select("ciu_paciente");
         $this->db->where("ciu_paciente", $ciu);
         $result = $this->db->get("pacientes");
-
-        if($result->result()) {
+        if ($result->result()) {
             $perfiles['paciente'] = true;
         } else {
             $perfiles['paciente'] = false;
@@ -52,19 +57,18 @@ class Login_m extends CI_Model
         $this->db->select("ciu_medico");
         $this->db->where("ciu_medico", $ciu);
         $result = $this->db->get("facultativos");
-
-        if($result->row()) {
+        if ($result->row()) {
             $perfiles['medico'] = true;
         } else {
             $perfiles['medico'] = false;
         }
 
-        
-        
+
+
         $this->db->select("ciu_personal");
         $this->db->where("ciu_personal", $ciu);
         $result = $this->db->get("personal_laboratorio");
-        if($result->row()) {
+        if ($result->row()) {
             $perfiles['personal_lab'] = true;
         } else {
             $perfiles['personal_lab'] = false;

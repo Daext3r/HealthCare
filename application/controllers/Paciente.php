@@ -14,15 +14,22 @@ class Paciente extends CI_Controller
             return;
         }
 
-        
+        //si el usuario tiene tipo asignado y no es paciente no es paciente
+        if($this->session->userdata("tipo") && $this->session->userdata("tipo") != 'paciente') {
+            //redirigimos al login
+            redirect(base_url() . "login");
+            return;
+        }
 
         //cargamos los datos del usuario llamando al modelo
-        $this->load->model("Paciente_m");
+        $this->load->model("Usuarios_model");
 
-        $datos = $this->Paciente_m->leerDatos($this->session->userdata("ciu"));
+        $datos = $this->Usuarios_model->leerDatos($this->session->userdata("ciu"));
 
         $this->session->set_userdata($datos);
-        
+
+        //guardamos el tipo de perfil, paciente
+        $this->session->set_userdata("tipo", "paciente");
     }
 
     public function logout()
@@ -34,20 +41,20 @@ class Paciente extends CI_Controller
     public function inicio()
     {
         //carga el modelo de la base de datos
-        $this->load->model("Paciente_m");
+        $this->load->model("Usuarios_model");
 
-        //leemos los datos de inicio
-        $datos = $this->Paciente_m->leerDatosInicio($this->session->userdata("ciu"));
+        //leemos los datos de inicio. notificaciones, citas y tratamientos
+        $datos = $this->Usuarios_model->leerCantidadDatos($this->session->userdata("ciu"), array(null, "citas", "tratamientos", "notificaciones"));
 
 
         //carga el head con las hojas de estilos y scripts necesarios
         $this->load->view("modules/head", array(
-            "hojas" => array("paciente/index", "paciente/inicio", "paciente/panel-paciente-responsive"),
-            "scripts" => array("paciente/index", "paciente/inicio")
+            "hojas" => array("modules/panel", "paciente/inicio", "modules/panel-responsive"),
+            "scripts" => array("common", "paciente/inicio")
         ));
 
         //carga el modulo principal
-        $this->load->view("modules/panel-paciente");
+        $this->load->view("modules/panel");
 
         //carga la vista de inicio
         $this->load->view("paciente/Inicio_v", array("datos" => $datos));
@@ -61,13 +68,13 @@ class Paciente extends CI_Controller
         $facultativos = $this->Paciente_m->leerFacultativos($this->session->userdata("ciu"));
 
         //carga el head con las hojas de estilos y scripts necesarios
-        $this->load->view("modules/head", array("hojas" => array(
-            "paciente/index", "paciente/citas", "paciente/panel-paciente-responsive"),
-            "scripts" => array("paciente/index", "paciente/citas")
+        $this->load->view("modules/head", array(
+            "hojas" => array("modules/panel", "paciente/citas", "modules/panel-responsive"),
+            "scripts" => array("common", "paciente/citas")
         ));
 
         //carga el modulo principal
-        $this->load->view("modules/panel-paciente");
+        $this->load->view("modules/panel");
 
         //carga la vista de inicio
         $this->load->view("paciente/Citas_v", array(
@@ -79,12 +86,12 @@ class Paciente extends CI_Controller
     {
         //carga el head con las hojas de estilos y scripts necesarios
         $this->load->view("modules/head", array(
-            "hojas" => array("paciente/index", "paciente/tratamientos", "paciente/panel-paciente-responsive"),
-            "scripts" => array("paciente/index", "paciente/tratamientos")
+            "hojas" => array("modules/panel", "paciente/tratamientos", "modules/panel-responsive"),
+            "scripts" => array("common", "paciente/tratamientos")
         ));
 
         //carga el modulo principal
-        $this->load->view("modules/panel-paciente");
+        $this->load->view("modules/panel");
 
         //carga la vista de inicio
         $this->load->view("paciente/Tratamientos_v");
@@ -94,12 +101,12 @@ class Paciente extends CI_Controller
     {
         //carga el head con las hojas de estilos y scripts necesarios
         $this->load->view("modules/head", array("hojas" => array(
-            "paciente/index", "paciente/informes", "paciente/panel-paciente-responsive"),
-            "scripts" => array("paciente/index", "paciente/informes", "lib/pagination")
+            "modules/panel", "paciente/informes", "modules/panel-responsive"),
+            "scripts" => array("common", "paciente/informes", "lib/pagination")
         ));
 
         //carga el modulo principal
-        $this->load->view("modules/panel-paciente");
+        $this->load->view("modules/panel");
 
         //carga la vista de inicio
         $this->load->view("paciente/Informes_v");
@@ -109,12 +116,12 @@ class Paciente extends CI_Controller
     {
         //carga el head con las hojas de estilos y scripts necesarios
         $this->load->view("modules/head", array("hojas" => array(
-            "paciente/index", "paciente/misdatos", "paciente/panel-paciente-responsive"),
-            "scripts" => array("paciente/index", "paciente/misdatos")
+            "modules/panel", "paciente/misdatos", "modules/panel-responsive"),
+            "scripts" => array("common", "paciente/misdatos")
         ));
 
         //carga el modulo principal
-        $this->load->view("modules/panel-paciente");
+        $this->load->view("modules/panel");
 
         //carga la vista de inicio
         $this->load->view("paciente/MisDatos_v");
@@ -160,30 +167,5 @@ class Paciente extends CI_Controller
             $this->session->set_flashdata("info", "error_unk");
             redirect(base_url() . "paciente/misdatos");
         }
-    }
-
-    public function leerNotificaciones() {
-        
-        //si no es una peticion ajax redirigimos al inicio
-        if(!$this->input->is_ajax_request()) {
-            redirect(base_url() . "paciente/inicio");
-            return;
-        }
-
-        //cargamos las notificaciones y las devolvemos
-        $notifs = $this->Paciente_m->leerNotificaciones($this->session->userdata("ciu"));
-        echo json_encode($notifs);
-
-    }
-
-    public function borrarNotificacion(){
-         //si no es una peticion ajax redirigimos al inicio
-         if(!$this->input->is_ajax_request()) {
-            redirect(base_url() . "paciente/inicio");
-            return;
-        }
-
-        //borramos la notifiacion
-        $this->Paciente_m->borrarNotificacion($this->input->post("id"));
     }
 }

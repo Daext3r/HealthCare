@@ -8,20 +8,6 @@ class Paciente_m extends CI_Model
         parent::__construct();
     }
 
-    public function leerDatos($ciu)
-    {
-        $consulta = $this->db->query("SELECT ciu, nombre, apellidos, dni, sexo, nacionalidad, direccion, telefono, fijo, fecha_nacimiento, correo FROM usuarios WHERE ciu = ?", array($ciu));
-
-        //como queremos leer solo una fila, usamos ->row()
-        $row = $consulta->row_array();
-
-        if ($row) {
-            return $row;
-        } else {
-            return false;
-        }
-    }
-
     public function leerCitas($ciu)
     {
         //buscamos todas las citas de este paciente
@@ -56,36 +42,5 @@ class Paciente_m extends CI_Model
         } else {
             return false;
         }
-    }
-
-    public function leerDatosInicio($ciu) {
-        $datos = array();
-        
-        $this->db->like("CIU_usuario", $ciu);
-        $this->db->from("notificaciones");
-        $datos['notificaciones'] = $this->db->count_all_results();
-
-        $this->db->like("CIU_paciente", $ciu);
-        $this->db->from("citas");
-        $datos['citas'] = $this->db->count_all_results();
-        
-        $this->db->like("CIU_paciente", $ciu);
-        $this->db->from("tratamientos");
-        $datos['tratamientos'] = $this->db->count_all_results();
-
-        return $datos;
-    }
-
-    public function leerNotificaciones($ciu) {
-        $this->db->where("CIU_usuario", $ciu);
-        $this->db->select("id, resumen, informacion");
-        $datos = $this->db->get("notificaciones")->result_array();
-        return $datos;
-        
-    }
-
-    public function borrarNotificacion($id) {
-        
-        $this->db->delete('notificaciones', array("id" => $id));
     }
 }

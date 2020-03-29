@@ -21,9 +21,6 @@
     <!--Favicon-->
     <link rel="icon" href="<?php echo base_url() ?>assets/img/icon.png">
 
-    <!--Script  del reloj-->
-    <script src="<?php echo base_url() ?>assets/scripts/reloj.js"></script>
-
     <!--Siempre usaremos la misma fuente, Rubik-->
     <style>
         @import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
