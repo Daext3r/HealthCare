@@ -25,6 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $config['base_url'] = 'http://'.$_SERVER['SERVER_NAME'].'/HealthCare';
 
+//Dominio en el que esta instalada la aplicacion
+$config['application_domain'] = null;
 /*
 |--------------------------------------------------------------------------
 | Index File
