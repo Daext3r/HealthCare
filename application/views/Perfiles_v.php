@@ -14,7 +14,7 @@
                     <h5 class="card-title">Paciente</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Entrar como paciente</h6>
                     <p class="card-text">Accede a la plataforma como paciente de tu centro de salud</p>
-                    <a href="<?php echo base_url()?>paciente/inicio" class="btn btn-primary">Entrar</a>
+                    <a href="<?php echo base_url() ?>paciente/inicio" class="btn btn-primary">Entrar</a>
 
                 </div>
             </div>
@@ -22,7 +22,7 @@
         }
 
         //si tiene acceso al perfil de medico
-        if ($perfiles['medico'] == true) {
+        if ($perfiles['facultativo'] == true) {
         ?>
             <div class="card" style="width: 18em;">
                 <div class="card-logo">
@@ -32,7 +32,7 @@
                     <h5 class="card-title">Facultativo</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Entrar como facultativo</h6>
                     <p class="card-text">Accede a la plataforma como profesional médico en tu centro de salud</p>
-                    <a href="<?php echo base_url()?>facultativo" class="btn btn-primary">Entrar</a>
+                    <a href="<?php echo base_url() ?>facultativo" class="btn btn-primary">Entrar</a>
 
                 </div>
             </div>
@@ -47,10 +47,61 @@
                     <i class="fas fa-syringe"></i>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="<?php echo base_url()?>laboratorio" class="btn btn-primary">Entrar</a>
+                    <h5 class="card-title">Personal de laboratorio</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Entrar como Personal de laboratorio</h6>
+                    <p class="card-text">Accede a la plataforma como personal de laboratorio para analizar muestras</p>
+                    <a href="<?php echo base_url() ?>laboratorio" class="btn btn-primary">Entrar</a>
+                </div>
+            </div>
+        <?php
+        }
+
+        //si tiene acceso al perfil de gerente de un centro
+        if ($perfiles['gerente'] == true) {
+        ?>
+            <div class="card" style="width: 18rem;">
+                <div class="card-logo">
+                <i class="fas fa-users"></i>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Gerente</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Entrar como gerente</h6>
+                    <p class="card-text">Accede a la plataforma como gerente para administrar los trabajadores de tu centro</p>
+                    <a href="<?php echo base_url() ?>gerente" class="btn btn-primary">Entrar</a>
+                </div>
+            </div>
+        <?php
+        }
+
+        //si tiene acceso al perfil de administrativo de un centro
+        if ($perfiles['administrativo'] == true) {
+        ?>
+            <div class="card" style="width: 18rem;">
+                <div class="card-logo">
+                <i class="fas fa-paste"></i>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Administrativo</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Entrar como administrativo</h6>
+                    <p class="card-text">Accede a la plataforma como adminsitrativo de tu centro de salud</p>
+                    <a href="<?php echo base_url() ?>administrativo" class="btn btn-primary">Entrar</a>
+                </div>
+            </div>
+        <?php
+        }
+
+        //si tiene acceso al perfil de administrador del sistema
+        if ($perfiles['sysadmin'] == true) {
+        ?>
+            <div class="card" style="width: 18rem;">
+                <div class="card-logo">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Administrador del sistema</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Entrar como administrador del sistema</h6>
+                    <p class="card-text">Accede a la plataforma como administrador de la misma</p>
+                    <a href="<?php echo base_url() ?>root" class="btn btn-primary">Entrar</a>
                 </div>
             </div>
         <?php

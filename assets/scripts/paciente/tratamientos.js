@@ -13,10 +13,7 @@ $(document).ready(function () {
         //borramos el contenido del cuerpo
         $("#tratamientos").html("");
 
-
         for (let tratamiento of data) {
-
-
             //primero leemos el nombre del medicamento
             fetch(`https://cima.aemps.es/cima/rest/medicamento?nregistro=${tratamiento.nregistro}`)
                 .then(function (respuesta) {
@@ -39,9 +36,9 @@ $(document).ready(function () {
                     contenidoModal += `<p>Fecha de inicio del tratamiento ${new Date(tratamiento.fecha_inicio).toLocaleDateString()}</p><br>`;
                     contenidoModal += `<p>Fecha de fin del tratamiento ${new Date(tratamiento.fecha_fin).toLocaleDateString()}</p><br>`;
                     contenidoModal += `<p>Dosis: ${dosis.dosis} ${dosis.presentacion} en las siguientes horas:</p>`;
-                    
+
                     contenidoModal += "<ul class='ul-modal'>";
-                    for(let hora of dosis.horas){
+                    for (let hora of dosis.horas) {
                         contenidoModal += `<li class='li-modal'>${hora}</li>`;
                     }
                     contenidoModal += "</ul>";
@@ -56,14 +53,11 @@ $(document).ready(function () {
                             showCancelButton: false,
                             focusConfirm: true,
                             confirmButtonText: "Cerrar",
-                            
+
                             cancelButtonAriaLabel: 'Thumbs down'
                         })
                     })
                 });
-
-
         }
-
     })
 });

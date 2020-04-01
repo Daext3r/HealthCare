@@ -1,4 +1,4 @@
-        <section id="contenido">
+        <section class="contenido">
         <h3>Tus tratamientos activos</h3>
             <ul id="lista">
             </ul>

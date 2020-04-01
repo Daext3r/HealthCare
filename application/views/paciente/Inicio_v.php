@@ -1,4 +1,4 @@
-        <section id="contenido">
+        <section class="contenido">
             <div class="card bg-light mb-3 inicio-card" style="max-width: 18rem;">
                 <div class="card-header">Tienes</div>
                 <div class="card-body">

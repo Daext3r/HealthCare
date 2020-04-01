@@ -8,7 +8,18 @@ class Citas_model extends CI_Model
         parent::__construct();
     }
 
-    //usando QueryBuilders, borramos la cita
+
+    public function leerCitas($ciu)
+    {
+        //buscamos todas las citas de este paciente
+        $this->db->where("CIU_paciente", $ciu);
+        $this->db->where("estado", 'P');
+
+        //ejecutamos la consulta y devolvemos el array de citas
+        $citas = $this->db->get("vista_citas_pacientes_facultativos")->result_array();
+        return $citas;
+    }
+
     public function borrarCita($cita, $paciente)
     {
         $this->db->where('id', $cita);
@@ -20,7 +31,7 @@ class Citas_model extends CI_Model
 
     public function leerCitasDia($medico, $fecha, $hora)
     {
-        $this->db->where("CIU_medico", $medico);
+        $this->db->where("CIU_facultativo", $medico);
         $this->db->where("fecha", $fecha);
         
         //el paciente quiere esta hora como minimo
@@ -38,7 +49,7 @@ class Citas_model extends CI_Model
     }
 
     public function seleccionarCita($medico, $paciente, $fecha, $hora) {
-        $datos = array("CIU_medico" => $medico, "CIU_paciente" => $paciente, "fecha" => $fecha, "hora" => $hora, "estado" => '0');
+        $datos = array("CIU_facultativo" => $medico, "CIU_paciente" => $paciente, "fecha" => $fecha, "hora" => $hora, "estado" => 'P');
 
         if($this->db->insert("citas", $datos)) {
             return true;

@@ -14,22 +14,33 @@ class Paciente extends CI_Controller
             return;
         }
 
-        //si el usuario tiene tipo asignado y no es paciente no es paciente
-        if($this->session->userdata("tipo") && $this->session->userdata("tipo") != 'paciente') {
-            //redirigimos al login
-            redirect(base_url() . "login");
-            return;
-        }
-
-        //cargamos los datos del usuario llamando al modelo
+        //carga el modelo de la base de datos
         $this->load->model("Usuarios_model");
 
-        $datos = $this->Usuarios_model->leerDatos($this->session->userdata("ciu"));
+        //comprobamos que el usuario tenga acceso a este panel
+        if ($this->session->userdata('perfiles')['paciente'] == true) {
 
-        $this->session->set_userdata($datos);
+            //si el usuario tiene permiso de paciente, comprobamos si ya tiene los datos guardados
+            if ($this->session->userdata("dni") == "") {
+                //si la session dni no existe es que es la primera vez que entra en este apartado, por lo que leemos los datos
+                $publicos = $this->Usuarios_model->leerDatosPublicos($this->session->userdata("ciu"));
+                $privados = $this->Usuarios_model->leerDatosPrivados($this->session->userdata("ciu"));
 
-        //guardamos el tipo de perfil, paciente
-        $this->session->set_userdata("tipo", "paciente");
+                //los datos privados seran de sesion
+                $this->session->set_userdata($privados);
+
+                //los datos publicos seran cookies
+                foreach ($publicos as $clave => $valor) {
+                    set_cookie($clave, $valor, 0, $this->config->item("application_domain"), "/");
+                }
+
+                //por ultimo guardamos el tipo de usuario que tiene, por lo que no podrá acceder a otros paneles hasta que no vuelva a iniciar sesión con otro perfil
+                $this->session->set_userdata("tipo", "paciente");
+            }
+        } else {
+            //si no tiene permiso de paciente, le sacamos de aqui
+        redirect(base_url() . "login");
+        }
     }
 
     public function logout()
@@ -40,9 +51,6 @@ class Paciente extends CI_Controller
 
     public function inicio()
     {
-        //carga el modelo de la base de datos
-        $this->load->model("Usuarios_model");
-
         //leemos los datos de inicio. notificaciones, citas y tratamientos
         $datos = $this->Usuarios_model->leerCantidadDatos($this->session->userdata("ciu"), array(null, "citas", "tratamientos", "notificaciones"));
 
@@ -62,8 +70,9 @@ class Paciente extends CI_Controller
 
     public function citas()
     {
+        $this->load->model("Citas_model");
         $this->load->model("Paciente_m");
-        $citas = $this->Paciente_m->leerCitas($this->session->userdata("ciu"));
+        $citas = $this->Citas_model->leerCitas($this->session->userdata("ciu"));
 
         $facultativos = $this->Paciente_m->leerFacultativos($this->session->userdata("ciu"));
 
@@ -100,8 +109,10 @@ class Paciente extends CI_Controller
     public function informes()
     {
         //carga el head con las hojas de estilos y scripts necesarios
-        $this->load->view("modules/head", array("hojas" => array(
-            "modules/panel", "paciente/informes", "modules/panel-responsive"),
+        $this->load->view("modules/head", array(
+            "hojas" => array(
+                "modules/panel", "paciente/informes", "modules/panel-responsive"
+            ),
             "scripts" => array("utils/common", "paciente/informes", "lib/pagination")
         ));
 
@@ -115,8 +126,10 @@ class Paciente extends CI_Controller
     public function misdatos()
     {
         //carga el head con las hojas de estilos y scripts necesarios
-        $this->load->view("modules/head", array("hojas" => array(
-            "modules/panel", "paciente/misdatos", "modules/panel-responsive"),
+        $this->load->view("modules/head", array(
+            "hojas" => array(
+                "modules/panel", "paciente/misdatos", "modules/panel-responsive"
+            ),
             "scripts" => array("utils/common", "paciente/misdatos")
         ));
 

@@ -8,18 +8,18 @@ class Usuarios_model extends CI_Model
         parent::__construct();
     }
 
-    public function leerDatos($ciu)
+    public function leerDatosPrivados($ciu)
     {
-        $consulta = $this->db->query("SELECT ciu, nombre, apellidos, dni, sexo, nacionalidad, direccion, telefono, fijo, fecha_nacimiento, correo FROM usuarios WHERE ciu = ?", array($ciu));
+        $this->db->select("ciu, dni, direccion, telefono, fijo, correo");
+        $this->db->where("ciu", $ciu);
+        return $this->db->get("usuarios")->row_array();
+    }
 
-        //como queremos leer solo una fila, usamos ->row()
-        $row = $consulta->row_array();
-
-        if ($row) {
-            return $row;
-        } else {
-            return false;
-        }
+    public function leerDatosPublicos($ciu)
+    {
+        $this->db->select("sexo, nombre, apellidos, nacionalidad, fecha_nacimiento");
+        $this->db->where("ciu", $ciu);
+        return $this->db->get("usuarios")->row_array();
     }
 
     public function leerCantidadDatos($ciu, $valores)
@@ -37,12 +37,14 @@ class Usuarios_model extends CI_Model
 
         if (array_search("citas", $valores)) {
             $this->db->like("CIU_paciente", $ciu);
+            $this->db->where("estado", "P");
             $this->db->from("citas");
             $array['citas'] = $this->db->count_all_results();
             
         }
         if (array_search("tratamientos", $valores)) {
             $this->db->like("CIU_paciente", $ciu);
+            $this->db->where("fecha_fin >=", date("Y-m-d"));
             $this->db->from("tratamientos");
             $array['tratamientos'] = $this->db->count_all_results();
         }

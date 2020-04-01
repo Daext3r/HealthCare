@@ -22,16 +22,14 @@ class Login_m extends CI_Model
 
         //comprobamos que $row tenga un registro
         if ($row) {
-            //si no es el usuario root leemos sus perfiles
-            if ($row->ciu != 'root') {
-                //si lo tiene buscamos sus perfiles
-                $perfiles = self::leerPerfiles($row->ciu);
-                $perfiles['ciu'] = $row->ciu;
-                return $perfiles;
-            } else {
-                //si es root devolvemos 'root'
-                return 'root';
-            }
+            //leemos los perfiles del usuario
+            $array = self::leerPerfiles($row->ciu);
+
+            //guardamos tambien el ciu del usuario
+            $array['ciu'] = $row->ciu;
+
+            ///devolvemos el array con los perfiles y el ciu
+            return $array;
 
         } else {
             //si no hay resultados en row devolvemos false
@@ -44,7 +42,7 @@ class Login_m extends CI_Model
         //variable que almacenará todos los perfiles a los que tiene acceso
         $perfiles = array();
 
-        //si el usuario se ha autenticado correctamente, leemos y devolvemos los perfiles a los que tiene acceso
+        //comprobamos si el usuario es paciente
         $this->db->select("ciu_paciente");
         $this->db->where("ciu_paciente", $ciu);
         $result = $this->db->get("pacientes");
@@ -54,17 +52,17 @@ class Login_m extends CI_Model
             $perfiles['paciente'] = false;
         }
 
-        $this->db->select("ciu_medico");
-        $this->db->where("ciu_medico", $ciu);
+        //comprobamos si el usuario es facultativo
+        $this->db->select("ciu_facultativo");
+        $this->db->where("ciu_facultativo", $ciu);
         $result = $this->db->get("facultativos");
         if ($result->row()) {
-            $perfiles['medico'] = true;
+            $perfiles['facultativo'] = true;
         } else {
-            $perfiles['medico'] = false;
+            $perfiles['facultativo'] = false;
         }
 
-
-
+        //comprobamos si el usuario es personal de laboratorio
         $this->db->select("ciu_personal");
         $this->db->where("ciu_personal", $ciu);
         $result = $this->db->get("personal_laboratorio");
@@ -74,6 +72,38 @@ class Login_m extends CI_Model
             $perfiles['personal_lab'] = false;
         }
 
+
+        //comprobamos si el usuario es gerente de un centro
+        $this->db->select("CIU_gerente");
+        $this->db->where("CIU_gerente", $ciu);
+        $result = $this->db->get("centros");
+        if ($result->row()) {
+            $perfiles['gerente'] = true;
+        } else {
+            $perfiles['gerente'] = false;
+        }
+
+        //comprobamos si el usuario es administrativo en un centro
+        $this->db->select("CIU_administrativo");
+        $this->db->where("CIU_administrativo", $ciu);
+        $result = $this->db->get("administrativos");
+        if ($result->row()) {
+            $perfiles['administrativo'] = true;
+        } else {
+            $perfiles['administrativo'] = false;
+        }
+
+        //comprobamos si el usuario es administrador del sistema
+        $this->db->select("CIU_usuario");
+        $this->db->where("CIU_usuario", $ciu);
+        $result = $this->db->get("admins");
+        if ($result->row()) {
+            $perfiles['sysadmin'] = true;
+        } else {
+            $perfiles['sysadmin'] = false;
+        }
+
+        //devolvemos todos los perfiles a los cuales hemos comprobado que tiene acceso
         return $perfiles;
     }
 }

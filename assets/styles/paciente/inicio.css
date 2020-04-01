@@ -1,6 +1,6 @@
 /* ===== ESTILOS DE INICIO ===== */
 /* Nota: todos los estilos las subcategorias tendran el siguiente formato: .inicio-x o #inicio-x */
-#contenido {
+.contenido {
     display: flex;
     justify-content: space-evenly;
     align-items: center;

@@ -1,4 +1,4 @@
-        <section id="contenido">
+        <section class="contenido">
                 a
         </section>
         </div>

@@ -9,7 +9,7 @@
             </div>
 
             <div id="nombre">
-                <?php echo $this->session->userdata("nombre") . " " . $this->session->userdata("apellidos") ?>
+                <?php echo get_cookie("nombre") . " " . get_cookie("apellidos") ?>
             </div>
 
             <div class="separador"></div>
