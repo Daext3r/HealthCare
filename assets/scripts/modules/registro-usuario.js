@@ -36,11 +36,13 @@ $(document).ready(function () {
       } else {
          $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/registrarUsuario", datos, (data) => {
             if(data == 1) {
-               Swal.fire(
-                  'Hecho',
-                  '¡Usuario registrado! Recuerda asignarle un perfil',
-                  'success'
-               );
+               Swal.fire({
+                  icon : 'success',
+                  title: 'Hecho',
+                  text:'¡Usuario registrado! Recuerda asignarle un perfil',
+                  //hacemos que recargue la pagina al cerrar
+                  onClose: () => {location.href = ""}
+               });
             } else {
                Swal.fire(
                   'Error',

@@ -1,16 +1,11 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Root extends CI_Controller
+class Admin extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
-
-        //si el usuario no es root lo sacamos de aqui y lo mandamos al login
-        if ($this->session->userdata("ciu") != 'root') {
-            redirect(base_url() . 'login');
-        }
 
         //cargamos los datos del usuario llamando al modelo
         $this->load->model("Usuarios_model");
@@ -23,8 +18,8 @@ class Root extends CI_Controller
 
         $this->session->set_userdata($datos);
 
-        //guardamos el tipo de perfil, root
-        $this->session->set_userdata("tipo", "root");
+        //guardamos el tipo de perfil, admin
+        $this->session->set_userdata("tipo", "admin");
     }
 
     public function inicio()

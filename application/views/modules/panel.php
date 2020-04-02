@@ -40,16 +40,16 @@
                   </a>
                <?php
                   break;
-                  //si es root...
-               case 'root':
+                  //si es admin...
+               case 'admin':
                ?>
-                  <a href="<?php echo base_url() ?>root/inicio">
+                  <a href="<?php echo base_url() ?>admin/inicio">
                      <li class="list-group-item">Inicio</li>
                   </a>
-                  <a href="<?php echo base_url() ?>root/crear/usuario">
+                  <a href="<?php echo base_url() ?>admin/crear/usuario">
                      <li class="list-group-item">Crear usuario</li>
                   </a>
-                  <a href="<?php echo base_url() ?>root/crear/centro">
+                  <a href="<?php echo base_url() ?>admin/crear/centro">
                      <li class="list-group-item">Crear centro</li>
                   </a>
 

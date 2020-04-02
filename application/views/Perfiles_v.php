@@ -91,7 +91,7 @@
         }
 
         //si tiene acceso al perfil de administrador del sistema
-        if ($perfiles['root'] == true) {
+        if ($perfiles['admin'] == true) {
         ?>
             <div class="card" style="width: 18rem;">
                 <div class="card-logo">
@@ -101,7 +101,7 @@
                     <h5 class="card-title">Administrador del sistema</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Entrar como administrador del sistema</h6>
                     <p class="card-text">Accede a la plataforma como administrador de la misma</p>
-                    <a href="<?php echo base_url() ?>root/inicio" class="btn btn-primary">Entrar</a>
+                    <a href="<?php echo base_url() ?>admin/inicio" class="btn btn-primary">Entrar</a>
                 </div>
             </div>
         <?php

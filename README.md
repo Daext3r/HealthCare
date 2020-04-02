@@ -9,7 +9,7 @@ HealthCare es una aplicación pensada para llevar la administración de un centr
 La aplicación está pensada desde un alto punto de vista, es decir, está pensada para ser intalada en un servidor que debe ser administrado por una entidad superior como puede ser el Servicio Extremeño de Salud o el Sistema Nacional de Salud. Esto es así por la cantidad de funciones que tiene.
 
 Las funciones serán enumeradas según los perfiles:
-1. Root: 
+1. Admin: 
     Este usuario es el administrador del sitio. Solo puede crear nuevos centros, y crear nuevos usuarios. Se recomienda que los usuarios que cree solo sea para darle los permisos de gerente (punto 2). Además de esto, también será el encargado de crear nuevas especialidades que serán usadas por los administrativos para asignarlas a un facultativo.
 
 2. Gerente: 
