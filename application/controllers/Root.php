@@ -15,7 +15,11 @@ class Root extends CI_Controller
         //cargamos los datos del usuario llamando al modelo
         $this->load->model("Usuarios_model");
 
-        $datos = $this->Usuarios_model->leerDatos($this->session->userdata("ciu"));
+        $datos = $this->Usuarios_model->leerDatosPrivados($this->session->userdata("ciu"));
+
+        $this->session->set_userdata($datos);
+
+        $datos = $this->Usuarios_model->leerDatosPublicos($this->session->userdata("ciu"));
 
         $this->session->set_userdata($datos);
 
@@ -41,8 +45,8 @@ class Root extends CI_Controller
 
             //carga el head con las hojas de estilos y scripts necesarios
             $this->load->view("modules/head", array(
-                "hojas" => array("modules/panel", "modules/panel-responsive"),
-                "scripts" => array("utils/common")
+                "hojas" => array("modules/panel", "modules/panel-responsive", "modules/registro-usuario"),
+                "scripts" => array("utils/common", "modules/registro-usuario")
             ));
 
             //carga el modulo principal

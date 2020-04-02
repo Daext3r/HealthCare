@@ -98,9 +98,9 @@ class Login_m extends CI_Model
         $this->db->where("CIU_usuario", $ciu);
         $result = $this->db->get("admins");
         if ($result->row()) {
-            $perfiles['sysadmin'] = true;
+            $perfiles['root'] = true;
         } else {
-            $perfiles['sysadmin'] = false;
+            $perfiles['root'] = false;
         }
 
         //devolvemos todos los perfiles a los cuales hemos comprobado que tiene acceso

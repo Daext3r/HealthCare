@@ -32,7 +32,7 @@
                 </div>
                 <div class="col misdatos-col">
                     <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" placeholder="Nombre" value="<?php echo get_cookie("nombre") ?>" readonly>
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombre" value="<?php echo $this->session->userdata("nombre") ?>" readonly>
                 </div>
             </div>
 
@@ -40,22 +40,22 @@
 
                 <div class="col misdatos-col">
                     <label for="nacionalidad">Nacionalidad</label>
-                    <input type="text" id="nacionalidad" class="form-control" placeholder="Nacionalidad" value="<?php echo get_cookie("nacionalidad") ?>" readonly>
+                    <input type="text" id="nacionalidad" class="form-control" placeholder="Nacionalidad" value="<?php echo $this->session->userdata("nacionalidad") ?>" readonly>
                 </div>
                 <div class="col misdatos-col">
                     <label for="apellidos">Apellidos</label>
-                    <input type="text" class="form-control" id="apellidos" placeholder="Apellidos" value="<?php echo get_cookie("apellidos") ?>" readonly>
+                    <input type="text" class="form-control" id="apellidos" placeholder="Apellidos" value="<?php echo $this->session->userdata("apellidos") ?>" readonly>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col misdatos-col">
                     <label for="dni">DNI</label>
-                    <input type="text" class="form-control" id="dni" placeholder="Apellidos" value="<?php echo $this->session->userdata("dni") ?>" readonly>
+                    <input type="text" class="form-control" id="dni" placeholder="DNI" value="<?php echo $this->session->userdata("dni") ?>" readonly>
                 </div>
                 <div class="col misdatos-col">
                     <label for="fecha_nacimiento">Fecha de nacimiento</label>
-                    <input type="date" class="form-control" id="fecha_nacimiento" value="<?php echo get_cookie("fecha_nacimiento") ?>" readonly>
+                    <input type="date" class="form-control" id="fecha_nacimiento" value="<?php echo $this->session->userdata("fecha_nacimiento") ?>" readonly>
                 </div>
             </div>
 
