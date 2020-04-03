@@ -104,6 +104,16 @@ class Usuarios_controller extends CI_Controller
 
       $usuarios = $this->Usuarios_model->buscarUsuarioCiu($this->input->post("ciu"));
       echo json_encode($usuarios);
+   }
 
+   public function leerDatosUsuario(){
+       //si no estamos realizando una peticion ajax, redirigimos a login y anulamos ejecucion del script
+       if (!$this->input->is_ajax_request()) {
+         redirect(base_url() . "login");
+         return;
+       }
+         $usuario = $this->Usuarios_model->leerDatosUsuario($this->input->post("ciu"));
+         echo json_encode($usuario);
+      
    }
 }

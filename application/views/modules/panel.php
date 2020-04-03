@@ -8,7 +8,7 @@
             <img src="https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg" alt="">
          </div>
 
-         <div id="nombre">
+         <div id="panel-nombre">
             <?php echo $this->session->userdata("nombre") . " " . $this->session->userdata("apellidos") ?>
          </div>
 

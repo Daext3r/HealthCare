@@ -1,10 +1,7 @@
 $(document).ready(() => {
+   
    //contiene la lista de numeros de telefonos del centros
    var numeros = [];
-
-   //contiene un timeout para no saturar al servidor con peticiones a la hora de buscar un gerente
-   var interval;
-
    $("input.telefonos").keyup(function (e) {
       if (e.keyCode == 188) {
          //guardamos el telefono en el array y limpiamos el input
@@ -37,13 +34,9 @@ $(document).ready(() => {
       }
    });
 
-   $("#form").submit(function (e) {
-      //evitamos que el formulario se envie
 
-      e.preventDefault();
-
-   });
-
+   //contiene un timeout para no saturar al servidor con peticiones a la hora de buscar un gerente
+   var interval;
    $("#gerente").keyup(function () {
       //borramos la busqueda anterior
       clearTimeout(interval);
@@ -92,10 +85,10 @@ $(document).ready(() => {
 
       //guardamos los datos del formulario, añadimos los numeros de telefono y los enviamos al servidor
       let datos = $("#form").serializeArray();
-      datos.push({name:'telefonos', value: numeros.join(',')});
+      datos.push({ name: 'telefonos', value: numeros.join(',') });
 
       $.post(localStorage.getItem("hc_base_url") + "Centros_controller/crearCentro", datos, (data) => {
-         if(data == 1) {
+         if (data == 1) {
             Swal.fire({
                icon: 'success',
                title: 'Hecho',
@@ -109,7 +102,7 @@ $(document).ready(() => {
             });
          }
       });
-      
-      
+
+
    })
 });

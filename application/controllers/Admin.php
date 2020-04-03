@@ -41,7 +41,7 @@ class Admin extends CI_Controller
             //carga el head con las hojas de estilos y scripts necesarios
             $this->load->view("modules/head", array(
                "hojas" => array("modules/panel", "modules/panel-responsive", "modules/registro-usuario"),
-               "scripts" => array("utils/common", "modules/registro-usuario")
+               "scripts" => array("utils/common", "modules/registro-usuario", "lib/dni")
             ));
 
             //carga el modulo principal
@@ -53,13 +53,35 @@ class Admin extends CI_Controller
          case 'centro':
             //carga el head con las hojas de estilos y scripts necesarios
             $this->load->view("modules/head", array("hojas" => array("modules/panel", "modules/panel-responsive", "admin/crearCentro"), "scripts" => array("utils/common", "admin/crearCentro")));
-            
+
             //carga el modulo principal
             $this->load->view("modules/panel");
 
             //carga el panel de registro
             $this->load->view("admin/Crear_centro_v");
             break;
+      }
+   }
+
+   public function administrar($item)
+   {
+      switch($item) {
+         case 'usuario':
+            //carga el head con las hojas de estilos y scripts necesarios
+            $this->load->view("modules/head", array(
+               "hojas" => array("modules/panel", "modules/panel-responsive", "modules/administrar-usuario"),
+               "scripts" => array("utils/common", "modules/administrar-usuario", "lib/dni")
+            ));
+
+            //carga el modulo principal
+            $this->load->view("modules/panel");
+            
+            //carga el panel de registro
+            $this->load->view("modules/administrar-usuario");
+         break;
+         case'centro':
+            
+         break;  
       }
    }
 }

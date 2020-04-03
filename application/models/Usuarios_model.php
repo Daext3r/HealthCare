@@ -78,4 +78,9 @@ class Usuarios_model extends CI_Model
       return $this->db->get("vista_usuarios_nombre")->result_array();
 
    }
+
+   public function leerDatosUsuario($ciu) {
+      $this->db->where("CIU", $ciu);
+      return $this->db->get("usuarios")->row_array();
+   }
 }
