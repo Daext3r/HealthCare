@@ -35,9 +35,9 @@
                   <a href="<?php echo base_url() ?>paciente/informes">
                      <li class="list-group-item">Informes</li>
                   </a>
-                  <a href="<?php echo base_url() ?>paciente/misdatos">
+                  <!--<a href="<?php //echo base_url() ?>paciente/misdatos">
                      <li class="list-group-item last">Mis Datos</li>
-                  </a>
+                  </a>-->
                <?php
                   break;
                   //si es admin...
