@@ -1,15 +1,25 @@
 <section class="contenido">
    <div class="my-row row" id="buscador">
       <div class="my-col col">
+
          <label for="usuario">Usuario</label>
-         <input list="usuarios" class="form-control" id="usuario" placeholder="CIU" autocomplete="off" required>
-         <datalist id="usuarios"></datalist>
+         <div class="input-group mb-2 mr-sm-2">
+            <input list="usuarios" class="form-control" id="usuario" placeholder="CIU" autocomplete="off" required>
+            <datalist id="usuarios"></datalist>
+            <div class="input-group-prepend">
+               <div class="input-group-text" id="letraDni"><i class="fas fa-search"></i></div>
+            </div>
+         </div>
+
+
+
+
       </div>
-      <h4>Busca un usuario y después pulsa seleccionar</h4>
+      <h4>Busca un usuario y selecciónalo</h4>
    </div>
 
    <form method="post" class="datos" style="display: none;">
-   <h4>Editar datos de un usuario</h4>
+      <h4>Editar datos de un usuario</h4>
       <div class="row datos-row">
          <div class="col datos-col">
             <label for="nombre">Nombre</label>
@@ -30,8 +40,8 @@
                   <div class="input-group-text" id="letraDni">-</div>
                </div>
             </div>
-
          </div>
+
          <div class="col datos-col">
             <label for="sexo">Sexo</label>
             <select name="sexo" id="sexo" class="form-control" required>
