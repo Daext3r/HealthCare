@@ -71,4 +71,11 @@ class Usuarios_model extends CI_Model
          return false;
       }
    }
+
+   public function buscarUsuarioCiu($ciu) {
+      
+      $this->db->like("CIU", $ciu);
+      return $this->db->get("vista_usuarios_nombre")->result_array();
+
+   }
 }

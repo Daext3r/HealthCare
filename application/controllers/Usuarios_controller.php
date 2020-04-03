@@ -44,7 +44,9 @@ class Usuarios_controller extends CI_Controller
          return;
       }
 
-      //guardamos los datos del formulario en el array 
+      $datos = array();
+
+      //guardamos los datos del formulario en un array 
       foreach ($_POST as $clave => $valor) {
          $datos[$clave] = $valor;
       }
@@ -91,5 +93,17 @@ class Usuarios_controller extends CI_Controller
       $ciu .= date("d", $fnac);
 
       return $ciu;
+   }
+
+   public function buscarUsuarioCiu() {
+       //si no estamos realizando una peticion ajax, redirigimos a login y anulamos ejecucion del script
+       if (!$this->input->is_ajax_request()) {
+         redirect(base_url() . "login");
+         return;
+      }
+
+      $usuarios = $this->Usuarios_model->buscarUsuarioCiu($this->input->post("ciu"));
+      echo json_encode($usuarios);
+
    }
 }

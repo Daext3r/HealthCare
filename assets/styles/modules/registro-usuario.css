@@ -19,10 +19,6 @@
    margin-top: 1em;
 }
 
-.row {
-   width: 80%;
-}
-
 form {
    width: 100%;
    display: flex;

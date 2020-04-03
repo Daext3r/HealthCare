@@ -25,7 +25,6 @@ $(document).ready(function () {
       e.preventDefault();
 
       let datos = $(this).serializeArray();
-
       //si no ha introducido al menos dos apellidos mostramos error
       if (datos[1].value.split(" ").length < 2) {
          Swal.fire(
@@ -33,24 +32,25 @@ $(document).ready(function () {
             'Debes introducir al menos dos apellidos',
             'error'
          );
-      } else {
-         $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/registrarUsuario", datos, (data) => {
-            if(data == 1) {
-               Swal.fire({
-                  icon : 'success',
-                  title: 'Hecho',
-                  text:'¡Usuario registrado! Recuerda asignarle un perfil',
-                  //hacemos que recargue la pagina al cerrar
-                  onClose: () => {location.href = ""}
-               });
-            } else {
-               Swal.fire(
-                  'Error',
-                  'No se ha podido registrar al usuario, revisa los datos',
-                  'error'
-               );
-            }
-         });
+         return;
       }
+
+      $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/registrarUsuario", datos, (data) => {
+         if (data == 1) {
+            Swal.fire({
+               icon: 'success',
+               title: 'Hecho',
+               text: '¡Usuario registrado! Recuerda asignarle un perfil',
+               //hacemos que recargue la pagina al cerrar
+               onClose: () => { location.href = "" }
+            });
+         } else {
+            Swal.fire(
+               'Error',
+               'No se ha podido registrar al usuario, revisa los datos',
+               'error'
+            );
+         }
+      });
    })
 });

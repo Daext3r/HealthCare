@@ -1,0 +1,47 @@
+.contenido {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+}
+
+h4, h5 {
+   width: 100%;
+}
+
+.custom-col, .custom-submit {
+   margin-top: 1em;
+}
+
+.caja {
+   background-color: #007bff;
+   color: white;
+   border-radius: 1em;
+   padding: 0.3em;
+   padding-left: 0.5em;
+   padding-right: 0.4em;
+   margin-right: 1.5em;
+}
+
+div.telefonos {
+   margin-top: 1em;
+   height: 1.5em;
+}
+
+.cruz {
+   cursor: pointer;
+   margin-left: 0.2em;
+   font-weight: bold;
+   padding-top: 0.1em;
+}
+
+form {
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+}
+
+.form-row {
+   width: 80%;
+}
