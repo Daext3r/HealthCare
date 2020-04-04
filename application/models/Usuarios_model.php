@@ -80,6 +80,7 @@ class Usuarios_model extends CI_Model
    }
 
    public function leerDatosUsuario($ciu) {
+      $this->db->select("nombre, apellidos, dni, sexo, nacionalidad, fecha_nacimiento, correo, direccion, telefono, fijo");
       $this->db->where("CIU", $ciu);
       return $this->db->get("usuarios")->row_array();
    }

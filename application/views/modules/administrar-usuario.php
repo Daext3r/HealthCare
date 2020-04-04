@@ -7,7 +7,7 @@
             <input list="usuarios" class="form-control" id="usuario" placeholder="CIU" autocomplete="off" required>
             <datalist id="usuarios"></datalist>
             <div class="input-group-prepend">
-               <div class="input-group-text" id="letraDni"><i class="fas fa-search"></i></div>
+               <div class="input-group-text"><i class="fas fa-search"></i></div>
             </div>
          </div>
 
