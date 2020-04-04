@@ -1,5 +1,5 @@
 $(document).ready(() => {
-   
+
    //contiene la lista de numeros de telefonos del centros
    var numeros = [];
    $("input.telefonos").keyup(function (e) {
@@ -94,13 +94,13 @@ $(document).ready(() => {
                title: 'Hecho',
                text: 'Se ha creado el centro correctamente',
             });
-         } else {
-            Swal.fire({
-               icon: 'error',
-               title: 'Error',
-               text: 'Ha ocurrido un error al crear el centro',
-            });
          }
+      }).catch(() => {
+         Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            html: 'Ha ocurrido un error al crear el centro<br><small>Recuerda que un usuario no puede ser gerente de dos centros al mismo tiempo</small>',
+         });
       });
 
 

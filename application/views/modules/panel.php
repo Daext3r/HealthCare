@@ -53,7 +53,7 @@
                      <li class="list-group-item">Crear centro</li>
                   </a>
                   <a href="<?php echo base_url() ?>admin/administrar/usuario">
-                     <li class="list-group-item">Administrar usuario</li>
+                     <li class="list-group-item">Datos de usuario</li>
                   </a>
                   <a href="<?php echo base_url() ?>admin/administrar/centro">
                      <li class="list-group-item">Administrar centro</li>

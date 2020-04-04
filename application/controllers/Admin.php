@@ -69,15 +69,15 @@ class Admin extends CI_Controller
          case 'usuario':
             //carga el head con las hojas de estilos y scripts necesarios
             $this->load->view("modules/head", array(
-               "hojas" => array("modules/panel", "modules/panel-responsive", "modules/administrar-usuario"),
-               "scripts" => array("utils/common", "modules/administrar-usuario", "lib/dni")
+               "hojas" => array("modules/panel", "modules/panel-responsive", "modules/datos-usuario"),
+               "scripts" => array("utils/common", "modules/datos-usuario", "lib/dni")
             ));
 
             //carga el modulo principal
             $this->load->view("modules/panel");
             
             //carga el panel de registro
-            $this->load->view("modules/administrar-usuario");
+            $this->load->view("modules/datos-usuario");
          break;
          case'centro':
             
