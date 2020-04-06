@@ -114,6 +114,22 @@ class Usuarios_controller extends CI_Controller
        }
          $usuario = $this->Usuarios_model->leerDatosUsuario($this->input->post("ciu"));
          echo json_encode($usuario);
-      
+   }
+
+   public function actualizarUsuario() {
+      //si no estamos realizando una peticion ajax, redirigimos a login y anulamos ejecucion del script
+      if (!$this->input->is_ajax_request()) {
+         redirect(base_url() . "login");
+         return;
+       }
+
+
+       //quitamos el id del array y lo guardamos a parte
+       $datos = $_POST;
+       $ciu = $datos['CIU'];
+       unset($datos['CIU']);
+
+
+       echo $this->Usuarios_model->actualizarUsuario($ciu, $datos);
    }
 }

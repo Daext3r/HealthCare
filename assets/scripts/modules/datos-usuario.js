@@ -31,7 +31,10 @@ $(document).ready(function () {
    $("#usuario").change(function () {
       $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/leerDatosUsuario", { ciu: $(this).val() }, (data) => {
          data = JSON.parse(data);
-         console.log(data);
+
+         //si es menor a 0, es que no ha seleccionado un usuario de la lista
+         if(data.length <= 0) return;
+
          //cuando se complete la peticion, borramos el formulario de la pantalla
          $("#buscador").fadeOut(300);
 
@@ -49,5 +52,35 @@ $(document).ready(function () {
 
    //cuando hagamos clic en el input, borramos todos los datos del datalist
    $("#usuario").focus(function () { $("#usuarios").html("") });
+
+   $("#form").submit(function (e) {
+      e.preventDefault();
+      
+      //si la letra del dni es - significa que el dni no es valido
+      if($("#letraDni").html() == "-") {
+         Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'El DNI no es válido. Debe tener 8 números, añade ceros a la izquierda si es necesario',
+         });
+         return;
+      }
+      
+      $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/actualizarUsuario", $(this).serializeArray(), (data)=> {
+         if(data == 1) {
+            Swal.fire({
+               icon: 'success',
+               title: 'Hecho',
+               text: 'Se han actualizado los datos del usuario correctamente',
+            });
+         }
+      }).catch(()=> {
+         Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Ha ocurrido un error al actualizar los datos. Revisa que el DNI sea correcto y no pertenezca a otro usuario',
+         });
+      });
+   });
 
 });

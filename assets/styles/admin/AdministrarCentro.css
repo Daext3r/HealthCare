@@ -1,0 +1,69 @@
+.my-col, .my-row {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: flex-end;
+}
+
+.my-row {
+   width: 50%;
+}
+
+.contenido {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+}
+
+h4 {
+   width: 100%;
+   text-align: center;
+   margin: 1em;
+}
+
+.datos-row {
+   width: 80% !important;
+}
+
+.datos-col {
+   width: 50%;
+}
+
+.datos {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+}
+
+.datos-submit {
+   margin-top: 1.5em;
+}
+
+label {
+   margin-top: 0.5em;
+}
+.caja {
+   background-color: #007bff;
+   color: white;
+   border-radius: 1em;
+   padding: 0.3em;
+   padding-left: 0.5em;
+   padding-right: 0.4em;
+   margin-right: 1.5em;
+}
+
+div.telefonos {
+   margin-top: 1em;
+   height: 1.5em;
+   width: 100%;
+}
+
+.cruz {
+   cursor: pointer;
+   margin-left: 0.2em;
+   font-weight: bold;
+   padding-top: 0.1em;
+}

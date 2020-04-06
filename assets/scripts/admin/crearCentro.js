@@ -34,7 +34,6 @@ $(document).ready(() => {
       }
    });
 
-
    //contiene un timeout para no saturar al servidor con peticiones a la hora de buscar un gerente
    var interval;
    $("#gerente").keyup(function () {
@@ -102,7 +101,5 @@ $(document).ready(() => {
             html: 'Ha ocurrido un error al crear el centro<br><small>Recuerda que un usuario no puede ser gerente de dos centros al mismo tiempo</small>',
          });
       });
-
-
    })
 });

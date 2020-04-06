@@ -4,7 +4,7 @@
 
          <label for="usuario">Usuario</label>
          <div class="input-group mb-2 mr-sm-2">
-            <input list="usuarios" class="form-control" id="usuario" placeholder="CIU" autocomplete="off" required>
+            <input list="usuarios" class="form-control" id="usuario" placeholder="CIU" autocomplete="off" required autofocus>
             <datalist id="usuarios"></datalist>
             <div class="input-group-prepend">
                <div class="input-group-text"><i class="fas fa-search"></i></div>
@@ -18,7 +18,8 @@
       <h4>Busca un usuario y selecciónalo</h4>
    </div>
 
-   <form method="post" class="datos" style="display: none;">
+   <form method="post" class="datos" style="display: none;" id="form">
+   <input type="hidden" name="CIU" id="CIU">
       <h4>Editar datos de un usuario</h4>
       <div class="row datos-row">
          <div class="col datos-col">
