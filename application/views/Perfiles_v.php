@@ -67,7 +67,7 @@
                     <h5 class="card-title">Gerente</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Entrar como gerente</h6>
                     <p class="card-text">Accede a la plataforma como gerente para administrar los trabajadores de tu centro</p>
-                    <a href="<?php echo base_url() ?>gerente" class="btn btn-primary">Entrar</a>
+                    <a href="<?php echo base_url() ?>gerente/inicio" class="btn btn-primary">Entrar</a>
                 </div>
             </div>
         <?php

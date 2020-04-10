@@ -35,7 +35,8 @@
                   <a href="<?php echo base_url() ?>paciente/informes">
                      <li class="list-group-item">Informes</li>
                   </a>
-                  <!--<a href="<?php //echo base_url() ?>paciente/misdatos">
+                  <!--<a href="<?php //echo base_url() 
+                                 ?>paciente/misdatos">
                      <li class="list-group-item last">Mis Datos</li>
                   </a>-->
                <?php
@@ -58,7 +59,24 @@
                   <a href="<?php echo base_url() ?>admin/administrar/centro">
                      <li class="list-group-item">Administrar centro</li>
                   </a>
-            <?php
+               <?php
+                  break;
+                  //si es gerente...
+               case 'gerente':
+               ?>
+                  <a href="<?php echo base_url() ?>gerente/inicio">
+                     <li class="list-group-item">Inicio</li>
+                  </a>
+                  <a href="<?php echo base_url() ?>gerente/crearUsuario">
+                     <li class="list-group-item">Crear usuario</li>
+                  </a>
+                  <a href="<?php echo base_url() ?>gerente/gestionarAdministrativos">
+                     <li class="list-group-item">Gestionar administrativos</li>
+                  </a>
+                  <a href="<?php echo base_url() ?>gerente/traslados">
+                     <li class="list-group-item">Traslados</li>
+                  </a>
+               <?php
                   break;
             }
             ?>
