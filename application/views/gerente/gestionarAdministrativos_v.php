@@ -1,5 +1,10 @@
 <section class="contenido">
-   <div class="container" id="administrativos"></div>
+   <div class="container" id="administrativos">
+      <div id="paginas">
+      </div>
+      <div class="botonera" id="botonera">
+      </div>
+   </div>
    <div class="container" id="buscador">
       <div class="my-col col">
          <label for="usuario">Añadir nuevo administrativo</label>

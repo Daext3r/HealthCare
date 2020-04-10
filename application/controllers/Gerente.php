@@ -46,7 +46,7 @@ class Gerente extends CI_Controller
       //carga el head con las hojas de estilos y scripts necesarios
       $this->load->view("modules/head", array(
          "hojas" => array("modules/panel", "modules/panel-responsive", "gerente/gestionarAdministrativos"),
-         "scripts" => array("utils/common", "gerente/gestionarAdministrativos")
+         "scripts" => array("utils/common", "gerente/gestionarAdministrativos", "lib/pagination")
       ));
 
       //carga el modulo principal

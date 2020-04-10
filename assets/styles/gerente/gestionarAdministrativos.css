@@ -16,6 +16,75 @@
 #buscador {
    display: flex;
    justify-content: center;
-   align-items: center;
+   align-content: center;
    flex-wrap: wrap;
+}
+
+.usuario {
+   border: 1px solid #aaa;
+   border-radius: 0.2em;
+   width: 95%;
+   display: flex;
+   align-items: center;
+   padding: 0.5em;
+   margin: 1em;
+}
+
+.info {
+   flex-basis: 85%;
+}
+
+.btn-danger {
+   flex-basis: 15%;
+   margin: 0.5em;
+   justify-self: self-end;
+}
+
+#botonera {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 10%;
+}
+
+#botonera ul {
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+}
+
+#paginas {
+   height: 80%;
+}
+
+.paginationjs-prev, .paginationjs-next, .paginationjs-page {
+   list-style-type: none;
+   float: left;
+   height: 2em;
+}
+
+.paginationjs-prev, .paginationjs-next {
+   width: 2em;
+   height: 2em;
+   border: 1px solid #aaa;
+   display:flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 1.2em;
+}
+
+.paginationjs-next {
+   margin-right: 1em;
+   border-radius: 0 0.2em 0.2em 0;
+   border-left:none;
+}
+
+.paginationjs-prev {
+   border-radius:  0.2em 0 0 0.2em;
+}
+
+.paginationjs {
+   display:flex;
+   justify-content: center;
+   align-items: center;
 }

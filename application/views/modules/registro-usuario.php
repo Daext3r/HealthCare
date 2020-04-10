@@ -21,7 +21,6 @@
            <form action="#" method="POST" id="form">
               <div class="form-row">
                  <h4>Registrar un nuevo usuario en el sistema</h4>
-                 <h5 class="text-muted">Es recomendable que con este usuario (administrador) solo se registren gerentes de centros</h5>
               </div>
               <div class="form-row">
                  <div class="col custom-col">

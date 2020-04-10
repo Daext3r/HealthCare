@@ -58,4 +58,19 @@ class Centros_model extends CI_Model
          return 0;
       }
    }
+
+   public function leerAdministrativosCentro($centro) {
+      $this->db->select("nombre_completo, CIU_administrativo");
+      $this->db->where("id_centro", $centro);
+      return $this->db->get("vista_administrativos_centros")->result_array();
+   }
+
+   public function eliminarAdministrativo($ciu) {
+      $this->db->where("CIU_administrativo", $ciu);
+      if($this->db->delete("administrativos")) {
+         return 1;
+      } else {
+         return 0;
+      }
+   }
 }
