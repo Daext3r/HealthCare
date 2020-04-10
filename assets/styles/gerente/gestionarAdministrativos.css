@@ -1,0 +1,21 @@
+.contenido {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+}
+
+.container {
+   border: 1px solid #999;
+   border-radius: 0.5em;
+   width: 48%;
+   display: inline-block;
+   height: 80%;
+}
+
+#buscador {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+}

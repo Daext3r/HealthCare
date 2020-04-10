@@ -65,5 +65,15 @@ class Centros_controller extends CI_Controller
       echo json_encode($this->Centros_model->leerDatosCentro($this->input->post("centro")));
    }
 
-   
+   public function agregarAdministrativo() {
+      //si no estamos realizando una peticion ajax, redirigimos a login y anulamos ejecucion del script
+      if (!$this->input->is_ajax_request()) {
+         redirect(base_url() . "login");
+         return;
+      }
+
+      $centro = $this->Centros_model->leerCentroPorGerente($this->session->userdata("ciu"));
+
+      echo $this->Centros_model->agregarAdministrativo(array("CIU_administrativo" => $this->input->post("usuario"), "id_centro" => $centro['id']));
+   }
 }

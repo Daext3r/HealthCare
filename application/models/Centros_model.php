@@ -31,11 +31,28 @@ class Centros_model extends CI_Model
       return $this->db->get("centros")->row_array();
    }
 
-   public function actualizarCentro($id, $datos) {
+   public function actualizarCentro($id, $datos)
+   {
       $this->db->where("id", $id);
       $this->db->set($datos);
-      
-      if($this->db->update("centros")) {
+
+      if ($this->db->update("centros")) {
+         return 1;
+      } else {
+         return 0;
+      }
+   }
+
+   public function leerCentroPorGerente($ciu)
+   {
+      $this->db->where("CIU_gerente", $ciu);
+      $this->db->select("id");
+      return $this->db->get("centros")->row_array();
+   }
+
+   public function agregarAdministrativo($datos)
+   {
+      if ($this->db->insert("administrativos", $datos)) {
          return 1;
       } else {
          return 0;
