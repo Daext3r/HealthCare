@@ -50,7 +50,7 @@ class Usuarios_controller extends CI_Controller
       foreach ($_POST as $clave => $valor) {
          $datos[$clave] = $valor;
       }
- 
+
       //añadimos una clave por defecto y generamos el ciu
       $datos['clave'] = hash('sha512', "12345678");
       $datos['ciu'] = self::generarCiu($datos['nombre'], $datos['apellidos'], $datos['fecha_nacimiento']);
@@ -95,9 +95,10 @@ class Usuarios_controller extends CI_Controller
       return $ciu;
    }
 
-   public function buscarUsuarioCiu() {
-       //si no estamos realizando una peticion ajax, redirigimos a login y anulamos ejecucion del script
-       if (!$this->input->is_ajax_request()) {
+   public function buscarUsuarioCiu()
+   {
+      //si no estamos realizando una peticion ajax, redirigimos a login y anulamos ejecucion del script
+      if (!$this->input->is_ajax_request()) {
          redirect(base_url() . "login");
          return;
       }
@@ -106,30 +107,42 @@ class Usuarios_controller extends CI_Controller
       echo json_encode($usuarios);
    }
 
-   public function leerDatosUsuario(){
-       //si no estamos realizando una peticion ajax, redirigimos a login y anulamos ejecucion del script
-       if (!$this->input->is_ajax_request()) {
-         redirect(base_url() . "login");
-         return;
-       }
-         $usuario = $this->Usuarios_model->leerDatosUsuario($this->input->post("ciu"));
-         echo json_encode($usuario);
-   }
-
-   public function actualizarUsuario() {
+   public function leerDatosUsuario()
+   {
       //si no estamos realizando una peticion ajax, redirigimos a login y anulamos ejecucion del script
       if (!$this->input->is_ajax_request()) {
          redirect(base_url() . "login");
          return;
-       }
+      }
+      $usuario = $this->Usuarios_model->leerDatosUsuario($this->input->post("ciu"));
+      echo json_encode($usuario);
+   }
+
+   public function actualizarUsuario()
+   {
+      //si no estamos realizando una peticion ajax, redirigimos a login y anulamos ejecucion del script
+      if (!$this->input->is_ajax_request()) {
+         redirect(base_url() . "login");
+         return;
+      }
+
+      //quitamos el id del array y lo guardamos a parte
+      $datos = $_POST;
+      $ciu = $datos['CIU'];
+      unset($datos['CIU']);
 
 
-       //quitamos el id del array y lo guardamos a parte
-       $datos = $_POST;
-       $ciu = $datos['CIU'];
-       unset($datos['CIU']);
+      echo $this->Usuarios_model->actualizarUsuario($ciu, $datos);
+   }
 
+   public function leerCantidadDatos()
+   {
+      //si no estamos realizando una peticion ajax, redirigimos a login y anulamos ejecucion del script
+      if (!$this->input->is_ajax_request()) {
+         redirect(base_url() . "login");
+         return;
+      }
 
-       echo $this->Usuarios_model->actualizarUsuario($ciu, $datos);
+      echo json_encode($this->Usuarios_model->leerCantidadDatos($this->session->userdata("ciu"), $this->input->post("datos")));
    }
 }
