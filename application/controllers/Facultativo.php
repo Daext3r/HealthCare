@@ -1,20 +1,23 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Facultativo extends CI_Controller {
-	public function __construct() {
-		parent::__construct();
+class Facultativo extends CI_Controller
+{
+   public function __construct()
+   {
+      parent::__construct();
 
-		//guardamos el tipo de perfil, facultativo
-        $this->session->set_userdata("tipo", "facultativo");
-	}
+      //si no es el tipo de perfil que corresponde a este panel, redirigimos al login
+      if ($this->session->userdata("tipo") != "facultativo") {
+         //redirigimos al login
+         redirect(base_url() . "login");
+         return;
+      }
+   }
 
-	public function index()
-	{
-		//carga el head con una hoja de estilos
-		$this->load->view("modules/head", array("hojas" => array("facultativo")));
-
-		//carga la vista de inicio
-		$this->load->view("facultativo/Panel_v");
-	}
+   public function inicio()
+   {
+      $this->load->view("modules/head", array("hojas" => array("modules/panel", "modules/panel-responsive"), "scripts" => array()));
+      $this->load->view("modules/panel");
+   }
 }

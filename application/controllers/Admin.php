@@ -7,19 +7,12 @@ class Admin extends CI_Controller
    {
       parent::__construct();
 
-      //cargamos los datos del usuario llamando al modelo
-      $this->load->model("Usuarios_model");
-
-      $datos = $this->Usuarios_model->leerDatosPrivados($this->session->userdata("ciu"));
-
-      $this->session->set_userdata($datos);
-
-      $datos = $this->Usuarios_model->leerDatosPublicos($this->session->userdata("ciu"));
-
-      $this->session->set_userdata($datos);
-
-      //guardamos el tipo de perfil, admin
-      $this->session->set_userdata("tipo", "admin");
+      //si no es el tipo de perfil que corresponde a este panel, redirigimos al login
+      if ($this->session->userdata("tipo") != "admin") {
+         //redirigimos al login
+         redirect(base_url() . "login");
+         return;
+      }
    }
 
    public function inicio()

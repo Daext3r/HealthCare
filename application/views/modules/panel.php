@@ -78,6 +78,25 @@
                   </a>
                <?php
                   break;
+                  //si es facultativo...
+               case 'facultativo':
+               ?>
+                  <a href="<?php echo base_url() ?>facultativo/inicio">
+                     <li class="list-group-item">Inicio</li>
+                  </a>
+                  <a href="<?php echo base_url() ?>facultativo/citas">
+                     <li class="list-group-item">Citas</li>
+                  </a>
+                  <a href="<?php echo base_url() ?>gerente/inicio">
+                     <li class="list-group-item">Inicio</li>
+                  </a>
+                  <a href="<?php echo base_url() ?>gerente/inicio">
+                     <li class="list-group-item">Inicio</li>
+                  </a>
+
+
+            <?php
+                  break;
             }
             ?>
          </ul>
