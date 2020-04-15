@@ -29,6 +29,9 @@ class Permisos extends CI_Controller
             $this->session->set_userdata($privados);
             $this->session->set_userdata($publicos);
 
+            //borramos la lista de perfiles para ahorrar recursos
+            $this->session->unset_userdata('perfiles');
+
             redirect(base_url() . "$perfil/inicio");
          }
       }
