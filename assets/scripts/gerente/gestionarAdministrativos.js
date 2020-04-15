@@ -90,7 +90,7 @@ $(document).ready(() => {
       }, 700);
    });
 
-   //si cambia es que ha seleccionado un usuario
+
    $("#usuario").change(function () {
       //nombre del usuario
       let nombre;
@@ -102,6 +102,10 @@ $(document).ready(() => {
          }
       }
 
+      //si el nombre es undefined, es que no ha seleccionado un usuario de la lista
+      //paramos la ejecucion
+      if(nombre == undefined) return;
+      
       Swal.fire({
          title: '¿Estás seguro?',
          text: `¿Quieres añadir a ${nombre} como administrativo de tu centro?`,
