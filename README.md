@@ -50,7 +50,8 @@ Las funciones serán enumeradas según los perfiles:
     * `git remote add origin https://github.com/Daext3r/HealthCare`
     * `git fetch origin`
     * `git checkout -b master --track origin/master -f`
-5. Si has realizado todos los pasos correctamente ya deberías tener instalado HealthCare en tu equipo
+5. Entra en la carpeta `application` y ejecuta el siguiente comando: `composer install`. Necesitas tener instalado [Composer](https://getcomposer.org).
+6. Si has realizado todos los pasos correctamente ya deberías tener instalado HealthCare en tu equipo.
 * Nota: Si lo deseas, puedes borrar el controlador y la vista por defecto de CodeIgniter, WelcomeMessage.
 
 ## Configuración
@@ -69,3 +70,4 @@ Todo el código ha sido hecho desde cero por Alejandro D. (Daext3r) excepto los 
 3. [jQuery](https://jquery.com)
 4. [Twemoji](https://github.com/twitter/twemoji)
 4. [SweetAlert](https://sweetalert2.github.io)
+5. [Composer](https://getcomposer.org)

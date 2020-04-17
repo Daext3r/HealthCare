@@ -6,3 +6,5 @@ application/*
 !application/views
 !application/models
 !application/controllers
+
+!application/composer.json
