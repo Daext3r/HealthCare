@@ -108,4 +108,12 @@
       }
       ?>
    </div>
+
+   <script>
+      let jwt = "<?php echo $jwt;?>";
+      if(jwt != "") {
+         localStorage.setItem("jwt", jwt);
+         localStorage.setItem("correo", "<?php echo $correo; ?>");
+      }
+   </script>
 </body>

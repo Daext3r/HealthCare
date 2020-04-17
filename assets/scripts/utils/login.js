@@ -1,26 +1,57 @@
 //evento de documento cargado
 $(document).ready(() => {
-    //evitamos que al pulsar el boton de escanear qr envie el formulario
-    $("#qr").on("click", function (event) {
-        //evitamos que envie el formulario al pulsar el boton de escanear qr
-        event.preventDefault();
-    });
+   //añadimos al localstorage la url base. lo hacemos aqui ya que se usará en varias partes de la aplicación
+   localStorage.setItem("hc_base_url", "http://localhost/HealthCare/");
 
-    $("#iniciar-sesion").on("click", function () {
-        if ($("#recuerdame").prop("checked")) {
-            localStorage.setItem("email", $("#email").val());
-            localStorage.setItem("clave", $("#clave").val());
-        }
-    });
+   //evitamos que al pulsar el boton de escanear qr envie el formulario
+   $("#qr").on("click", function (event) {
+      //evitamos que envie el formulario al pulsar el boton de escanear qr
+      event.preventDefault();
+   });
 
-    
-    //comprobamos si existe el item de email
-    if (localStorage.getItem("email") != undefined) {
-        //si existe lo escribiemos en los cuadros de login
-        $("#email").val(localStorage.getItem("email"));
-        $("#clave").val(localStorage.getItem("clave"));
-    }
+   $("#iniciar-sesion").on("click", function (e) {
+      //si no hay correo o clave y ademas tampoco hay token, hay cancelamos el evento
+      if ($("#correo").val().trim() == "" && $("#jwt").val() == "") { e.preventDefault(); }
+      if ($("#clave").val().trim() == "" && $("#jwt").val() == "") { e.preventDefault(); }
+   });
 
-    //añadimos al localstorage la url base. lo hacemos aqui ya que se usará en varias partes de la aplicación
-    localStorage.setItem("hc_base_url", "http://localhost/HealthCare/");
+   $(".seleccion").on("click", function (e) {
+      if (this.dataset.seleccion == "si") {
+         //si el usuario dice que es el, enviamos el formulario
+         $("#jwt").val(localStorage.getItem("jwt"));
+
+         setTimeout(() => {$("#form").submit()}, 100);;
+
+      } else if (this.dataset.seleccion == "no") {
+         //si el usuario dice que no es el, mostramos el login y borramos los datos
+         localStorage.setItem("jwt", "");
+         localStorage.setItem("correo", "");
+         $("#seleccion").fadeOut(500);
+
+         setTimeout(() => {
+            $("#form").fadeIn(800);
+         }, 500);
+      }
+   });
+
+
+   //comprobamos si existe el token JSON
+   if (localStorage.getItem("jwt") != undefined && localStorage.getItem("jwt") != "") {
+      console.log("sipe");
+      //si hay token preguntamos por el nombre del usuario
+      $("#load").fadeOut(500);
+      $("#seleccion-correo").html(localStorage.getItem("correo"));
+
+      setTimeout(() => {
+         $("#seleccion").fadeIn(800);
+      }, 500);
+
+   } else {
+      //si el token no existe, mostramos el formulario de login
+      $("#load").fadeOut(500);
+
+      setTimeout(() => {
+         $("#form").fadeIn(800);
+      }, 500);
+   }
 });

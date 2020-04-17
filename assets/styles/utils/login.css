@@ -1,32 +1,91 @@
 body {
-    display: flex;
-    justify-content: center;
+   display: flex;
+   justify-content: center;
 }
 
 form {
-    width: 50%;
+   width: 50%;
 }
 
 .row {
-    height: 90vh;
-    width: 80%;
-    text-align: center;
-    align-items: center;
-    padding: 2em;
-    margin-top: 2em;
-    display: flex;
-    justify-content: space-evenly;
+   height: 90vh;
+   width: 80%;
+   text-align: center;
+   align-items: center;
+   padding: 2em;
+   margin-top: 2em;
+   display: flex;
+   justify-content: space-evenly;
 }
 
 img {
-    width: 50%;
+   width: 50%;
 }
 
 input[type=password] {
-    font-size: 18px;
+   font-size: 18px;
 }
 
 .alert {
-    width: 100%;
+   width: 100%;
 }
 
+#load {
+   width: 50%;
+   height: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.correo {
+   margin-bottom: 1em;
+}
+
+#seleccion-correo {
+   font-weight: bold;
+}
+
+
+
+/*ANIMACION DE CARGA*/
+.lds-ring {
+   display: inline-block;
+   position: relative;
+   width: 80px;
+   height: 80px;
+}
+
+.lds-ring div {
+   box-sizing: border-box;
+   display: block;
+   position: absolute;
+   width: 64px;
+   height: 64px;
+   margin: 8px;
+   border: 8px solid #fff;
+   border-radius: 50%;
+   animation: lds-ring 1.0s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+   border-color: #007bff transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+   animation-delay: -0.15s;
+}
+
+.lds-ring div:nth-child(2) {
+   animation-delay: -0.1s;
+}
+
+.lds-ring div:nth-child(3) {
+   animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+   0% {
+      transform: rotate(0deg);
+   }
+   100% {
+      transform: rotate(360deg);
+   }
+}

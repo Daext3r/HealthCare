@@ -27,6 +27,16 @@ $config['base_url'] = 'http://'.$_SERVER['SERVER_NAME'].'/HealthCare';
 
 //Dominio en el que esta instalada la aplicacion
 $config['application_domain'] = null;
+
+//Clave de seguridad usada para codificar/decodificar usuarios y contraseñas en forma de Tokens del cliente
+//SE RECOMIENDA QUE SEA MUY SEGURA
+$config['application_key'] = <<<EOL
+LPKkq0G0"h1$$>F)jq0iPp%1J7;qwPea6xP>O]O@ToB43U6\KsP?b1;8C[(SnRlO92yZHQ8cyP*7&Pdp8R@R:}=(x,sH8rUnrQ\ImwHhdoEoZkZ,J~M0Gyd7g?&i(IPf
+EOL;
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Index File
