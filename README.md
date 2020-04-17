@@ -68,5 +68,6 @@ Todo el código ha sido hecho desde cero por Alejandro D. (Daext3r) excepto los 
 2. [Bootstrap](https://getbootstrap.com)
 3. [jQuery](https://jquery.com)
 4. [Twemoji](https://github.com/twitter/twemoji)
-4. [SweetAlert](https://sweetalert2.github.io)
-5. [Composer](https://getcomposer.org)
+5. [SweetAlert](https://sweetalert2.github.io)
+6. [mPDF](https://mpdf.github.io)
+7. [JWT](https://github.com/firebase/php-jwt/)
