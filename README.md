@@ -61,8 +61,7 @@ Las funciones serán enumeradas según los perfiles:
 2. En el archivo `/assets/js/login.js` debes editar la linea en la que pone `localStorage.setItem("hc_base_url", "http://localhost/HealthCare/");` y el nombre del servidor si está en la red. Si estás trabajando en local para probar la aplicación, déjalo como está. 
 
 
-# Licencias | Licenses
-All code here was made from scratch by Alejandro D. (Daext3r) except the following things in the list:
+# Licencias
 Todo el código ha sido hecho desde cero por Alejandro D. (Daext3r) excepto los siguientes elementos en la lista:
 
 1. [CodeIgniter](https://codeigniter.com)
