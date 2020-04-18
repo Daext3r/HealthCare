@@ -13,7 +13,9 @@
     </div>
 
     <div class="row shadow p-3 mb-5 bg-white rounded col-10" id="info">
-        <div class="col-lg-8">1</div>
+        <div class="col-lg-8">
+           <img src="<?php echo base_url()?>assets/img/landing1.png" alt="" class="info">
+        </div>
         <div class="col-lg-4">
             <h2>Simplicidad</h2>
             <h4>Diseño simple e intuitivo que te evitará dolores de cabeza, perfecto para los más mayores.</h4>
@@ -24,11 +26,15 @@
             <h2>Tratamientos</h2>
             <h4>Obtén información de tus tratamientos en dos sencillos pasos.</h4>
         </div>
-        <div class="col-lg-8">1</div>
+        <div class="col-lg-8">
+           <img src="<?php echo base_url()?>assets/img/landing2.png" alt="" class="info">
+        </div>
 
     </div>
     <div class="row shadow p-3 mb-5 bg-white rounded col-10">
-        <div class="col-lg-8">1</div>
+    <div class="col-lg-8">
+           <img src="<?php echo base_url()?>assets/img/landing3.png" alt="" class="info">
+        </div>
         <div class="col-lg-4">
             <h2>Citas</h2>
             <h4>Consulta tus citas, solicita una nueva, o anula alguna a la que no puedas acudir</h4>

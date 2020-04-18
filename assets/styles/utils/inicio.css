@@ -28,3 +28,8 @@ body::-webkit-scrollbar{
 a[href="#info"] {
     margin: 5em;
 }
+
+.info {
+   width: 100%;
+   box-shadow: 10px 10px 115px -37px rgba(0,0,0,0.29);
+}
