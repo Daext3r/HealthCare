@@ -37,7 +37,6 @@ $(document).ready(() => {
 
    //comprobamos si existe el token JSON
    if (localStorage.getItem("jwt") != undefined && localStorage.getItem("jwt") != "") {
-      console.log("sipe");
       //si hay token preguntamos por el nombre del usuario
       $("#load").fadeOut(500);
       $("#seleccion-correo").html(localStorage.getItem("correo"));

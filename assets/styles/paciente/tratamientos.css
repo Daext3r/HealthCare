@@ -1,24 +1,70 @@
 .contenido {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
+   display: flex;
+   justify-content: flex-start;
+   align-items: flex-end;
+   flex-wrap: wrap;
+   /*usado para que  al haber muchos medicamentos, no haga overflow*/
+   max-height: 85vh;
 }
 
 .table {
-    width: 80%;
+   width: 80%;
 }
 
 .li-modal {
-    list-style-type: none;
+   list-style-type: none;
 }
 
 .ul-modal {
-    padding: 0;
+   padding: 0;
 }
 
 h3 {
-    width: 100%;
-    text-align: center;
-    margin-top: 2em;
+   width: 100%;
+   text-align: center;
+   margin: 0.5em;
+}
+
+#lista {
+   width: 99.9%;
+   height: 90%;
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   overflow-y: auto;
+}
+
+/* width */
+#lista::-webkit-scrollbar {
+   width: 10px;
+ }
+ 
+ /* Track */
+ #lista::-webkit-scrollbar-track {
+   display: none;
+ }
+  
+ /* Handle */
+ #lista::-webkit-scrollbar-thumb {
+   background: rgb(177, 176, 176); 
+   border-radius: 1em;
+ }
+ 
+ /* Handle on hover */
+ #lista::-webkit-scrollbar-thumb:hover {
+   background: #555; 
+ }
+
+.card {
+   overflow: hidden;
+   margin: 1em;
+   border: 1px solid rgba(0, 0, 0, .125);
+}
+
+.card-header {
+   cursor: pointer;
+}
+
+img {
+   width: 100%;
 }
