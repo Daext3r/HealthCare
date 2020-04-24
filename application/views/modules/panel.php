@@ -53,6 +53,12 @@
                   <a href="<?php echo base_url() ?>admin/crear/centro">
                      <li class="list-group-item">Crear centro</li>
                   </a>
+                  <a href="<?php echo base_url() ?>admin/nuevo/paciente">
+                     <li class="list-group-item">Nuevo paciente</li>
+                  </a>
+                  <a href="<?php echo base_url() ?>admin/nuevo/facultativo">
+                     <li class="list-group-item">Nuevo facultativo</li>
+                  </a>
                   <a href="<?php echo base_url() ?>admin/administrar/usuario">
                      <li class="list-group-item">Datos de usuario</li>
                   </a>
@@ -69,6 +75,12 @@
                   </a>
                   <a href="<?php echo base_url() ?>gerente/crearUsuario">
                      <li class="list-group-item">Crear usuario</li>
+                  </a>
+                  <a href="<?php echo base_url() ?>gerente/nuevo/paciente">
+                     <li class="list-group-item">Nuevo paciente</li>
+                  </a>
+                  <a href="<?php echo base_url() ?>gerente/nuevo/facultativo">
+                     <li class="list-group-item">Nuevo facultativo</li>
                   </a>
                   <a href="<?php echo base_url() ?>gerente/gestionarAdministrativos">
                      <li class="list-group-item">Gestionar administrativos</li>
@@ -87,14 +99,25 @@
                   <a href="<?php echo base_url() ?>facultativo/citas">
                      <li class="list-group-item">Citas</li>
                   </a>
-                  <a href="<?php echo base_url() ?>gerente/inicio">
+               <?php
+                  break;
+               case 'administrativo':
+               ?>
+                  <a href="<?php echo base_url() ?>administrativo/inicio">
                      <li class="list-group-item">Inicio</li>
                   </a>
-                  <a href="<?php echo base_url() ?>gerente/inicio">
-                     <li class="list-group-item">Inicio</li>
+                  <a href="<?php echo base_url() ?>administrativo/crearUsuario">
+                     <li class="list-group-item">Crear usuario</li>
                   </a>
-
-
+                  <a href="<?php echo base_url() ?>administrativo/nuevo/facultativo">
+                     <li class="list-group-item">Nuevo facultativo</li>
+                  </a>
+                  <a href="<?php echo base_url() ?>administrativo/nuevo/personal_lab">
+                     <li class="list-group-item">Nuevo Técnico Lab.</li>
+                  </a>
+                  <a href="<?php echo base_url() ?>administrativo/nuevo/paciente">
+                     <li class="list-group-item">Nuevo paciente</li>
+                  </a>
             <?php
                   break;
             }

@@ -72,23 +72,24 @@ class Usuarios_model extends CI_Model
       }
    }
 
-   public function buscarUsuarioCiu($ciu) {
-      
+   public function buscarUsuarioCiu($ciu)
+   {
       $this->db->like("CIU", $ciu);
       return $this->db->get("vista_usuarios_nombre")->result_array();
-
    }
 
-   public function leerDatosUsuario($ciu) {
+   public function leerDatosUsuario($ciu)
+   {
       $this->db->select("CIU, nombre, apellidos, dni, sexo, nacionalidad, fecha_nacimiento, correo, direccion, telefono, fijo");
       $this->db->where("CIU", $ciu);
       return $this->db->get("usuarios")->row_array();
    }
 
-   public function actualizarUsuario($ciu, $datos) {
+   public function actualizarUsuario($ciu, $datos)
+   {
       $this->db->where("CIU", $ciu);
       $this->db->set($datos);
-      if($this->db->update("usuarios")) {
+      if ($this->db->update("usuarios")) {
          return 1;
       } else {
          return 2;

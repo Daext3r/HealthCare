@@ -56,6 +56,35 @@ class Admin extends CI_Controller
       }
    }
 
+   public function nuevo($tipo)
+   {
+      switch ($tipo) {
+         case 'facultativo':
+            $this->load->view("modules/head", array(
+               "hojas" => array("modules/panel", "modules/panel-responsive", "modules/nuevo-facultativo"),
+               "scripts" => array("utils/common", "modules/nuevo-facultativo")
+            ));
+
+            $this->load->view("modules/panel");
+
+            //el formulario de altas es un modulo que puede ser usado por varios tipos de cuenta
+            $this->load->view("modules/nuevo-facultativo");
+
+            break;
+         case 'paciente':
+            $this->load->view("modules/head", array(
+               "hojas" => array("modules/panel", "modules/panel-responsive", "modules/nuevo-paciente"),
+               "scripts" => array("utils/common", "modules/nuevo-paciente")
+            ));
+
+            $this->load->view("modules/panel");
+
+            //el formulario de altas es un modulo que puede ser usado por varios tipos de cuenta
+            $this->load->view("modules/nuevo-paciente");
+            break;
+      }
+   }
+
    public function administrar($item)
    {
       switch ($item) {
