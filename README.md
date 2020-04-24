@@ -60,7 +60,7 @@ Las funciones serán enumeradas según los perfiles:
 
 1. En el archivo `/application/config/config.php`, debes ajustar el valor de `config['base_url']`. Por defecto está puesto el nombre del servidor y debería funcionar, pero puede ser necesario que lo cambies.
 2. En el archivo `/assets/js/login.js` debes editar la linea en la que pone `localStorage.setItem("hc_base_url", "http://localhost/HealthCare/");` y el nombre del servidor si está en la red. Si estás trabajando en local para probar la aplicación, déjalo como está. 
-
+3. Para empezar a usar la aplicación, es necesario que crees un usuario de tipo Gerente desde el administrador que ya hay creado. **El usuario y la clave por defecto es root@localhost.com - 12345678**. Para cualquier otro usuario, el usuario es el correo electrónico y la clave es la misma.
 
 # Licencias
 Todo el código ha sido hecho desde cero por Alejandro D. (Daext3r) excepto los siguientes elementos en la lista:
