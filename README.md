@@ -51,7 +51,8 @@ Las funciones serán enumeradas según los perfiles:
     * `git fetch origin`
     * `git checkout -b master --track origin/master -f`
 5. Entra en la carpeta `application` y ejecuta el siguiente comando: `composer install`. Necesitas tener instalado [Composer](https://getcomposer.org).
-6. Si has realizado todos los pasos correctamente ya deberías tener instalado HealthCare en tu equipo.
+6. Abre el archivo `config.php` y edita la clave `$config['application_key']`. Usa una clave segura.
+7. Si has realizado todos los pasos correctamente ya deberías tener instalado HealthCare en tu equipo.
 * Nota: Si lo deseas, puedes borrar el controlador y la vista por defecto de CodeIgniter, WelcomeMessage.
 
 ## Configuración
