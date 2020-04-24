@@ -49,32 +49,28 @@ $(document).ready(function () {
 
    $("#registrar").click(() => {
       //verificamos los datos
-      let colegiado = $("#colegiado").val().trim();
-      let sala = $("#sala").val().trim();
-      let centro = $("#centro").val().trim();
-      let especialidad = $("#especialidad").val().trim();
-
-      //si el valor de estos campos no es numerico
-      if(isNaN(especialidad)) return;
-      if(isNaN(centro)) return;
+      let grupo_sanguineo = $("#grupo_sanguineo").val().trim();
+      let medico = $("#fac1").val().trim();
+      let enfermero = $("#fac2").val().trim();
 
       //si los campos no estan rellenos, no hacemos nada
-      if (colegiado == "") return;
-      if (sala == "") return;
-      if (especialidad == "") return;
+      if (medico == "") return;
+      if (enfermero == "") return;
+      if (grupo_sanguineo == "") return;
 
-      $.post(localStorage.getItem("hc_base_url") + "Facultativos_controller/alta", { usuario: $("#usuario").val(), colegiado: colegiado, sala: sala, especialidad: especialidad, centro : centro }, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "Pacientes_controller/alta", { usuario: $("#usuario").val(), grupo_sanguineo: grupo_sanguineo, medico: medico, enfermero: enfermero }, (data) => {
          if (data == 1) {
             Swal.fire(
                'Hecho',
-               `Se ha registrado al usuario ${$("#usuario").val()} como facultativo`,
+               `Se ha registrado al usuario ${$("#usuario").val()} como paciente`,
                'success'
-             )
+            )
          }
       });
    });
 
    $("#fac1").keyup(function () {
+      console.log("test");
       //borramos la busqueda anterior y quitamos los elementos existentes
       clearInterval(interval);
       $("#fac1list").html("");
@@ -95,6 +91,7 @@ $(document).ready(function () {
    });
 
    $("#fac2").keyup(function () {
+      console.log("test");
       //borramos la busqueda anterior y quitamos los elementos existentes
       clearInterval(interval);
       $("#fac2list").html("");

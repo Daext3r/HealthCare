@@ -92,7 +92,7 @@ $(document).ready(() => {
                icon: 'success',
                title: 'Hecho',
                text: 'Se ha creado el centro correctamente',
-            });
+            }).then(() => {window.location.reload()});
          }
       }).catch(() => {
          Swal.fire({

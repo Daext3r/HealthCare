@@ -19,12 +19,12 @@ class Pacientes_controller extends CI_Controller
       }
 
       $usuario = $this->input->post("usuario");
-      $colegiado = $this->input->post("colegiado");
-      $sala = $this->input->post("sala");
-      $especialidad = $this->input->post("especialidad");
-      $centro = $this->input->post("centro");
+      $medico = $this->input->post("medico");
+      $enfermero = $this->input->post("enfermero");
+      $grupo_sanguineo = $this->input->post("grupo_sanguineo");
+     
 
-      echo $this->Facultativos_model->alta($usuario, $colegiado, $especialidad, $sala, $centro);
+      echo $this->Pacientes_model->alta($usuario, $medico, $enfermero, $grupo_sanguineo);
 
    }
 }

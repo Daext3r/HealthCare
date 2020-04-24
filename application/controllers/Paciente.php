@@ -39,11 +39,11 @@ class Paciente extends CI_Controller
    public function citas()
    {
       $this->load->model("Citas_model");
-      $this->load->model("Paciente_m");
+      $this->load->model("Pacientes_model");
       $citas = $this->Citas_model->leerCitas($this->session->userdata("ciu"));
 
-      $facultativos = $this->Paciente_m->leerFacultativos($this->session->userdata("ciu"));
-
+      $facultativos = $this->Pacientes_model->leerFacultativos($this->session->userdata("ciu"));
+      
       //carga el head con las hojas de estilos y scripts necesarios
       $this->load->view("modules/head", array(
          "hojas" => array("modules/panel", "paciente/citas", "modules/panel-responsive"),
@@ -134,9 +134,9 @@ class Paciente extends CI_Controller
 
       //leemos de la session para usarlo en la clausula where
       $ciu = $this->session->userdata("ciu");
-      $this->load->model("Paciente_m");
+      $this->load->model("Pacientes_model");
 
-      if ($this->Paciente_m->actualizarDatos($datos, $ciu)) {
+      if ($this->Pacientes_model->actualizarDatos($datos, $ciu)) {
          //sesion temporal que servirá para mostrar un mensaje de informacion
          $this->session->set_flashdata("info", "ok");
          redirect(base_url() . "paciente/misdatos");

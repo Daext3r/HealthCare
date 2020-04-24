@@ -1,5 +1,5 @@
 <section class="contenido">
-   <div class="my-row row" id="buscador" style="display: none;">
+   <div class="my-row row" id="buscador">
       <div class="my-col col">
          <label for="usuario">Usuario</label>
          <div class="input-group mb-2 mr-sm-2">
@@ -13,7 +13,7 @@
       <h4>Busca un usuario y selecciónalo</h4>
    </div>
 
-   <div class="datos">
+   <div class="datos" style="display: none;">
       <div class="my-row row">
          <div class="col my-col">
             <label for="grupo_sanguineo">Grupo sanguíneo</label>

@@ -54,9 +54,9 @@ $max = $max->format("Y-m-d");
                     <label for="medico">Médico:</label>
                     <select id="medico" class="form-control">
                         <?php
-                        foreach ($facultativos as $facultativo) {
-                            echo "<option value='$facultativo[CIU_medico]'>$facultativo[medico]</option>";
-                        }
+                            echo "<option value='$facultativos[CIU_medico]'>$facultativos[medico]</option>";
+                            echo "<option value='$facultativos[CIU_enfermero]'>$facultativos[enfermero]</option>";
+                        
                         ?>
                     </select>
 
