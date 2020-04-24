@@ -13,7 +13,7 @@
       <h4>Busca un usuario y selecciónalo</h4>
    </div>
 
-   <div class="datos" style="/*display: none;*/">
+   <div class="datos">
       <div class="my-row row">
          <div class="col my-col">
             <label for="grupo_sanguineo">Grupo sanguíneo</label>
