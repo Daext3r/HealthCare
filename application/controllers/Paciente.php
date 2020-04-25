@@ -26,7 +26,7 @@ class Paciente extends CI_Controller
       //carga el head con las hojas de estilos y scripts necesarios
       $this->load->view("modules/ViewModule_Head", array(
          "hojas" => array("modules/StyleModule_Panel", "paciente/inicio", "modules/StyleModule_Panel_Responsive"),
-         "scripts" => array("utils/common", "utils/notificaciones", "paciente/inicio")
+         "scripts" => array("modules/ScriptModule_Panel", "utils/notificaciones", "paciente/inicio")
       ));
 
       //carga el modulo principal
@@ -47,7 +47,7 @@ class Paciente extends CI_Controller
       //carga el head con las hojas de estilos y scripts necesarios
       $this->load->view("modules/ViewModule_Head", array(
          "hojas" => array("modules/StyleModule_Panel", "paciente/citas", "modules/StyleModule_Panel_Responsive"),
-         "scripts" => array("utils/common", "utils/notificaciones", "paciente/citas")
+         "scripts" => array("modules/ScriptModule_Panel", "utils/notificaciones", "paciente/citas")
       ));
 
       //carga el modulo principal
@@ -64,7 +64,7 @@ class Paciente extends CI_Controller
       //carga el head con las hojas de estilos y scripts necesarios
       $this->load->view("modules/ViewModule_Head", array(
          "hojas" => array("modules/StyleModule_Panel", "paciente/tratamientos", "modules/StyleModule_Panel_Responsive"),
-         "scripts" => array("utils/common", "utils/notificaciones", "paciente/tratamientos")
+         "scripts" => array("modules/ScriptModule_Panel", "utils/notificaciones", "paciente/tratamientos")
       ));
 
       //carga el modulo principal
@@ -81,7 +81,7 @@ class Paciente extends CI_Controller
          "hojas" => array(
             "modules/StyleModule_Panel", "paciente/informes", "modules/StyleModule_Panel_Responsive"
          ),
-         "scripts" => array("utils/common", "utils/notificaciones", "paciente/informes", "lib/pagination")
+         "scripts" => array("modules/ScriptModule_Panel", "utils/notificaciones", "paciente/informes", "lib/pagination")
       ));
 
       //carga el modulo principal
@@ -98,7 +98,7 @@ class Paciente extends CI_Controller
          "hojas" => array(
             "modules/StyleModule_Panel", "paciente/misdatos", "modules/StyleModule_Panel_Responsive"
          ),
-         "scripts" => array("utils/common", "paciente/misdatos")
+         "scripts" => array("modules/ScriptModule_Panel", "paciente/misdatos")
       ));
 
       //carga el modulo principal

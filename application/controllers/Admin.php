@@ -20,7 +20,7 @@ class Admin extends CI_Controller
       //carga el head con las hojas de estilos y scripts necesarios
       $this->load->view("modules/ViewModule_Head", array(
          "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive"),
-         "scripts" => array("utils/common")
+         "scripts" => array("modules/ScriptModule_Panel")
       ));
 
       //carga el modulo principal
@@ -34,7 +34,7 @@ class Admin extends CI_Controller
             //carga el head con las hojas de estilos y scripts necesarios
             $this->load->view("modules/ViewModule_Head", array(
                "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Registro_Usuario"),
-               "scripts" => array("utils/common", "modules/ScriptModule_Registro_Usuario", "lib/dni")
+               "scripts" => array("modules/ScriptModule_Panel", "modules/ScriptModule_Registro_Usuario", "lib/dni")
             ));
 
             //carga el modulo principal
@@ -47,7 +47,7 @@ class Admin extends CI_Controller
             //carga el head con las hojas de estilos y scripts necesarios
             $this->load->view("modules/ViewModule_Head", array(
                "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "admin/crearCentro"),
-               "scripts" => array("utils/common", "admin/crearCentro")));
+               "scripts" => array("modules/ScriptModule_Panel", "admin/crearCentro")));
 
             //carga el modulo principal
             $this->load->view("modules/ViewModule_Panel");
@@ -58,7 +58,7 @@ class Admin extends CI_Controller
          case 'facultativo':
             $this->load->view("modules/ViewModule_Head", array(
                "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Nuevo_Facultativo"),
-               "scripts" => array("utils/common", "modules/ScriptModule_Nuevo_Facultativo")
+               "scripts" => array("modules/ScriptModule_Panel", "modules/ScriptModule_Nuevo_Facultativo")
             ));
 
             $this->load->view("modules/ViewModule_Panel");
@@ -70,7 +70,7 @@ class Admin extends CI_Controller
          case 'paciente':
             $this->load->view("modules/ViewModule_Head", array(
                "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Nuevo_Paciente"),
-               "scripts" => array("utils/common", "modules/ScriptModule_Nuevo_Paciente")
+               "scripts" => array("modules/ScriptModule_Panel", "modules/ScriptModule_Nuevo_Paciente")
             ));
 
             $this->load->view("modules/ViewModule_Panel");
@@ -88,7 +88,7 @@ class Admin extends CI_Controller
             //carga el head con las hojas de estilos y scripts necesarios
             $this->load->view("modules/ViewModule_Head", array(
                "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Datos_Usuario"),
-               "scripts" => array("utils/common", "modules/ScriptModule_Datos_Usuario", "lib/dni")
+               "scripts" => array("modules/ScriptModule_Panel", "modules/ScriptModule_Datos_Usuario", "lib/dni")
             ));
 
             //carga el modulo principal
@@ -101,7 +101,7 @@ class Admin extends CI_Controller
             //carga el head con las hojas de estilos y scripts necesarios
             $this->load->view("modules/ViewModule_Head", array(
                "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "admin/AdministrarCentro"),
-               "scripts" => array("utils/common", "admin/AdministrarCentro")
+               "scripts" => array("modules/ScriptModule_Panel", "admin/AdministrarCentro")
             ));
 
             //carga el modulo principal

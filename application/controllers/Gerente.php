@@ -25,7 +25,7 @@ class Gerente extends CI_Controller
       //carga el head con las hojas de estilos y scripts necesarios
       $this->load->view("modules/ViewModule_Head", array(
          "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Registro_Usuario"),
-         "scripts" => array("utils/common", "modules/ScriptModule_Registro_Usuario", "lib/dni")
+         "scripts" => array("modules/ScriptModule_Panel", "modules/ScriptModule_Registro_Usuario", "lib/dni")
       ));
 
       //carga el modulo principal
@@ -39,7 +39,7 @@ class Gerente extends CI_Controller
       //carga el head con las hojas de estilos y scripts necesarios
       $this->load->view("modules/ViewModule_Head", array(
          "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "gerente/gestionarAdministrativos"),
-         "scripts" => array("utils/common", "gerente/gestionarAdministrativos", "lib/pagination")
+         "scripts" => array("modules/ScriptModule_Panel", "gerente/gestionarAdministrativos", "lib/pagination")
       ));
 
       //carga el modulo principal
@@ -55,7 +55,7 @@ class Gerente extends CI_Controller
          case 'facultativo':
             $this->load->view("modules/ViewModule_Head", array(
                "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Nuevo_Facultativo"),
-               "scripts" => array("utils/common", "modules/ScriptModule_Nuevo_facultativo")
+               "scripts" => array("modules/ScriptModule_Panel", "modules/ScriptModule_Nuevo_facultativo")
             ));
 
             $this->load->view("modules/ViewModule_Panel");
@@ -67,7 +67,7 @@ class Gerente extends CI_Controller
          case 'paciente':
             $this->load->view("modules/ViewModule_Head", array(
                "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Nuevo_Paciente"),
-               "scripts" => array("utils/common", "modules/ScriptModule_Nuevo_Paciente")
+               "scripts" => array("modules/ScriptModule_Panel", "modules/ScriptModule_Nuevo_Paciente")
             ));
 
             $this->load->view("modules/ViewModule_Panel");

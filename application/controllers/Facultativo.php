@@ -17,7 +17,9 @@ class Facultativo extends CI_Controller
 
    public function inicio()
    {
-      $this->load->view("modules/ViewModule_Head", array("hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive"), "scripts" => array("utils/common")));
+      $this->load->view("modules/ViewModule_Head", array(
+         "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive"),
+         "scripts" => array("modules/ScriptModule_Panel")));
       $this->load->view("modules/ViewModule_Panel");
    }
 }
