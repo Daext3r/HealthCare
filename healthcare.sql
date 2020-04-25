@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-04-2020 a las 23:33:57
+-- Tiempo de generación: 25-04-2020 a las 11:01:10
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -182,7 +182,7 @@ CREATE TABLE `episodios` (
 
 CREATE TABLE `especialidades` (
   `id` int(11) NOT NULL,
-  `denominacion` varchar(32) COLLATE utf8_spanish_ci NOT NULL
+  `denominacion` varchar(64) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -201,13 +201,13 @@ INSERT INTO `especialidades` (`id`, `denominacion`) VALUES
 (6, 'Aparato Digestivo'),
 (7, 'Cardiología'),
 (8, 'Cirugía Cardiovascular'),
-(9, 'Cirugía General y del Aparato Di'),
+(9, 'Cirugía General y del Aparato Digestivo'),
 (10, 'Cirugía Oral y Maxilofacial'),
-(11, 'Cirugía Ortopédica y Traumatolog'),
+(11, 'Cirugía Ortopédica y Traumatología'),
 (12, 'Cirugía Pediátrica'),
-(13, 'Cirugía Plástica, Estética y Rep'),
+(13, 'Cirugía Plástica, Estética y Reparadora'),
 (14, 'Cirugía Torácica'),
-(15, 'Dermatología Médico-Quirúrgica y'),
+(15, 'Dermatología Médico-Quirúrgica y Venereología'),
 (16, 'Endocrinología y Nutrición'),
 (17, 'Farmacología Clínica'),
 (18, 'Geriatría'),
@@ -218,7 +218,7 @@ INSERT INTO `especialidades` (`id`, `denominacion`) VALUES
 (23, 'Medicina Intensiva'),
 (24, 'Medicina Interna'),
 (25, 'Medicina Nuclear'),
-(26, 'Medicina Preventiva y Salud Públ'),
+(26, 'Medicina Preventiva y Salud Pública'),
 (27, 'Nefrología'),
 (28, 'Neumología'),
 (29, 'Neurocirugía'),
@@ -451,7 +451,7 @@ CREATE TABLE `vista_resumen_informes` (
 ,`hora` time
 ,`contenido` text
 ,`nombre_completo_medico` varchar(97)
-,`especialidad` varchar(32)
+,`especialidad` varchar(64)
 );
 
 -- --------------------------------------------------------
@@ -463,7 +463,7 @@ CREATE TABLE `vista_resumen_informes` (
 CREATE TABLE `vista_usuarios_facultativos` (
 `CIU` varchar(64)
 ,`nombre_completo` varchar(97)
-,`especialidad` varchar(32)
+,`especialidad` varchar(64)
 );
 
 -- --------------------------------------------------------
@@ -667,13 +667,13 @@ ALTER TABLE `analiticas`
 -- AUTO_INCREMENT de la tabla `centros`
 --
 ALTER TABLE `centros`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `episodios`
@@ -691,19 +691,19 @@ ALTER TABLE `especialidades`
 -- AUTO_INCREMENT de la tabla `informes`
 --
 ALTER TABLE `informes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `tratamientos`
 --
 ALTER TABLE `tratamientos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
