@@ -53,12 +53,6 @@ class Admin extends CI_Controller
             //carga el panel de registro
             $this->load->view("admin/Crear_centro_v");
             break;
-      }
-   }
-
-   public function nuevo($tipo)
-   {
-      switch ($tipo) {
          case 'facultativo':
             $this->load->view("modules/head", array(
                "hojas" => array("modules/panel", "modules/panel-responsive", "modules/nuevo-facultativo"),
@@ -84,7 +78,7 @@ class Admin extends CI_Controller
             break;
       }
    }
-
+   
    public function administrar($item)
    {
       switch ($item) {

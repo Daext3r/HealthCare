@@ -3,7 +3,7 @@
       <div class="my-col col">
          <label for="usuario">Usuario</label>
          <div class="input-group mb-2 mr-sm-2">
-            <input list="usuarios" class="form-control" id="usuario" placeholder="CIU" autocomplete="off" required autofocus>
+            <input list="usuarios" class="form-control" id="usuario" placeholder="Nombre" autocomplete="off" required autofocus>
             <datalist id="usuarios"></datalist>
             <div class="input-group-prepend">
                <div class="input-group-text"><i class="fas fa-search"></i></div>

@@ -53,11 +53,11 @@
                   <a href="<?php echo base_url() ?>admin/crear/centro">
                      <li class="list-group-item">Crear centro</li>
                   </a>
-                  <a href="<?php echo base_url() ?>admin/nuevo/paciente">
-                     <li class="list-group-item">Nuevo paciente</li>
+                  <a href="<?php echo base_url() ?>admin/crear/paciente">
+                     <li class="list-group-item">Crear paciente</li>
                   </a>
-                  <a href="<?php echo base_url() ?>admin/nuevo/facultativo">
-                     <li class="list-group-item">Nuevo facultativo</li>
+                  <a href="<?php echo base_url() ?>admin/crear/facultativo">
+                     <li class="list-group-item">Crear facultativo</li>
                   </a>
                   <a href="<?php echo base_url() ?>admin/administrar/usuario">
                      <li class="list-group-item">Datos de usuario</li>

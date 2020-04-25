@@ -13,7 +13,7 @@ $(document).ready(function () {
       if ($("#usuario").val().trim() == "") return;
 
       interval = setTimeout(function () {
-         $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/buscarUsuarioCiu", { ciu: $("#usuario").val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/buscarUsuarioNombre", { nombre: $("#usuario").val() }, (data) => {
             data = JSON.parse(data);
             for (let usuario of data) {
                let option = document.createElement("option");
@@ -70,7 +70,6 @@ $(document).ready(function () {
    });
 
    $("#fac1").keyup(function () {
-      console.log("test");
       //borramos la busqueda anterior y quitamos los elementos existentes
       clearInterval(interval);
       $("#fac1list").html("");
@@ -78,7 +77,7 @@ $(document).ready(function () {
       interval = setTimeout(() => {
          $.post(localStorage.getItem("hc_base_url") + "Facultativos_controller/buscarFacultativoNombre", { nombre: $(this).val() }, (data) => {
             data = JSON.parse(data);
-
+            console.log(data);
             for (let facultativo of data) {
                let option = document.createElement("option");
                option.value = facultativo.CIU;

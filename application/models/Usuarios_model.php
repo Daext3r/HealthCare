@@ -78,6 +78,11 @@ class Usuarios_model extends CI_Model
       return $this->db->get("vista_usuarios_nombre")->result_array();
    }
 
+   public function buscarUsuarioNombre($nombre) {
+      $this->db->like("nombre_completo", $nombre);
+      return $this->db->get("vista_usuarios_nombre")->result_array();
+   }
+
    public function leerDatosUsuario($ciu)
    {
       $this->db->select("CIU, nombre, apellidos, dni, sexo, nacionalidad, fecha_nacimiento, correo, direccion, telefono, fijo");
