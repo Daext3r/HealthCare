@@ -18,13 +18,13 @@ class Admin extends CI_Controller
    public function inicio()
    {
       //carga el head con las hojas de estilos y scripts necesarios
-      $this->load->view("modules/head", array(
-         "hojas" => array("modules/panel", "modules/panel-responsive"),
+      $this->load->view("modules/ViewModule_Head", array(
+         "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive"),
          "scripts" => array("utils/common")
       ));
 
       //carga el modulo principal
-      $this->load->view("modules/panel");
+      $this->load->view("modules/ViewModule_Panel");
    }
 
    public function crear($item)
@@ -32,49 +32,51 @@ class Admin extends CI_Controller
       switch ($item) {
          case 'usuario':
             //carga el head con las hojas de estilos y scripts necesarios
-            $this->load->view("modules/head", array(
-               "hojas" => array("modules/panel", "modules/panel-responsive", "modules/registro-usuario"),
-               "scripts" => array("utils/common", "modules/registro-usuario", "lib/dni")
+            $this->load->view("modules/ViewModule_Head", array(
+               "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Registro_Usuario"),
+               "scripts" => array("utils/common", "modules/ScriptModule_Registro_Usuario", "lib/dni")
             ));
 
             //carga el modulo principal
-            $this->load->view("modules/panel");
+            $this->load->view("modules/ViewModule_Panel");
 
             //carga el panel de registro
-            $this->load->view("modules/registro-usuario");
+            $this->load->view("modules/ViewModule_Registro_Usuario");
             break;
          case 'centro':
             //carga el head con las hojas de estilos y scripts necesarios
-            $this->load->view("modules/head", array("hojas" => array("modules/panel", "modules/panel-responsive", "admin/crearCentro"), "scripts" => array("utils/common", "admin/crearCentro")));
+            $this->load->view("modules/ViewModule_Head", array(
+               "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "admin/crearCentro"),
+               "scripts" => array("utils/common", "admin/crearCentro")));
 
             //carga el modulo principal
-            $this->load->view("modules/panel");
+            $this->load->view("modules/ViewModule_Panel");
 
             //carga el panel de registro
             $this->load->view("admin/Crear_centro_v");
             break;
          case 'facultativo':
-            $this->load->view("modules/head", array(
-               "hojas" => array("modules/panel", "modules/panel-responsive", "modules/nuevo-facultativo"),
-               "scripts" => array("utils/common", "modules/nuevo-facultativo")
+            $this->load->view("modules/ViewModule_Head", array(
+               "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Nuevo_Facultativo"),
+               "scripts" => array("utils/common", "modules/ScriptModule_Nuevo_Facultativo")
             ));
 
-            $this->load->view("modules/panel");
+            $this->load->view("modules/ViewModule_Panel");
 
             //el formulario de altas es un modulo que puede ser usado por varios tipos de cuenta
-            $this->load->view("modules/nuevo-facultativo");
+            $this->load->view("modules/ViewModule_Nuevo_Facultativo");
 
             break;
          case 'paciente':
-            $this->load->view("modules/head", array(
-               "hojas" => array("modules/panel", "modules/panel-responsive", "modules/nuevo-paciente"),
-               "scripts" => array("utils/common", "modules/nuevo-paciente")
+            $this->load->view("modules/ViewModule_Head", array(
+               "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Nuevo_Paciente"),
+               "scripts" => array("utils/common", "modules/ScriptModule_Nuevo_Paciente")
             ));
 
-            $this->load->view("modules/panel");
+            $this->load->view("modules/ViewModule_Panel");
 
             //el formulario de altas es un modulo que puede ser usado por varios tipos de cuenta
-            $this->load->view("modules/nuevo-paciente");
+            $this->load->view("modules/ViewModule_Nuevo_Paciente");
             break;
       }
    }
@@ -84,26 +86,26 @@ class Admin extends CI_Controller
       switch ($item) {
          case 'usuario':
             //carga el head con las hojas de estilos y scripts necesarios
-            $this->load->view("modules/head", array(
-               "hojas" => array("modules/panel", "modules/panel-responsive", "modules/datos-usuario"),
-               "scripts" => array("utils/common", "modules/datos-usuario", "lib/dni")
+            $this->load->view("modules/ViewModule_Head", array(
+               "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Datos_Usuario"),
+               "scripts" => array("utils/common", "modules/ScriptModule_Datos_Usuario", "lib/dni")
             ));
 
             //carga el modulo principal
-            $this->load->view("modules/panel");
+            $this->load->view("modules/ViewModule_Panel");
 
             //carga el panel de registro
-            $this->load->view("modules/datos-usuario");
+            $this->load->view("modules/ViewModule_Datos_Usuario");
             break;
          case 'centro':
             //carga el head con las hojas de estilos y scripts necesarios
-            $this->load->view("modules/head", array(
-               "hojas" => array("modules/panel", "modules/panel-responsive", "admin/AdministrarCentro"),
+            $this->load->view("modules/ViewModule_Head", array(
+               "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "admin/AdministrarCentro"),
                "scripts" => array("utils/common", "admin/AdministrarCentro")
             ));
 
             //carga el modulo principal
-            $this->load->view("modules/panel");
+            $this->load->view("modules/ViewModule_Panel");
 
             //carga el panel de registro
             $this->load->view("admin/AdministrarCentro_v");

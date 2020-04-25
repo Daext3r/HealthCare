@@ -24,13 +24,13 @@ class Paciente extends CI_Controller
    public function inicio()
    {
       //carga el head con las hojas de estilos y scripts necesarios
-      $this->load->view("modules/head", array(
-         "hojas" => array("modules/panel", "paciente/inicio", "modules/panel-responsive"),
+      $this->load->view("modules/ViewModule_Head", array(
+         "hojas" => array("modules/StyleModule_Panel", "paciente/inicio", "modules/StyleModule_Panel_Responsive"),
          "scripts" => array("utils/common", "utils/notificaciones", "paciente/inicio")
       ));
 
       //carga el modulo principal
-      $this->load->view("modules/panel");
+      $this->load->view("modules/ViewModule_Panel");
 
       //carga la vista de inicio
       $this->load->view("paciente/Inicio_v");
@@ -45,13 +45,13 @@ class Paciente extends CI_Controller
       $facultativos = $this->Pacientes_model->leerFacultativos($this->session->userdata("ciu"));
       
       //carga el head con las hojas de estilos y scripts necesarios
-      $this->load->view("modules/head", array(
-         "hojas" => array("modules/panel", "paciente/citas", "modules/panel-responsive"),
+      $this->load->view("modules/ViewModule_Head", array(
+         "hojas" => array("modules/StyleModule_Panel", "paciente/citas", "modules/StyleModule_Panel_Responsive"),
          "scripts" => array("utils/common", "utils/notificaciones", "paciente/citas")
       ));
 
       //carga el modulo principal
-      $this->load->view("modules/panel");
+      $this->load->view("modules/ViewModule_Panel");
 
       //carga la vista de inicio
       $this->load->view("paciente/Citas_v", array(
@@ -62,13 +62,13 @@ class Paciente extends CI_Controller
    public function tratamientos()
    {
       //carga el head con las hojas de estilos y scripts necesarios
-      $this->load->view("modules/head", array(
-         "hojas" => array("modules/panel", "paciente/tratamientos", "modules/panel-responsive"),
+      $this->load->view("modules/ViewModule_Head", array(
+         "hojas" => array("modules/StyleModule_Panel", "paciente/tratamientos", "modules/StyleModule_Panel_Responsive"),
          "scripts" => array("utils/common", "utils/notificaciones", "paciente/tratamientos")
       ));
 
       //carga el modulo principal
-      $this->load->view("modules/panel");
+      $this->load->view("modules/ViewModule_Panel");
 
       //carga la vista de inicio
       $this->load->view("paciente/Tratamientos_v");
@@ -77,15 +77,15 @@ class Paciente extends CI_Controller
    public function informes()
    {
       //carga el head con las hojas de estilos y scripts necesarios
-      $this->load->view("modules/head", array(
+      $this->load->view("modules/ViewModule_Head", array(
          "hojas" => array(
-            "modules/panel", "paciente/informes", "modules/panel-responsive"
+            "modules/StyleModule_Panel", "paciente/informes", "modules/StyleModule_Panel_Responsive"
          ),
          "scripts" => array("utils/common", "utils/notificaciones", "paciente/informes", "lib/pagination")
       ));
 
       //carga el modulo principal
-      $this->load->view("modules/panel");
+      $this->load->view("modules/ViewModule_Panel");
 
       //carga la vista de inicio
       $this->load->view("paciente/Informes_v");
@@ -94,15 +94,15 @@ class Paciente extends CI_Controller
    public function misdatos()
    {
       //carga el head con las hojas de estilos y scripts necesarios
-      $this->load->view("modules/head", array(
+      $this->load->view("modules/ViewModule_Head", array(
          "hojas" => array(
-            "modules/panel", "paciente/misdatos", "modules/panel-responsive"
+            "modules/StyleModule_Panel", "paciente/misdatos", "modules/StyleModule_Panel_Responsive"
          ),
          "scripts" => array("utils/common", "paciente/misdatos")
       ));
 
       //carga el modulo principal
-      $this->load->view("modules/panel");
+      $this->load->view("modules/ViewModule_Panel");
 
       //carga la vista de inicio
       $this->load->view("paciente/MisDatos_v");
