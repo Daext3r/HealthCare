@@ -6,6 +6,12 @@ class Administrativo extends CI_Controller
    public function __construct()
    {
       parent::__construct();
+      //si no es el tipo de perfil que corresponde a este panel, redirigimos al login
+      if ($this->session->userdata("tipo") != "administrativo") {
+         //redirigimos al login
+         redirect(base_url() . "login");
+         return;
+      }
    }
 
    public function inicio()
