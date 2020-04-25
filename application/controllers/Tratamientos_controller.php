@@ -18,10 +18,6 @@ class Tratamientos_controller extends CI_Controller
     }
 
     public function leerTratamientos() {
-        $ciu = $this->session->userdata("ciu");
-
-        $tratamientos = $this->Tratamientos_model->leerTratamientos($ciu);
-        
-        echo json_encode($tratamientos);
+        echo json_encode($this->Tratamientos_model->leerTratamientos($this->session->userdata("ciu")));
     }   
 }

@@ -14,14 +14,12 @@ class Usuarios_controller extends CI_Controller
          redirect(base_url() . "login");
          return;
       }
-
    }
 
    public function leerNotificaciones()
    {
       //cargamos las notificaciones y las devolvemos
-      $notifs = $this->Usuarios_model->leerNotificaciones($this->session->userdata("ciu"));
-      echo json_encode($notifs);
+      echo json_encode($this->Usuarios_model->leerNotificaciones($this->session->userdata("ciu")));
    }
 
    public function borrarNotificacion()
@@ -44,11 +42,7 @@ class Usuarios_controller extends CI_Controller
       $datos['ciu'] = self::generarCiu($datos['nombre'], $datos['apellidos'], $datos['fecha_nacimiento']);
 
       //insertamos los datos y mostramos un error en funcion de si ha habido error o no
-      if ($this->Usuarios_model->registrarUsuario($datos)) {
-         echo 1;
-      } else {
-         echo 0;
-      }
+      echo $this->Usuarios_model->registrarUsuario($datos) ? 1 : 0;
    }
 
    public function generarCiu($nombre, $apellidos, $fnac)
@@ -85,18 +79,17 @@ class Usuarios_controller extends CI_Controller
 
    public function buscarUsuarioCiu()
    {
-      $usuarios = $this->Usuarios_model->buscarUsuarioCiu($this->input->post("ciu"));
-      echo json_encode($usuarios);
+      echo json_encode($this->Usuarios_model->buscarUsuarioCiu($this->input->post("ciu")));
    }
 
-   public function buscarUsuarioNombre() {
+   public function buscarUsuarioNombre()
+   {
       echo json_encode($this->Usuarios_model->buscarUsuarioNombre($this->input->post("nombre")));
    }
 
    public function leerDatosUsuario()
    {
-      $usuario = $this->Usuarios_model->leerDatosUsuario($this->input->post("ciu"));
-      echo json_encode($usuario);
+      echo json_encode($this->Usuarios_model->leerDatosUsuario($this->input->post("ciu")));
    }
 
    public function actualizarUsuario()

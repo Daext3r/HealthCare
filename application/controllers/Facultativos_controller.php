@@ -35,7 +35,6 @@ class Facultativos_controller extends CI_Controller
 
    public function buscarFacultativoNombre()
    {
-      $nombre = $this->input->post("nombre");
-      echo json_encode($this->Facultativos_model->buscarFacultativoNombre($nombre));
+      echo json_encode($this->Facultativos_model->buscarFacultativoNombre($this->input->post("nombre");));
    }
 }

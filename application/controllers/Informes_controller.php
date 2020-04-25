@@ -29,9 +29,7 @@ class Informes_controller extends CI_Controller
             $ciu = $this->input->post("ciu");
         }
         
-        $lista = $this->Informes_model->leerListaInformes($ciu);
-        
         //devolvemos la lista en formato json
-        echo json_encode($lista);
+        echo json_encode($this->Informes_model->leerListaInformes($ciu));
     }
 }

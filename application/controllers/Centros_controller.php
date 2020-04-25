@@ -12,7 +12,6 @@ class Centros_controller extends CI_Controller
          redirect(base_url() . "login");
          return;
       }
-
       
       $this->load->model("Centros_model");
    }
