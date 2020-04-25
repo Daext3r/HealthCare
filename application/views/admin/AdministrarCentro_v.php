@@ -66,3 +66,5 @@
       <input type="submit" value="Actualizar datos del centro" class="btn btn-success w-75 datos-submit" id="enviar">
    </form>
 </section>
+</div>
+</body>

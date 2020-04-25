@@ -83,3 +83,5 @@
       <input type="submit" value="Actualizar datos de usuario" class="btn btn-success w-75 datos-submit">
    </form>
 </section>
+</div>
+</body>

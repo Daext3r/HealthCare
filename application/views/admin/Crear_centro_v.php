@@ -60,3 +60,5 @@
       <input type="submit" value="Crear centro" class="btn btn-success w-75 custom-submit">
    </form>
 </section>
+</div>
+</body>
