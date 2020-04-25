@@ -7,28 +7,23 @@ class Facultativos_controller extends CI_Controller
    public function __construct()
    {
       parent::__construct();
+
+      //si no es una peticion ajax redirigimos al inicio
+      if (!$this->input->is_ajax_request()) {
+         redirect(base_url() . "login");
+         return;
+      }
+
       $this->load->model("Facultativos_model");
    }
 
    public function buscarEspecialidad()
    {
-      //si no estamos realizando una peticion ajax, redirigimos a login y anulamos ejecucion del script
-      if (!$this->input->is_ajax_request()) {
-         redirect(base_url() . "login");
-         return;
-      }
-
       echo json_encode($this->Facultativos_model->buscarEspecialidad($this->input->post("especialidad")));
    }
 
    public function alta()
    {
-      //si no estamos realizando una peticion ajax, redirigimos a login y anulamos ejecucion del script
-      if (!$this->input->is_ajax_request()) {
-         redirect(base_url() . "login");
-         return;
-      }
-
       $usuario = $this->input->post("usuario");
       $colegiado = $this->input->post("colegiado");
       $sala = $this->input->post("sala");
@@ -38,13 +33,8 @@ class Facultativos_controller extends CI_Controller
       echo $this->Facultativos_model->alta($usuario, $colegiado, $especialidad, $sala, $centro);
    }
 
-   public function buscarFacultativoNombre() {
-      //si no estamos realizando una peticion ajax, redirigimos a login y anulamos ejecucion del script
-      if (!$this->input->is_ajax_request()) {
-         redirect(base_url() . "login");
-         return;
-      }
-
+   public function buscarFacultativoNombre()
+   {
       $nombre = $this->input->post("nombre");
       echo json_encode($this->Facultativos_model->buscarFacultativoNombre($nombre));
    }

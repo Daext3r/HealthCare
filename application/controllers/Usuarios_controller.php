@@ -8,10 +8,6 @@ class Usuarios_controller extends CI_Controller
    {
       parent::__construct();
       $this->load->model("Usuarios_model");
-   }
-
-   public function leerNotificaciones()
-   {
 
       //si no es una peticion ajax redirigimos al inicio
       if (!$this->input->is_ajax_request()) {
@@ -19,6 +15,10 @@ class Usuarios_controller extends CI_Controller
          return;
       }
 
+   }
+
+   public function leerNotificaciones()
+   {
       //cargamos las notificaciones y las devolvemos
       $notifs = $this->Usuarios_model->leerNotificaciones($this->session->userdata("ciu"));
       echo json_encode($notifs);
@@ -26,24 +26,12 @@ class Usuarios_controller extends CI_Controller
 
    public function borrarNotificacion()
    {
-      //si no es una peticion ajax redirigimos al inicio
-      if (!$this->input->is_ajax_request()) {
-         redirect(base_url() . "login");
-         return;
-      }
-
       //borramos la notifiacion
       $this->Usuarios_model->borrarNotificacion($this->input->post("id"));
    }
 
    public function registrarUsuario()
    {
-      //si no estamos realizando una peticion ajax, redirigimos a login y anulamos ejecucion del script
-      if (!$this->input->is_ajax_request()) {
-         redirect(base_url() . "login");
-         return;
-      }
-
       $datos = array();
 
       //guardamos los datos del formulario en un array 
@@ -97,45 +85,22 @@ class Usuarios_controller extends CI_Controller
 
    public function buscarUsuarioCiu()
    {
-      //si no estamos realizando una peticion ajax, redirigimos a login y anulamos ejecucion del script
-      if (!$this->input->is_ajax_request()) {
-         redirect(base_url() . "login");
-         return;
-      }
-
       $usuarios = $this->Usuarios_model->buscarUsuarioCiu($this->input->post("ciu"));
       echo json_encode($usuarios);
    }
 
    public function buscarUsuarioNombre() {
-      //si no estamos realizando una peticion ajax, redirigimos a login y anulamos ejecucion del script
-      if (!$this->input->is_ajax_request()) {
-         redirect(base_url() . "login");
-         return;
-      }
-
       echo json_encode($this->Usuarios_model->buscarUsuarioNombre($this->input->post("nombre")));
    }
 
    public function leerDatosUsuario()
    {
-      //si no estamos realizando una peticion ajax, redirigimos a login y anulamos ejecucion del script
-      if (!$this->input->is_ajax_request()) {
-         redirect(base_url() . "login");
-         return;
-      }
       $usuario = $this->Usuarios_model->leerDatosUsuario($this->input->post("ciu"));
       echo json_encode($usuario);
    }
 
    public function actualizarUsuario()
    {
-      //si no estamos realizando una peticion ajax, redirigimos a login y anulamos ejecucion del script
-      if (!$this->input->is_ajax_request()) {
-         redirect(base_url() . "login");
-         return;
-      }
-
       //quitamos el id del array y lo guardamos a parte
       $datos = $_POST;
       $ciu = $datos['CIU'];
@@ -147,12 +112,6 @@ class Usuarios_controller extends CI_Controller
 
    public function leerCantidadDatos()
    {
-      //si no estamos realizando una peticion ajax, redirigimos a login y anulamos ejecucion del script
-      if (!$this->input->is_ajax_request()) {
-         redirect(base_url() . "login");
-         return;
-      }
-
       echo json_encode($this->Usuarios_model->leerCantidadDatos($this->session->userdata("ciu"), $this->input->post("datos")));
    }
 }

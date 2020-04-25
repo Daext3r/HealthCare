@@ -7,17 +7,19 @@ class Pacientes_controller extends CI_Controller
    public function __construct()
    {
       parent::__construct();
-      $this->load->model("Pacientes_model");
-   }
 
-   public function alta()
-   {
-      //si no estamos realizando una peticion ajax, redirigimos a login y anulamos ejecucion del script
+      //si no es una peticion ajax redirigimos al inicio
       if (!$this->input->is_ajax_request()) {
          redirect(base_url() . "login");
          return;
       }
 
+      
+      $this->load->model("Pacientes_model");
+   }
+
+   public function alta()
+   {
       $usuario = $this->input->post("usuario");
       $medico = $this->input->post("medico");
       $enfermero = $this->input->post("enfermero");
