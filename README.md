@@ -19,18 +19,16 @@ Las funciones serán enumeradas según los perfiles:
     Los administrativos podrán realizar distintas tareas en el centro, tales como crear perfiles de paciente, de facultativo, cambiar datos de un perfil, cambiar permisos, pedir cita en nombre de un paciente... A pesar de todas estas acciones, no podrán ver informes o tratamientos de los pacientes.
 
 4. Facultativo: 
-    Se entiende por facultativo a cualquier profesional médico de cualquier especialidad que no sea un enfermero. Medicina general, traumatología u oftalmología son algunas de las especialidades, por ejemplo. Los facultativos podrán derivar (solicitar cita) un paciente a otro facultativo que sea especialista. Además, al derivar se permite el añadir una descripción o motivo de cita.
+    Se entiende por facultativo a cualquier profesional médico de cualquier especialidad. Medicina general, traumatología u oftalmología son algunas de las especialidades, por ejemplo. Los facultativos podrán derivar (solicitar cita) un paciente a otro facultativo que sea especialista. Además, al derivar se permite el añadir una descripción o motivo de cita.
 
-5. Enfermero: 
-    El perfil de enfermero tiene permisos mucho más limitados que un facultativo. Aún por determinar. 
-
-6. Paciente: 
+5. Paciente: 
     Los pacientes es parte del usuario base de la aplicación. Cuando se registra un usuario, por defecto se crea un perfil de paciente. El paciente en su mayoría puede consultar datos. Tratamientos, informes, resultados de analíticas o citas pendientes. Además, puede solicitar nuevas citas y editar datos de su perfil tales como el correo electrónico, teléfono o dirección.
 
-7. Personal de laboratorio: 
+6. Personal de laboratorio: 
     El personal de laboratorio será el encargado de cumplimentar las analíticas. Por el momento no tiene más funciones.
 
     * Nota: Está pendiente añadir más funcionalidades al paciente y al personal de laboratorio.
+
 ### Funcionalidades
 
 1. Crear perfiles de pacientes por parte del personal administrativo.
@@ -52,15 +50,14 @@ Las funciones serán enumeradas según los perfiles:
     * `git checkout -b master --track origin/master -f`
 5. Entra en la carpeta `application` y ejecuta el siguiente comando: `composer install`. Necesitas tener instalado [Composer](https://getcomposer.org).
 6. Abre el archivo `config.php` y edita la clave `$config['application_key']`. Usa una clave segura.
-7. Si has realizado todos los pasos correctamente ya deberías tener instalado HealthCare en tu equipo.
+7. En el archivo `config.php`, debes ajustar el valor de `config['base_url']` a la configuración de tu servidor. Por defecto está puesto el nombre del servidor y debería funcionar, pero puede ser necesario que lo cambies.
+8. En el archivo `/assets/js/login.js` debes editar la linea en la que pone `localStorage.setItem("hc_base_url", "http://localhost/HealthCare/");` y el nombre del servidor si está en la red. Si estás trabajando en local para probar la aplicación, déjalo como está. 
+9. Para empezar a usar la aplicación, es necesario que crees un usuario de tipo Gerente desde el administrador que ya hay creado. **El usuario y la clave por defecto es root@localhost.com - 12345678**. Para cualquier otro usuario, el usuario es el correo electrónico y la clave es la misma.
+10. Si has realizado todos los pasos correctamente ya deberías tener instalado HealthCare en tu equipo.
 * Nota: Si lo deseas, puedes borrar el controlador y la vista por defecto de CodeIgniter, WelcomeMessage.
 
 ## Configuración
 - Antes de acceder a la página, es necesaria una configuración previa. Sin esta configuración, la aplicación no funcionará correctamente
-
-1. En el archivo `/application/config/config.php`, debes ajustar el valor de `config['base_url']`. Por defecto está puesto el nombre del servidor y debería funcionar, pero puede ser necesario que lo cambies.
-2. En el archivo `/assets/js/login.js` debes editar la linea en la que pone `localStorage.setItem("hc_base_url", "http://localhost/HealthCare/");` y el nombre del servidor si está en la red. Si estás trabajando en local para probar la aplicación, déjalo como está. 
-3. Para empezar a usar la aplicación, es necesario que crees un usuario de tipo Gerente desde el administrador que ya hay creado. **El usuario y la clave por defecto es root@localhost.com - 12345678**. Para cualquier otro usuario, el usuario es el correo electrónico y la clave es la misma.
 
 # Licencias
 Todo el código ha sido hecho desde cero por Alejandro D. (Daext3r) excepto los siguientes elementos en la lista:
