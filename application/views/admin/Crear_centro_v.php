@@ -25,7 +25,7 @@
          </div>
          <div class="col custom-col">
             <label for="gerente">Gerente</label>
-            <input list="gerentes" name="CIU_gerente" class="form-control" id="gerente" placeholder="CIU" autocomplete="off" required>
+            <input list="gerentes" name="CIU_gerente" class="form-control" id="gerente" placeholder="Nombre" autocomplete="off" required>
             <datalist id="gerentes"></datalist>
          </div>
       </div>
