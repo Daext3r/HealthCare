@@ -109,7 +109,7 @@ $(document).ready(function () {
                             $("#citas-cerrar-buscador").click();
                             Swal.fire({
                                 title: 'Cita reservada',
-                                text: 'Se ha confirmado tu cita con ' + $(Array.from($("#medico").children()).filter(elem => elem.value == $("#medico").val())).text(),
+                                text: 'Se ha confirmado tu cita con ' + $("#medico option:selected").text(),
                                 icon: 'success',
                                 onClose: function () { window.location.reload(); }
                             }
