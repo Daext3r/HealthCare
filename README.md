@@ -1,8 +1,8 @@
 # HealthCare
 
 ## Estadísticas del código
-![Code Inspector Score](https://www.code-inspector.com/project/7326/score/svg)
-![Code Inspector Grade](https://www.code-inspector.com/project/7326/status/svg)
+![Code Inspector Score](https://www.code-inspector.com/project/7363/score/svg)
+![Code Inspector Grade](https://www.code-inspector.com/project/7363/status/svg)
 
 ## ¿Qué es HealthCare?
 HealthCare es una aplicación pensada para llevar la administración de un centro de salud. A la plataforma podrán acceder los médicos y los pacientes para realizar distintas tareas tales como pedir citas (pacientes) o realizar informes (médicos) entre muchas otras acciones
