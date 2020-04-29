@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-04-2020 a las 11:01:10
+-- Tiempo de generación: 29-04-2020 a las 17:12:12
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -188,59 +188,6 @@ CREATE TABLE `especialidades` (
 --
 -- RELACIONES PARA LA TABLA `especialidades`:
 --
-
---
--- Volcado de datos para la tabla `especialidades`
---
-
-INSERT INTO `especialidades` (`id`, `denominacion`) VALUES
-(2, 'Alergología'),
-(3, 'Anatomía Patológica'),
-(4, 'Anestesiología y Reanimación'),
-(5, 'Angiología y Cirugía Vascular'),
-(6, 'Aparato Digestivo'),
-(7, 'Cardiología'),
-(8, 'Cirugía Cardiovascular'),
-(9, 'Cirugía General y del Aparato Digestivo'),
-(10, 'Cirugía Oral y Maxilofacial'),
-(11, 'Cirugía Ortopédica y Traumatología'),
-(12, 'Cirugía Pediátrica'),
-(13, 'Cirugía Plástica, Estética y Reparadora'),
-(14, 'Cirugía Torácica'),
-(15, 'Dermatología Médico-Quirúrgica y Venereología'),
-(16, 'Endocrinología y Nutrición'),
-(17, 'Farmacología Clínica'),
-(18, 'Geriatría'),
-(19, 'Hematología y Hemoterapia'),
-(20, 'InmunologíaMedicina del Trabajo'),
-(21, 'Medicina Familiar y Comunitaria'),
-(22, 'Medicina Física y Rehabilitación'),
-(23, 'Medicina Intensiva'),
-(24, 'Medicina Interna'),
-(25, 'Medicina Nuclear'),
-(26, 'Medicina Preventiva y Salud Pública'),
-(27, 'Nefrología'),
-(28, 'Neumología'),
-(29, 'Neurocirugía'),
-(30, 'Neurofisiología Clínica'),
-(31, 'Neurología'),
-(32, 'Obstetricia y Ginecología'),
-(33, 'Oftalmología'),
-(34, 'Oncología Médica'),
-(35, 'Oncología Radioterápica'),
-(36, 'Otorrinolaringología'),
-(37, 'Pediatría y sus Áreas Específica'),
-(38, 'Psiquiatría'),
-(39, 'Radiodiagnóstico'),
-(40, 'Reumatología'),
-(41, 'Urología'),
-(42, 'Enfermería de Salud Mental'),
-(43, 'Enfermería de Cuidados Médico-Qu'),
-(44, 'Enfermería del Trabajo'),
-(45, 'Enfermería Familiar y Comunitari'),
-(46, 'Enfermería Geriátrica'),
-(47, 'Enfermería Obstétrico-Ginecológi'),
-(48, 'Enfermería Pediátrica ');
 
 -- --------------------------------------------------------
 
@@ -430,6 +377,7 @@ CREATE TABLE `vista_administrativos_centros` (
 CREATE TABLE `vista_citas_pacientes_facultativos` (
 `nombre_paciente` varchar(97)
 ,`nombre_medico` varchar(97)
+,`CIU_facultativo` varchar(64)
 ,`fecha` date
 ,`hora` time
 ,`id` int(11)
@@ -504,7 +452,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vista_citas_pacientes_facultativos`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_citas_pacientes_facultativos`  AS  select (select `vista_usuarios_pacientes`.`nombre_completo` from `vista_usuarios_pacientes` where (`vista_usuarios_pacientes`.`CIU` = `citas`.`CIU_paciente`)) AS `nombre_paciente`,(select `vista_usuarios_facultativos`.`nombre_completo` from `vista_usuarios_facultativos` where (`vista_usuarios_facultativos`.`CIU` = `citas`.`CIU_facultativo`)) AS `nombre_medico`,`citas`.`fecha` AS `fecha`,`citas`.`hora` AS `hora`,`citas`.`id` AS `id`,`citas`.`CIU_paciente` AS `CIU_paciente`,`citas`.`estado` AS `estado` from `citas` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_citas_pacientes_facultativos`  AS  select (select `vista_usuarios_pacientes`.`nombre_completo` from `vista_usuarios_pacientes` where (`vista_usuarios_pacientes`.`CIU` = `citas`.`CIU_paciente`)) AS `nombre_paciente`,(select `vista_usuarios_facultativos`.`nombre_completo` from `vista_usuarios_facultativos` where (`vista_usuarios_facultativos`.`CIU` = `citas`.`CIU_facultativo`)) AS `nombre_medico`,(select `vista_usuarios_facultativos`.`CIU` from `vista_usuarios_facultativos` where (`vista_usuarios_facultativos`.`CIU` = `citas`.`CIU_facultativo`)) AS `CIU_facultativo`,`citas`.`fecha` AS `fecha`,`citas`.`hora` AS `hora`,`citas`.`id` AS `id`,`citas`.`CIU_paciente` AS `CIU_paciente`,`citas`.`estado` AS `estado` from `citas` ;
 
 -- --------------------------------------------------------
 
@@ -685,7 +633,7 @@ ALTER TABLE `episodios`
 -- AUTO_INCREMENT de la tabla `especialidades`
 --
 ALTER TABLE `especialidades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `informes`
