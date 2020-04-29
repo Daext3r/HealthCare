@@ -1,0 +1,49 @@
+.contenido {
+   max-height: 85vh;
+
+   display: flex;
+   justify-content: center;
+   padding-top: 1em;
+}
+
+/* width */
+.table::-webkit-scrollbar {
+   width: 10px;
+   padding-left: 3em;
+ }
+ 
+ /* Track */
+ .table::-webkit-scrollbar-track {
+   display: none;
+ }
+  
+ /* Handle */
+ .table::-webkit-scrollbar-thumb {
+   background: rgb(177, 176, 176); 
+   border-radius: 1em;
+ }
+ 
+ /* Handle on hover */
+ .table::-webkit-scrollbar-thumb:hover {
+   background: #555; 
+ }
+
+.table {
+   display: block;
+   overflow-y: scroll !important;
+   width: 80%;
+}
+
+tbody {
+   width: 200%!important;
+   max-height: 65vh!important;
+}
+
+thead tr th {
+   /*asignamos un width a la cabecera para que el tbody ocupe todo el ancho de la tabla*/
+   width: 1%;
+}
+
+th[scope="row"] {
+   width: 4%;
+}
