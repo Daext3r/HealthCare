@@ -1,30 +1,19 @@
 //este archivo se cargará en gran parte de la aplicacion ya que es ampliamente usado
 $(document).ready(function () {
+
+   $("section.contenido").eq(0).fadeIn(500);
+
    // ===== RELOJ =====
    let dias = new Array("domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sabado");
    let meses = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
 
    function actualizarFecha() {
       let d = new Date();
-      let cadena = "Hoy es ";
-      cadena += dias[d.getUTCDay()] + " ";
-      cadena += d.getUTCDate() + " de ";
+      //formamos la cadena del reloj
+      let cadena = `Hoy es ${dias[d.getUTCDay()]} ${d.getUTCDate()} de ${meses[d.getUTCMonth()]} de ${d.getUTCFullYear()} | 
+      ${d.getHours()}:${d.getMinutes().toString().length == 1 ? "0":""}${d.getMinutes()}`;
 
-      cadena += meses[d.getUTCMonth()] + " de ";
-      cadena += d.getUTCFullYear();
-
-      cadena += " | ";
-
-      cadena += d.getHours() + ":";
-
-      //si los minutos son de 0 a 9
-      if (d.getMinutes().toString().length == 1) {
-         //añade un 0 delante
-         cadena += "0" + d.getMinutes();
-      } else {
-         //de lo contrario pone la fecha
-         cadena += d.getMinutes();
-      }
+      //la mostramos 
       $("#reloj").text(cadena);
    }
 

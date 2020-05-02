@@ -15,7 +15,6 @@ function crearCita(cita) {
    </tr>`);
 
    $("#tabla").append($(contenido));
-
 }
 
 function estaAtendido(ciu, nombre) {
@@ -25,7 +24,6 @@ function estaAtendido(ciu, nombre) {
 
    //si no hay pacientes ya atendidos, directamente damos la opcion de atender
    if (!atendidos) return `<button class="btn btn-outline-primary" onclick="atender('${ciu}','${nombre}', this)">Atender</button>`;
-
 
    //revisamos todos los pacientes atendidos para ver si el paciente desde el que se llama la funcion lo esta
    for (let paciente of atendidos) {
@@ -84,7 +82,6 @@ $(document).ready(() => {
 
       for (let cita of data) {
          crearCita(cita);
-         console.log(cita);
       }
    })
 });
