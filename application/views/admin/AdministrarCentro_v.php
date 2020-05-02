@@ -1,4 +1,4 @@
-<section class="contenido">
+<section class="contenido" style="display: none">
    <div class="my-row row" id="buscador">
       <div class="my-col col">
          <label for="centro">Centro</label>

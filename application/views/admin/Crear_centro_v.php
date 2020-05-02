@@ -1,4 +1,4 @@
-<section class="contenido">
+<section class="contenido" style="display: none">
    <form methos="POST" id="form">
 
       <div class="form-row">

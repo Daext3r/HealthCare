@@ -1,4 +1,4 @@
-<section class="contenido">
+<section class="contenido" style="display: none">
    <div class="container" id="administrativos">
       <div id="paginas">
       </div>

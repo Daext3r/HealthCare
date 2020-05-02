@@ -1,4 +1,4 @@
-        <section class="contenido">
+        <section class="contenido" style="display: none">
             <?php
             switch ($this->session->flashdata("info")) {
                 case "error_clave":

@@ -8,7 +8,7 @@ $max = new DateTime('now');
 $max->add(new DateInterval('P14D'));
 $max = $max->format("Y-m-d");
 ?>
-<section class="contenido">
+<section class="contenido" style="display: none">
     <table class="table table-bordered">
 
         <tr class="table-primary">

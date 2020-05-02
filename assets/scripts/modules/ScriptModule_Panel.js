@@ -1,7 +1,14 @@
 //este archivo se cargará en gran parte de la aplicacion ya que es ampliamente usado
 $(document).ready(function () {
 
-   $("section.contenido").eq(0).fadeIn(500);
+   $("a").click(function(e) {
+      e.preventDefault();
+      $("section.contenido").eq(0).fadeOut(200);
+      setTimeout(() => {window.location.href = this.href;}, 200);
+      
+   });
+
+   $("section.contenido").eq(0).fadeIn(200);
 
    // ===== RELOJ =====
    let dias = new Array("domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sabado");

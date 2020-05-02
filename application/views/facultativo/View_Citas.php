@@ -1,4 +1,4 @@
-<section class="contenido">
+<section class="contenido" style="display: none">
 
    <table class="table">
       <thead class="table-primary">

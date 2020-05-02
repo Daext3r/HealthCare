@@ -99,6 +99,25 @@
             <a href="<?php echo base_url() ?>facultativo/citas">
                <li class="list-group-item">Citas</li>
             </a>
+            <a href="<?php echo base_url() ?>facultativo/derivacion">
+               <li class="list-group-item">Derivación</li>
+            </a>
+            <a href="<?php echo base_url() ?>facultativo/informes/nuevo">
+               <li class="list-group-item">Nuevo Informe</li>
+            </a>
+            <a href="<?php echo base_url() ?>facultativo/informes/historial">
+               <li class="list-group-item">Hist. Informes</li>
+            </a>
+            <a href="<?php echo base_url() ?>facultativo/citas/nueva">
+               <li class="list-group-item">Nueva Analítica</li>
+            </a>
+            <a href="<?php echo base_url() ?>facultativo/citas/historial">
+               <li class="list-group-item">Hist. Analíticas</li>
+            </a>
+            <a href="<?php echo base_url() ?>facultativo/tratamientos">
+               <li class="list-group-item">Tratamientos</li>
+            </a>
+            
             <?php
                   break;
                case 'administrativo':
