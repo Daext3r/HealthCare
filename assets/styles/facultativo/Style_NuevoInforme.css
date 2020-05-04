@@ -1,0 +1,54 @@
+.cabecera {
+   display: flex;
+   flex-wrap: wrap;
+   width: 90%
+}
+
+input,select {
+   display: inline-block;
+}
+
+label {
+   display: block;
+}
+
+#contenidoInforme {
+   border: 1px solid gray;
+   border-radius: 0.5em;
+   overflow-y: scroll;
+   height: 65vh;
+   width: 90%;
+}
+
+.contenido {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+}
+
+
+#guardar {
+   width: 80%;
+}
+
+/* width */
+#contenidoInforme::-webkit-scrollbar {
+   width: 10px;
+   padding-left: 3em;
+ }
+ 
+ /* Track */
+ #contenidoInforme::-webkit-scrollbar-track {
+   display: none;
+ }
+  
+ /* Handle */
+ #contenidoInforme::-webkit-scrollbar-thumb {
+   background: rgb(177, 176, 176); 
+   border-radius: 1em;
+ }
+ 
+ /* Handle on hover */
+ #contenidoInforme::-webkit-scrollbar-thumb:hover {
+   background: #555; 
+ }
