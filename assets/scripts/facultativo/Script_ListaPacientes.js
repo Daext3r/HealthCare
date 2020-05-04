@@ -1,10 +1,12 @@
 /**
  * 
+ * ELEMENTOS A AÑADIR EN PAGINAS PARA USAR ESTE SCRIPT
     <!--Lista de pacientes que está atendiendo-->
    <nav id="pacientes">
       <div class="agregarPaciente" title="Buscar paciente" data-toggle="modal" data-target="#modal-buscar-paciente">
          <i class="fas fa-plus"></i>
       </div>
+   </nav>
 
 
       <!-- Modal -->
@@ -90,7 +92,7 @@ function seleccionarPaciente(e) {
    
    //si todo se ha ejecutado, disparamos un evento PROPIO que nos servirá en otras partes de la aplicacion
    //lo disparamos al contenedor de todos los pacientes
-   document.getElementById("pacientes").dispatchEvent(new Event('cambioPaciente', { 'CIU': nuevoSeleccionado.dataset.CIU, 'nombre' : nuevoSeleccionado.children[0].innerText }));
+   document.getElementById("pacientes").dispatchEvent(new CustomEvent('cambioPaciente', { 'detail' : {'CIU': nuevoSeleccionado.dataset.CIU, 'nombre' : nuevoSeleccionado.children[0].innerText }}));
 
 }
 

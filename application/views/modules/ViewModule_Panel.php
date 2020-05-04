@@ -99,6 +99,9 @@
             <a href="<?php echo base_url() ?>facultativo/citas">
                <li class="list-group-item">Citas</li>
             </a>
+            <a href="<?php echo base_url() ?>facultativo/episodios">
+               <li class="list-group-item">Episodios</li>
+            </a>
             <a href="<?php echo base_url() ?>facultativo/derivacion">
                <li class="list-group-item">Derivación</li>
             </a>

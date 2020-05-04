@@ -27,6 +27,14 @@ class Pacientes_controller extends CI_Controller
      
 
       echo $this->Pacientes_model->alta($usuario, $medico, $enfermero, $grupo_sanguineo);
+   }
 
+   public function crearEpisodio()
+   {
+      echo $this->Pacientes_model->crearEpisodio($this->input->post("descripcion"), $this->input->post("especialidad"), $this->input->post("paciente"));
+   }
+
+   public function leerEpisodios() {
+      echo json_encode($this->Pacientes_model->leerEpisodios($this->input->post("ciu")));
    }
 }

@@ -38,4 +38,16 @@ class Pacientes_model extends CI_Model
          return 0;
       }
    }
+
+   public function crearEpisodio($descripcion, $especialidad, $paciente) {
+      if($this->db->insert('episodios', array("CIU_paciente" => $paciente, "especialidad" => $especialidad, "descripcion" => $descripcion))) {
+         return 1;
+      } else {
+         return 0;
+      }
+   }
+
+   public function leerEpisodios($paciente) {
+      return $this->db->query("SELECT id, CIU_paciente, descripcion, fecha_creacion, ult_actualizacion, cerrado, (SELECT denominacion from especialidades WHERE especialidades.id = episodios.especialidad) AS especialidad FROM episodios WHERE CIU_paciente = ?", array($paciente))->result_array();
+   }
 }
