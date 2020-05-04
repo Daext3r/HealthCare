@@ -46,10 +46,52 @@ function agregarPaciente(paciente) {
    let fade = document.createElement("span");
    fade.classList.add("myfade");
 
+
+   let x = document.createElement("span");
+   x.classList.add("quitar");
+   x.innerHTML = "&times;";
+
+   x.addEventListener("click", () => {
+      //quitamos el div del dom
+      div.remove();
+
+      //quitamos el paciente de localstorage
+      localStorage.setItem("hc_lista_pacientes", JSON.stringify(JSON.parse(localStorage.getItem("hc_lista_pacientes")).filter(pacienteLista => pacienteLista.CIU != paciente.CIU)));
+   });
+
+   fade.appendChild(x);
+
    div.appendChild(nombre);
    div.appendChild(fade);
+   div.addEventListener("click", (e) => seleccionarPaciente(e));
 
    $("#pacientes").append($(div));
+}
+
+function seleccionarPaciente(e) {
+   //si hacemos click en otro sitio que no sea en el fade (por ejemplo, la cruz de quitar) cancelamos el evento;
+   if (!e.target.classList.contains("myfade")) return;
+
+   //buscamos el elemento que está seleccionado actualmente
+   let seleccionado = document.getElementsByClassName("seleccionado")[0];
+
+   let nuevoSeleccionado = e.target.parentNode;
+   //le quitamos la clase de seleccionado y se la ponemos al nuevo seleccionado
+   seleccionado.classList.remove("seleccionado");
+   nuevoSeleccionado.classList.add("seleccionado");
+
+   //cambiamos los datos en localstorage
+   let pacientes = JSON.parse(localStorage.getItem("hc_lista_pacientes"));
+   pacientes.filter(paciente => paciente.CIU == seleccionado.dataset.CIU)[0].seleccionado = false;
+   pacientes.filter(paciente => paciente.CIU == nuevoSeleccionado.dataset.CIU)[0].seleccionado = true;
+
+   //guardamos los datos en localstorage
+   localStorage.setItem("hc_lista_pacientes", JSON.stringify(pacientes));
+   
+   //si todo se ha ejecutado, disparamos un evento PROPIO que nos servirá en otras partes de la aplicacion
+   //lo disparamos al contenedor de todos los pacientes
+   document.getElementById("pacientes").dispatchEvent(new Event('cambioPaciente', { 'CIU': nuevoSeleccionado.dataset.CIU, 'nombre' : nuevoSeleccionado.children[0].innerText }));
+
 }
 
 $(document).ready(() => {
@@ -76,7 +118,7 @@ $(document).ready(() => {
       if ($("#usuario").val().trim() == "") return;
 
       interval = setTimeout(function () {
-         $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/buscarUsuarioCiu", { ciu: $("#usuario").val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/buscarUsuarioCiuNombre", { dato: $("#usuario").val() }, (data) => {
             data = JSON.parse(data);
             for (let usuario of data) {
                let option = document.createElement("option");
@@ -99,6 +141,18 @@ $(document).ready(() => {
          if (localStorage.getItem("hc_lista_pacientes") != null) {
             for (let paciente of JSON.parse(localStorage.getItem("hc_lista_pacientes"))) {
                pacientes.push(paciente);
+            }
+         }
+
+         //comprobamos si es el primer paciente. si lo es, lo marcamos como seleccionado
+         if (JSON.parse(localStorage.getItem("hc_lista_pacientes")) == null || JSON.parse(localStorage.getItem("hc_lista_pacientes")).length == 0) data[0].seleccionado = true;
+
+         //comprobamos si el paciente ya existe en localstorage. si existe, no lo añadimos
+         for (let paciente of pacientes) {
+            if (paciente.CIU == data[0].CIU) {
+               //cerramos modal y no hacemos nada mas
+               $("#modal-buscar-paciente").modal('toggle');
+               return;
             }
          }
 
