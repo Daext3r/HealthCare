@@ -87,7 +87,7 @@ class Usuarios_model extends CI_Model
       $this->db->like('CIU', $dato);
       $this->db->or_like('nombre_completo', $dato);
       $this->db->group_by('CIU');
-      return $this->db->get("vista_usuarios_nombre");
+      return $this->db->get("vista_usuarios_nombre")->result_array();
    }
 
    public function leerDatosUsuario($ciu)
