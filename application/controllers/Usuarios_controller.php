@@ -87,6 +87,10 @@ class Usuarios_controller extends CI_Controller
       echo json_encode($this->Usuarios_model->buscarUsuarioNombre($this->input->post("nombre")));
    }
 
+   public function buscarUsuarioCiuNombre() {
+      echo json_encode($this->Usuarios_model->buscarUsuarioCiuNombre($this->input->post("dato")));
+   }
+
    public function leerDatosUsuario()
    {
       echo json_encode($this->Usuarios_model->leerDatosUsuario($this->input->post("ciu")));
