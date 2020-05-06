@@ -125,7 +125,7 @@ $(document).ready(() => {
       }
 
       //guardamos el informe
-      $.post(localStorage.getItem("hc_base_url") + "Informes_controller/guardarInforme", { contenido: textoPaginas.join("===NEW_PAGE==="), paciente: $("#pacienteInforme").val(), episodio: $("#episodio").val(), privado: $("#privado")[0].dataset.privado == "true" ? 1 : 0 }, async (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "Informes/guardarInforme", { contenido: textoPaginas.join("===NEW_PAGE==="), paciente: $("#pacienteInforme").val(), episodio: $("#episodio").val(), privado: $("#privado")[0].dataset.privado == "true" ? 1 : 0 }, async (data) => {
          if (data == 1) {
             await Swal.fire(
                'Hecho',
