@@ -21,6 +21,11 @@
       <label for="guardar">Guardar informe</label>
          <button id="guardar" class="btn btn-success">Guardar</button>
       </div>
+
+      <div class="col">
+      <label for="privado">Informe privado</label>
+         <button id="privado" class="btn btn-success" data-privado="false"><i class="fas fa-unlock"></i></button>
+      </div>
    </div>
    <div id="contenidoInforme" contenteditable>
 

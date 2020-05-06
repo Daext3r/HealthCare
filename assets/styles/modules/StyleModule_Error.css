@@ -1,0 +1,27 @@
+body {
+   background-color: #ccc;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+   width: 100vw;
+   height: 100vh;
+}
+
+i {
+   font-size: 300px;
+   display: block;
+   margin-bottom: 0.3em;
+}
+
+.center {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+}
+
+h4 {
+   width: 100%;
+   text-align: center;
+}
