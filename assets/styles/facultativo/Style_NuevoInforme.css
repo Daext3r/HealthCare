@@ -4,7 +4,7 @@
    width: 90%
 }
 
-input,select {
+input, select {
    display: inline-block;
 }
 
@@ -26,7 +26,6 @@ label {
    justify-content: center;
 }
 
-
 #guardar {
    width: 80%;
 }
@@ -35,20 +34,29 @@ label {
 #contenidoInforme::-webkit-scrollbar {
    width: 10px;
    padding-left: 3em;
- }
- 
- /* Track */
- #contenidoInforme::-webkit-scrollbar-track {
+}
+
+/* Track */
+#contenidoInforme::-webkit-scrollbar-track {
    display: none;
- }
-  
- /* Handle */
- #contenidoInforme::-webkit-scrollbar-thumb {
-   background: rgb(177, 176, 176); 
+}
+
+/* Handle */
+#contenidoInforme::-webkit-scrollbar-thumb {
+   background: rgb(177, 176, 176);
    border-radius: 1em;
- }
- 
- /* Handle on hover */
- #contenidoInforme::-webkit-scrollbar-thumb:hover {
-   background: #555; 
- }
+}
+
+/* Handle on hover */
+#contenidoInforme::-webkit-scrollbar-thumb:hover {
+   background: #555;
+}
+
+/*Clase para las paginas de PDF que se puedan generar.
+ El tamaño es absoluto ya que al generar pdfs los mismos tienen un tamaño absoluto*/
+.pagina {
+   width: 785px;
+   max-width: 785px;
+   
+   white-space: pre-wrap;
+}
