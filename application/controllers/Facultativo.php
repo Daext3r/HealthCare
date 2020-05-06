@@ -70,9 +70,6 @@ class Facultativo extends CI_Controller
    public function verinforme($id = null)
    {
       require APPPATH . "vendor/autoload.php";
-
-      $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
-      $img = $generator->getBarcode('231231234234234234242423424234234231233', $generator::TYPE_CODE_128, 1, 40);
      
       $defaultConfig = (new Mpdf\Config\ConfigVariables())->getDefaults();
       $fontDirs = $defaultConfig['fontDir'];
