@@ -14,28 +14,26 @@ $(document).ready(() => {
       cargarEpisodios(e.detail.CIU);
    });
 
+   $("#privado").click(function () {
+      let estadoActual = this.dataset.privado;
 
-});
+      if (estadoActual == "true") {
+         //si esta privado lo ponemos como publico
+         this.dataset.privado = "false";
 
-function cargarEpisodios(ciu) {
-   $.post(localStorage.getItem("hc_base_url") + "Pacientes_controller/leerEpisodios", { ciu: ciu }, (data) => {
-      data = JSON.parse(data);
+         //cambiamos la clase y el icono
+         this.classList.remove("btn-danger");
+         this.classList.add("btn-success");
+         this.innerHTML = "<i class='fas fa-unlock'></i>";
+      } else {
+         //si esta publico lo ponemos como privado
+         this.dataset.privado = "true";
 
-      //quitamos todos los episodios del select
-      $("#episodio").html("");
-
-      for (let episodio of data) {
-         let option = document.createElement("option");
-         option.value = episodio.id;
-         option.innerText = episodio.descripcion;
-         $("#episodio").append($(option));
+         //cambiamos la clase y el icono
+         this.classList.remove("btn-success");
+         this.classList.add("btn-danger");
+         this.innerHTML = "<i class='fas fa-lock'></i>";
       }
-
-      //por ultimo añadimos una opcion extra para informes sin episodio
-      let option = document.createElement("option");
-      option.value = "NULL";
-      option.innerText = "Ninguno";
-      $("#episodio").append($(option));
    });
 
    $("#guardar").click(() => {
@@ -49,10 +47,7 @@ function cargarEpisodios(ciu) {
             let nuevaParte = [];
             nuevaParte.push(texto[i].split("\n").shift());
 
-
-
             for (let n = 0; n < texto[i].split("\n").length / 2; n++) {
-
                nuevaParte.push("\n");
             }
 
@@ -130,36 +125,59 @@ function cargarEpisodios(ciu) {
       }
 
       //guardamos el informe
-      $.post(localStorage.getItem("hc_base_url") + "Informes_controller/guardarInforme", { contenido: textoPaginas.join("===NEW_PAGE==="), paciente: $("#pacienteInforme").val(), episodio: $("#episodio").val() }, async (data) => {
-         if(data == 1) {
+      $.post(localStorage.getItem("hc_base_url") + "Informes_controller/guardarInforme", { contenido: textoPaginas.join("===NEW_PAGE==="), paciente: $("#pacienteInforme").val(), episodio: $("#episodio").val(), privado: $("#privado")[0].dataset.privado == "true" ? 1 : 0 }, async (data) => {
+         if (data == 1) {
             await Swal.fire(
                'Hecho',
                'Se ha guardado el informe',
                'success'
-             );
+            );
 
-             window.location.reload();
+            window.location.reload();
          }
       });
-
-      function agregarPalabra(palabra, paginaActual) {
-         palabra += " ";
-         //si la altura actual de la pagina no es menor a 960, devolvemos false
-         if (paginaActual.offsetHeight < 960) {
-            //añadimos la palabra a la pagina
-            paginaActual.innerText += palabra;
-
-            //miramos que la altura sea menor a 960
-            if (paginaActual.offsetHeight < 960) {
-               return true;
-            } else {
-               //si la palabra no cabe, quitamos la palabra y devolvemos false
-               paginaActual.innerText = paginaActual.innerText.substring(0, paginaActual.innerText.length - palabra.length);
-               return false;
-            }
-         } else {
-            return false;
-         }
-      }
    });
+});
+
+function agregarPalabra(palabra, paginaActual) {
+   palabra += " ";
+   //si la altura actual de la pagina no es menor a 960, devolvemos false
+   if (paginaActual.offsetHeight < 960) {
+      //añadimos la palabra a la pagina
+      paginaActual.innerText += palabra;
+
+      //miramos que la altura sea menor a 960
+      if (paginaActual.offsetHeight < 960) {
+         return true;
+      } else {
+         //si la palabra no cabe, quitamos la palabra y devolvemos false
+         paginaActual.innerText = paginaActual.innerText.substring(0, paginaActual.innerText.length - palabra.length);
+         return false;
+      }
+   } else {
+      return false;
+   }
+}
+
+function cargarEpisodios(ciu) {
+   $.post(localStorage.getItem("hc_base_url") + "Pacientes_controller/leerEpisodios", { ciu: ciu }, (data) => {
+      data = JSON.parse(data);
+
+      //quitamos todos los episodios del select
+      $("#episodio").html("");
+
+      for (let episodio of data) {
+         let option = document.createElement("option");
+         option.value = episodio.id;
+         option.innerText = episodio.descripcion;
+         $("#episodio").append($(option));
+      }
+
+      //por ultimo añadimos una opcion extra para informes sin episodio
+      let option = document.createElement("option");
+      option.value = "NULL";
+      option.innerText = "Ninguno";
+      $("#episodio").append($(option));
+   });
+
 }
