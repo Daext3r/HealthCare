@@ -54,12 +54,6 @@ function agregarPaciente(paciente) {
    x.innerHTML = "&times;";
 
    x.addEventListener("click", () => {
-      //si a la hora de quitar el paciente está seleccionado, seleccionamos otro si es que hay
-      if (paciente.selecionado) {
-         //simulamos un click en el primer paciente que haya
-         $("#pacientes").children().eq(0).click();
-      }
-
       //quitamos el div del dom
       div.remove();
 
@@ -91,7 +85,7 @@ function seleccionarPaciente(e) {
    pacientes.filter(paciente => paciente.CIU == nuevoSeleccionado.dataset.CIU)[0].seleccionado = true;
    
    nuevoSeleccionado.classList.add("seleccionado");
-   
+
    //si el seleccionado existe
    if (seleccionado) {
       seleccionado.classList.remove("seleccionado");
