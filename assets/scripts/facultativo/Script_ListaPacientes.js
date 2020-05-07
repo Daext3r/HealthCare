@@ -54,6 +54,12 @@ function agregarPaciente(paciente) {
    x.innerHTML = "&times;";
 
    x.addEventListener("click", () => {
+      //si a la hora de quitar el paciente está seleccionado, seleccionamos otro si es que hay
+      if (paciente.selecionado) {
+         //simulamos un click en el primer paciente que haya
+         $("#pacientes").children().eq(0).click();
+      }
+
       //quitamos el div del dom
       div.remove();
 
@@ -79,20 +85,25 @@ function seleccionarPaciente(e) {
 
    let nuevoSeleccionado = e.target.parentNode;
    //le quitamos la clase de seleccionado y se la ponemos al nuevo seleccionado
-   seleccionado.classList.remove("seleccionado");
-   nuevoSeleccionado.classList.add("seleccionado");
 
    //cambiamos los datos en localstorage
    let pacientes = JSON.parse(localStorage.getItem("hc_lista_pacientes"));
-   pacientes.filter(paciente => paciente.CIU == seleccionado.dataset.CIU)[0].seleccionado = false;
    pacientes.filter(paciente => paciente.CIU == nuevoSeleccionado.dataset.CIU)[0].seleccionado = true;
+   
+   nuevoSeleccionado.classList.add("seleccionado");
+   
+   //si el seleccionado existe
+   if (seleccionado) {
+      seleccionado.classList.remove("seleccionado");
+      pacientes.filter(paciente => paciente.CIU == seleccionado.dataset.CIU)[0].seleccionado = false;
+   }
 
    //guardamos los datos en localstorage
    localStorage.setItem("hc_lista_pacientes", JSON.stringify(pacientes));
-   
+
    //si todo se ha ejecutado, disparamos un evento PROPIO que nos servirá en otras partes de la aplicacion
    //lo disparamos al contenedor de todos los pacientes
-   document.getElementById("pacientes").dispatchEvent(new CustomEvent('cambioPaciente', { 'detail' : {'CIU': nuevoSeleccionado.dataset.CIU, 'nombre' : nuevoSeleccionado.children[0].innerText }}));
+   document.getElementById("pacientes").dispatchEvent(new CustomEvent('cambioPaciente', { 'detail': { 'CIU': nuevoSeleccionado.dataset.CIU, 'nombre': nuevoSeleccionado.children[0].innerText } }));
 
 }
 
