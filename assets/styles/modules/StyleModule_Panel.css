@@ -35,7 +35,8 @@ body {
    align-items: center;
    justify-content: center;
    padding-left: 0.4em;
-   padding-right  : 0.4em;
+   padding-right: 0.4em;
+   width: 85%;
 }
 
 .headerItem {
@@ -47,13 +48,7 @@ body {
    flex-wrap: nowrap;
 }
 
-#reloj {
-   flex-basis: 45%;
-   min-width: 310px;
-}
-
 #logout {
-   
    height: 100%;
    text-align: center;
    display: flex;
@@ -65,12 +60,6 @@ body {
 #notificaciones-text {
    margin-left: 0.5em;
    margin-right: 0.5em;
-}
-
-
-#logout p {
-   padding-left: 0.5em;
-   margin: 0;
 }
 
 .badge {
@@ -161,23 +150,30 @@ body {
    display: block;
 }
 
-.perfil {
-   flex-basis: 15%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   height: 100%;
-
-   cursor: pointer;
-}
-.perfil i {
-   display: inline-block;
-   margin-left: 0.3em;
-}
 .dropdown-content a:hover {
    background-color: #ddd;
 }
 
 .dropdown:hover .dropdown-content {
    display: block;
+}
+
+.reloj {
+   flex-grow: 2.5;
+}
+
+.perfil {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+#logout {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+#logout span {
+   margin-left: 0.3em;
 }
