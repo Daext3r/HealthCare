@@ -78,10 +78,14 @@ function seleccionarPaciente(e) {
    let seleccionado = document.getElementsByClassName("seleccionado")[0];
 
    let nuevoSeleccionado = e.target.parentNode;
-   //le quitamos la clase de seleccionado y se la ponemos al nuevo seleccionado
 
+   //si el seleccionado anterior y el nuevo es el mismo, cancelamos
+   if(seleccionado == nuevoSeleccionado) return;
+
+   //le quitamos la clase de seleccionado y se la ponemos al nuevo seleccionado
    //cambiamos los datos en localstorage
    let pacientes = JSON.parse(localStorage.getItem("hc_lista_pacientes"));
+   
    pacientes.filter(paciente => paciente.CIU == nuevoSeleccionado.dataset.CIU)[0].seleccionado = true;
    
    nuevoSeleccionado.classList.add("seleccionado");
@@ -91,7 +95,7 @@ function seleccionarPaciente(e) {
       seleccionado.classList.remove("seleccionado");
       pacientes.filter(paciente => paciente.CIU == seleccionado.dataset.CIU)[0].seleccionado = false;
    }
-
+   
    //guardamos los datos en localstorage
    localStorage.setItem("hc_lista_pacientes", JSON.stringify(pacientes));
 
