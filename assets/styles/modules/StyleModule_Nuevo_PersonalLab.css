@@ -1,0 +1,45 @@
+.my-col, .my-row {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: flex-end;
+}
+
+.my-row {
+   width: 80%;
+}
+
+.contenido {
+   display: flex;
+   align-items: center;
+   justify-content: space-evenly;
+   flex-wrap: wrap;
+}
+
+h4 {
+   width: 100%;
+   text-align: center;
+   margin: 1em;
+}
+
+
+label {
+   width: 100%;
+}
+
+.box {
+   border: 1px solid gray;
+   border-radius: 0.2em;
+   flex-basis: 45%;
+   padding: 2em;
+   height: 30%;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+}
+
+#registrar {
+   align-self: flex-start;
+}
