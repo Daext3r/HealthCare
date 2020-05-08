@@ -196,7 +196,7 @@
                   <div class="list-group-item">Nuevo facultativo</div>
                </a>
                <div class="separador w-100"></div>
-               <a href="<?php echo base_url() ?>administrativo/nuevo/personal_lab">
+               <a href="<?php echo base_url() ?>administrativo/nuevo/laboratorio">
                   <div class="list-group-item">Nuevo Técnico Lab.</div>
                </a>
                <div class="separador w-100"></div>

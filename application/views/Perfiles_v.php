@@ -40,7 +40,7 @@
       }
 
       //si tiene acceso al perfil de laboratorio
-      if ($perfiles['personal_lab'] == true) {
+      if ($perfiles['laboratorio'] == true) {
       ?>
          <div class="card" style="width: 18rem;">
             <div class="card-logo">

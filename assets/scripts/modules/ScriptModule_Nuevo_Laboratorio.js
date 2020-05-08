@@ -71,7 +71,7 @@ $(document).ready(() => {
       let usuario = $("#usuario").val().trim();
       let centro = $("#centro").val().trim();
 
-      $.post(localStorage.getItem("hc_base_url") + "Personal_controller/registrarPersonal", { usuario: usuario, centro: centro }, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "Laboratorio_controller/registrarPersonal", { usuario: usuario, centro: centro }, (data) => {
          if (data == 1) {
             Swal.fire(
                'Hecho',

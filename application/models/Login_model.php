@@ -65,11 +65,11 @@ class Login_model extends CI_Model
         //comprobamos si el usuario es personal de laboratorio
         $this->db->select("ciu_personal");
         $this->db->where("ciu_personal", $ciu);
-        $result = $this->db->get("personal_laboratorio");
+        $result = $this->db->get("laboratorio");
         if ($result->row()) {
-            $perfiles['personal_lab'] = true;
+            $perfiles['laboratorio'] = true;
         } else {
-            $perfiles['personal_lab'] = false;
+            $perfiles['laboratorio'] = false;
         }
 
 

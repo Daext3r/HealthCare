@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Personal_controller extends CI_Controller
+class Laboratorio_controller extends CI_Controller
 {
    public function __construct() {
       parent::__construct();
