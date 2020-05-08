@@ -1,5 +1,5 @@
 class Informe {
-   constructor(id, privado, episodio, fecha, hora, facultativo, especialidad) {
+   constructor(id, privado, episodio, fecha, facultativo, especialidad) {
       this.id = id;
       this.privado = privado;
       this.episodio = episodio;

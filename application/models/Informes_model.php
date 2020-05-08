@@ -9,7 +9,7 @@ class Informes_model extends CI_Model
    }
 
    //leemos los informes como paciente
-   public function leerListaInformesPaciente($ciu)
+   public function leerListaInformes($ciu)
    {
       //leemos todos los informes de este usuario
       $this->db->select("id, privado, episodio, fecha, nombre_completo_medico, especialidad");
@@ -20,11 +20,6 @@ class Informes_model extends CI_Model
       $informes = $query->result_array();
 
       return $informes;
-   }
-
-   //leemos los informes como Facultativo
-   public function leerListaInformesFacultativo($ciu) {
-
    }
 
    public function guardarInforme($contenido, $fac, $paciente, $episodio, $fecha, $hora)

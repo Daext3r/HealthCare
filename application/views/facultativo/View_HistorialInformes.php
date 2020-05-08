@@ -4,33 +4,35 @@
          <i class="fas fa-plus"></i>
       </div>
    </nav>
-   <div class="cabecera">
-      <div class="col">
-         <label for="pacienteInforme">Paciente:</label>
-         <input type="text" id="pacienteInforme" disabled class="form-control">
-      </div>
 
+   <div class="filtro">
       <div class="col">
-         <label for="episodio">Episodio</label>
-         <select name="episodio" id="episodio" class="form-control">
-            <option value="NULL">Ninguno</option>
+         <label for="especialidad">Especialidad</label>
+         <select id="especialidad" class="form-control">
+            <option value="todas" selected>Todas</option>
          </select>
       </div>
-
       <div class="col">
-      <label for="guardar">Guardar informe</label>
-         <button id="guardar" class="btn btn-success">Guardar</button>
+         <label for="episodio">Episodio</label>
+         <select id="episodio" class="form-control">
+            <option value="todos" selected>Todos</option>
+         </select>
       </div>
-
       <div class="col">
-      <label for="privado">Informe privado</label>
-         <button id="privado" class="btn btn-success" data-privado="false"><i class="fas fa-unlock"></i></button>
+         <label for="desde">Desde</label>
+         <input type="date" id="desde" class="form-control">
+      </div>
+      <div class="col">
+      <label for="hasta">Hasta</label>
+         <input type="date" id="hasta" class="form-control">
+      </div>
+      <div class="col">
+         <label for="reset">Borar filtros</label><br>
+         <button id="reset" class="btn btn-primary w-100">Borrar</button>
       </div>
    </div>
-   <div id="contenidoInforme" contenteditable>
-
-   </div>
-
+   <hr>
+   <div class="lista" id="lista"></div>
 </section>
 </div>
 <div class="modal fade" id="modal-buscar-paciente" tabindex="-1" role="dialog">
@@ -49,6 +51,7 @@
          </div>
          <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
          </div>
       </div>
    </div>
