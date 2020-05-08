@@ -17,7 +17,11 @@ class Gerente extends CI_Controller
 
    public function inicio()
    {
-      $this->load->view("modules/ViewModule_Head", array("hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive"), "scripts" => array("utils/common")));
+      $this->load->view("modules/ViewModule_Head", array(
+         "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive"),
+         "scripts" => array("modules/ScriptModule_Panel")
+      ));
+      
       $this->load->view("modules/ViewModule_Panel");
    }
    public function crearUsuario()
@@ -75,7 +79,7 @@ class Gerente extends CI_Controller
             //el formulario de altas es un modulo que puede ser usado por varios tipos de cuenta
             $this->load->view("modules/ViewModule_Nuevo_Paciente");
             break;
-         }
+      }
    }
 
    public function traslados()

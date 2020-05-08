@@ -43,7 +43,7 @@ class Administrativo extends CI_Controller
          case 'facultativo':
             $this->load->view("modules/ViewModule_Head", array(
                "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Nuevo_Facultativo"),
-               "scripts" => array("modules/ScriptModule_Panel", "modules/ScriptModule_Panel")
+               "scripts" => array("modules/ScriptModule_Panel", "modules/ScriptModule_Nuevo_Facultativo")
             ));
 
             $this->load->view("modules/ViewModule_Panel");
