@@ -32,11 +32,15 @@ $(document).ready(function () {
 
    //===== MENU LATERAL =====
    //para cada elemento del menu lateral
-   for (let a of document.getElementsByClassName("list-group")[0].children) {
+   for (let a of document.getElementsByTagName("a")) {
       //si el href coincide con la url actual
       if (a.href == window.location.href) {
          //añade la clase active para que resalte en azul
-         a.children[0].classList.add("active");
+         a.children[0].classList.add("opcion-seleccionada")
+
+         if(a.classList.contains("nested")) {
+            a.parentNode.parentNode.classList.add("opcion-seleccionada");
+         }
       }
    }
 

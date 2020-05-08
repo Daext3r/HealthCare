@@ -102,7 +102,7 @@ body {
 }
 
 .separador {
-   border-top: 1px solid gray;
+   border-top: 1px solid rgba(0, 0, 0, 0.125);
    width: 90%;
 }
 
@@ -111,11 +111,6 @@ body {
    height: 80%;
    margin-left: 1em;
    margin-right: 1em;
-}
-
-.list-group-item {
-   border-radius: 0px !important;
-   border-bottom: 0;
 }
 
 .last {
@@ -159,7 +154,7 @@ body {
 }
 
 .reloj {
-   flex-grow: 2.6;
+   flex-grow: 2.8;
 }
 
 .perfil {
@@ -176,4 +171,39 @@ body {
 
 #logout span {
    margin-left: 0.3em;
+}
+
+.group:hover .content {
+   max-height: 1000px;
+}
+
+.group .content {
+   max-height: 0;
+   overflow: hidden;
+   transition: max-height 2s;
+}
+
+.title {
+   width: 100%;
+   color: #007bff;
+   margin-bottom: 0.3em;
+}
+
+.title i {
+   font-size: 13px;
+   padding-left: 1.5em;
+}
+
+.list-group-item {
+   border: 0;
+   border-radius: 0;
+}
+
+.group {
+}
+
+
+
+.opcion-seleccionada {
+   border-right: 3px solid #007bff;
 }

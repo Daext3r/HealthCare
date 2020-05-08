@@ -16,135 +16,198 @@
       </div>
 
       <div id="secciones">
-         <ul class="list-group">
-            <?php
-            //miramos el tipo del usuario
-            switch ($this->session->userdata('tipo')) {
-                  //si es paciente...
-               case 'paciente':
-            ?>
-                  <a href="<?php echo base_url() ?>paciente/inicio">
-                     <li class="list-group-item">Inicio</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>paciente/citas">
-                     <li class="list-group-item">Citas</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>paciente/tratamientos">
-                     <li class="list-group-item">Tratamientos</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>paciente/informes">
-                     <li class="list-group-item">Informes</li>
-                  </a>
-                  <!--<a href="<?php //echo base_url() 
-                                 ?>paciente/misdatos">
-                     <li class="list-group-item last">Mis Datos</li>
+         <?php
+         //miramos el tipo del usuario
+         switch ($this->session->userdata('tipo')) {
+               //si es paciente...
+            case 'paciente':
+         ?>
+               <a href="<?php echo base_url() ?>paciente/inicio">
+                  <div class="list-group-item">Inicio</div>
+               </a>
+               <a href="<?php echo base_url() ?>paciente/citas">
+                  <div class="list-group-item">Citas</div>
+               </a>
+               <a href="<?php echo base_url() ?>paciente/tratamientos">
+                  <div class="list-group-item">Tratamientos</div>
+               </a>
+               <a href="<?php echo base_url() ?>paciente/informes">
+                  <div class="list-group-item">Informes</div>
+               </a>
+               <!--<a href="<?php //echo base_url() 
+                              ?>paciente/misdatos">
+                     <li class="list-group-item last">Mis Datos</div>
                   </a>-->
-               <?php
-                  break;
-                  //si es admin...
-               case 'admin':
-               ?>
-                  <a href="<?php echo base_url() ?>admin/inicio">
-                     <li class="list-group-item">Inicio</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>admin/crear/usuario">
-                     <li class="list-group-item">Crear usuario</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>admin/crear/centro">
-                     <li class="list-group-item">Crear centro</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>admin/crear/paciente">
-                     <li class="list-group-item">Crear paciente</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>admin/crear/facultativo">
-                     <li class="list-group-item">Crear facultativo</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>admin/administrar/usuario">
-                     <li class="list-group-item">Datos de usuario</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>admin/administrar/centro">
-                     <li class="list-group-item">Administrar centro</li>
-                  </a>
-               <?php
-                  break;
-                  //si es gerente...
-               case 'gerente':
-               ?>
-                  <a href="<?php echo base_url() ?>gerente/inicio">
-                     <li class="list-group-item">Inicio</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>gerente/crearUsuario">
-                     <li class="list-group-item">Crear usuario</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>gerente/nuevo/paciente">
-                     <li class="list-group-item">Nuevo paciente</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>gerente/nuevo/facultativo">
-                     <li class="list-group-item">Nuevo facultativo</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>gerente/gestionarAdministrativos">
-                     <li class="list-group-item">Gestionar administrativos</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>gerente/traslados">
-                     <li class="list-group-item">Traslados</li>
-                  </a>
-               <?php
-                  break;
-                  //si es facultativo...
-               case 'facultativo':
-               ?>
-                  <a href="<?php echo base_url() ?>facultativo/inicio">
-                     <li class="list-group-item">Inicio</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>facultativo/citas">
-                     <li class="list-group-item">Citas</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>facultativo/episodios">
-                     <li class="list-group-item">Episodios</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>facultativo/derivacion">
-                     <li class="list-group-item">Derivación</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>facultativo/informes/nuevo">
-                     <li class="list-group-item">Nuevo Informe</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>facultativo/informes/historial">
-                     <li class="list-group-item">Hist. Informes</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>facultativo/citas/nueva">
-                     <li class="list-group-item">Nueva Analítica</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>facultativo/citas/historial">
-                     <li class="list-group-item">Hist. Analíticas</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>facultativo/tratamientos">
-                     <li class="list-group-item">Tratamientos</li>
-                  </a>
-
-               <?php
-                  break;
-               case 'administrativo':
-               ?>
-                  <a href="<?php echo base_url() ?>administrativo/inicio">
-                     <li class="list-group-item">Inicio</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>administrativo/crearUsuario">
-                     <li class="list-group-item">Crear usuario</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>administrativo/nuevo/facultativo">
-                     <li class="list-group-item">Nuevo facultativo</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>administrativo/nuevo/personal_lab">
-                     <li class="list-group-item">Nuevo Técnico Lab.</li>
-                  </a>
-                  <a href="<?php echo base_url() ?>administrativo/nuevo/paciente">
-                     <li class="list-group-item">Nuevo paciente</li>
-                  </a>
             <?php
-                  break;
-            }
+               break;
+               //si es admin...
+            case 'admin':
             ?>
-         </ul>
+               <div class="separador w-100"></div>
+               <a href="<?php echo base_url() ?>admin/inicio">
+                  <div class="list-group-item">Inicio</div>
+               </a>
+               <div class="separador w-100"></div>
+               <a href="<?php echo base_url() ?>admin/crear/usuario">
+                  <div class="list-group-item">Crear usuario</div>
+               </a>
+               <div class="separador w-100"></div>
+               <a href="<?php echo base_url() ?>admin/crear/centro">
+                  <div class="list-group-item">Crear centro</div>
+               </a>
+               <div class="separador w-100"></div>
+               <a href="<?php echo base_url() ?>admin/crear/paciente">
+                  <div class="list-group-item">Crear paciente</div>
+               </a>
+               <div class="separador w-100"></div>
+               <a href="<?php echo base_url() ?>admin/crear/facultativo">
+                  <div class="list-group-item">Crear facultativo</div>
+               </a>
+               <div class="separador w-100"></div>
+               <a href="<?php echo base_url() ?>admin/administrar/usuario">
+                  <div class="list-group-item">Datos de usuario</div>
+               </a>
+               <div class="separador w-100"></div>
+               <a href="<?php echo base_url() ?>admin/administrar/centro">
+                  <div class="list-group-item">Administrar centro</div>
+               </a>
+               <div class="separador w-100"></div>
+            <?php
+               break;
+               //si es gerente...
+            case 'gerente':
+            ?>
+               <div class="separador w-100"></div>
+               <a href="<?php echo base_url() ?>gerente/inicio">
+                  <div class="list-group-item">Inicio</div>
+               </a>
+               <div class="separador w-100"></div>
+               <a href="<?php echo base_url() ?>gerente/crearUsuario">
+                  <div class="list-group-item">Crear usuario</div>
+               </a>
+               <div class="separador w-100"></div>
+               <a href="<?php echo base_url() ?>gerente/nuevo/paciente">
+                  <div class="list-group-item">Nuevo paciente</div>
+               </a>
+               <div class="separador w-100"></div>
+               <a href="<?php echo base_url() ?>gerente/nuevo/facultativo">
+                  <div class="list-group-item">Nuevo facultativo</div>
+               </a>
+               <div class="separador w-100"></div>
+               <a href="<?php echo base_url() ?>gerente/gestionarAdministrativos">
+                  <div class="list-group-item">Gestionar administrativos</div>
+               </a>
+               <div class="separador w-100"></div>
+               <a href="<?php echo base_url() ?>gerente/traslados">
+                  <div class="list-group-item">Traslados</div>
+               </a>
+               <div class="separador w-100"></div>
+            <?php
+               break;
+               //si es facultativo...
+            case 'facultativo':
+            ?>
+               <div class="separador w-100"></div>
+
+               <a href="<?php echo base_url() ?>facultativo/inicio">
+                  <div class="list-group-item">Inicio</div>
+               </a>
+
+               <div class="separador w-100"></div>
+
+               <a href="<?php echo base_url() ?>facultativo/episodios">
+                  <div class="list-group-item">Episodios</div>
+               </a>
+
+               <div class="separador w-100"></div>
+
+               <a href="<?php echo base_url() ?>facultativo/tratamientos">
+                  <div class="list-group-item">Tratamientos</div>
+               </a>
+
+               <div class="separador w-100"></div>
+
+               <div class="group list-group-item">
+                  <div class="title">
+                     Citas <i class="fas fa-arrow-down"></i>
+                  </div>
+                  <div class="content">
+                     <a href="<?php echo base_url() ?>facultativo/citas" class="nested">
+                        <div class="list-group-item opcion">Citas</div>
+                     </a>
+                     <div class="separador"></div>
+                     <a href="<?php echo base_url() ?>facultativo/derivacion" class="nested">
+                        <div class="list-group-item opcion">Derivación</div>
+                     </a>
+                  </div>
+               </div>
+               
+               <div class="separador w-100"></div>
+
+               <div class="group list-group-item">
+                  <div class="title">
+                     Informes <i class="fas fa-arrow-down"></i>
+                  </div>
+                  <div class="content">
+                     <a href="<?php echo base_url() ?>facultativo/informes/nuevo" class="nested">
+                        <div class="list-group-item opcion">Nuevo Informe</div>
+                     </a>
+                     <div class="separador"></div>
+                     <a href="<?php echo base_url() ?>facultativo/informes/historial" class="nested">
+                        <div class="list-group-item opcion">Hist. Informes</div>
+                     </a>
+                  </div>
+               </div>
+
+
+
+               <div class="separador w-100"></div>
+
+               <div class="group list-group-item">
+                  <div class="title">
+                     Analíticas <i class="fas fa-arrow-down"></i>
+                  </div>
+                  <div class="content">
+                     <a href="<?php echo base_url() ?>facultativo/citas/nueva">
+                        <div class="list-group-item opcion">Nueva Analítica</div>
+                     </a>
+                     <div class="separador"></div>
+                     <a href="<?php echo base_url() ?>facultativo/citas/historial">
+                        <div class="list-group-item opcion">Hist. Analíticas</div>
+                     </a>
+                  </div>
+               </div>
+
+               <div class="separador w-100"></div>
+            <?php
+               break;
+            case 'administrativo':
+            ?>
+               <div class="separador w-100"></div>
+               <a href="<?php echo base_url() ?>administrativo/inicio">
+                  <div class="list-group-item">Inicio</div>
+               </a>
+               <div class="separador w-100"></div>
+               <a href="<?php echo base_url() ?>administrativo/crearUsuario">
+                  <div class="list-group-item">Crear usuario</div>
+               </a>
+               <div class="separador w-100"></div>
+               <a href="<?php echo base_url() ?>administrativo/nuevo/facultativo">
+                  <div class="list-group-item">Nuevo facultativo</div>
+               </a>
+               <div class="separador w-100"></div>
+               <a href="<?php echo base_url() ?>administrativo/nuevo/personal_lab">
+                  <div class="list-group-item">Nuevo Técnico Lab.</div>
+               </a>
+               <div class="separador w-100"></div>
+               <a href="<?php echo base_url() ?>administrativo/nuevo/paciente">
+                  <div class="list-group-item">Nuevo paciente</div>
+               </a>
+               <div class="separador w-100"></div>
+         <?php
+               break;
+         }
+         ?>
       </div>
    </section>
 
