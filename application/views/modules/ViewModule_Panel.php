@@ -193,28 +193,36 @@
                      Usuarios <i class="fas fa-arrow-down"></i>
                   </div>
                   <div class="content">
-                     <a href="<?php echo base_url() ?>administrativo/crearUsuario" class="nested">
+                     <a href="<?php echo base_url() ?>administrativo/usuario/nuevo" class="nested">
                         <div class="list-group-item">Crear usuario</div>
                      </a>
                      <div class="separador"></div>
-                     <a href="<?php echo base_url() ?>administrativo/modificarUsuario" class="nested">
+                     <a href="<?php echo base_url() ?>administrativo/usuario/modificar" class="nested">
                         <div class="list-group-item opcion">Admin. usuario</div>
                      </a>
                   </div>
                </div>
 
                <div class="separador w-100"></div>
-               <a href="<?php echo base_url() ?>administrativo/nuevo/facultativo">
-                  <div class="list-group-item">Nuevo facultativo</div>
-               </a>
-               <div class="separador w-100"></div>
-               <a href="<?php echo base_url() ?>administrativo/nuevo/laboratorio">
-                  <div class="list-group-item">Nuevo Técnico Lab.</div>
-               </a>
-               <div class="separador w-100"></div>
-               <a href="<?php echo base_url() ?>administrativo/nuevo/paciente">
+
+               <div class="group list-group-item">
+                  <div class="title">
+                     Perfiles <i class="fas fa-arrow-down"></i>
+                  </div>
+                  <div class="content">
+                     <a href="<?php echo base_url() ?>administrativo/nuevo/facultativo" class="nested">
+                        <div class="list-group-item">Nuevo facultativo</div>
+                     </a>
+                     <div class="separador"></div>
+                     <a href="<?php echo base_url() ?>administrativo/nuevo/laboratorio" class="nested">
+                        <div class="list-group-item">Nuevo Técnico Lab.</div>
+                     </a>
+                     <div class="separador"></div>
+                     <a href="<?php echo base_url() ?>administrativo/nuevo/paciente" class="nested">
                   <div class="list-group-item">Nuevo paciente</div>
                </a>
+                  </div>
+               </div>
                <div class="separador w-100"></div>
          <?php
                break;

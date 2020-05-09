@@ -23,19 +23,33 @@ class Administrativo extends CI_Controller
       $this->load->view("modules/ViewModule_Panel");
    }
 
-   public function crearUsuario()
-   {
-      //carga el head con las hojas de estilos y scripts necesarios
-      $this->load->view("modules/ViewModule_Head", array(
-         "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Registro_Usuario"),
-         "scripts" => array("modules/ScriptModule_Panel", "modules/ScriptModule_Registro_Usuario", "lib/dni")
-      ));
+   public function usuario($accion) {
+      switch($accion) {
+         case 'nuevo':            
+            //carga el head con las hojas de estilos y scripts necesarios
+            $this->load->view("modules/ViewModule_Head", array(
+               "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Registro_Usuario"),
+               "scripts" => array("modules/ScriptModule_Panel", "modules/ScriptModule_Registro_Usuario", "lib/dni")
+            ));
 
-      //carga el modulo principal
-      $this->load->view("modules/ViewModule_Panel");
+            //carga el modulo principal
+            $this->load->view("modules/ViewModule_Panel");
 
-      //carga el panel de registro
-      $this->load->view("modules/ViewModule_Registro_Usuario");
+            //carga el panel de registro
+            $this->load->view("modules/ViewModule_Registro_Usuario");
+         break;
+         case 'modificar':
+            $this->load->view("modules/ViewModule_Head", array(
+               "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Datos_Usuario"),
+               "scripts" => array("modules/ScriptModule_Panel", "modules/ScriptModule_Datos_Usuario", "lib/dni")
+            ));
+
+            $this->load->view("modules/ViewModule_Panel");
+
+            //el formulario de altas es un modulo que puede ser usado por varios tipos de cuenta
+            $this->load->view("modules/ViewModule_Datos_Usuario");
+         break;
+      }
    }
 
    public function nuevo($tipo)
@@ -76,18 +90,5 @@ class Administrativo extends CI_Controller
             $this->load->view("modules/ViewModule_Nuevo_Laboratorio");
             break;
       }
-   }
-
-   public function modificarUsuario()
-   {
-      $this->load->view("modules/ViewModule_Head", array(
-         "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Datos_Usuario"),
-         "scripts" => array("modules/ScriptModule_Panel", "modules/ScriptModule_Datos_Usuario", "lib/dni")
-      ));
-
-      $this->load->view("modules/ViewModule_Panel");
-
-      //el formulario de altas es un modulo que puede ser usado por varios tipos de cuenta
-      $this->load->view("modules/ViewModule_Datos_Usuario");
    }
 }
