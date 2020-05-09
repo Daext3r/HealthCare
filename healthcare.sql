@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-04-2020 a las 17:12:12
+-- Tiempo de generación: 09-05-2020 a las 16:05:55
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -92,7 +92,7 @@ CREATE TABLE `analiticas` (
 --   `CIU_paciente`
 --       `pacientes` -> `CIU_paciente`
 --   `CIU_personal`
---       `personal_laboratorio` -> `CIU_personal`
+--       `laboratorio` -> `CIU_personal`
 --
 
 -- --------------------------------------------------------
@@ -157,19 +157,17 @@ DELIMITER ;
 CREATE TABLE `episodios` (
   `id` int(11) NOT NULL,
   `CIU_paciente` varchar(64) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `CIU_facultativo` varchar(64) COLLATE utf8_spanish_ci DEFAULT NULL,
   `especialidad` int(11) DEFAULT NULL,
   `descripcion` text COLLATE utf8_spanish_ci,
   `fecha_creacion` datetime DEFAULT CURRENT_TIMESTAMP,
-  `ult_actualizacion` datetime DEFAULT CURRENT_TIMESTAMP
+  `ult_actualizacion` datetime DEFAULT CURRENT_TIMESTAMP,
+  `cerrado` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- RELACIONES PARA LA TABLA `episodios`:
 --   `especialidad`
 --       `especialidades` -> `id`
---   `CIU_facultativo`
---       `facultativos` -> `CIU_facultativo`
 --   `CIU_paciente`
 --       `pacientes` -> `CIU_paciente`
 --
@@ -224,7 +222,8 @@ CREATE TABLE `informes` (
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
   `contenido` text COLLATE utf8_spanish_ci NOT NULL,
-  `episodio` int(11) DEFAULT NULL
+  `episodio` int(11) DEFAULT NULL,
+  `privado` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -235,6 +234,25 @@ CREATE TABLE `informes` (
 --       `facultativos` -> `CIU_facultativo`
 --   `CIU_paciente`
 --       `pacientes` -> `CIU_paciente`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `laboratorio`
+--
+
+CREATE TABLE `laboratorio` (
+  `CIU_personal` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
+  `centro` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `laboratorio`:
+--   `centro`
+--       `centros` -> `id`
+--   `CIU_personal`
+--       `usuarios` -> `CIU`
 --
 
 -- --------------------------------------------------------
@@ -277,25 +295,6 @@ CREATE TABLE `pacientes` (
 --   `CIU_medico_referencia`
 --       `facultativos` -> `CIU_facultativo`
 --   `CIU_paciente`
---       `usuarios` -> `CIU`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `personal_laboratorio`
---
-
-CREATE TABLE `personal_laboratorio` (
-  `CIU_personal` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
-  `centro` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- RELACIONES PARA LA TABLA `personal_laboratorio`:
---   `centro`
---       `centros` -> `id`
---   `CIU_personal`
 --       `usuarios` -> `CIU`
 --
 
@@ -388,11 +387,27 @@ CREATE TABLE `vista_citas_pacientes_facultativos` (
 -- --------------------------------------------------------
 
 --
+-- Estructura Stand-in para la vista `vista_pacientes_facultativos_referencia`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `vista_pacientes_facultativos_referencia` (
+`ciu_medico` varchar(64)
+,`ciu_enfermero` varchar(64)
+,`CIU_paciente` varchar(64)
+,`nombre_medico` varchar(97)
+,`nombre_enfermero` varchar(97)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura Stand-in para la vista `vista_resumen_informes`
 -- (Véase abajo para la vista actual)
 --
 CREATE TABLE `vista_resumen_informes` (
 `id` int(11)
+,`privado` tinyint(1)
+,`episodio` int(11)
 ,`CIU_medico` varchar(64)
 ,`CIU_paciente` varchar(64)
 ,`fecha` date
@@ -400,6 +415,7 @@ CREATE TABLE `vista_resumen_informes` (
 ,`contenido` text
 ,`nombre_completo_medico` varchar(97)
 ,`especialidad` varchar(64)
+,`nombre_completo_paciente` varchar(97)
 );
 
 -- --------------------------------------------------------
@@ -457,11 +473,20 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
+-- Estructura para la vista `vista_pacientes_facultativos_referencia`
+--
+DROP TABLE IF EXISTS `vista_pacientes_facultativos_referencia`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_pacientes_facultativos_referencia`  AS  (select `pacientes`.`CIU_medico_referencia` AS `ciu_medico`,`pacientes`.`CIU_enfermero_referencia` AS `ciu_enfermero`,`pacientes`.`CIU_paciente` AS `CIU_paciente`,(select `vista_usuarios_nombre`.`nombre_completo` from `vista_usuarios_nombre` where (`vista_usuarios_nombre`.`CIU` = `pacientes`.`CIU_medico_referencia`)) AS `nombre_medico`,(select `vista_usuarios_nombre`.`nombre_completo` from `vista_usuarios_nombre` where (`vista_usuarios_nombre`.`CIU` = `pacientes`.`CIU_enfermero_referencia`)) AS `nombre_enfermero` from `pacientes`) ;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura para la vista `vista_resumen_informes`
 --
 DROP TABLE IF EXISTS `vista_resumen_informes`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_resumen_informes`  AS  (select `informes`.`id` AS `id`,`informes`.`CIU_facultativo` AS `CIU_medico`,`informes`.`CIU_paciente` AS `CIU_paciente`,`informes`.`fecha` AS `fecha`,`informes`.`hora` AS `hora`,`informes`.`contenido` AS `contenido`,`vista_usuarios_facultativos`.`nombre_completo` AS `nombre_completo_medico`,`vista_usuarios_facultativos`.`especialidad` AS `especialidad` from (`informes` join `vista_usuarios_facultativos` on((`informes`.`CIU_facultativo` = `vista_usuarios_facultativos`.`CIU`)))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_resumen_informes`  AS  (select `informes`.`id` AS `id`,`informes`.`privado` AS `privado`,`informes`.`episodio` AS `episodio`,`informes`.`CIU_facultativo` AS `CIU_medico`,`informes`.`CIU_paciente` AS `CIU_paciente`,`informes`.`fecha` AS `fecha`,`informes`.`hora` AS `hora`,`informes`.`contenido` AS `contenido`,`vista_usuarios_facultativos`.`nombre_completo` AS `nombre_completo_medico`,`vista_usuarios_facultativos`.`especialidad` AS `especialidad`,`vista_usuarios_nombre`.`nombre_completo` AS `nombre_completo_paciente` from ((`informes` join `vista_usuarios_facultativos` on((`informes`.`CIU_facultativo` = `vista_usuarios_facultativos`.`CIU`))) join `vista_usuarios_nombre` on((`vista_usuarios_nombre`.`CIU` = `informes`.`CIU_paciente`)))) ;
 
 -- --------------------------------------------------------
 
@@ -536,7 +561,6 @@ ALTER TABLE `citas`
 --
 ALTER TABLE `episodios`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `episodios_facultativos` (`CIU_facultativo`),
   ADD KEY `episodios_paciente` (`CIU_paciente`),
   ADD KEY `episodios_especialidad` (`especialidad`);
 
@@ -565,6 +589,13 @@ ALTER TABLE `informes`
   ADD KEY `informes_episodio` (`episodio`);
 
 --
+-- Indices de la tabla `laboratorio`
+--
+ALTER TABLE `laboratorio`
+  ADD KEY `personal_usuario` (`CIU_personal`),
+  ADD KEY `personal_centro` (`centro`);
+
+--
 -- Indices de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
@@ -578,13 +609,6 @@ ALTER TABLE `pacientes`
   ADD PRIMARY KEY (`CIU_paciente`),
   ADD KEY `pacientes_facultativos` (`CIU_medico_referencia`),
   ADD KEY `pacientes_enfermero` (`CIU_enfermero_referencia`);
-
---
--- Indices de la tabla `personal_laboratorio`
---
-ALTER TABLE `personal_laboratorio`
-  ADD KEY `personal_usuario` (`CIU_personal`),
-  ADD KEY `personal_centro` (`centro`);
 
 --
 -- Indices de la tabla `tratamientos`
@@ -676,7 +700,7 @@ ALTER TABLE `admins`
 ALTER TABLE `analiticas`
   ADD CONSTRAINT `analiticas_facultativo` FOREIGN KEY (`CIU_facultativo_solicitante`) REFERENCES `facultativos` (`CIU_facultativo`),
   ADD CONSTRAINT `analiticas_pacientes` FOREIGN KEY (`CIU_paciente`) REFERENCES `pacientes` (`CIU_paciente`),
-  ADD CONSTRAINT `analiticas_personal_laboratorio` FOREIGN KEY (`CIU_personal`) REFERENCES `personal_laboratorio` (`CIU_personal`);
+  ADD CONSTRAINT `analiticas_personal_laboratorio` FOREIGN KEY (`CIU_personal`) REFERENCES `laboratorio` (`CIU_personal`);
 
 --
 -- Filtros para la tabla `centros`
@@ -696,7 +720,6 @@ ALTER TABLE `citas`
 --
 ALTER TABLE `episodios`
   ADD CONSTRAINT `episodios_especialidad` FOREIGN KEY (`especialidad`) REFERENCES `especialidades` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `episodios_facultativos` FOREIGN KEY (`CIU_facultativo`) REFERENCES `facultativos` (`CIU_facultativo`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `episodios_paciente` FOREIGN KEY (`CIU_paciente`) REFERENCES `pacientes` (`CIU_paciente`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -715,6 +738,13 @@ ALTER TABLE `informes`
   ADD CONSTRAINT `informes_paciente` FOREIGN KEY (`CIU_paciente`) REFERENCES `pacientes` (`CIU_paciente`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `laboratorio`
+--
+ALTER TABLE `laboratorio`
+  ADD CONSTRAINT `personal_centro` FOREIGN KEY (`centro`) REFERENCES `centros` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `personal_usuario` FOREIGN KEY (`CIU_personal`) REFERENCES `usuarios` (`CIU`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
@@ -727,13 +757,6 @@ ALTER TABLE `pacientes`
   ADD CONSTRAINT `pacientes_enfermero` FOREIGN KEY (`CIU_enfermero_referencia`) REFERENCES `facultativos` (`CIU_facultativo`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `pacientes_facultativos` FOREIGN KEY (`CIU_medico_referencia`) REFERENCES `facultativos` (`CIU_facultativo`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `pacientes_usuario` FOREIGN KEY (`CIU_paciente`) REFERENCES `usuarios` (`CIU`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `personal_laboratorio`
---
-ALTER TABLE `personal_laboratorio`
-  ADD CONSTRAINT `personal_centro` FOREIGN KEY (`centro`) REFERENCES `centros` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `personal_usuario` FOREIGN KEY (`CIU_personal`) REFERENCES `usuarios` (`CIU`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `tratamientos`
