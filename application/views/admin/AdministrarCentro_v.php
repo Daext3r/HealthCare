@@ -23,7 +23,7 @@
             <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre">
          </div>
          <div class="col datos-col">
-            <label for="apellidos">Direccion</label>
+            <label for="direccion">Direccion</label>
             <input type="text" name="direccion" id="direccion" class="form-control" placeholder="Direccion">
          </div>
       </div>

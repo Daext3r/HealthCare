@@ -141,7 +141,7 @@
                      </a>
                   </div>
                </div>
-               
+
                <div class="separador w-100"></div>
 
                <div class="group list-group-item">
@@ -159,8 +159,6 @@
                   </div>
                </div>
 
-
-
                <div class="separador w-100"></div>
 
                <div class="group list-group-item">
@@ -168,11 +166,11 @@
                      Analíticas <i class="fas fa-arrow-down"></i>
                   </div>
                   <div class="content">
-                     <a href="<?php echo base_url() ?>facultativo/citas/nueva">
+                     <a href="<?php echo base_url() ?>facultativo/citas/nueva" class="nested">
                         <div class="list-group-item opcion">Nueva Analítica</div>
                      </a>
                      <div class="separador"></div>
-                     <a href="<?php echo base_url() ?>facultativo/citas/historial">
+                     <a href="<?php echo base_url() ?>facultativo/citas/historial" class="nested">
                         <div class="list-group-item opcion">Hist. Analíticas</div>
                      </a>
                   </div>
@@ -187,10 +185,24 @@
                <a href="<?php echo base_url() ?>administrativo/inicio">
                   <div class="list-group-item">Inicio</div>
                </a>
+
                <div class="separador w-100"></div>
-               <a href="<?php echo base_url() ?>administrativo/crearUsuario">
-                  <div class="list-group-item">Crear usuario</div>
-               </a>
+
+               <div class="group list-group-item">
+                  <div class="title">
+                     Usuarios <i class="fas fa-arrow-down"></i>
+                  </div>
+                  <div class="content">
+                     <a href="<?php echo base_url() ?>administrativo/crearUsuario" class="nested">
+                        <div class="list-group-item">Crear usuario</div>
+                     </a>
+                     <div class="separador"></div>
+                     <a href="<?php echo base_url() ?>administrativo/modificarUsuario" class="nested">
+                        <div class="list-group-item opcion">Admin. usuario</div>
+                     </a>
+                  </div>
+               </div>
+
                <div class="separador w-100"></div>
                <a href="<?php echo base_url() ?>administrativo/nuevo/facultativo">
                   <div class="list-group-item">Nuevo facultativo</div>
