@@ -1,0 +1,59 @@
+.buscador {
+   padding: 1em;
+   width: 80%;
+}
+
+.row small {
+   width: 100%;
+   text-align: center;
+}
+
+.row {
+   margin-top: 0.3em;
+}
+
+.btn {
+   margin: 1em;
+}
+
+.contenido {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: nowrap;
+}
+
+.contenido {
+   max-height: 85vh;
+}
+
+
+.horas {
+   width: 80%;
+   height: 100%;
+   max-height: 85vh;
+   overflow-y: scroll;
+}
+
+.horas::-webkit-scrollbar {
+   width: 10px;
+}
+
+/* Track */
+
+.horas::-webkit-scrollbar-track {
+   display: none;
+}
+
+/* Handle */
+
+.horas::-webkit-scrollbar-thumb {
+   background: rgb(177, 176, 176);
+   border-radius: 1em;
+}
+
+/* Handle on hover */
+
+.horas::-webkit-scrollbar-thumb:hover {
+   background: #555;
+}

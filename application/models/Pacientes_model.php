@@ -50,4 +50,17 @@ class Pacientes_model extends CI_Model
    public function leerEpisodios($paciente) {
       return $this->db->query("SELECT id, CIU_paciente, descripcion, fecha_creacion, ult_actualizacion, cerrado, (SELECT denominacion from especialidades WHERE especialidades.id = episodios.especialidad) AS especialidad FROM episodios WHERE CIU_paciente = ?", array($paciente))->result_array();
    }
+
+   public function buscarPacienteCiuNombre($dato) {
+      $this->db->select("CIU, nombre_completo");
+      $this->db->like('CIU', $dato);
+      $this->db->or_like('nombre_completo', $dato);
+      $this->db->group_by('CIU');
+      return $this->db->get("vista_usuarios_pacientes")->result_array();
+   }
+
+   public function leerFacultativosReferencia($ciu) {
+      $this->db->where("CIU_paciente", $ciu);
+      return $this->db->get("vista_pacientes_facultativos_referencia")->row_array();
+   }
 }

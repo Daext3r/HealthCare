@@ -66,4 +66,8 @@ class Centros_controller extends CI_Controller
    {
       echo $this->Centros_model->eliminarAdministrativo($this->input->post("ciu"));
    }
+
+   public function leerHorasPorFacultativo() {
+      echo json_encode($this->Centros_model->leerHorasPorFacultativo($this->input->post("ciu")));
+   }
 }

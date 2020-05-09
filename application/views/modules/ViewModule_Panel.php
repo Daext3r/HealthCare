@@ -223,7 +223,23 @@
                </a>
                   </div>
                </div>
+
                <div class="separador w-100"></div>
+
+               <div class="group list-group-item">
+                  <div class="title">
+                     Citas <i class="fas fa-arrow-down"></i>
+                  </div>
+                  <div class="content">
+                     <a href="<?php echo base_url() ?>administrativo/citas/nueva" class="nested">
+                        <div class="list-group-item">Nueva cita</div>
+                     </a>
+                     <div class="separador"></div>
+                     <a href="<?php echo base_url() ?>administrativo/citas/ver" class="nested">
+                        <div class="list-group-item opcion">Ver citas</div>
+                     </a>
+                  </div>
+               </div>
          <?php
                break;
          }

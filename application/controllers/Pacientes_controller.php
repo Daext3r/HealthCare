@@ -37,4 +37,12 @@ class Pacientes_controller extends CI_Controller
    public function leerEpisodios() {
       echo json_encode($this->Pacientes_model->leerEpisodios($this->input->post("ciu")));
    }
+
+   public function buscarPacienteCiuNombre() {
+      echo json_encode($this->Pacientes_model->buscarPacienteCiuNombre($this->input->post("dato")));
+   }
+
+   public function leerFacultativosReferencia() {
+      echo json_encode($this->Pacientes_model->leerFacultativosReferencia($this->input->post("ciu")));
+   }
 }

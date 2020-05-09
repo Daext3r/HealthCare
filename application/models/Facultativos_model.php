@@ -24,9 +24,19 @@ class Facultativos_model extends CI_Model
       }
    }
 
-   public function buscarFacultativoNombre($nombre) {
+   public function buscarFacultativoNombre($nombre)
+   {
       $this->db->select("CIU, nombre_completo");
       $this->db->like("nombre_completo", $nombre);
+      return $this->db->get("vista_usuarios_facultativos")->result_array();
+   }
+   
+   public function buscarFacultativoCiuNombre($dato)
+   {
+      $this->db->select("CIU, nombre_completo");
+      $this->db->like('CIU', $dato);
+      $this->db->or_like('nombre_completo', $dato);
+      $this->db->group_by('CIU');
       return $this->db->get("vista_usuarios_facultativos")->result_array();
    }
 }

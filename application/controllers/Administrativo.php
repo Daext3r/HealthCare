@@ -23,9 +23,10 @@ class Administrativo extends CI_Controller
       $this->load->view("modules/ViewModule_Panel");
    }
 
-   public function usuario($accion) {
-      switch($accion) {
-         case 'nuevo':            
+   public function usuario($accion)
+   {
+      switch ($accion) {
+         case 'nuevo':
             //carga el head con las hojas de estilos y scripts necesarios
             $this->load->view("modules/ViewModule_Head", array(
                "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Registro_Usuario"),
@@ -37,7 +38,7 @@ class Administrativo extends CI_Controller
 
             //carga el panel de registro
             $this->load->view("modules/ViewModule_Registro_Usuario");
-         break;
+            break;
          case 'modificar':
             $this->load->view("modules/ViewModule_Head", array(
                "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Datos_Usuario"),
@@ -48,7 +49,7 @@ class Administrativo extends CI_Controller
 
             //el formulario de altas es un modulo que puede ser usado por varios tipos de cuenta
             $this->load->view("modules/ViewModule_Datos_Usuario");
-         break;
+            break;
       }
    }
 
@@ -88,6 +89,25 @@ class Administrativo extends CI_Controller
 
             //el formulario de altas es un modulo que puede ser usado por varios tipos de cuenta
             $this->load->view("modules/ViewModule_Nuevo_Laboratorio");
+            break;
+      }
+   }
+
+   public function citas($accion)
+   {
+      switch ($accion) {
+         case 'nueva':
+            $this->load->view("modules/ViewModule_Head", array(
+               "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Nueva_Cita"),
+               "scripts" => array("modules/ScriptModule_Panel", "modules/ScriptModule_Nueva_Cita")
+            ));
+
+            $this->load->view("modules/ViewModule_Panel");
+
+            //el formulario de altas es un modulo que puede ser usado por varios tipos de cuenta
+            $this->load->view("modules/ViewModule_Nueva_Cita");
+            break;
+         case 'ver':
             break;
       }
    }
