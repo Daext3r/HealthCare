@@ -115,7 +115,13 @@ class Citas_controller extends CI_Controller
       $fecha = new Datetime($datos[1]);
       $fecha = new Datetime($fecha->format("Y-m-d"));
 
-      $paciente = $this->session->userdata("ciu");
+      $paciente = "";
+
+      if($this->input->post("paciente") != "") {
+         $paciente = $this->input->post("paciente");
+      } else {
+         $paciente = $this->session->userdata("ciu");
+      }
 
       $this->load->model("Citas_model");
 
