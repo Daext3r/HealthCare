@@ -65,14 +65,14 @@ class Administrativo extends CI_Controller
             break;
          case 'laboratorio':
             $this->load->view("modules/ViewModule_Head", array(
-               "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Nuevo_PersonalLab"),
-               "scripts" => array("modules/ScriptModule_Panel", "modules/ScriptModule_Nuevo_PersonalLab")
+               "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Nuevo_Laboratorio"),
+               "scripts" => array("modules/ScriptModule_Panel", "modules/ScriptModule_Nuevo_Laboratorio")
             ));
 
             $this->load->view("modules/ViewModule_Panel");
 
             //el formulario de altas es un modulo que puede ser usado por varios tipos de cuenta
-            $this->load->view("modules/ViewModule_Nuevo_PersonalLab");
+            $this->load->view("modules/ViewModule_Nuevo_Laboratorio");
             break;
       }
    }
