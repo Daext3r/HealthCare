@@ -64,7 +64,7 @@ $(document).ready(function () {
                'Hecho',
                `Se ha registrado al usuario ${$("#usuario").val()} como paciente`,
                'success'
-            )
+            ).then(() => window.location.reload());
          }
       });
    });
@@ -90,7 +90,6 @@ $(document).ready(function () {
    });
 
    $("#fac2").keyup(function () {
-      console.log("test");
       //borramos la busqueda anterior y quitamos los elementos existentes
       clearInterval(interval);
       $("#fac2list").html("");

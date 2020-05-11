@@ -26,15 +26,17 @@ $(document).ready(() => {
    });
 
    $("#facultativo").change(function () {
-      //deshabilitamos el campo de busqueda de medicosssssssssssssssssssssssss
-      $(this).attr("disabled", "");
-
       //cargamos las horas de apertura del centro donde trabaja ese facultativo y las ponemos en el formulario
       $.post(localStorage.getItem("hc_base_url") + "Centros_controller/leerHorasPorFacultativo", { ciu: $(this).val() }, (data) => {
          data = JSON.parse(data);
 
          //si no hay registros cancelamos
-         if (data.length < 1) return;
+         if (data.length >= 1) {
+            //deshabilitamos el campo de busqueda de medicosssssssssssssssssssssssss
+            $(this).attr("disabled", "");
+         } else {
+            return;
+         }
 
          //añadimos la hora y los minutos
          for (let i = data[0].hora_apertura; i <= data[0].hora_cierre - 1; i++) {
@@ -77,12 +79,12 @@ $(document).ready(() => {
    });
 
    $("#paciente").change(function () {
-      //deshabilitamos el campo de busqueda de paciente
-      $(this).attr("disabled", "");
-
       //cargamos el ciu del medico y enfermero de referencia
       $.post(localStorage.getItem("hc_base_url") + "Pacientes_controller/leerFacultativosReferencia", { ciu: $(this).val() }, (data) => {
          data = JSON.parse(data);
+
+         //deshabilitamos el campo de busqueda de paciente
+         if (data.length >= 1) $(this).attr("disabled", "");
 
          Swal.fire({
             icon: 'info',
@@ -151,13 +153,13 @@ $(document).ready(() => {
 
 
             btn.addEventListener("click", function () {
-               $.post(localStorage.getItem("hc_base_url") + "Citas_controller/seleccionarCita", { info: this.dataset.info_cita, medico: medico, paciente : paciente }, function (data) {
+               $.post(localStorage.getItem("hc_base_url") + "Citas_controller/seleccionarCita", { info: this.dataset.info_cita, medico: medico, paciente: paciente }, function (data) {
                   console.log(data);
                   if (data == 1) {
                      $("#citas-cerrar-buscador").click();
                      Swal.fire({
                         title: 'Cita reservada',
-                        text: 'Se ha confirmado la cita con ' + $("#facultativo option:selected").text(),
+                        text: 'Se ha confirmado la cita',
                         icon: 'success',
                         onClose: function () { window.location.reload(); }
                      })

@@ -107,4 +107,9 @@ class Usuarios_model extends CI_Model
          return 2;
       }
    }
+
+   public function comprobarExistencia($ciu) {
+      $this->db->where('CIU', $ciu);
+      return $this->db->count_all_results('usuarios');
+   }
 }

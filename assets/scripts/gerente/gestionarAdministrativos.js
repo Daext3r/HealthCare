@@ -78,7 +78,7 @@ $(document).ready(() => {
       if ($("#usuario").val().trim() == "") return;
 
       interval = setTimeout(function () {
-         $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/buscarUsuarioCiu", { ciu: $("#usuario").val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/buscarUsuarioCiuNombre", { dato: $("#usuario").val() }, (data) => {
             data = JSON.parse(data);
             for (let usuario of data) {
                let option = document.createElement("option");

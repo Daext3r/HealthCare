@@ -74,7 +74,28 @@ class Usuarios_controller extends CI_Controller
       $ciu .= date("m", $fnac);
       $ciu .= date("d", $fnac);
 
-      return $ciu;
+      //hacemos un bucle para comprobar que no exista ya un usuario con el mismo CIU
+
+      $existe = true;
+      $numero = 0;
+      $nuevoCiu = "";
+
+      //si existe el formato será NnAaAaAAAAMMDD[$numero]
+      //por ejemplo: AeDnDl199912171 | AeDnDl199912172 | AeDnDl199912173 | AeDnDl199912174 etc
+      do {
+         //nuevo CIU a comprobar
+         $nuevoCiu = $ciu . $numero;
+         $cantidad = $this->Usuarios_model->comprobarExistencia($nuevoCiu);
+
+         //si existe incrementamos el numero en uno
+         if($cantidad >= 1) {
+            $numero++;
+         } else {
+            $existe = false;
+         }
+      } while($existe);
+
+      return $nuevoCiu;
    }
 
    public function buscarUsuarioCiu()
