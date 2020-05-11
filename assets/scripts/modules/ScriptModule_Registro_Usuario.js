@@ -21,15 +21,17 @@ $(document).ready(function () {
                title: 'Hecho',
                text: '¡Usuario registrado! Recuerda asignarle un perfil',
                //hacemos que recargue la pagina al cerrar
-               onClose: () => { location.href = "" }
+               onClose: () => { location.reload() }
             });
-         } else {
-            Swal.fire(
-               'Error',
-               'No se ha podido registrar al usuario, revisa los datos',
-               'error'
-            );
          }
-      });
+      }).catch((e) => {
+         if(e.responseText.includes("for key 'correo'")) {
+            Swal.fire({
+               icon: 'error',
+               title: 'Error',
+               text: 'El correo ya está en uso por otro usuario'
+            });
+         }
+      })
    })
 });

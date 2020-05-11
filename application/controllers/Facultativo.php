@@ -24,16 +24,31 @@ class Facultativo extends CI_Controller
       $this->load->view("modules/ViewModule_Panel");
    }
 
-   public function citas()
+   public function citas($accion)
    {
-      $this->load->view("modules/ViewModule_Head", array(
-         "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "facultativo/Style_Citas"),
-         "scripts" => array("modules/ScriptModule_Panel", "facultativo/Script_Citas")
-      ));
+      switch ($accion) {
+         case 'ver':
+            $this->load->view("modules/ViewModule_Head", array(
+               "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "facultativo/Style_Citas"),
+               "scripts" => array("modules/ScriptModule_Panel", "facultativo/Script_Citas")
+            ));
 
-      $this->load->view("modules/ViewModule_Panel");
+            $this->load->view("modules/ViewModule_Panel");
 
-      $this->load->view("facultativo/View_Citas");
+            $this->load->view("facultativo/View_Citas");
+            break;
+         case 'derivar':
+            $this->load->view("modules/ViewModule_Head", array(
+               "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "modules/StyleModule_Nueva_Cita"),
+               "scripts" => array("modules/ScriptModule_Panel", "modules/ScriptModule_Nueva_Cita")
+            ));
+
+            $this->load->view("modules/ViewModule_Panel");
+
+            //el formulario de altas es un modulo que puede ser usado por varios tipos de cuenta
+            $this->load->view("modules/ViewModule_Nueva_Cita");
+            break;
+      }
    }
 
    public function informes($accion)

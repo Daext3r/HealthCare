@@ -132,11 +132,11 @@
                      Citas <i class="fas fa-arrow-down"></i>
                   </div>
                   <div class="content">
-                     <a href="<?php echo base_url() ?>facultativo/citas" class="nested">
+                     <a href="<?php echo base_url() ?>facultativo/citas/ver" class="nested">
                         <div class="list-group-item opcion">Citas</div>
                      </a>
                      <div class="separador"></div>
-                     <a href="<?php echo base_url() ?>facultativo/derivacion" class="nested">
+                     <a href="<?php echo base_url() ?>facultativo/citas/derivar" class="nested">
                         <div class="list-group-item opcion">Derivación</div>
                      </a>
                   </div>
