@@ -166,11 +166,11 @@
                      Analíticas <i class="fas fa-arrow-down"></i>
                   </div>
                   <div class="content">
-                     <a href="<?php echo base_url() ?>facultativo/citas/nueva" class="nested">
+                     <a href="<?php echo base_url() ?>facultativo/analiticas/nueva" class="nested">
                         <div class="list-group-item opcion">Nueva Analítica</div>
                      </a>
                      <div class="separador"></div>
-                     <a href="<?php echo base_url() ?>facultativo/citas/historial" class="nested">
+                     <a href="<?php echo base_url() ?>facultativo/analiticas/historial" class="nested">
                         <div class="list-group-item opcion">Hist. Analíticas</div>
                      </a>
                   </div>

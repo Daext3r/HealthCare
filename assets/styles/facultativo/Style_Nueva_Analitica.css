@@ -1,0 +1,101 @@
+.listaPruebas {
+   margin-top: 1.5em;
+   height: 60vh;
+   display: flex;
+   justify-content: space-between;
+   align-content: flex-start;
+   flex-wrap: wrap;
+}
+
+.pruebasPosibles {
+   flex-basis: 47%;
+}
+
+.pruebasSolicitadas {
+   flex-basis: 47%;
+}
+
+.hint {
+   flex-basis: 47%;
+}
+
+.pruebasPosibles, .pruebasSolicitadas {
+   border: 1px solid rgba(0,0,0,0.250);
+   border-bottom: 2px solid #007bff;
+   border-radius: 0.3em;
+   height: 80%;
+   padding: 0.5em;
+   overflow-y: scroll;
+   display: flex;
+   justify-content: center;
+   align-content: baseline;
+   flex-wrap: wrap;
+   box-shadow: 0px 0px 50px -30px rgba(0,0,0,0.45);
+}
+
+.categoria {
+   width: 90%;
+   text-align: center;
+   border: 1px solid #1b89ff;
+   overflow: hidden;
+   height: 2em;
+   margin-top: 0.2em;
+   cursor: pointer;
+   background-color: #9acbff !important;
+   color: black;
+   border-radius: 0.1em;
+}
+
+.titulo {
+   height: 2em;
+   padding: 0.2em;
+}
+
+li.prueba {
+   list-style: none;
+   padding: 0.2em;
+   border: 1px solid gray;
+   border-radius: 0.2em;
+   margin: 0.3em;
+   color: black;
+   background-color: #e5f1ff;
+   
+}
+
+li.seleccionado {
+   border-left: 3px solid #007bff !important;
+}
+
+ul.pruebas {
+   padding: 0;
+}
+
+.categoria::-webkit-scrollbar {
+   display: none;
+}
+
+/* width */
+.pruebasSolicitadas::-webkit-scrollbar, .pruebasPosibles::-webkit-scrollbar {
+   width: 10px;
+   padding-left: 3em;
+}
+
+/* Track */
+.pruebasPosibles::-webkit-scrollbar-track .pruebasSolicitadas::-webkit-scrollbar-track {
+   display: none;
+}
+
+/* Handle */
+.pruebasPosibles::-webkit-scrollbar-thumb .pruebasSolicitadas::-webkit-scrollbar-thumb {
+   background: rgb(177, 176, 176);
+   border-radius: 1em;
+}
+
+/* Handle on hover */
+.pruebasPosibles::-webkit-scrollbar-thumb:hover .pruebasSolicitadas::-webkit-scrollbar-thumb:hover {
+   background: #555;
+}
+
+.exp {
+  height: auto;
+}
