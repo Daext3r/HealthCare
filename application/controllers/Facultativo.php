@@ -109,4 +109,22 @@ class Facultativo extends CI_Controller
             break;
       }
    }
+
+   public function tratamientos($accion)
+   {
+      switch ($accion) {
+         case 'nuevo':
+            $this->load->view("modules/ViewModule_Head", array(
+               "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "facultativo/Style_Nuevo_Tratamiento", "facultativo/Style_ListaPacientes"),
+               "scripts" => array("modules/ScriptModule_Panel", "facultativo/Script_Nuevo_Tratamiento", "facultativo/Script_ListaPacientes")
+            ));
+
+            $this->load->view("modules/ViewModule_Panel");
+
+            $this->load->view("facultativo/View_Nuevo_Tratamiento");
+            break;
+         case 'ver':
+            break;
+      }
+   }
 }

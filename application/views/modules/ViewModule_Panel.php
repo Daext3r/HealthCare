@@ -121,9 +121,20 @@
 
                <div class="separador w-100"></div>
 
-               <a href="<?php echo base_url() ?>facultativo/tratamientos">
-                  <div class="list-group-item">Tratamientos</div>
-               </a>
+               <div class="group list-group-item">
+                  <div class="title">
+                     Tratamientos <i class="fas fa-arrow-down"></i>
+                  </div>
+                  <div class="content">
+                     <a href="<?php echo base_url() ?>facultativo/tratamientos/nuevo" class="nested">
+                        <div class="list-group-item opcion">Nuevo trat.</div>
+                     </a>
+                     <div class="separador"></div>
+                     <a href="<?php echo base_url() ?>facultativo/tratamientos/ver" class="nested">
+                        <div class="list-group-item opcion">Ver tratamientos</div>
+                     </a>
+                  </div>
+               </div>
 
                <div class="separador w-100"></div>
 
@@ -219,8 +230,8 @@
                      </a>
                      <div class="separador"></div>
                      <a href="<?php echo base_url() ?>administrativo/nuevo/paciente" class="nested">
-                  <div class="list-group-item">Nuevo paciente</div>
-               </a>
+                        <div class="list-group-item">Nuevo paciente</div>
+                     </a>
                   </div>
                </div>
 
