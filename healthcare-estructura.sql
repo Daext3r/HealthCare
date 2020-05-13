@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-05-2020 a las 16:05:55
+-- Tiempo de generación: 13-05-2020 a las 16:03:39
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -59,13 +59,6 @@ CREATE TABLE `admins` (
 --       `usuarios` -> `CIU`
 --
 
---
--- Volcado de datos para la tabla `admins`
---
-
-INSERT INTO `admins` (`CIU_usuario`) VALUES
-('root');
-
 -- --------------------------------------------------------
 
 --
@@ -76,18 +69,17 @@ CREATE TABLE `analiticas` (
   `codigo_analitica` int(11) NOT NULL,
   `CIU_paciente` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
   `CIU_personal` varchar(64) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `CIU_facultativo_solicitante` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
+  `CIU_facultativo` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
   `pruebas` text COLLATE utf8_spanish_ci NOT NULL,
   `resultados` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
-  `fecha_solicitud` date NOT NULL,
+  `fecha_solicitud` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fecha_resultado` date DEFAULT NULL,
-  `observaciones_facultativo` text COLLATE utf8_spanish_ci NOT NULL,
   `observaciones_personal` text COLLATE utf8_spanish_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- RELACIONES PARA LA TABLA `analiticas`:
---   `CIU_facultativo_solicitante`
+--   `CIU_facultativo`
 --       `facultativos` -> `CIU_facultativo`
 --   `CIU_paciente`
 --       `pacientes` -> `CIU_paciente`
@@ -310,7 +302,7 @@ CREATE TABLE `tratamientos` (
   `CIU_paciente` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
   `fecha_inicio` date NOT NULL,
   `fecha_fin` date NOT NULL,
-  `dosis` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `tomas` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `episodio` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -347,13 +339,6 @@ CREATE TABLE `usuarios` (
 --
 -- RELACIONES PARA LA TABLA `usuarios`:
 --
-
---
--- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`CIU`, `nombre`, `apellidos`, `dni`, `sexo`, `nacionalidad`, `direccion`, `telefono`, `fijo`, `fecha_nacimiento`, `clave`, `correo`, `foto_perfil`) VALUES
-('root', 'Administrador', 'General', '00000000T', 'H', 'Española', 'localhost', '000000000', '000000000', '0000-00-00', 'd404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db', 'root@localhost.com', NULL);
 
 -- --------------------------------------------------------
 
@@ -539,7 +524,7 @@ ALTER TABLE `analiticas`
   ADD PRIMARY KEY (`codigo_analitica`),
   ADD KEY `analiticas_pacientes` (`CIU_paciente`),
   ADD KEY `analiticas_personal_laboratorio` (`CIU_personal`),
-  ADD KEY `analiticas_facultativo` (`CIU_facultativo_solicitante`);
+  ADD KEY `analiticas_facultativo` (`CIU_facultativo`);
 
 --
 -- Indices de la tabla `centros`
@@ -698,7 +683,7 @@ ALTER TABLE `admins`
 -- Filtros para la tabla `analiticas`
 --
 ALTER TABLE `analiticas`
-  ADD CONSTRAINT `analiticas_facultativo` FOREIGN KEY (`CIU_facultativo_solicitante`) REFERENCES `facultativos` (`CIU_facultativo`),
+  ADD CONSTRAINT `analiticas_facultativo` FOREIGN KEY (`CIU_facultativo`) REFERENCES `facultativos` (`CIU_facultativo`),
   ADD CONSTRAINT `analiticas_pacientes` FOREIGN KEY (`CIU_paciente`) REFERENCES `pacientes` (`CIU_paciente`),
   ADD CONSTRAINT `analiticas_personal_laboratorio` FOREIGN KEY (`CIU_personal`) REFERENCES `laboratorio` (`CIU_personal`);
 
