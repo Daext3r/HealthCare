@@ -20,7 +20,7 @@
             </button>
          </div>
          <div class="modal-body">
-            <input type="list" id="usuario" list="usuarios" placeholder="Nombre o CIU" class="form-control" autocomplete="off">
+            <input type="list" id="usuario" list="usuarios" placeholder="Nombre o CIU" class="form-control" autocomplete="off" autofocus>
             <datalist id="usuarios">
             </datalist>
          </div>
@@ -106,6 +106,13 @@ function seleccionarPaciente(e) {
 }
 
 $(document).ready(() => {
+
+   //cuando abrimos el modal hacemos que haga autofocus
+   $('.modal').on('shown.bs.modal', function() {
+      $(this).find('[autofocus]').focus();
+    });
+
+
    //cuando se cargue el documento, leemos los pacientes que hay en localstorage
    const pacientes = JSON.parse(localStorage.getItem("hc_lista_pacientes"));
 
