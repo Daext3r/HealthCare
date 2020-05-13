@@ -36,7 +36,6 @@ body {
    justify-content: center;
    padding-left: 0.4em;
    padding-right: 0.4em;
-   width: 85%;
 }
 
 .headerItem {
@@ -202,4 +201,8 @@ body {
 
 .opcion-seleccionada {
    border-right: 3px solid #007bff;
+}
+
+.wsnw{
+   white-space: nowrap;
 }

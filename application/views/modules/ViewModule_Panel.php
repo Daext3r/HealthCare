@@ -261,13 +261,13 @@
    <!--seccion del contenido-->
    <div id="pagina">
       <nav id="header">
-         <div class="col perfil">
+         <div class="col perfil wsnw">
             <div>Mi perfil <i class="fas fa-cog"></i></div>
          </div>
 
          <div class="separador-v"></div>
 
-         <div class="col reloj">
+         <div class="col reloj wsnw">
             <div class="" id="reloj"></div>
          </div>
 
@@ -275,7 +275,7 @@
 
          <div class="col notificaciones">
             <div class="dropdown">
-               <div class="dropbtn headerItem hover" id="notificaciones-text">Tienes <span id="notificaciones" class="badge badge-pill badge-danger">0</span> notificaciones</div>
+               <div class="dropbtn wsnw hover" id="notificaciones-text">Tienes <span id="notificaciones" class="badge badge-pill badge-danger">0</span> notificaciones</div>
                <div class="dropdown-content" id="listaNotificaciones"></div>
             </div>
          </div>
