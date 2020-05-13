@@ -11,7 +11,7 @@ $(document).ready(async function () {
       //por cada informe
       for (let informe of data) {
          //guardamos los informes en el array de informes
-         listaInformes.push(new Informe(informe.id, informe.privado, informe.episodio, informe.fecha, informe.hora, informe.nombre_completo_medico, informe.especialidad));
+         listaInformes.push(new Informe(informe.id, informe.privado, informe.episodio, informe.fecha, informe.nombre_completo_medico, informe.especialidad));
       }
    });
 
@@ -99,6 +99,7 @@ function mostrarInformes() {
 }
 
 function generarInforme(informe) {
+   console.log(informe);
    let elem = $(`
    <div class="alert alert-secondary">
       <div>Especialidad: ${informe.especialidad}</div>
