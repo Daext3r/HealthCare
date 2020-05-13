@@ -4,7 +4,7 @@ $(document).ready(function () {
 
    $.post(localStorage.getItem("hc_base_url") + "Tratamientos_controller/leerTratamientos", {}, function (data) {
       data = JSON.parse(data);
-
+      console.log(data);
       //si no hay datos, mostramos un mensaje de informacion y paramos la ejecucion
       if (data.length == 0) {
          $("#lista").append("<h3>No tienes tratamientos activos, ¡Genial!</h3>");
@@ -65,16 +65,16 @@ $(document).ready(function () {
                              </div>
                
                 */
-               let dosis = JSON.parse(tratamiento.dosis);
+               let tomas = JSON.parse(tratamiento.tomas);
 
                let contenidoModal = "";
                contenidoModal += `<p>Fecha de inicio del tratamiento ${new Date(tratamiento.fecha_inicio).toLocaleDateString()}</p><br>`;
                contenidoModal += `<p>Fecha de fin del tratamiento ${new Date(tratamiento.fecha_fin).toLocaleDateString()}</p><br>`;
-               contenidoModal += `<p>Dosis: ${dosis.dosis} ${dosis.presentacion} en las siguientes horas:</p>`;
+               contenidoModal += `<p>Hora y cantidad de las tomas:</p>`;
 
                contenidoModal += "<ul class='ul-modal'>";
-               for (let hora of dosis.horas) {
-                  contenidoModal += `<li class='li-modal'>${hora}</li>`;
+               for (let toma of tomas) {
+                  contenidoModal += `<li class='li-modal'>${toma.hora}:00, ${toma.dosis} unidades</li>`;
                }
                contenidoModal += "</ul>";
 
