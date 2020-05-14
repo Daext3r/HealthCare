@@ -29,4 +29,19 @@ class Tratamientos_model extends CI_Model
          return 0;
       }
    }
+
+   public function leerTratamientosFacultativo($paciente)
+   {
+      $this->db->where("CIU_paciente", $paciente);
+      return  $this->db->get("tratamientos")->result_array();
+   }
+
+   public function borrarTratamiento($id) {
+      $this->db->where("id", $id);
+      if($this->db->delete("tratamientos")) {
+         return 1;
+      } else {
+         return 0;
+      }
+   }
 }

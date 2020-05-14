@@ -124,6 +124,14 @@ class Facultativo extends CI_Controller
             $this->load->view("facultativo/View_Nuevo_Tratamiento");
             break;
          case 'ver':
+            $this->load->view("modules/ViewModule_Head", array(
+               "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "facultativo/Style_Ver_Tratamientos", "facultativo/Style_ListaPacientes"),
+               "scripts" => array("modules/ScriptModule_Panel", "facultativo/Script_ListaPacientes", "facultativo/Script_Ver_Tratamientos")
+            ));
+
+            $this->load->view("modules/ViewModule_Panel");
+
+            $this->load->view("facultativo/View_Ver_Tratamientos");
             break;
       }
    }

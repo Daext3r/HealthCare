@@ -22,6 +22,16 @@ class Tratamientos_controller extends CI_Controller
       echo json_encode($this->Tratamientos_model->leerTratamientos($this->session->userdata("ciu")));
    }
 
+   //este metodo es usado por los facultativos. el anterior solo por pacientes
+   public function leerTratamientosFacultativo()
+   {
+      echo json_encode($this->Tratamientos_model->leerTratamientosFacultativo($this->input->post("paciente")));
+   }
+
+   public function borrarTratamiento()
+   {
+      echo $this->Tratamientos_model->borrarTratamiento($this->input->post("id"));
+   }
    public function agregarTratamiento()
    {
       $nregistro = $this->input->post("nregistro");

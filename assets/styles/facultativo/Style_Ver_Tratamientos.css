@@ -1,0 +1,43 @@
+.tratamientos {
+   border: 1px solid rgba(0, 0, 0, 0.125);
+   height: 88%;
+   width: 100%;
+   margin-top: 1em;
+   padding: 1em;
+   display: flex;
+   justify-content: center;
+   align-content: flex-start;
+   flex-wrap: wrap;
+   overflow-y: scroll;
+   max-height: 88%;
+}
+
+.contenido {
+   max-height: 85vh;
+}
+
+/* width */
+
+.tratamientos::-webkit-scrollbar {
+   width: 10px;
+   padding-left: 3em;
+}
+
+/* Track */
+
+.tratamientos::-webkit-scrollbar-track {
+   display: none;
+}
+
+/* Handle */
+
+.tratamientos::-webkit-scrollbar-thumb {
+   background: rgb(177, 176, 176);
+   border-radius: 1em;
+}
+
+/* Handle on hover */
+
+.tratamientos::-webkit-scrollbar-thumb:hover {
+   background: #555;
+}
