@@ -16,6 +16,12 @@ class Usuarios_controller extends CI_Controller
       }
    }
 
+   public function leerDatosInicio()
+   {
+      $tipo = $this->session->userdata("tipo");
+      echo json_encode($this->Usuarios_model->leerDatosInicio($tipo));
+   }
+
    public function leerNotificaciones()
    {
       //cargamos las notificaciones y las devolvemos
@@ -88,12 +94,12 @@ class Usuarios_controller extends CI_Controller
          $cantidad = $this->Usuarios_model->comprobarExistencia($nuevoCiu);
 
          //si existe incrementamos el numero en uno
-         if($cantidad >= 1) {
+         if ($cantidad >= 1) {
             $numero++;
          } else {
             $existe = false;
          }
-      } while($existe);
+      } while ($existe);
 
       return $nuevoCiu;
    }
@@ -108,7 +114,8 @@ class Usuarios_controller extends CI_Controller
       echo json_encode($this->Usuarios_model->buscarUsuarioNombre($this->input->post("nombre")));
    }
 
-   public function buscarUsuarioCiuNombre() {
+   public function buscarUsuarioCiuNombre()
+   {
       echo json_encode($this->Usuarios_model->buscarUsuarioCiuNombre($this->input->post("dato")));
    }
 
