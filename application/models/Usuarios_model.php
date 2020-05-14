@@ -22,34 +22,6 @@ class Usuarios_model extends CI_Model
       return $this->db->get("usuarios")->row_array();
    }
 
-   public function leerCantidadDatos($ciu, $valores)
-   {
-      //$valores es un array que tiene los valores que necesitamos
-      //usamos un if porque el campo a buscar se llama de forma distinta en las distintas tablas
-      $array = array();
-
-      if (array_search("notificaciones", $valores)) {
-         $this->db->like("CIU_usuario", $ciu);
-         $this->db->from("notificaciones");
-         $array['notificaciones'] = $this->db->count_all_results();
-      }
-
-      if (array_search("citas", $valores)) {
-         $this->db->like("CIU_paciente", $ciu);
-         $this->db->where("estado", "P");
-         $this->db->from("citas");
-         $array['citas'] = $this->db->count_all_results();
-      }
-      if (array_search("tratamientos", $valores)) {
-         $this->db->like("CIU_paciente", $ciu);
-         $this->db->where("fecha_fin >=", date("Y-m-d"));
-         $this->db->from("tratamientos");
-         $array['tratamientos'] = $this->db->count_all_results();
-      }
-
-      return $array;
-   }
-
    public function leerDatosInicio($usuario)
    {
       $datos = array();

@@ -134,9 +134,4 @@ class Usuarios_controller extends CI_Controller
 
       echo $this->Usuarios_model->actualizarUsuario($ciu, $datos);
    }
-
-   public function leerCantidadDatos()
-   {
-      echo json_encode($this->Usuarios_model->leerCantidadDatos($this->session->userdata("ciu"), $this->input->post("datos")));
-   }
 }
