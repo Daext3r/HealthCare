@@ -136,4 +136,16 @@ class Facultativo extends CI_Controller
             break;
       }
    }
+
+   public function enfermedades()
+   {
+      $this->load->view("modules/ViewModule_Head", array(
+         "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "facultativo/Style_Enfermedades", "facultativo/Style_ListaPacientes"),
+         "scripts" => array("modules/ScriptModule_Panel", "facultativo/Script_ListaPacientes", "facultativo/Script_Enfermedades")
+      ));
+
+      $this->load->view("modules/ViewModule_Panel");
+
+      $this->load->view("facultativo/View_Enfermedades");
+   }
 }

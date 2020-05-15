@@ -1,0 +1,43 @@
+.enfermedades {
+   border: 1px solid rgba(0,0,0,0.125);
+   border-bottom: 3px solid #007bff;
+   width: 100%;
+   height: calc(85vh - 4.5em);
+   max-height: calc(85vh - 4.5em);
+   margin-top: 1em;
+   padding: 1em;
+   overflow-y: scroll;  
+   border-radius: 0.4em;
+}
+
+
+/* width */
+.enfermedades::-webkit-scrollbar {
+   width: 10px;
+}
+
+/* Track */
+.enfermedades::-webkit-scrollbar-track {
+   display: none;
+}
+
+/* Handle */
+.enfermedades::-webkit-scrollbar-thumb {
+   background: rgb(177, 176, 176);
+   border-radius: 1em;
+}
+
+/* Handle on hover */
+.enfermedades::-webkit-scrollbar-thumb:hover {
+   background: #555;
+}
+
+.listaEnfermedades {
+   width: 75%;
+   margin: auto;
+   margin-top: 1em;
+}
+
+.enfermedad {
+   margin: 0.5em;
+}

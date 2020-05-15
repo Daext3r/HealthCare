@@ -188,6 +188,11 @@
                </div>
 
                <div class="separador w-100"></div>
+               <a href="<?php echo base_url() ?>facultativo/enfermedades">
+                  <div class="list-group-item">Enfermedades</div>
+               </a>
+
+               <div class="separador w-100"></div>
             <?php
                break;
             case 'administrativo':

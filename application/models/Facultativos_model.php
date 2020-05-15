@@ -39,4 +39,21 @@ class Facultativos_model extends CI_Model
       $this->db->group_by('CIU');
       return $this->db->get("vista_usuarios_facultativos")->result_array();
    }
+
+   public function leerEnfermedadesPaciente($paciente) {
+      $this->db->where("CIU_paciente", $paciente);
+      $this->db->select("enfermedades");
+      return $this->db->get("pacientes")->row_array()['enfermedades'];
+   }
+
+   public function actualizarEnfermedadesPaciente($paciente, $enfermedades) {
+      $this->db->where("CIU_paciente", $paciente);
+      $this->db->set("enfermedades", $enfermedades);
+
+      if($this->db->update("pacientes")) {
+         return 1;
+      } else {
+         return 0;
+      }
+   }
 }
