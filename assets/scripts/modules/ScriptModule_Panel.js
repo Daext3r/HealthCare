@@ -2,6 +2,12 @@
 $(document).ready(function () {
 
    $("a").click(function (e) {
+      //si queremos abrir en una pestaña nueva
+      if(this.target == "_blank") {
+         window.open(this.href);
+         return;
+      }
+
       e.preventDefault();
       $("section.contenido").eq(0).fadeOut(200);
       setTimeout(() => { window.location.href = this.href; }, 200);
