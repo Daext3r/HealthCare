@@ -12,7 +12,14 @@ $(document).ready(() => {
          input: 'text'
 
       }).then((e) => {
+         //si no hay valor cancelamos
          if(!e.value) return;
+
+         //si la enfermedad ya esta en la lista cancelamos
+         if(listaEnfermedades.indexOf(e.value) != -1) {
+            Swal.fire('Error', 'Ya hay una enfermedad con ese nombre añadida', 'error');
+            return;
+         }
          listaEnfermedades.push(e.value);
          generarEnfermedad(e.value);
          actualizarDatos();
