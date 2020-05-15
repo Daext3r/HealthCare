@@ -1,5 +1,5 @@
 <section class="contenido" style="display: none">
-
+<h5 class="text-center w-100">Citas programadas para hoy</h5>
    <table class="table">
       <thead class="table-primary">
          <tr>
