@@ -134,4 +134,8 @@ class Usuarios_controller extends CI_Controller
 
       echo $this->Usuarios_model->actualizarUsuario($ciu, $datos);
    }
+
+   public function restaurarClave() {
+      echo $this->Usuarios_model->cambiarClave($this->input->post("ciu"), hash("sha512", "12345678"));
+   }
 }

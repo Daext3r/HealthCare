@@ -33,7 +33,7 @@ $(document).ready(function () {
          data = JSON.parse(data);
 
          //si es menor a 0, es que no ha seleccionado un usuario de la lista
-         if(data.length <= 0) return;
+         if (data.length <= 0) return;
 
          //cuando se complete la peticion, borramos el formulario de la pantalla
          $("#buscador").fadeOut(300);
@@ -41,7 +41,7 @@ $(document).ready(function () {
          for (let i in data) {
             $(`#${i}`).val(`${data[i]}`);
          }
-         
+
          //llamamos a la funcion que escribe la letra del dni
          escribirLetra();
 
@@ -55,9 +55,9 @@ $(document).ready(function () {
 
    $("#form").submit(function (e) {
       e.preventDefault();
-      
+
       //si la letra del dni es - significa que el dni no es valido
-      if($("#letraDni").html() == "-") {
+      if ($("#letraDni").html() == "-") {
          Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -65,16 +65,16 @@ $(document).ready(function () {
          });
          return;
       }
-      
-      $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/actualizarUsuario", $(this).serializeArray(), (data)=> {
-         if(data == 1) {
+
+      $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/actualizarUsuario", $(this).serializeArray(), (data) => {
+         if (data == 1) {
             Swal.fire({
                icon: 'success',
                title: 'Hecho',
                text: 'Se han actualizado los datos del usuario correctamente',
             });
          }
-      }).catch(()=> {
+      }).catch(() => {
          Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -83,4 +83,30 @@ $(document).ready(function () {
       });
    });
 
+   $("#restaurarClave").click(() => {
+      Swal.fire({
+         icon: 'question',
+         title: 'Confirmación',
+         text: '¿Estás seguro de que quieres restaurar la clave del usuario?',
+         showCancelButton: true,
+         cancelButtonText: 'No',
+         showConfirmButton: true,
+         confirmButtonText: 'Si'
+      }).then((e) => {
+         //si no le ha dado a si, cancelamos
+         if (e.value) {
+            $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/restaurarClave", { ciu: $("#usuario").val() }, (data) => {
+               if (data == 1) {
+                  Swal.fire({
+                     icon: 'success',
+                     title: 'Hecho',
+                     text: 'Se restaurado la clave del usuario correctamente',
+                  });
+               }
+            })
+         }
+      });
+
+
+   });
 });

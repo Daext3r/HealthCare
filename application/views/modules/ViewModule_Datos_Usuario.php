@@ -14,7 +14,7 @@
    </div>
 
    <form method="post" class="datos" style="display: none;" id="form">
-   <input type="hidden" name="CIU" id="CIU">
+      <input type="hidden" name="CIU" id="CIU">
       <h4>Editar datos de un usuario</h4>
       <div class="row datos-row">
          <div class="col datos-col">
@@ -80,7 +80,11 @@
          </div>
       </div>
 
-      <input type="submit" value="Actualizar datos de usuario" class="btn btn-success w-75 datos-submit">
+      <div class="row datos-row">
+         <div class="col datos-col"><input type="button" value="Restaurar contraseña" class="btn btn-outline-primary datos-submit w-100" id="restaurarClave"></div>
+         <div class="col datos-col"><input type="submit" value="Actualizar datos de usuario" class="btn btn-success w-100 datos-submit"></div>
+      </div>
+
    </form>
 </section>
 </div>

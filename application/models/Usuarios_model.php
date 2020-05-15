@@ -122,4 +122,15 @@ class Usuarios_model extends CI_Model
       $this->db->where('CIU', $ciu);
       return $this->db->count_all_results('usuarios');
    }
+
+   public function cambiarClave($ciu, $clave)
+   {
+      $this->db->where("CIU", $ciu);
+      $this->db->set("clave", $clave);
+      if ($this->db->update("usuarios")) {
+         return 1;
+      } else {
+         return 0;
+      }
+   }
 }
