@@ -3,7 +3,7 @@ $(document).ready(function () {
 
    $("a").click(function (e) {
       //si queremos abrir en una pestaña nueva
-      if(this.target == "_blank") {
+      if (this.target == "_blank") {
          window.open(this.href);
          return;
       }
@@ -44,7 +44,7 @@ $(document).ready(function () {
          //añade la clase active para que resalte en azul
          a.children[0].classList.add("opcion-seleccionada")
 
-         if(a.classList.contains("nested")) {
+         if (a.classList.contains("nested")) {
             a.parentNode.parentNode.classList.add("opcion-seleccionada");
          }
       }
@@ -111,4 +111,72 @@ $(document).ready(function () {
          });
       }
    });
+
+   $("#modificarDatosGuardar").click((e) => {
+      e.preventDefault();
+      Swal.fire({
+         icon: 'question',
+         title: 'Guardar cambios',
+         text: '¿Desea guardar los cambios?',
+         showCancelButton: true,
+         cancelButtonText: 'No',
+         confirmButtonText: 'Si'
+      }).then((e) => {
+         if (e.value) {
+
+            var file = document.getElementById("imagenPerfil").files[0];
+            var img; //imagen codificada en base64
+
+            //comprobamos si ha subido una imagen
+            if (file) {
+               var reader = new FileReader();
+               reader.onloadend = function () {
+                  img = reader.result;
+
+                  let datos = {};
+                  datos.fijo = $("#fijo").val();
+                  datos.direccion = $("#direccion").val();
+                  datos.telefono = $("#telefono").val();
+                  datos.correo = $("#correo").val();
+                  datos.img = img;
+
+                  $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/actualizarUsuario", datos, (data) => {
+                     if (data == 1) {
+                        Swal.fire({
+                           icon: 'success',
+                           title: 'Hecho',
+                           text: 'Se han actualizado los datos'
+                        }).then((e) => {
+                           $("#modificarDatos").modal("toggle");
+                        })
+                     }
+                  });
+               }
+               reader.readAsDataURL(file);
+            } else {
+               let datos = {};
+               datos.fijo = $("#fijo").val();
+               datos.direccion = $("#direccion").val();
+               datos.telefono = $("#telefono").val();
+               datos.correo = $("#correo").val();
+
+               $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/actualizarUsuario", datos, (data) => {
+                  if (data == 1) {
+                     Swal.fire({
+                        icon: 'success',
+                        title: 'Hecho',
+                        text: 'Se han actualizado los datos'
+                     }).then((e) => {
+                        $("#modificarDatos").modal("toggle");
+                     })
+                  }
+               });
+            }
+
+
+         }
+      })
+   });
+
+
 });

@@ -1,11 +1,20 @@
 <!--Es necesario poner un height aqui para que una libreria no cambie el height del body-->
 
+<?php
+//vamos a comprobar si existe la imagen de perfil
+//echo file_exists("./assets/perfiles/" . $this->session->userdata("ciu") . ".");
+$archivos = glob("./assets/perfiles/" . $this->session->userdata("ciu") . ".*");
+
+$imgPerfil = count($archivos) >= 1 ? "../" . $archivos[0] : "https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg";
+
+?>
+
 <body style="height: 100vh!important">
    <!--seccion del menu lateral-->
    <section id="menu">
       <div id="perfil">
          <div id="imgperfil">
-            <img src="https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg" alt="">
+            <img src="<?php echo $imgPerfil ?> " alt="">
          </div>
 
          <div id="panel-nombre">
@@ -267,7 +276,7 @@
    <div id="pagina">
       <nav id="header">
          <div class="col perfil wsnw">
-            <div>Mi perfil <i class="fas fa-cog"></i></div>
+            <div data-toggle="modal" data-target="#modificarDatos">Mi perfil <i class="fas fa-cog"></i></div>
          </div>
 
          <div class="separador-v"></div>
@@ -294,3 +303,55 @@
             </div>
          </div>
       </nav>
+
+      <!-- Modal -->
+      <div class="modal fade" id="modificarDatos" tabindex="-1" role="dialog" aaria-hidden="true">
+         <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalScrollableTitle">Modificar datos</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+
+                  <form method="post" class="datos" id="form">
+                     <div class="row datos-row">
+                        <div class="col datos-col">
+                           <label for="fijo">Fijo</label>
+                           <input type="text" name="Fijo" class="form-control" placeholder="Fijo" autocomplete="off" required value="<?php echo $this->session->userdata("fijo") ?>" id="fijo">
+                        </div>
+                        <div class="col datos-col">
+                           <label for="telefono">Telefono</label>
+                           <input type="text" name="telefono" class="form-control" placeholder="Telefono" autocomplete="off" required value="<?php echo $this->session->userdata("telefono") ?>" id="telefono">
+                        </div>
+                     </div>
+
+                     <div class="row datos-row">
+                        <div class="col datos-col">
+                           <label for="direccion">Direccion</label>
+                           <input type="text" name="direccion" id="direccion" class="form-control" placeholder="Direccion" autocomplete="off" required value="<?php echo $this->session->userdata("direccion") ?>">
+                        </div>
+                        <div class="col datos-col">
+                           <label for="correo">Correo electrónico</label>
+                           <input type="mail" class="form-control" name="correo" placeholder="Correo" autocomplete="off" required value="<?php echo $this->session->userdata("correo") ?>" id="correo">
+                        </div>
+                     </div>
+
+                     <div class="row">
+                        <div class="col">
+                           <label for="imagenPerfil">Cambiar imagen de perfil</label>
+                           <input type="file" accept="image/png, image/jpeg" id="imagenPerfil">
+                        </div>
+                        <div class="col">
+                           <label for=""></label>
+                           <button class="btn btn-success w-100 d-block" id="modificarDatosGuardar">Guardar cambios</button>
+                        </div>
+                     </div>
+                  </form>
+
+               </div>
+            </div>
+         </div>
+      </div>

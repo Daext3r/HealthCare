@@ -2,6 +2,8 @@ system
 user_guide
 application/*
 
+assets/perfiles/*
+
 !application/config
 !application/views
 !application/models

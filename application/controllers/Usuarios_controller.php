@@ -128,14 +128,51 @@ class Usuarios_controller extends CI_Controller
    {
       //quitamos el id del array y lo guardamos a parte
       $datos = $_POST;
-      $ciu = $datos['CIU'];
+      $ciu = isset($datos['CIU']) ? $datos['CIU'] : $this->session->userdata("ciu");
       unset($datos['CIU']);
 
+      //miramos si ha enviado imagen de perfil. de ser asi se procesa en otro metodo aparte y se quita del array
+      if (isset($datos['img'])) {
+         self::actualizarImagenPerfil($datos['img']);
+         unset($datos['img']);
+      }
 
       echo $this->Usuarios_model->actualizarUsuario($ciu, $datos);
    }
 
-   public function restaurarClave() {
+   public function restaurarClave()
+   {
       echo $this->Usuarios_model->cambiarClave($this->input->post("ciu"), hash("sha512", "12345678"));
+   }
+
+   public function actualizarImagenPerfil($imagenBase)
+   {
+      //cargamos el helper de file
+      $this->load->helper("file");
+      $imagen = explode(",", $imagenBase);
+      $imagen = $imagen[1];
+
+      //data:image/[formato];base64
+      //separamos la propia imagen del formato
+      $formato = explode(",", $imagenBase);
+      $formato = $formato[0];
+
+      //separamo por el ;
+      $formato = explode(";", $formato);
+
+      //cogemos la primera parte, y separamos por la barra
+      $formato = explode("/", $formato[0]);
+
+      //nos quedamos con el formato
+      $formato = $formato[1];
+
+
+      //borramos la imagen anterior que haya
+      $archivos = glob("./assets/perfiles/" . $this->session->userdata("ciu") . ".*");
+      if(count($archivos) >= 1) unlink($archivos[0]);
+
+      //guardamos la nueva imagen de perfil
+      write_file("./assets/perfiles/" . $this->session->userdata("ciu") . "." . $formato, base64_decode($imagen));
+      
    }
 }
