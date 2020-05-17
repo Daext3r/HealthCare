@@ -31,22 +31,24 @@ $imgPerfil = count($archivos) >= 1 ? "../" . $archivos[0] : "https://www.jennstr
                //si es paciente...
             case 'paciente':
          ?>
+               <div class="separador w-100"></div>
                <a href="<?php echo base_url() ?>paciente/inicio">
                   <div class="list-group-item">Inicio</div>
                </a>
+               <div class="separador w-100"></div>
                <a href="<?php echo base_url() ?>paciente/citas">
                   <div class="list-group-item">Citas</div>
                </a>
+               <div class="separador w-100"></div>
                <a href="<?php echo base_url() ?>paciente/tratamientos">
                   <div class="list-group-item">Tratamientos</div>
                </a>
+               <div class="separador w-100"></div>
                <a href="<?php echo base_url() ?>paciente/informes">
                   <div class="list-group-item">Informes</div>
                </a>
-               <!--<a href="<?php //echo base_url() 
-                              ?>paciente/misdatos">
-                     <li class="list-group-item last">Mis Datos</div>
-                  </a>-->
+               <div class="separador w-100"></div>
+
             <?php
                break;
                //si es admin...
