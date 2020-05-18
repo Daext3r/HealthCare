@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-05-2020 a las 16:03:39
+-- Tiempo de generación: 18-05-2020 a las 16:23:11
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -293,6 +293,32 @@ CREATE TABLE `pacientes` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `traslados`
+--
+
+CREATE TABLE `traslados` (
+  `id` int(11) NOT NULL,
+  `centro_destino` int(11) NOT NULL,
+  `CIU_facultativo` varchar(64) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `traslados`:
+--   `CIU_facultativo`
+--       `usuarios` -> `CIU`
+--
+
+--
+-- Disparadores `traslados`
+--
+DELIMITER $$
+CREATE TRIGGER `notificacion_traslado` BEFORE INSERT ON `traslados` FOR EACH ROW INSERT INTO notificaciones(CIU_usuario, resumen, informacion) VALUES((SELECT CIU_gerente FROM centros WHERE centros.id = (SELECT centro FROM facultativos WHERE CIU_facultativo = new.CIU_facultativo)), "Nuevo traslado", "Has recibido una solicitud de traslado. Revísala lo antes posible")
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tratamientos`
 --
 
@@ -332,8 +358,7 @@ CREATE TABLE `usuarios` (
   `fijo` varchar(16) COLLATE utf8_spanish_ci DEFAULT NULL,
   `fecha_nacimiento` date NOT NULL,
   `clave` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `correo` varchar(64) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `foto_perfil` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL
+  `correo` varchar(64) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -406,6 +431,22 @@ CREATE TABLE `vista_resumen_informes` (
 -- --------------------------------------------------------
 
 --
+-- Estructura Stand-in para la vista `vista_traslados`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `vista_traslados` (
+`nombre_centro_destino` varchar(64)
+,`nombre_facultativo` varchar(97)
+,`centro_destino` int(11)
+,`CIU_facultativo` varchar(64)
+,`CIU_gerente_destino` varchar(64)
+,`nombre_gerente_destino` varchar(97)
+,`id` int(11)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura Stand-in para la vista `vista_usuarios_facultativos`
 -- (Véase abajo para la vista actual)
 --
@@ -472,6 +513,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `vista_resumen_informes`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_resumen_informes`  AS  (select `informes`.`id` AS `id`,`informes`.`privado` AS `privado`,`informes`.`episodio` AS `episodio`,`informes`.`CIU_facultativo` AS `CIU_medico`,`informes`.`CIU_paciente` AS `CIU_paciente`,`informes`.`fecha` AS `fecha`,`informes`.`hora` AS `hora`,`informes`.`contenido` AS `contenido`,`vista_usuarios_facultativos`.`nombre_completo` AS `nombre_completo_medico`,`vista_usuarios_facultativos`.`especialidad` AS `especialidad`,`vista_usuarios_nombre`.`nombre_completo` AS `nombre_completo_paciente` from ((`informes` join `vista_usuarios_facultativos` on((`informes`.`CIU_facultativo` = `vista_usuarios_facultativos`.`CIU`))) join `vista_usuarios_nombre` on((`vista_usuarios_nombre`.`CIU` = `informes`.`CIU_paciente`)))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `vista_traslados`
+--
+DROP TABLE IF EXISTS `vista_traslados`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_traslados`  AS  (select (select `centros`.`nombre` from `centros` where (`centros`.`id` = `traslados`.`centro_destino`)) AS `nombre_centro_destino`,(select `vista_usuarios_facultativos`.`nombre_completo` from `vista_usuarios_facultativos` where (`vista_usuarios_facultativos`.`CIU` = `traslados`.`CIU_facultativo`)) AS `nombre_facultativo`,`traslados`.`centro_destino` AS `centro_destino`,`traslados`.`CIU_facultativo` AS `CIU_facultativo`,(select `centros`.`CIU_gerente` from `centros` where (`centros`.`id` = `traslados`.`centro_destino`)) AS `CIU_gerente_destino`,(select `vista_usuarios_nombre`.`nombre_completo` from `vista_usuarios_nombre` where (`vista_usuarios_nombre`.`CIU` = (select `centros`.`CIU_gerente` from `centros` where (`centros`.`id` = `traslados`.`centro_destino`)))) AS `nombre_gerente_destino`,`traslados`.`id` AS `id` from `traslados`) ;
 
 -- --------------------------------------------------------
 
@@ -596,6 +646,13 @@ ALTER TABLE `pacientes`
   ADD KEY `pacientes_enfermero` (`CIU_enfermero_referencia`);
 
 --
+-- Indices de la tabla `traslados`
+--
+ALTER TABLE `traslados`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `traslados_usuarios` (`CIU_facultativo`);
+
+--
 -- Indices de la tabla `tratamientos`
 --
 ALTER TABLE `tratamientos`
@@ -654,6 +711,12 @@ ALTER TABLE `informes`
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `traslados`
+--
+ALTER TABLE `traslados`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -742,6 +805,12 @@ ALTER TABLE `pacientes`
   ADD CONSTRAINT `pacientes_enfermero` FOREIGN KEY (`CIU_enfermero_referencia`) REFERENCES `facultativos` (`CIU_facultativo`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `pacientes_facultativos` FOREIGN KEY (`CIU_medico_referencia`) REFERENCES `facultativos` (`CIU_facultativo`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `pacientes_usuario` FOREIGN KEY (`CIU_paciente`) REFERENCES `usuarios` (`CIU`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `traslados`
+--
+ALTER TABLE `traslados`
+  ADD CONSTRAINT `traslados_usuarios` FOREIGN KEY (`CIU_facultativo`) REFERENCES `usuarios` (`CIU`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `tratamientos`
