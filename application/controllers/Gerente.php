@@ -86,7 +86,29 @@ class Gerente extends CI_Controller
       }
    }
 
-   public function traslados()
+   public function traslados($accion)
    {
+      switch ($accion) {
+         case 'nuevo':
+            $this->load->view("modules/ViewModule_Head", array(
+               "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "gerente/Style_Nuevo_Traslado"),
+               "scripts" => array("modules/ScriptModule_Panel", "gerente/Script_Nuevo_Traslado")
+            ));
+
+            $this->load->view("modules/ViewModule_Panel");
+
+            $this->load->view("gerente/View_Nuevo_Traslado");
+            break;
+         case 'solicitudes':
+            $this->load->view("modules/ViewModule_Head", array(
+               "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "gerente/Style_Solicitudes_Traslado"),
+               "scripts" => array("modules/ScriptModule_Panel", "gerente/Script_Solicitudes_Traslado")
+            ));
+
+            $this->load->view("modules/ViewModule_Panel");
+
+            $this->load->view("gerente/View_Solicitudes_Traslado");
+            break;
+      }
    }
 }

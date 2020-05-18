@@ -83,4 +83,10 @@ class Centros_model extends CI_Model
       $this->db->join("facultativos", "facultativos.centro = centros.id");
       return $this->db->get()->result_array();
    }
+
+   public function leerCentroPorFacultativo($facultativo) {
+      $this->db->select("centro");
+      $this->db->where("CIU_facultativo", $facultativo);
+      return $this->db->get("facultativos")->row_array();
+   }
 }

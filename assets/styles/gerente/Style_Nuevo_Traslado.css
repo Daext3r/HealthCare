@@ -1,0 +1,15 @@
+.contenido {
+   display: flex;
+   justify-content: center;
+   align-content: center;
+   flex-wrap: wrap;
+}
+
+.row {
+   width: 60%;
+   text-align: center;
+}
+
+label {
+   font-size: 26px;
+}
