@@ -134,10 +134,10 @@ $(document).ready(function () {
                   img = reader.result;
 
                   let datos = {};
-                  datos.fijo = $("#fijo").val();
-                  datos.direccion = $("#direccion").val();
-                  datos.telefono = $("#telefono").val();
-                  datos.correo = $("#correo").val();
+                  datos.fijo = $("#perf-fijo").val();
+                  datos.direccion = $("#perf-direccion").val();
+                  datos.telefono = $("#tperf-elefono").val();
+                  datos.correo = $("#perf-correo").val();
                   datos.img = img;
 
                   $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/actualizarUsuario", datos, (data) => {
@@ -155,10 +155,10 @@ $(document).ready(function () {
                reader.readAsDataURL(file);
             } else {
                let datos = {};
-               datos.fijo = $("#fijo").val();
-               datos.direccion = $("#direccion").val();
-               datos.telefono = $("#telefono").val();
-               datos.correo = $("#correo").val();
+               datos.fijo = $("#perf-fijo").val();
+               datos.direccion = $("#perf-direccion").val();
+               datos.telefono = $("#perf-telefono").val();
+               datos.correo = $("#perf-correo").val();
 
                $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/actualizarUsuario", datos, (data) => {
                   if (data == 1) {

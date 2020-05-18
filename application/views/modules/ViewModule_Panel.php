@@ -332,26 +332,26 @@ if (count(glob($this->config->item("local_profile_path") . $this->session->userd
                </div>
                <div class="modal-body">
 
-                  <form method="post" class="datos" id="form">
+                  <form method="post" class="datos">
                      <div class="row datos-row">
                         <div class="col datos-col">
                            <label for="fijo">Fijo</label>
-                           <input type="text" name="Fijo" class="form-control" placeholder="Fijo" autocomplete="off" required value="<?php echo $this->session->userdata("fijo") ?>" id="fijo">
+                           <input type="text" name="Fijo" class="form-control" placeholder="Fijo" autocomplete="off" required value="<?php echo $this->session->userdata("fijo") ?>" id="perf-fijo">
                         </div>
                         <div class="col datos-col">
                            <label for="telefono">Telefono</label>
-                           <input type="text" name="telefono" class="form-control" placeholder="Telefono" autocomplete="off" required value="<?php echo $this->session->userdata("telefono") ?>" id="telefono">
+                           <input type="text" name="telefono" class="form-control" placeholder="Telefono" autocomplete="off" required value="<?php echo $this->session->userdata("telefono") ?>" id="perf-telefono">
                         </div>
                      </div>
 
                      <div class="row datos-row">
                         <div class="col datos-col">
                            <label for="direccion">Direccion</label>
-                           <input type="text" name="direccion" id="direccion" class="form-control" placeholder="Direccion" autocomplete="off" required value="<?php echo $this->session->userdata("direccion") ?>">
+                           <input type="text" name="direccion" id="perf-direccion" class="form-control" placeholder="Direccion" autocomplete="off" required value="<?php echo $this->session->userdata("direccion") ?>">
                         </div>
                         <div class="col datos-col">
                            <label for="correo">Correo electrónico</label>
-                           <input type="mail" class="form-control" name="correo" placeholder="Correo" autocomplete="off" required value="<?php echo $this->session->userdata("correo") ?>" id="correo">
+                           <input type="mail" class="form-control" name="correo" placeholder="Correo" autocomplete="off" required value="<?php echo $this->session->userdata("correo") ?>" id="perf-correo">
                         </div>
                      </div>
 
