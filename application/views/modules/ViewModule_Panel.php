@@ -9,9 +9,6 @@ if (count(glob($this->config->item("local_profile_path") . $this->session->userd
    $imgPerfil = "https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg";
 }
 
-//comprobamos si existe la imagen de perfil en la carpeta que está asignada en el config
-//echo $this->config->item("local_profile_path");
-
 ?>
 
 <body style="height: 100vh!important">
