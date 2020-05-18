@@ -28,4 +28,34 @@ class Gerente_controller extends CI_Controller
          echo $this->Gerente_model->nuevoTraslado($facultativo, $centro_destino['id']);
       }
    }
+
+   public function leerTraslados()
+   {
+      $this->load->model("Centros_model");
+      //leemos los traslados que hay para este centro. lo hacemos buscando los medicos que estén en una vista y que sean del centro de este gerente
+      echo json_encode($this->Gerente_model->leerTraslados($this->Centros_model->leerCentroPorGerente($this->session->userdata("ciu"))['id']));
+   }
+
+   public function resolverTraslado()
+   {
+      $res = $this->input->post("res");
+      $traslado = $this->input->post("id");
+
+      if ($res == "true") {
+         $this->load->model("Facultativos_model");
+         //si es que si actualizamos la tabla facultativos y le cambiamos el centro. despues borramos el traslado
+         $nuevoCentro = $this->Gerente_model->leerNuevoCentro($traslado);
+         $facultativo = $this->Gerente_model->leerNuevoFacultativo($traslado);
+
+         if($this->Facultativos_model->actualizarCentro($facultativo['CIU_facultativo'], $nuevoCentro['centro_destino']) == 1) {
+            $this->Gerente_model->borrarTraslado($traslado);
+               
+         }
+      } else {
+         //si es que no solo borramos el traslado
+         $this->Gerente_model->borrarTraslado($traslado);
+      }
+      
+      echo 1;
+   }
 }

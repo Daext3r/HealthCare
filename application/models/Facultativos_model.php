@@ -30,7 +30,7 @@ class Facultativos_model extends CI_Model
       $this->db->like("nombre_completo", $nombre);
       return $this->db->get("vista_usuarios_facultativos")->result_array();
    }
-   
+
    public function buscarFacultativoCiuNombre($dato)
    {
       $this->db->select("CIU, nombre_completo");
@@ -40,17 +40,31 @@ class Facultativos_model extends CI_Model
       return $this->db->get("vista_usuarios_facultativos")->result_array();
    }
 
-   public function leerEnfermedadesPaciente($paciente) {
+   public function leerEnfermedadesPaciente($paciente)
+   {
       $this->db->where("CIU_paciente", $paciente);
       $this->db->select("enfermedades");
       return $this->db->get("pacientes")->row_array()['enfermedades'];
    }
 
-   public function actualizarEnfermedadesPaciente($paciente, $enfermedades) {
+   public function actualizarEnfermedadesPaciente($paciente, $enfermedades)
+   {
       $this->db->where("CIU_paciente", $paciente);
       $this->db->set("enfermedades", $enfermedades);
 
-      if($this->db->update("pacientes")) {
+      if ($this->db->update("pacientes")) {
+         return 1;
+      } else {
+         return 0;
+      }
+   }
+
+   public function actualizarCentro($facultativo, $centro)
+   {
+      $this->db->where("CIU_facultativo", $facultativo);
+      $this->db->set("centro", $centro);
+      
+      if ($this->db->update("facultativos")) {
          return 1;
       } else {
          return 0;
