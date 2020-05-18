@@ -2,10 +2,15 @@
 
 <?php
 //vamos a comprobar si existe la imagen de perfil
-//echo file_exists("./assets/perfiles/" . $this->session->userdata("ciu") . ".");
-$archivos = glob("./assets/perfiles/" . $this->session->userdata("ciu") . ".*");
+$imgPerfil;
+if (count(glob($this->config->item("local_profile_path") . $this->session->userdata("ciu") . ".*")) >= 1) {
+   $imgPerfil = $this->config->item("online_profile_path") . $this->session->userdata("ciu") . ".jpeg";
+} else {
+   $imgPerfil = "https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg";
+}
 
-$imgPerfil = count($archivos) >= 1 ? "../" . $archivos[0] : "https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg";
+//comprobamos si existe la imagen de perfil en la carpeta que está asignada en el config
+//echo $this->config->item("local_profile_path");
 
 ?>
 
@@ -109,9 +114,21 @@ $imgPerfil = count($archivos) >= 1 ? "../" . $archivos[0] : "https://www.jennstr
                   <div class="list-group-item">Gestionar administrativos</div>
                </a>
                <div class="separador w-100"></div>
-               <a href="<?php echo base_url() ?>gerente/traslados">
-                  <div class="list-group-item">Traslados</div>
-               </a>
+               <div class="group list-group-item">
+                  <div class="title">
+                     Traslados <i class="fas fa-arrow-down"></i>
+                  </div>
+                  <div class="content">
+                     <a href="<?php echo base_url() ?>gerente/traslados/nuevo" class="nested">
+                        <div class="list-group-item">Nuevo traslado</div>
+                     </a>
+                     <div class="separador"></div>
+                     <a href="<?php echo base_url() ?>gerente/traslados/solicitudes" class="nested">
+                        <div class="list-group-item">Solicitudes de traslados</div>
+                     </a>
+                  </div>
+               </div>
+
                <div class="separador w-100"></div>
             <?php
                break;

@@ -34,6 +34,9 @@ $config['application_key'] = <<<EOL
 LPKkq0G0"h1$$>F)jq0iPp%1J7;qwPea6xP>O]O@ToB43U6\KsP?b1;8C[(SnRlO92yZHQ8cyP*7&Pdp8R@R:}=(x,sH8rUnrQ\ImwHhdoEoZkZ,J~M0Gyd7g?&i(IPf
 EOL;
 
+//rutas para las imagenes de perfil
+$config['local_profile_path'] = "C:/xampp/htdocs/HealthCare/assets/perfiles/";
+$config['online_profile_path'] = $config['base_url'] . "/assets/perfiles/";
 
 
 
