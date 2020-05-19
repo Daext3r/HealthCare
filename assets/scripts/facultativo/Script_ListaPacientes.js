@@ -59,6 +59,16 @@ function agregarPaciente(paciente) {
 
       //quitamos el paciente de localstorage
       localStorage.setItem("hc_lista_pacientes", JSON.stringify(JSON.parse(localStorage.getItem("hc_lista_pacientes")).filter(pacienteLista => pacienteLista.CIU != paciente.CIU)));
+
+      //si el que hemos cerrado estaba seleccionado
+      if (div.classList.contains("seleccionado")) {
+         //miramos la longitud de los pacientes. si hay alguno seleccionamos el primero
+         if (JSON.parse(localStorage.getItem("hc_lista_pacientes")).length >= 1) {
+            $("#pacientes").children().eq(1).children().eq(1).click();
+         }
+      }
+
+
    });
 
    fade.appendChild(x);
@@ -80,14 +90,14 @@ function seleccionarPaciente(e) {
    let nuevoSeleccionado = e.target.parentNode;
 
    //si el seleccionado anterior y el nuevo es el mismo, cancelamos
-   if(seleccionado == nuevoSeleccionado) return;
+   if (seleccionado == nuevoSeleccionado) return;
 
    //le quitamos la clase de seleccionado y se la ponemos al nuevo seleccionado
    //cambiamos los datos en localstorage
    let pacientes = JSON.parse(localStorage.getItem("hc_lista_pacientes"));
-   
+
    pacientes.filter(paciente => paciente.CIU == nuevoSeleccionado.dataset.CIU)[0].seleccionado = true;
-   
+
    nuevoSeleccionado.classList.add("seleccionado");
 
    //si el seleccionado existe
@@ -95,7 +105,7 @@ function seleccionarPaciente(e) {
       seleccionado.classList.remove("seleccionado");
       pacientes.filter(paciente => paciente.CIU == seleccionado.dataset.CIU)[0].seleccionado = false;
    }
-   
+
    //guardamos los datos en localstorage
    localStorage.setItem("hc_lista_pacientes", JSON.stringify(pacientes));
 
@@ -108,13 +118,13 @@ function seleccionarPaciente(e) {
 $(document).ready(() => {
 
    //cuando abrimos el modal hacemos que haga autofocus
-   $('.modal').on('shown.bs.modal', function() {
+   $('.modal').on('shown.bs.modal', function () {
       $(this).find('[autofocus]').focus();
-    });
+   });
 
 
    //cuando se cargue el documento, leemos los pacientes que hay en localstorage
-   const pacientes = JSON.parse(localStorage.getItem("hc_lista_pacientes"));
+   let pacientes = JSON.parse(localStorage.getItem("hc_lista_pacientes"));
 
    //por cada paciente, creamos un elemento en la barra de pacientes
    if (pacientes != null)
