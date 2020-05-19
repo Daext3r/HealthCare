@@ -46,4 +46,10 @@ class Gerente_model extends CI_Model
          return 0;
       }
    }
+
+   public function comprobarUsuarioTraslado($facultativo)
+   {
+      $this->db->where("CIU_facultativo", $facultativo);
+      return $this->db->count_all_results('traslados');
+   }
 }

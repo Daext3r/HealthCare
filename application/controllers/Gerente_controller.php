@@ -23,10 +23,16 @@ class Gerente_controller extends CI_Controller
       if ($centro_destino['id'] == $centro_actual['centro']) {
          echo 0;
          return;
-      } else {
-         //si no es el mismo centro, lo insertamos
-         echo $this->Gerente_model->nuevoTraslado($facultativo, $centro_destino['id']);
       }
+      
+      //si no es el mismo centro, comprobamos si ya hay un traslado en curso para ese usuario
+      if ($this->Gerente_model->comprobarUsuarioTraslado($facultativo) >= 1) {
+         echo 2;
+         return;
+      }
+
+      //de lo contrario generamos el traslado
+      echo $this->Gerente_model->nuevoTraslado($facultativo, $centro_destino['id']);
    }
 
    public function leerTraslados()
@@ -47,15 +53,14 @@ class Gerente_controller extends CI_Controller
          $nuevoCentro = $this->Gerente_model->leerNuevoCentro($traslado);
          $facultativo = $this->Gerente_model->leerNuevoFacultativo($traslado);
 
-         if($this->Facultativos_model->actualizarCentro($facultativo['CIU_facultativo'], $nuevoCentro['centro_destino']) == 1) {
+         if ($this->Facultativos_model->actualizarCentro($facultativo['CIU_facultativo'], $nuevoCentro['centro_destino']) == 1) {
             $this->Gerente_model->borrarTraslado($traslado);
-               
          }
       } else {
          //si es que no solo borramos el traslado
          $this->Gerente_model->borrarTraslado($traslado);
       }
-      
+
       echo 1;
    }
 }

@@ -21,18 +21,25 @@ $(document).ready(() => {
                if (!e.value) return;
 
                $.post(localStorage.getItem("hc_base_url") + "Gerente_controller/solicitarTraslado", { facultativo: usuario }, (respuesta) => {
+                  console.log(respuesta);
                   if (respuesta == 1) {
                      Swal.fire({
                         icon: 'success',
                         title: 'Hecho',
                         text: `Se ha solicitado el traslado de ${data[0].nombre_completo}`,
-                     })
-                  } else {
+                     });
+                  } else if (respuesta == 0) {
                      Swal.fire({
                         icon: 'error',
                         title: 'Error',
                         text: `El usuario ${data[0].nombre_completo} ya trabaja en tu centro`,
-                     })
+                     });
+                  } else if(respuesta == 2) {
+                     Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: `El usuario ${data[0].nombre_completo} ya está siendo trasladado por otro centro`,
+                     });
                   }
                })
             });
