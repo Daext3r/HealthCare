@@ -92,15 +92,15 @@ function leerEpisodiosPaciente(ciu) {
       for (let episodio of data) {
          let div = $(`
             <div class="alert alert-secondary w-75" data-id="${episodio.id}">
-            <div>Especialidad: ${episodio.especialidad}</div>
+            <div>Especialidad: <i>${episodio.especialidad}</i></div>
                <div>
-                  <span>Descripción: ${episodio.descripcion}</span> | <span><a href="${localStorage.getItem("hc_base_url")}facultativo/informes/historial?episodio=${episodio.id}"}">Ver Informes de este episodio</a></span>
+                  <span>Descripción: <i>${episodio.descripcion}</i></span> | <span><a href="${localStorage.getItem("hc_base_url")}facultativo/informes/historial?episodio=${episodio.id}"}">Ver Informes de este episodio</a></span>
                </div>
                <div>
-                  <span>Creación: ${episodio.fecha_creacion}</span> | <span>Últ. Actualización: ${episodio.ult_actualizacion}</span>
+                  <span>Creación: <i>${episodio.fecha_creacion}</i></span> | <span>Últ. Actualización: <i>${episodio.ult_actualizacion}</i></span>
                </div>
                <div>
-                  Cerrado: <input type="checkbox" disabled class="" ${episodio.cerrado == 1? "checked" : ""}>
+                  ID: <i>${episodio.id}</i> | Cerrado: <i>${episodio.cerrado == 1? "Si" : "No"}</i>
                </div>
             </div>
          `);

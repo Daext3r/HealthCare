@@ -20,7 +20,7 @@
       <div class="card-body">
 
          <div class="card-title" id="cantidad-administrativos">0</div>
-         <p class="card-text">facultativos asignados a tu centro</p>
+         <p class="card-text">administrativos asignados a tu centro</p>
       </div>
    </div>
 </section>

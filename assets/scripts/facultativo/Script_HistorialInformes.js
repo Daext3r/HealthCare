@@ -1,7 +1,20 @@
 let listaInformes = [];
 //cuando el documento se haya cargado
-$(document).ready(function () {
-   buscarInformesPaciente();
+$(document).ready(async function () {
+   await buscarInformesPaciente();
+
+   //comprobamos si se ha pasado informe por get
+   let episodio = window.location.search.split("=");
+   if (episodio[0] == "?episodio") {
+
+      for (let child of document.getElementById("episodio").children) {
+         if (child.value == episodio[1]) {
+            child.setAttribute("selected", "");
+            console.log("found");
+         }
+      }
+      mostrarInformes();
+   }
 
    //cada vez que se cambie uno de estos campos actualizamos los informes
    $("#especialidad").change(mostrarInformes);
@@ -37,9 +50,9 @@ async function buscarInformesPaciente() {
    //leemos los informes del usuario seleccionado en la base de datos
    //esperamos a que se termine la funcion
    let seleccionado = JSON.parse(localStorage.getItem("hc_lista_pacientes")).filter(paciente => paciente.seleccionado == true);
-   
+
    //si no se ha podido seleccionar un paciente, volvemos atras
-   if(!seleccionado) return;
+   if (!seleccionado) return;
 
    await $.post(localStorage.getItem("hc_base_url") + "Informes/leerListaInformes", { propio: false, ciu: seleccionado[0].CIU }, (data) => {
       data = JSON.parse(data);
@@ -57,7 +70,7 @@ async function buscarInformesPaciente() {
    }
 
    //por cada informe miramos su especialidad y la agregamos al select
-   let listaEspecialidades =  [];
+   let listaEspecialidades = [];
    for (let informe of listaInformes) {
       //si es -1 es que no está en el array
       if (listaEspecialidades.indexOf(informe.especialidad) == -1) {
