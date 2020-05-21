@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-05-2020 a las 16:23:11
+-- Tiempo de generación: 20-05-2020 a las 16:45:45
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -42,6 +42,14 @@ CREATE TABLE `administrativos` (
 --   `CIU_administrativo`
 --       `usuarios` -> `CIU`
 --
+
+--
+-- Disparadores `administrativos`
+--
+DELIMITER $$
+CREATE TRIGGER `notificaciones_administrativos` BEFORE INSERT ON `administrativos` FOR EACH ROW INSERT INTO notificaciones(CIU_usuario, resumen, informacion) VALUES (new.CIU_administrativo, "Nuevo perfil", "Se te ha concedido acceso al panel de administrativos de un centro")
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -86,6 +94,14 @@ CREATE TABLE `analiticas` (
 --   `CIU_personal`
 --       `laboratorio` -> `CIU_personal`
 --
+
+--
+-- Disparadores `analiticas`
+--
+DELIMITER $$
+CREATE TRIGGER `notificaciones-analiticas` BEFORE INSERT ON `analiticas` FOR EACH ROW INSERT INTO notificaciones(CIU_usuario, resumen, informacion) VALUES (new.CIU_paciente, "Nueva analítica", "Se ha solicitado una nueva analítica para ti")
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -164,6 +180,14 @@ CREATE TABLE `episodios` (
 --       `pacientes` -> `CIU_paciente`
 --
 
+--
+-- Disparadores `episodios`
+--
+DELIMITER $$
+CREATE TRIGGER `notificaciones_episodios` BEFORE INSERT ON `episodios` FOR EACH ROW INSERT INTO notificaciones(CIU_usuario, resumen, informacion) VALUES (new.CIU_paciente, "Nuevo episodio", "Se ha creado un episodio médico asignado a tu perfil. ¡Recuerda ir a las citas y cumplir con el tratamiento!")
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -197,6 +221,8 @@ CREATE TABLE `facultativos` (
 -- RELACIONES PARA LA TABLA `facultativos`:
 --   `centro`
 --       `centros` -> `id`
+--   `especialidad`
+--       `especialidades` -> `id`
 --   `CIU_facultativo`
 --       `usuarios` -> `CIU`
 --
@@ -227,6 +253,14 @@ CREATE TABLE `informes` (
 --   `CIU_paciente`
 --       `pacientes` -> `CIU_paciente`
 --
+
+--
+-- Disparadores `informes`
+--
+DELIMITER $$
+CREATE TRIGGER `notificaciones-informes` BEFORE INSERT ON `informes` FOR EACH ROW INSERT INTO notificaciones(CIU_usuario, resumen, informacion) VALUES (new.CIU_paciente, "Nuevo informe", CONCAT("El facultativo ", new.CIU_facultativo, " ha realizado un nuevo informe"))
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -305,14 +339,19 @@ CREATE TABLE `traslados` (
 --
 -- RELACIONES PARA LA TABLA `traslados`:
 --   `CIU_facultativo`
---       `usuarios` -> `CIU`
+--       `facultativos` -> `CIU_facultativo`
 --
 
 --
 -- Disparadores `traslados`
 --
 DELIMITER $$
-CREATE TRIGGER `notificacion_traslado` BEFORE INSERT ON `traslados` FOR EACH ROW INSERT INTO notificaciones(CIU_usuario, resumen, informacion) VALUES((SELECT CIU_gerente FROM centros WHERE centros.id = (SELECT centro FROM facultativos WHERE CIU_facultativo = new.CIU_facultativo)), "Nuevo traslado", "Has recibido una solicitud de traslado. Revísala lo antes posible")
+CREATE TRIGGER `notificacion_traslado_gerente` BEFORE INSERT ON `traslados` FOR EACH ROW BEGIN
+
+INSERT INTO notificaciones(CIU_usuario, resumen, informacion) VALUES((SELECT CIU_gerente FROM centros WHERE centros.id = (SELECT centro FROM facultativos WHERE CIU_facultativo = new.CIU_facultativo)), "Nuevo traslado", "Has recibido una solicitud de traslado. Revísala lo antes posible");
+
+INSERT INTO notificaciones(CIU_usuario, resumen, informacion) VALUES (new.CIU_facultativo, "Traslado", "Se ha comenzado a tramitar tu traslado de centro");
+END
 $$
 DELIMITER ;
 
@@ -339,6 +378,22 @@ CREATE TABLE `tratamientos` (
 --   `CIU_paciente`
 --       `pacientes` -> `CIU_paciente`
 --
+
+--
+-- Disparadores `tratamientos`
+--
+DELIMITER $$
+CREATE TRIGGER `notificaciones_tratamientos` BEFORE INSERT ON `tratamientos` FOR EACH ROW INSERT INTO notificaciones(CIU_usuario, resumen, informacion) VALUES (new.CIU_paciente, "Nuevo tratamiento", "Se te ha asignado un nuevo tratamiento. Revísalo en el apartado de tratamientos")
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `notificaciones_tratamientos_delete` BEFORE DELETE ON `tratamientos` FOR EACH ROW INSERT INTO notificaciones(CIU_usuario, resumen, informacion) VALUES (old.CIU_paciente, "Tratamiento retirado", "Te han retirado un tratamiento. ¡Genial!. Revisalo en el apartado de tratamientos")
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `notificaciones_tratamientos_update` BEFORE UPDATE ON `tratamientos` FOR EACH ROW INSERT INTO notificaciones(CIU_usuario, resumen, informacion) VALUES (new.CIU_paciente, "Cambio de tratamiento", "Se han realizado cambios en tus tratamientos. Revísalo en el apartado de tratamientos")
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -775,6 +830,7 @@ ALTER TABLE `episodios`
 --
 ALTER TABLE `facultativos`
   ADD CONSTRAINT `facultativos_centro` FOREIGN KEY (`centro`) REFERENCES `centros` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `facultativos_especialidad` FOREIGN KEY (`especialidad`) REFERENCES `especialidades` (`id`),
   ADD CONSTRAINT `facultativos_usuario` FOREIGN KEY (`CIU_facultativo`) REFERENCES `usuarios` (`CIU`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -810,7 +866,7 @@ ALTER TABLE `pacientes`
 -- Filtros para la tabla `traslados`
 --
 ALTER TABLE `traslados`
-  ADD CONSTRAINT `traslados_usuarios` FOREIGN KEY (`CIU_facultativo`) REFERENCES `usuarios` (`CIU`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `traslados_usuarios` FOREIGN KEY (`CIU_facultativo`) REFERENCES `facultativos` (`CIU_facultativo`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `tratamientos`
