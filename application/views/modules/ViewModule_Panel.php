@@ -57,33 +57,69 @@ if (count(glob($this->config->item("local_profile_path") . $this->session->userd
             case 'admin':
             ?>
                <div class="separador w-100"></div>
+
                <a href="<?php echo base_url() ?>admin/inicio">
                   <div class="list-group-item">Inicio</div>
                </a>
+               
                <div class="separador w-100"></div>
-               <a href="<?php echo base_url() ?>admin/crear/usuario">
-                  <div class="list-group-item">Crear usuario</div>
-               </a>
+
+               <div class="group list-group-item">
+                  <div class="title">
+                     Usuarios <i class="fas fa-arrow-down"></i>
+                  </div>
+                  <div class="content">
+                     <a href="<?php echo base_url() ?>admin/crear/usuario" class="nested">
+                        <div class="list-group-item">Crear usuario</div>
+                     </a>
+
+                     <div class="separador w-100"></div>
+
+                     <a href="<?php echo base_url() ?>admin/administrar/usuario" class="nested">
+                        <div class="list-group-item">Datos de usuario</div>
+                     </a>
+                  </div>
+               </div>
+
                <div class="separador w-100"></div>
-               <a href="<?php echo base_url() ?>admin/crear/centro">
-                  <div class="list-group-item">Crear centro</div>
-               </a>
+
+               <div class="group list-group-item">
+                  <div class="title">
+                     Centros <i class="fas fa-arrow-down"></i>
+                  </div>
+                  <div class="content">
+                     <a href="<?php echo base_url() ?>admin/crear/centro" class="nested">
+                        <div class="list-group-item">Crear centro</div>
+                     </a>
+
+                     <div class="separador w-100"></div>
+
+                     <a href="<?php echo base_url() ?>admin/administrar/centro" class="nested">
+                        <div class="list-group-item">Administrar centro</div>
+                     </a>
+                  </div>
+               </div>
+
                <div class="separador w-100"></div>
-               <a href="<?php echo base_url() ?>admin/crear/paciente">
-                  <div class="list-group-item">Crear paciente</div>
-               </a>
-               <div class="separador w-100"></div>
-               <a href="<?php echo base_url() ?>admin/crear/facultativo">
-                  <div class="list-group-item">Crear facultativo</div>
-               </a>
-               <div class="separador w-100"></div>
-               <a href="<?php echo base_url() ?>admin/administrar/usuario">
-                  <div class="list-group-item">Datos de usuario</div>
-               </a>
-               <div class="separador w-100"></div>
-               <a href="<?php echo base_url() ?>admin/administrar/centro">
-                  <div class="list-group-item">Administrar centro</div>
-               </a>
+
+               <div class="group list-group-item">
+                  <div class="title">
+                     Perfiles <i class="fas fa-arrow-down"></i>
+                  </div>
+                  <div class="content">
+                     <a href="<?php echo base_url() ?>admin/crear/paciente" class="nested">
+                        <div class="list-group-item">Crear paciente</div>
+                     </a>
+
+                     <div class="separador w-100"></div>
+
+                     <a href="<?php echo base_url() ?>admin/crear/facultativo" class="nested">
+                        <div class="list-group-item">Crear facultativo</div>
+                     </a>
+                  </div>
+               </div>
+
+
                <div class="separador w-100"></div>
             <?php
                break;
@@ -297,6 +333,8 @@ if (count(glob($this->config->item("local_profile_path") . $this->session->userd
                      </a>
                   </div>
                </div>
+               
+               <div class="separador w-100"></div>
             <?php
                break;
             case 'laboratorio':
@@ -324,7 +362,7 @@ if (count(glob($this->config->item("local_profile_path") . $this->session->userd
                <a href="<?php echo base_url() ?>laboratorio/analiticas/historial">
                   <div class="list-group-item">Historial analíticas</div>
                </a>
-               
+
                <div class="separador w-100"></div>
          <?php
                break;
