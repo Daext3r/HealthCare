@@ -18,5 +18,32 @@ class Laboratorio extends CI_Controller
 
       //carga el modulo principal
       $this->load->view("modules/ViewModule_Panel");
+
+      $this->load->view("laboratorio/View_Inicio");
+   }
+
+   public function analiticas($accion)
+   {
+      switch ($accion) {
+         case 'atender':
+            //carga el head con las hojas de estilos y scripts necesarios
+            $this->load->view("modules/ViewModule_Head", array(
+               "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "laboratorio/Style_Analiticas_Atender"),
+               "scripts" => array("modules/ScriptModule_Panel", "laboratorio/Script_Analiticas_Atender")
+            ));
+
+            //carga el modulo principal
+            $this->load->view("modules/ViewModule_Panel");
+
+            $this->load->view("laboratorio/View_Analiticas_Atender");
+            break;
+         case 'atendidas':
+
+            break;
+
+         case 'historial':
+
+            break;
+      }
    }
 }

@@ -98,19 +98,35 @@ if (count(glob($this->config->item("local_profile_path") . $this->session->userd
                <a href="<?php echo base_url() ?>gerente/crearUsuario">
                   <div class="list-group-item">Crear usuario</div>
                </a>
+
                <div class="separador w-100"></div>
-               <a href="<?php echo base_url() ?>gerente/nuevo/paciente">
-                  <div class="list-group-item">Nuevo paciente</div>
-               </a>
+
+               <div class="group list-group-item">
+                  <div class="title">
+                     Perfiles <i class="fas fa-arrow-down"></i>
+                  </div>
+                  <div class="content">
+                     <a href="<?php echo base_url() ?>gerente/nuevo/paciente">
+                        <div class="list-group-item">Nuevo paciente</div>
+                     </a>
+                     <div class="separador w-100"></div>
+                     <a href="<?php echo base_url() ?>gerente/nuevo/facultativo">
+                        <div class="list-group-item">Nuevo facultativo</div>
+                     </a>
+                     <a href="<?php echo base_url() ?>gerente/nuevo/laboratorio">
+                        <div class="list-group-item">Nuevo personal de lab.</div>
+                     </a>
+                  </div>
+               </div>
+
                <div class="separador w-100"></div>
-               <a href="<?php echo base_url() ?>gerente/nuevo/facultativo">
-                  <div class="list-group-item">Nuevo facultativo</div>
-               </a>
-               <div class="separador w-100"></div>
+
                <a href="<?php echo base_url() ?>gerente/gestionarAdministrativos">
                   <div class="list-group-item">Gestionar administrativos</div>
                </a>
+
                <div class="separador w-100"></div>
+
                <div class="group list-group-item">
                   <div class="title">
                      Traslados <i class="fas fa-arrow-down"></i>
@@ -281,6 +297,35 @@ if (count(glob($this->config->item("local_profile_path") . $this->session->userd
                      </a>
                   </div>
                </div>
+            <?php
+               break;
+            case 'laboratorio':
+            ?>
+               <div class="separador w-100"></div>
+
+               <a href="<?php echo base_url() ?>laboratorio/inicio">
+                  <div class="list-group-item">Inicio</div>
+               </a>
+
+               <div class="separador w-100"></div>
+
+               <a href="<?php echo base_url() ?>laboratorio/analiticas/atender">
+                  <div class="list-group-item">Atender analíticas</div>
+               </a>
+
+               <div class="separador w-100"></div>
+
+               <a href="<?php echo base_url() ?>laboratorio/analiticas/atendidas">
+                  <div class="list-group-item">Analíticas atendidas</div>
+               </a>
+
+               <div class="separador w-100"></div>
+
+               <a href="<?php echo base_url() ?>laboratorio/analiticas/historial">
+                  <div class="list-group-item">Historial analíticas</div>
+               </a>
+               
+               <div class="separador w-100"></div>
          <?php
                break;
          }
