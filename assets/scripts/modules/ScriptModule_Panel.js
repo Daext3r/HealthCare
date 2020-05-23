@@ -24,7 +24,7 @@ $(document).ready(function () {
       let d = new Date();
       //formamos la cadena del reloj
       let cadena = `Hoy es ${dias[d.getUTCDay()]} ${d.getUTCDate()} de ${meses[d.getUTCMonth()]} de ${d.getUTCFullYear()} | 
-      ${d.getHours()}:${d.getMinutes().toString().length == 1 ? "0" : ""}${d.getMinutes()}`;
+      ${d.getHours()}:${d.getMinutes().toString().length == 1 ? "0" : ""}${d.getMinutes()}:${d.getSeconds().toString().length == 1? "0": ""}${d.getSeconds()}`;
 
       //la mostramos 
       $("#reloj").text(cadena);
@@ -34,7 +34,7 @@ $(document).ready(function () {
    actualizarFecha();
 
    //intervalo de ejecucion del reloj, cada minuto
-   setInterval(actualizarFecha, 60000);
+   setInterval(actualizarFecha, 1000);
 
    //===== MENU LATERAL =====
    //para cada elemento del menu lateral
