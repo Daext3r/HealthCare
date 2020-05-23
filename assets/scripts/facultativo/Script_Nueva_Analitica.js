@@ -19,6 +19,9 @@ $(document).ready(() => {
       let elem = e.originalEvent.dataTransfer.getData("text/plain");
       elem = JSON.parse(elem);
 
+      //inicializamos el valor del resultado a null
+      elem.resultado = null;
+
       pruebas.push(elem);
 
       //buscamos el elemento que tenga el grupo de la prueba solicitada
@@ -64,8 +67,25 @@ $(document).ready(() => {
    });
 
    $("#solicitar").on('click', async () => {
-      if (pruebas.length <= 0) return;
+      if (pruebas.length <= 0) {
+         //mostramos swal de errror y cancelamos
+         Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No has seleccionado puebas'
+         });
 
+         return;
+      }
+
+      if($("div.seleccionado").children().eq(0).html() == undefined) {
+         Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No estás atendiendo a ningún paciente'
+         });
+         return;
+      }
 
       let result = await Swal.fire({
          icon: 'question',
