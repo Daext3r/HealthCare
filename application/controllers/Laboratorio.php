@@ -6,6 +6,13 @@ class Laboratorio extends CI_Controller
    public function __construct()
    {
       parent::__construct();
+
+       //si no es el tipo de perfil que corresponde a este panel, redirigimos al login
+      if ($this->session->userdata("tipo") != "laboratorio") {
+         //redirigimos al login
+         redirect(base_url() . "login");
+         return;
+      }
    }
 
    public function inicio()
