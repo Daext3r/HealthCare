@@ -145,6 +145,10 @@ class Usuarios_controller extends CI_Controller
       echo $this->Usuarios_model->cambiarClave($this->input->post("ciu"), hash("sha512", "12345678"));
    }
 
+   public function cambiarClave() {
+      echo $this->Usuarios_model->cambiarClave($this->session->userdata("ciu"), hash("sha512", $this->input->post("clave")));
+   }
+
    public function actualizarImagenPerfil($imagenBase)
    {
       //cargamos el helper de file

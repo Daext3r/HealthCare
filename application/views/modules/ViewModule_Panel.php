@@ -61,7 +61,7 @@ if (count(glob($this->config->item("local_profile_path") . $this->session->userd
                <a href="<?php echo base_url() ?>admin/inicio">
                   <div class="list-group-item">Inicio</div>
                </a>
-               
+
                <div class="separador w-100"></div>
 
                <div class="group list-group-item">
@@ -333,7 +333,7 @@ if (count(glob($this->config->item("local_profile_path") . $this->session->userd
                      </a>
                   </div>
                </div>
-               
+
                <div class="separador w-100"></div>
             <?php
                break;
@@ -442,6 +442,10 @@ if (count(glob($this->config->item("local_profile_path") . $this->session->userd
                         <div class="col">
                            <label for="imagenPerfil">Cambiar imagen de perfil</label>
                            <input type="file" accept="image/png, image/jpeg" id="imagenPerfil">
+                        </div>
+                        <div class="col">
+                           <label for=""></label>
+                           <button class="btn btn-outline-primary w-100 d-block" id="cambiarClave">Cambiar contraseña</button>
                         </div>
                         <div class="col">
                            <label for=""></label>

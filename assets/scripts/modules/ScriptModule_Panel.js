@@ -24,7 +24,7 @@ $(document).ready(function () {
       let d = new Date();
       //formamos la cadena del reloj
       let cadena = `Hoy es ${dias[d.getUTCDay()]} ${d.getUTCDate()} de ${meses[d.getUTCMonth()]} de ${d.getUTCFullYear()} | 
-      ${d.getHours()}:${d.getMinutes().toString().length == 1 ? "0" : ""}${d.getMinutes()}:${d.getSeconds().toString().length == 1? "0": ""}${d.getSeconds()}`;
+      ${d.getHours()}:${d.getMinutes().toString().length == 1 ? "0" : ""}${d.getMinutes()}:${d.getSeconds().toString().length == 1 ? "0" : ""}${d.getSeconds()}`;
 
       //la mostramos 
       $("#reloj").text(cadena);
@@ -172,11 +172,35 @@ $(document).ready(function () {
                   }
                });
             }
-
-
          }
       })
    });
 
+   $("#cambiarClave").click((e) => {
+      e.preventDefault();
+      $("#modificarDatos").modal("toggle");
+      Swal.fire({
+         icon: 'question',
+         title: 'Cambiar clave',
+         input: 'password',
+         inputPlaceholder : 'Introduce tu nueva clave',
+         showCancelButton: true,
+         cancelButtonText: 'Cancelar',
+         confirmButtonText: 'Cambiar'
+      }).then((e) => {
+         if(!e.value) return;
+
+         $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/cambiarClave", {clave : e.value}, (data) => {
+            if(data == 1) {
+               Swal.fire({
+                  icon: 'success',
+                  title: 'Hecho',
+                  text: 'Se ha cambiado tu clave correctamente'
+               })
+            }
+         })
+      });
+   });
 
 });
+
