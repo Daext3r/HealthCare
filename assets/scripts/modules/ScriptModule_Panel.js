@@ -40,7 +40,7 @@ $(document).ready(function () {
    //para cada elemento del menu lateral
    for (let a of document.getElementsByTagName("a")) {
       //si el href coincide con la url actual
-      if (a.href == window.location.href) {
+      if (a.href == window.location.href.split("?")[0]) {
          //añade la clase active para que resalte en azul
          a.children[0].classList.add("opcion-seleccionada")
 

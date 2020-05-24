@@ -3,12 +3,6 @@ $(document).ready(() => {
    //añadimos al localstorage la url base. lo hacemos aqui ya que se usará en varias partes de la aplicación
    localStorage.setItem("hc_base_url", "http://localhost/HealthCare/");
 
-   //evitamos que al pulsar el boton de escanear qr envie el formulario
-   $("#qr").on("click", function (event) {
-      //evitamos que envie el formulario al pulsar el boton de escanear qr
-      event.preventDefault();
-   });
-
    $("#iniciar-sesion").on("click", function (e) {
       //si no hay correo o clave y ademas tampoco hay token, hay cancelamos el evento
       if ($("#correo").val().trim() == "" && $("#jwt").val() == "") { e.preventDefault(); }

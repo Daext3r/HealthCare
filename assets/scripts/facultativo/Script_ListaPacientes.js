@@ -67,8 +67,6 @@ function agregarPaciente(paciente) {
             $("#pacientes").children().eq(1).children().eq(1).click();
          }
       }
-
-
    });
 
    fade.appendChild(x);
@@ -78,6 +76,9 @@ function agregarPaciente(paciente) {
    div.addEventListener("click", (e) => seleccionarPaciente(e));
 
    $("#pacientes").append($(div));
+
+   //disparamos el evento de seleccion para que cargue los datos de ese paciente
+   document.getElementById("pacientes").dispatchEvent(new CustomEvent('cambioPaciente', { 'detail': { 'CIU': paciente.CIU, 'nombre': paciente.nombre_completo} }));
 }
 
 function seleccionarPaciente(e) {
@@ -112,7 +113,6 @@ function seleccionarPaciente(e) {
    //si todo se ha ejecutado, disparamos un evento PROPIO que nos servirá en otras partes de la aplicacion
    //lo disparamos al contenedor de todos los pacientes
    document.getElementById("pacientes").dispatchEvent(new CustomEvent('cambioPaciente', { 'detail': { 'CIU': nuevoSeleccionado.dataset.CIU, 'nombre': nuevoSeleccionado.children[0].innerText } }));
-
 }
 
 $(document).ready(() => {
@@ -146,7 +146,7 @@ $(document).ready(() => {
       if ($("#usuario").val().trim() == "") return;
 
       interval = setTimeout(function () {
-         $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/buscarUsuarioCiuNombre", { dato: $("#usuario").val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "Pacientes_controller/buscarPacienteCiuNombre", { dato: $("#usuario").val() }, (data) => {
             data = JSON.parse(data);
             for (let usuario of data) {
                let option = document.createElement("option");

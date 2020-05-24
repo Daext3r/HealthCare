@@ -328,9 +328,10 @@ if (count(glob($this->config->item("local_profile_path") . $this->session->userd
                         <div class="list-group-item">Nueva cita</div>
                      </a>
                      <div class="separador"></div>
+                     <!-- TODO EN V2
                      <a href="<?php echo base_url() ?>administrativo/citas/ver" class="nested">
                         <div class="list-group-item opcion">Ver citas</div>
-                     </a>
+                     </a>-->
                   </div>
                </div>
 

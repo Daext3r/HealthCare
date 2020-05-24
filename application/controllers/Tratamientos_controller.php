@@ -41,7 +41,6 @@ class Tratamientos_controller extends CI_Controller
       $fecha_inicio = $this->input->post("fecha_inicio");
       $fecha_fin = $this->input->post("fecha_fin");
       $episodio = $this->input->post("episodio");
-      echo gettype($tomas);
 
       echo $this->Tratamientos_model->agregarTratamiento($nregistro, $paciente, $fecha_inicio, $fecha_fin, $tomas, $episodio);
    }

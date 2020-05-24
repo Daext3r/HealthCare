@@ -22,7 +22,6 @@
             <input type="checkbox" class="form-check-input" id="recuerdame" name="recuerdame" checked="checked">
             <label class="form-check-label" for="exampleCheck1">Recuérdame</label>
          </div>
-         <button id="qr" class="btn btn-outline-primary" type="button">Escanear QR</button>
          <input type="submit" class="btn btn-success" value="Iniciar sesión" id="iniciar-sesion">
 
          <input type="hidden" name="jwt" id="jwt">

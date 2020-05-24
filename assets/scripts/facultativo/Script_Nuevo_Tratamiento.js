@@ -4,7 +4,6 @@ $(document).ready(() => {
 
    //si hay un paciente seleccionado lo ponemos en el input y cargamos los episodios
    if (paciente) {
-      $("#pacienteInforme").val(paciente.CIU);
       cargarEpisodios(paciente.CIU);
    }
 
@@ -24,12 +23,21 @@ $(document).ready(() => {
       let episodio = $("#episodio").val();
       let nregistro = $("#nregistro").val();
       let tomas = [];
-      let paciente = $("div.paciente.seleccionado")[0].dataset.CIU;
-
+      let paciente;
+      
+      if($("div.paciente.seleccionado")[0]) {
+         paciente = $("div.paciente.seleccionado")[0].dataset.CIU;
+      } else {
+         Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No puedes crear un tratamiento sin atender a un paciente antes'
+         });
+         return;
+      }
       //guardamos los divs que contienen las dosis
       let divs = $(".toma");
       for (let hijo of divs) {
-         console.log(hijo);
          let toma = {};
          toma.hora = hijo.children[0].children[1].value;
          toma.dosis = hijo.children[1].children[1].children[0].value;
@@ -38,6 +46,13 @@ $(document).ready(() => {
 
       $.post(localStorage.getItem("hc_base_url") + "Tratamientos_controller/agregarTratamiento", {paciente: paciente, fecha_inicio: inicio, fecha_fin: fin, episodio: episodio, tomas: JSON.stringify(tomas), nregistro : nregistro}, (data) => {
          console.log(data);
+         if (data == 1) {
+            Swal.fire({
+               icon: 'success',
+               title: 'Hecho',
+               text: 'Se ha creado el tratamiento'
+            })
+         }
       })
    });
 })

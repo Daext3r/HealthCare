@@ -14,7 +14,8 @@ function listarTratamientos(paciente) {
       data = JSON.parse(data);
 
       //por cada tratamiento
-      for (let tratamiento of data) {
+      for await (let tratamiento of data) {
+         console.log(tratamiento);
          //leemos el nombre del medicamento por la API 
          let datos = await fetch(`https://cima.aemps.es/cima/rest/medicamento?nregistro=${tratamiento.nregistro}`)
             .then((respuesta) => {
@@ -22,12 +23,12 @@ function listarTratamientos(paciente) {
                return respuesta.json();
             })
             .then((respuesta) => {
-               return [respuesta.nombre, respuesta.fotos[0].url];
+               return [respuesta.nombre, respuesta.fotos == undefined ? "" : respuesta.fotos[0].url];
             });
 
          $("#tratamientos").append($(`
             <div class="alert alert-secondary row w-75">
-               <div class="col col-4"><img src="${datos[1] != undefined ? datos[1] : localStorage.getItem("hc_base_url") + "assets/img/NoImagenMedicamento.png"}" alt=""></div>
+               <div class="col col-4"><img src="${datos[1] != "" ? datos[1] : localStorage.getItem("hc_base_url") + "assets/img/NoImagenMedicamento.png"}" alt="" style="width: 60%"></div>
                <div class="col col-7">${datos[0]}</div>
                <!--<div class="col col-1">
                   <button class="btn btn-dark"><i class="fas fa-pen"></i></button>

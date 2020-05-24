@@ -108,6 +108,7 @@ class Administrativo extends CI_Controller
             $this->load->view("modules/ViewModule_Nueva_Cita");
             break;
          case 'ver':
+            //TODO en V2
             break;
       }
    }
