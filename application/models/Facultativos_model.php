@@ -63,11 +63,16 @@ class Facultativos_model extends CI_Model
    {
       $this->db->where("CIU_facultativo", $facultativo);
       $this->db->set("centro", $centro);
-      
+
       if ($this->db->update("facultativos")) {
          return 1;
       } else {
          return 0;
       }
+   }
+
+   public function leerAnaliticasPaciente($paciente)
+   {
+      return $this->db->query("SELECT codigo_analitica, fecha_solicitud, fecha_resultado, (SELECT especialidad FROM vista_usuarios_facultativos WHERE CIU  = analiticas.CIU_facultativo) AS especialidad FROM analiticas WHERE CIU_paciente = ?", array($paciente))->result_array();
    }
 }

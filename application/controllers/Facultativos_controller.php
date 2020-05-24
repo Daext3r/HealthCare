@@ -49,4 +49,8 @@ class Facultativos_controller extends CI_Controller
    public function actualizarEnfermedadesPaciente() {
       echo $this->Facultativos_model->actualizarEnfermedadesPaciente($this->input->post("paciente"), $this->input->post("enfermedades"));
    }
+   
+   public function leerAnaliticasPaciente() {
+      echo json_encode($this->Facultativos_model->leerAnaliticasPaciente($this->input->post("paciente")));
+   }
 }

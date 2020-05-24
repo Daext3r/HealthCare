@@ -106,7 +106,14 @@ class Facultativo extends CI_Controller
             $this->load->view("facultativo/View_Nueva_Analitica");
             break;
          case 'historial':
+            $this->load->view("modules/ViewModule_Head", array(
+               "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "facultativo/Style_Historial_Analiticas", "facultativo/Style_ListaPacientes"),
+               "scripts" => array("modules/ScriptModule_Panel", "facultativo/Script_Historial_Analiticas", "facultativo/Script_ListaPacientes")
+            ));
 
+            $this->load->view("modules/ViewModule_Panel");
+
+            $this->load->view("facultativo/View_Historial_Analiticas");
             break;
       }
    }

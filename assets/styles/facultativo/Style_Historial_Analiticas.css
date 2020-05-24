@@ -1,0 +1,86 @@
+.analiticas {
+   overflow-y: scroll;
+   max-height: calc(85vh - 5.5em);
+   margin-top: 0.5em;
+
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+}
+
+/* width */
+.analiticas::-webkit-scrollbar {
+   width: 10px;
+   padding-left: 3em;
+ }
+ 
+ /* Track */
+ .analiticas::-webkit-scrollbar-track {
+   display: none;
+ }
+  
+ /* Handle */
+ .analiticas::-webkit-scrollbar-thumb {
+   background: rgb(177, 176, 176); 
+   border-radius: 1em;
+ }
+ 
+ /* Handle on hover */
+ .analiticas::-webkit-scrollbar-thumb:hover {
+   background: #555; 
+ }
+
+.analitica {
+   display: flex;
+   align-content: center;
+   flex-wrap: wrap;
+   justify-content: center;
+   width: 80%;
+}
+
+.col {
+   display: flex;
+   align-content: center;
+   flex-wrap: wrap;
+}
+
+.prueba {
+   width: 60%;
+}
+
+.pruebas {
+   padding: 1em;
+   height: 100%;
+
+   overflow-y: scroll;
+   max-height: calc(85vh - 5.5em);
+   margin-top: 0.5em;
+   
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   align-content: flex-start;
+ 
+}
+
+/* width */
+.pruebas::-webkit-scrollbar {
+   width: 10px;
+   padding-left: 3em;
+ }
+ 
+ /* Track */
+ .pruebas::-webkit-scrollbar-track {
+   display: none;
+ }
+  
+ /* Handle */
+ .pruebas::-webkit-scrollbar-thumb {
+   background: rgb(177, 176, 176); 
+   border-radius: 1em;
+ }
+ 
+ /* Handle on hover */
+ .pruebas::-webkit-scrollbar-thumb:hover {
+   background: #555; 
+ }
