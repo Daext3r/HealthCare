@@ -38,8 +38,10 @@ class Usuarios_model extends CI_Model
             $datos = $this->db->query("SELECT (SELECT COUNT(*) FROM pacientes WHERE CIU_medico_referencia IN (SELECT CIU_facultativo FROM facultativos WHERE centro = ?)) AS pacientes, (SELECT COUNT(*) FROM facultativos WHERE centro = ?) AS facultativos, (SELECT COUNT(*) FROM administrativos WHERE id_centro = ?) AS administrativos", array($centro, $centro, $centro))->row_array();
             break;
          case 'administrativo':
-            //devuelve la cantidad de citas en el dia de hoy, pacientes asignados a este centro (por el medico de referencia), 
-            $datos = $this->db->query("SELECT (SELECT) AS citas, () AS pacientes")->result_array();
+            $fecha = new DateTime();
+
+            //devuelve la cantidad de citas en el dia de hoy, pacientes asignados a este centro (por el medico de referencia), facultativos trabajando en el centro
+            $datos = $this->db->query("SELECT (SELECT COUNT(*) FROM citas WHERE fecha = ?) AS citas, (SELECT COUNT(*) FROM pacientes WHERE CIU_medico_referencia IN (SELECT CIU_facultativo FROM facultativos WHERE centro = (SELECT id_centro FROM administrativos WHERE CIU_administrativo = ? ))) AS pacientes, (SELECT COUNT(*) FROM facultativos WHERE centro = (SELECT id_centro FROM administrativos WHERE CIU_administrativo = ?)) AS facultativos", array($fecha->format('Y-m-d'), $this->session->userdata("ciu"), $this->session->userdata("ciu")))->result_array();
             break;
          case 'facultativo':
             //devuelve la cantidad de citas que tiene hoy, informes realizados, y pacientes de los cuales es el medico de referencia
@@ -47,6 +49,7 @@ class Usuarios_model extends CI_Model
             break;
          case 'laboratorio':
             //devuelve la cantidad de pruebas pendientes, pruebas cerradas, y pruebas realizadas por el
+            $datos = $this->db->query("SELECT () AS pendientes, () AS cerradas, () AS realizadas")->result_array();
             break;
          case 'paciente':
             //devuelve la cantidad de notificaciones, citas, y tratamientos activos que tiene

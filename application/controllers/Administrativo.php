@@ -17,10 +17,13 @@ class Administrativo extends CI_Controller
    public function inicio()
    {
       $this->load->view("modules/ViewModule_Head", array(
-         "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive"),
-         "scripts" => array("modules/ScriptModule_Panel")
+         "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "administrativo/Style_Inicio"),
+         "scripts" => array("modules/ScriptModule_Panel", "administrativo/Script_Inicio")
       ));
+
       $this->load->view("modules/ViewModule_Panel");
+
+      $this->load->view("administrativo/View_Inicio");
    }
 
    public function usuario($accion)
