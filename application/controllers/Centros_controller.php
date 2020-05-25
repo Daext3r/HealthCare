@@ -12,7 +12,7 @@ class Centros_controller extends CI_Controller
          redirect(base_url() . "login");
          return;
       }
-      
+
       $this->load->model("Centros_model");
    }
 
@@ -67,7 +67,8 @@ class Centros_controller extends CI_Controller
       echo $this->Centros_model->eliminarAdministrativo($this->input->post("ciu"));
    }
 
-   public function leerHorasPorFacultativo() {
+   public function leerHorasPorFacultativo()
+   {
       echo json_encode($this->Centros_model->leerHorasPorFacultativo($this->input->post("ciu")));
    }
 }

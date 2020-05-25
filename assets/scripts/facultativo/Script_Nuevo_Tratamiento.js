@@ -24,8 +24,8 @@ $(document).ready(() => {
       let nregistro = $("#nregistro").val();
       let tomas = [];
       let paciente;
-      
-      if($("div.paciente.seleccionado")[0]) {
+
+      if ($("div.paciente.seleccionado")[0]) {
          paciente = $("div.paciente.seleccionado")[0].dataset.CIU;
       } else {
          Swal.fire({
@@ -44,7 +44,7 @@ $(document).ready(() => {
          tomas.push(toma);
       }
 
-      $.post(localStorage.getItem("hc_base_url") + "Tratamientos_controller/agregarTratamiento", {paciente: paciente, fecha_inicio: inicio, fecha_fin: fin, episodio: episodio, tomas: JSON.stringify(tomas), nregistro : nregistro}, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "Tratamientos_controller/agregarTratamiento", { paciente: paciente, fecha_inicio: inicio, fecha_fin: fin, episodio: episodio, tomas: JSON.stringify(tomas), nregistro: nregistro }, (data) => {
          console.log(data);
          if (data == 1) {
             Swal.fire({

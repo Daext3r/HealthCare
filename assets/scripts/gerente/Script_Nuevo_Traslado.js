@@ -34,7 +34,7 @@ $(document).ready(() => {
                         title: 'Error',
                         text: `El usuario ${data[0].nombre_completo} ya trabaja en tu centro`,
                      });
-                  } else if(respuesta == 2) {
+                  } else if (respuesta == 2) {
                      Swal.fire({
                         icon: 'error',
                         title: 'Error',

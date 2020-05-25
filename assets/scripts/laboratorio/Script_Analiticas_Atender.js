@@ -2,12 +2,12 @@ $(document).ready(() => {
    $("#buscar").click(() => {
       let codigo = $("#codigo").val().trim();
 
-      if(codigo == "") return;
+      if (codigo == "") return;
 
-      $.post(localStorage.getItem("hc_base_url") + "Analiticas_controller/buscarAnalitica", {id:codigo}, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "Analiticas_controller/buscarAnalitica", { id: codigo }, (data) => {
          data = JSON.parse(data);
-         
-         if(data.length == 0) {
+
+         if (data.length == 0) {
             Swal.fire({
                icon: 'error',
                title: 'Error',
@@ -23,10 +23,10 @@ $(document).ready(() => {
                cancelButtonText: 'No'
             }).then(e => {
                //si pulsa cancelar
-               if(!e.value) return;
+               if (!e.value) return;
 
-               $.post(localStorage.getItem("hc_base_url") + "Analiticas_controller/atenderAnalitica", {id: codigo}, (respuesta) => {
-                  if(respuesta == 1) {
+               $.post(localStorage.getItem("hc_base_url") + "Analiticas_controller/atenderAnalitica", { id: codigo }, (respuesta) => {
+                  if (respuesta == 1) {
                      Swal.fire({
                         icon: 'success',
                         title: 'Hecho',

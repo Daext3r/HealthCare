@@ -25,7 +25,7 @@ $(document).ready(function () {
             });
          }
       }).catch((e) => {
-         if(e.responseText.includes("for key 'correo'")) {
+         if (e.responseText.includes("for key 'correo'")) {
             Swal.fire({
                icon: 'error',
                title: 'Error',

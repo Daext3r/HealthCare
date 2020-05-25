@@ -43,7 +43,7 @@ class Paciente extends CI_Controller
       $citas = $this->Citas_model->leerCitas($this->session->userdata("ciu"));
 
       $facultativos = $this->Pacientes_model->leerFacultativos($this->session->userdata("ciu"));
-      
+
       //carga el head con las hojas de estilos y scripts necesarios
       $this->load->view("modules/ViewModule_Head", array(
          "hojas" => array("modules/StyleModule_Panel", "paciente/citas", "modules/StyleModule_Panel_Responsive"),
@@ -81,7 +81,7 @@ class Paciente extends CI_Controller
          "hojas" => array(
             "modules/StyleModule_Panel", "paciente/informes", "modules/StyleModule_Panel_Responsive"
          ),
-         "scripts" => array("modules/ScriptModule_Panel", "clases/Informe","paciente/Script_Informes")
+         "scripts" => array("modules/ScriptModule_Panel", "clases/Informe", "paciente/Script_Informes")
       ));
 
       //carga el modulo principal

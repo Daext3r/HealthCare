@@ -55,7 +55,7 @@ class Analiticas_model extends CI_Model
       $this->db->set("fecha_resultado", $fecha->format("Y-m-d"));
       $this->db->set("observaciones_personal", $observacion);
 
-      if($this->db->update("analiticas")) {
+      if ($this->db->update("analiticas")) {
          return 1;
       } else {
          return 0;

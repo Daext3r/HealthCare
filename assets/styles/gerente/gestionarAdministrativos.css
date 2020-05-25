@@ -67,7 +67,7 @@
    width: 2em;
    height: 2em;
    border: 1px solid #aaa;
-   display:flex;
+   display: flex;
    justify-content: center;
    align-items: center;
    font-size: 1.2em;
@@ -76,15 +76,15 @@
 .paginationjs-next {
    margin-right: 1em;
    border-radius: 0 0.2em 0.2em 0;
-   border-left:none;
+   border-left: none;
 }
 
 .paginationjs-prev {
-   border-radius:  0.2em 0 0 0.2em;
+   border-radius: 0.2em 0 0 0.2em;
 }
 
 .paginationjs {
-   display:flex;
+   display: flex;
    justify-content: center;
    align-items: center;
 }

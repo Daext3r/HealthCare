@@ -7,7 +7,7 @@
    </nav>
 
    <div class="tratamientos" id="tratamientos">
-     
+
    </div>
 </section>
 </div>

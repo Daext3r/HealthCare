@@ -51,7 +51,7 @@ $(document).ready(function () {
          });
       }, 700);
    });
-   
+
    //este evento se dispara cuando se cambia el valor del input
    //se cambia cuando hagamos clic en una opcion
    //lo usaremos para detectar cuando el usuario ha seleccionado una opcion del datalist
@@ -60,7 +60,7 @@ $(document).ready(function () {
          data = JSON.parse(data);
 
          //si es menor a 0, es que no ha seleccionado un centro de la lista
-         if(data.length <= 0) return;
+         if (data.length <= 0) return;
 
          //cuando se complete la peticion, borramos el formulario de la pantalla
          $("#buscador").fadeOut(300);
@@ -170,7 +170,7 @@ $(document).ready(function () {
       datos.push({ name: 'telefonos', value: numeros.join(',') });
 
       console.log(datos);
- 
+
       $.post(localStorage.getItem("hc_base_url") + "Centros_controller/actualizarCentro", datos, (data) => {
          console.log(data);
          if (data == 1) {

@@ -14,7 +14,7 @@ $(document).ready(() => {
          //si el usuario dice que es el, enviamos el formulario
          $("#jwt").val(localStorage.getItem("jwt"));
 
-         setTimeout(() => {$("#form").submit()}, 100);;
+         setTimeout(() => { $("#form").submit() }, 100);;
 
       } else if (this.dataset.seleccion == "no") {
          //si el usuario dice que no es el, mostramos el login y borramos los datos

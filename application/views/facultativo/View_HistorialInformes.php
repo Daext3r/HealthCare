@@ -23,7 +23,7 @@
          <input type="date" id="desde" class="form-control">
       </div>
       <div class="col">
-      <label for="hasta">Hasta</label>
+         <label for="hasta">Hasta</label>
          <input type="date" id="hasta" class="form-control">
       </div>
       <div class="col">

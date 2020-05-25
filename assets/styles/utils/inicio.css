@@ -1,35 +1,36 @@
 * {
-    box-sizing: border-box;
+   box-sizing: border-box;
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
 }
+
 .row {
-    height: 90vh;
-    width: 80%;
-    text-align: center;
-    align-items: center;
-    padding: 2em;
-    margin-top: 2em;
+   height: 90vh;
+   width: 80%;
+   text-align: center;
+   align-items: center;
+   padding: 2em;
+   margin-top: 2em;
 }
 
 .mini-row {
-    display: block;
-    width: 100%;
+   display: block;
+   width: 100%;
 }
 
-body::-webkit-scrollbar{
-    display: none;
+body::-webkit-scrollbar {
+   display: none;
 }
 
 a[href="#info"] {
-    margin: 5em;
+   margin: 5em;
 }
 
 .info {
    width: 100%;
-   box-shadow: 10px 10px 115px -37px rgba(0,0,0,0.29);
+   box-shadow: 10px 10px 115px -37px rgba(0, 0, 0, 0.29);
 }

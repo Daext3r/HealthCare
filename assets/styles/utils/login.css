@@ -46,9 +46,8 @@ input[type=password] {
    font-weight: bold;
 }
 
-
-
 /*ANIMACION DE CARGA*/
+
 .lds-ring {
    display: inline-block;
    position: relative;

@@ -183,15 +183,15 @@ $(document).ready(function () {
          icon: 'question',
          title: 'Cambiar clave',
          input: 'password',
-         inputPlaceholder : 'Introduce tu nueva clave',
+         inputPlaceholder: 'Introduce tu nueva clave',
          showCancelButton: true,
          cancelButtonText: 'Cancelar',
          confirmButtonText: 'Cambiar'
       }).then((e) => {
-         if(!e.value) return;
+         if (!e.value) return;
 
-         $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/cambiarClave", {clave : e.value}, (data) => {
-            if(data == 1) {
+         $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/cambiarClave", { clave: e.value }, (data) => {
+            if (data == 1) {
                Swal.fire({
                   icon: 'success',
                   title: 'Hecho',

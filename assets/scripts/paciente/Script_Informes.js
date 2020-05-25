@@ -80,7 +80,7 @@ function mostrarInformes() {
 
    //miramos que el valor de facultativo no sea 'cualquiera'
    if ($("#facultativo").val() != "cualquiera") {
-     nuevaLista = nuevaLista.filter(informe => informe.facultativo == $("#facultativo").val());
+      nuevaLista = nuevaLista.filter(informe => informe.facultativo == $("#facultativo").val());
    }
 
    //si el usuario no quiere ver los informes privados

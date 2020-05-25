@@ -78,7 +78,7 @@ function agregarPaciente(paciente) {
    $("#pacientes").append($(div));
 
    //disparamos el evento de seleccion para que cargue los datos de ese paciente
-   document.getElementById("pacientes").dispatchEvent(new CustomEvent('cambioPaciente', { 'detail': { 'CIU': paciente.CIU, 'nombre': paciente.nombre_completo} }));
+   document.getElementById("pacientes").dispatchEvent(new CustomEvent('cambioPaciente', { 'detail': { 'CIU': paciente.CIU, 'nombre': paciente.nombre_completo } }));
 }
 
 function seleccionarPaciente(e) {

@@ -100,7 +100,7 @@ function leerEpisodiosPaciente(ciu) {
                   <span>Creación: <i>${episodio.fecha_creacion}</i></span> | <span>Últ. Actualización: <i>${episodio.ult_actualizacion}</i></span>
                </div>
                <div>
-                  ID: <i>${episodio.id}</i> | Cerrado: <i>${episodio.cerrado == 1? "Si" : "No"}</i>
+                  ID: <i>${episodio.id}</i> | Cerrado: <i>${episodio.cerrado == 1 ? "Si" : "No"}</i>
                </div>
             </div>
          `);

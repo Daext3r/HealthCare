@@ -76,7 +76,8 @@ class Centros_model extends CI_Model
       }
    }
 
-   public function leerHorasPorFacultativo($ciu) {
+   public function leerHorasPorFacultativo($ciu)
+   {
       $this->db->select("hora_apertura, hora_cierre");
       $this->db->from("centros");
       $this->db->where("facultativos.CIU_facultativo", $ciu);
@@ -84,7 +85,8 @@ class Centros_model extends CI_Model
       return $this->db->get()->result_array();
    }
 
-   public function leerCentroPorFacultativo($facultativo) {
+   public function leerCentroPorFacultativo($facultativo)
+   {
       $this->db->select("centro");
       $this->db->where("CIU_facultativo", $facultativo);
       return $this->db->get("facultativos")->row_array();

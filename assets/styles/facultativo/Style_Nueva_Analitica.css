@@ -20,7 +20,7 @@
 }
 
 .pruebasPosibles, .pruebasSolicitadas {
-   border: 1px solid rgba(0,0,0,0.250);
+   border: 1px solid rgba(0, 0, 0, 0.250);
    border-bottom: 2px solid #007bff;
    border-radius: 0.3em;
    height: 80%;
@@ -30,7 +30,7 @@
    justify-content: center;
    align-content: baseline;
    flex-wrap: wrap;
-   box-shadow: 0px 0px 50px -30px rgba(0,0,0,0.45);
+   box-shadow: 0px 0px 50px -30px rgba(0, 0, 0, 0.45);
 }
 
 .categoria {
@@ -59,7 +59,6 @@ li.prueba {
    margin: 0.3em;
    color: black;
    background-color: #e5f1ff;
-   
 }
 
 li.seleccionado {
@@ -75,27 +74,31 @@ ul.pruebas {
 }
 
 /* width */
+
 .pruebasSolicitadas::-webkit-scrollbar, .pruebasPosibles::-webkit-scrollbar {
    width: 10px;
    padding-left: 3em;
 }
 
 /* Track */
+
 .pruebasPosibles::-webkit-scrollbar-track .pruebasSolicitadas::-webkit-scrollbar-track {
    display: none;
 }
 
 /* Handle */
+
 .pruebasPosibles::-webkit-scrollbar-thumb .pruebasSolicitadas::-webkit-scrollbar-thumb {
    background: rgb(177, 176, 176);
    border-radius: 1em;
 }
 
 /* Handle on hover */
+
 .pruebasPosibles::-webkit-scrollbar-thumb:hover .pruebasSolicitadas::-webkit-scrollbar-thumb:hover {
    background: #555;
 }
 
 .exp {
-  height: auto;
+   height: auto;
 }

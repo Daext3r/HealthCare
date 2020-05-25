@@ -22,7 +22,6 @@ h4 {
    margin: 1em;
 }
 
-
 label {
    width: 100%;
 }
@@ -33,7 +32,6 @@ label {
    flex-basis: 45%;
    padding: 2em;
    height: 30%;
-
    display: flex;
    justify-content: center;
    align-items: center;

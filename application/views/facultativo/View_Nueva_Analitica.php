@@ -172,7 +172,7 @@
       </div>
 
       <div class="pruebasSolicitadas">
-      <div class="categoria d-none">
+         <div class="categoria d-none">
             <div class="titulo">BIOQUÍMICA</div>
             <ul class="pruebas">
             </ul>

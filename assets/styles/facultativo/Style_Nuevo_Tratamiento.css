@@ -1,12 +1,12 @@
 .tratamientos {
-   border: 1px solid rgba(0,0,0,0.125);
+   border: 1px solid rgba(0, 0, 0, 0.125);
    border-bottom: 3px solid #007bff;
    width: 100%;
    height: calc(85vh - 4.5em);
    max-height: calc(85vh - 4.5em);
    margin-top: 1em;
    padding: 1em;
-   overflow-y: scroll;  
+   overflow-y: scroll;
    border-radius: 0.4em;
 }
 
@@ -34,7 +34,6 @@
 .tratamientos::-webkit-scrollbar-thumb:hover {
    background: #555;
 }
-
 
 .row {
    margin-top: 1em;

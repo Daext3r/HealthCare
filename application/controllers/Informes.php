@@ -17,7 +17,7 @@ class Informes extends CI_Controller
       //si propio es true, significa que es el propio paciente el que quiere ver los informes
       //de lo contrario será un facultativo, por lo que se tendrá que especificar el ciu en la peticion ajax
       if ($this->input->post("propio") == "true") {
-         echo json_encode($this->Informes_model->leerListaInformes($this->session->userdata("ciu")));     
+         echo json_encode($this->Informes_model->leerListaInformes($this->session->userdata("ciu")));
       } else {
          echo json_encode($this->Informes_model->leerListaInformes($this->input->post("ciu")));
       }

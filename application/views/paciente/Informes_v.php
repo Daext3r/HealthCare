@@ -3,13 +3,13 @@
               <div class="col">
                  <label for="especialidad">Especialidad</label>
                  <select id="especialidad" class="form-control">
-                     <option value="todas" selected>Todas</option>
+                    <option value="todas" selected>Todas</option>
                  </select>
               </div>
               <div class="col">
                  <label for="facultativo">Facultativo</label>
                  <select id="facultativo" class="form-control">
-                  <option value="cualquiera" selected>Cualquiera</option>
+                    <option value="cualquiera" selected>Cualquiera</option>
                  </select>
               </div>
               <div class="col">
@@ -20,8 +20,8 @@
                  </select>
               </div>
               <div class="col">
-              <label for="reset">Borar filtros</label><br>
-               <button id="reset" class="btn btn-primary w-100">Borrar</button>
+                 <label for="reset">Borar filtros</label><br>
+                 <button id="reset" class="btn btn-primary w-100">Borrar</button>
               </div>
            </div>
            <hr>

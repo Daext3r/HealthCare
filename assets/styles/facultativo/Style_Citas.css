@@ -1,6 +1,5 @@
 .contenido {
    max-height: 85vh;
-
    display: flex;
    justify-content: center;
    padding-top: 1em;
@@ -9,26 +8,30 @@
 }
 
 /* width */
+
 .table::-webkit-scrollbar {
    width: 10px;
    padding-left: 3em;
- }
- 
- /* Track */
- .table::-webkit-scrollbar-track {
+}
+
+/* Track */
+
+.table::-webkit-scrollbar-track {
    display: none;
- }
-  
- /* Handle */
- .table::-webkit-scrollbar-thumb {
-   background: rgb(177, 176, 176); 
+}
+
+/* Handle */
+
+.table::-webkit-scrollbar-thumb {
+   background: rgb(177, 176, 176);
    border-radius: 1em;
- }
- 
- /* Handle on hover */
- .table::-webkit-scrollbar-thumb:hover {
-   background: #555; 
- }
+}
+
+/* Handle on hover */
+
+.table::-webkit-scrollbar-thumb:hover {
+   background: #555;
+}
 
 .table {
    display: block;

@@ -145,7 +145,8 @@ class Usuarios_controller extends CI_Controller
       echo $this->Usuarios_model->cambiarClave($this->input->post("ciu"), hash("sha512", "12345678"));
    }
 
-   public function cambiarClave() {
+   public function cambiarClave()
+   {
       echo $this->Usuarios_model->cambiarClave($this->session->userdata("ciu"), hash("sha512", $this->input->post("clave")));
    }
 
@@ -173,10 +174,9 @@ class Usuarios_controller extends CI_Controller
 
       //borramos la imagen anterior que haya
       $archivos = glob("./assets/perfiles/" . $this->session->userdata("ciu") . ".*");
-      if(count($archivos) >= 1) unlink($archivos[0]);
+      if (count($archivos) >= 1) unlink($archivos[0]);
 
       //guardamos la nueva imagen de perfil
       write_file("./assets/perfiles/" . $this->session->userdata("ciu") . "." . $formato, base64_decode($imagen));
-      
    }
 }

@@ -38,19 +38,23 @@ class Facultativos_controller extends CI_Controller
       echo json_encode($this->Facultativos_model->buscarFacultativoNombre($this->input->post("nombre")));
    }
 
-   public function buscarFacultativoCiuNombre() {
+   public function buscarFacultativoCiuNombre()
+   {
       echo json_encode($this->Facultativos_model->buscarFacultativoCiuNombre($this->input->post("dato")));
    }
-   
-   public function leerEnfermedadesPaciente() {
+
+   public function leerEnfermedadesPaciente()
+   {
       echo $this->Facultativos_model->leerEnfermedadesPaciente($this->input->post("paciente"));
    }
 
-   public function actualizarEnfermedadesPaciente() {
+   public function actualizarEnfermedadesPaciente()
+   {
       echo $this->Facultativos_model->actualizarEnfermedadesPaciente($this->input->post("paciente"), $this->input->post("enfermedades"));
    }
-   
-   public function leerAnaliticasPaciente() {
+
+   public function leerAnaliticasPaciente()
+   {
       echo json_encode($this->Facultativos_model->leerAnaliticasPaciente($this->input->post("paciente")));
    }
 }

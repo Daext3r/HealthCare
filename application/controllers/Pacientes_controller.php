@@ -14,7 +14,7 @@ class Pacientes_controller extends CI_Controller
          return;
       }
 
-      
+
       $this->load->model("Pacientes_model");
    }
 
@@ -24,7 +24,7 @@ class Pacientes_controller extends CI_Controller
       $medico = $this->input->post("medico");
       $enfermero = $this->input->post("enfermero");
       $grupo_sanguineo = $this->input->post("grupo_sanguineo");
-     
+
 
       echo $this->Pacientes_model->alta($usuario, $medico, $enfermero, $grupo_sanguineo);
    }
@@ -34,15 +34,18 @@ class Pacientes_controller extends CI_Controller
       echo $this->Pacientes_model->crearEpisodio($this->input->post("descripcion"), $this->input->post("especialidad"), $this->input->post("paciente"));
    }
 
-   public function leerEpisodios() {
+   public function leerEpisodios()
+   {
       echo json_encode($this->Pacientes_model->leerEpisodios($this->input->post("ciu")));
    }
 
-   public function buscarPacienteCiuNombre() {
+   public function buscarPacienteCiuNombre()
+   {
       echo json_encode($this->Pacientes_model->buscarPacienteCiuNombre($this->input->post("dato")));
    }
 
-   public function leerFacultativosReferencia() {
+   public function leerFacultativosReferencia()
+   {
       echo json_encode($this->Pacientes_model->leerFacultativosReferencia($this->input->post("ciu")));
    }
 }

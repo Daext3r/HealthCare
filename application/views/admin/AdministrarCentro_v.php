@@ -54,7 +54,7 @@
          <div class="col datos-col">
             <label for="CIU_gerente">Gerente</label>
             <div class="input-group mb-2 mr-sm-2">
-               <input list="gerentes" id="CIU_gerente" class="form-control" name="CIU_gerente" placeholder="Gerente" autocomplete="off" required >
+               <input list="gerentes" id="CIU_gerente" class="form-control" name="CIU_gerente" placeholder="Gerente" autocomplete="off" required>
                <datalist id="gerentes"></datalist>
                <div class="input-group-prepend">
                   <div class="input-group-text"><i class="fas fa-search"></i></div>

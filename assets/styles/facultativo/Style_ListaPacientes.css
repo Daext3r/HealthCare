@@ -15,14 +15,11 @@
    width: 2em;
    min-width: 2em;
    height: 100%;
-
    /*alineacion de flexbox*/
    order: 1;
-
    display: flex;
    justify-content: center;
    align-items: center;
-
    border: 1px solid grey;
    border-radius: 0.2em;
    margin-left: 1.5em;
@@ -50,7 +47,6 @@
    position: absolute;
    top: 0;
    left: 0;
-
    background: rgb(255, 255, 255);
    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 99%);
 }
@@ -58,9 +54,8 @@
 .nombre {
    height: 1.1em;
    margin-left: 0.3em;
-   
    /*si el texto se sale del elemento, lo ocultamos. ademas hacemos que no corte por el espacio*/
-   overflow: hidden;   
+   overflow: hidden;
    white-space: nowrap;
 }
 

@@ -37,9 +37,9 @@
       </div>
 
       <div class="col-md-12 col-xl-5" id="seleccion" style="display: none">
-            <div class="w-100 correo">¿Tu correo es <span id="seleccion-correo"></span>?</div>
-            <button class="btn btn-outline-success seleccion" data-seleccion="si">Sí, es mi correo</button>
-            <button class="btn btn-outline-danger seleccion" data-seleccion="no">No, no es mi correo</button>
+         <div class="w-100 correo">¿Tu correo es <span id="seleccion-correo"></span>?</div>
+         <button class="btn btn-outline-success seleccion" data-seleccion="si">Sí, es mi correo</button>
+         <button class="btn btn-outline-danger seleccion" data-seleccion="no">No, no es mi correo</button>
       </div>
    </div>
 </body>

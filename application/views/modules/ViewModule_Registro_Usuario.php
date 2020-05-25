@@ -86,13 +86,12 @@
                  </div>
               </div>
 
-              
-                 <input type="submit" value="Registrar usuario" class="btn btn-success w-75 custom-submit">
-              
+
+              <input type="submit" value="Registrar usuario" class="btn btn-success w-75 custom-submit">
+
 
            </form>
 
         </section>
         </div>
         </body>
-        

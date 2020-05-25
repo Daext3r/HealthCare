@@ -78,7 +78,7 @@ $(document).ready(() => {
          return;
       }
 
-      if($("div.seleccionado").children().eq(0).html() == undefined) {
+      if ($("div.seleccionado").children().eq(0).html() == undefined) {
          Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -101,8 +101,8 @@ $(document).ready(() => {
 
          $.post(localStorage.getItem("hc_base_url") + "Analiticas_controller/nuevaAnalitica", { paciente: paciente, pruebas: JSON.stringify(pruebas) }, (data) => {
             Swal.fire({
-               icon:'success',
-               title:'Hecho',
+               icon: 'success',
+               title: 'Hecho',
                text: `Se ha registrado la solicitud de la analítica para ${paciente}`
             }).then(() => window.location.reload());
          });

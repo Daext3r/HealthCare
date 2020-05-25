@@ -13,10 +13,10 @@ $(document).ready(() => {
 
       }).then((e) => {
          //si no hay valor cancelamos
-         if(!e.value) return;
+         if (!e.value) return;
 
          //si la enfermedad ya esta en la lista cancelamos
-         if(listaEnfermedades.indexOf(e.value) != -1) {
+         if (listaEnfermedades.indexOf(e.value) != -1) {
             Swal.fire('Error', 'Ya hay una enfermedad con ese nombre añadida', 'error');
             return;
          }
@@ -35,10 +35,10 @@ function leerEnfermedades(paciente) {
    $.post(localStorage.getItem("hc_base_url") + "Facultativos_controller/leerEnfermedadesPaciente", { paciente: paciente }, (data) => {
       try {
          data = JSON.parse(data);
-      } catch(e) {
+      } catch (e) {
          return;
       }
-      
+
       //si no hay enfermedades cancelamos
       if (data == null) return;
 

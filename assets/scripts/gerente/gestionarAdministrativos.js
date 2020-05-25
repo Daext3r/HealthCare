@@ -44,14 +44,14 @@ $(document).ready(() => {
                   cancelButtonColor: '#d33',
                   cancelButtonText: 'No, cancelar'
                }).then((e) => {
-                  if(e.value) {
-                     $.post(localStorage.getItem("hc_base_url") + "Centros_controller/eliminarAdministrativo", {ciu: usuario.CIU_administrativo}, (data) => {
-                        if(data == 1) {
+                  if (e.value) {
+                     $.post(localStorage.getItem("hc_base_url") + "Centros_controller/eliminarAdministrativo", { ciu: usuario.CIU_administrativo }, (data) => {
+                        if (data == 1) {
                            Swal.fire({
                               icon: 'success',
                               title: 'Hecho',
                               text: 'Se ha eliminado al usuario como administrativo '
-                           }).then(()=> {window.location.reload()});
+                           }).then(() => { window.location.reload() });
                         }
                      });
                   }
@@ -63,7 +63,7 @@ $(document).ready(() => {
       showPageNumbers: false,
       showNavigator: true,
       formatNavigator: "Página <%= currentPage %> de <%= totalPage %>"
-   });   
+   });
 
    //contiene un timeout para no saturar al servidor con peticiones a la hora de buscar un gerente
    var interval;
@@ -104,8 +104,8 @@ $(document).ready(() => {
 
       //si el nombre es undefined, es que no ha seleccionado un usuario de la lista
       //paramos la ejecucion
-      if(nombre == undefined) return;
-      
+      if (nombre == undefined) return;
+
       Swal.fire({
          title: '¿Estás seguro?',
          text: `¿Quieres añadir a ${nombre} como administrativo de tu centro?`,

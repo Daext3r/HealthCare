@@ -17,7 +17,8 @@ class Laboratorio_model extends CI_Model
       }
    }
 
-   public function leerAnaliticasAtendidas($lab) {
+   public function leerAnaliticasAtendidas($lab)
+   {
       $this->db->select("codigo_analitica, fecha_solicitud");
       $this->db->where("CIU_personal", $lab);
       $this->db->where("fecha_resultado", null);

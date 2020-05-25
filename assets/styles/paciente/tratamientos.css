@@ -35,25 +35,29 @@ h3 {
 }
 
 /* width */
+
 #lista::-webkit-scrollbar {
    width: 10px;
- }
- 
- /* Track */
- #lista::-webkit-scrollbar-track {
+}
+
+/* Track */
+
+#lista::-webkit-scrollbar-track {
    display: none;
- }
-  
- /* Handle */
- #lista::-webkit-scrollbar-thumb {
-   background: rgb(177, 176, 176); 
+}
+
+/* Handle */
+
+#lista::-webkit-scrollbar-thumb {
+   background: rgb(177, 176, 176);
    border-radius: 1em;
- }
- 
- /* Handle on hover */
- #lista::-webkit-scrollbar-thumb:hover {
-   background: #555; 
- }
+}
+
+/* Handle on hover */
+
+#lista::-webkit-scrollbar-thumb:hover {
+   background: #555;
+}
 
 .card {
    overflow: hidden;

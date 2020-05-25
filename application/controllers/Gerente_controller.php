@@ -24,7 +24,7 @@ class Gerente_controller extends CI_Controller
          echo 0;
          return;
       }
-      
+
       //si no es el mismo centro, comprobamos si ya hay un traslado en curso para ese usuario
       if ($this->Gerente_model->comprobarUsuarioTraslado($facultativo) >= 1) {
          echo 2;

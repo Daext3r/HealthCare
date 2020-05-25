@@ -49,7 +49,8 @@ class Admin extends CI_Controller
             //carga el head con las hojas de estilos y scripts necesarios
             $this->load->view("modules/ViewModule_Head", array(
                "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "admin/crearCentro"),
-               "scripts" => array("modules/ScriptModule_Panel", "admin/crearCentro")));
+               "scripts" => array("modules/ScriptModule_Panel", "admin/crearCentro")
+            ));
 
             //carga el modulo principal
             $this->load->view("modules/ViewModule_Panel");
@@ -82,7 +83,7 @@ class Admin extends CI_Controller
             break;
       }
    }
-   
+
    public function administrar($item)
    {
       switch ($item) {

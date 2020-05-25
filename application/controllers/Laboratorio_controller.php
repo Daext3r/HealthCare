@@ -12,7 +12,7 @@ class Laboratorio_controller extends CI_Controller
          redirect(base_url() . "login");
          return;
       }
-      
+
       $this->load->model("Laboratorio_model");
    }
 

@@ -15,7 +15,7 @@ $(document).ready(function () {
 
       for (let tratamiento of data) {
          //primero leemos el nombre del medicamento
-        fetch(`https://cima.aemps.es/cima/rest/medicamento?nregistro=${tratamiento.nregistro}`)
+         fetch(`https://cima.aemps.es/cima/rest/medicamento?nregistro=${tratamiento.nregistro}`)
             .then((respuesta) => {
                //convertimos la respuesta en un objeto literal json
                return respuesta.json();

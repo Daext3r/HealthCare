@@ -55,21 +55,21 @@ $(document).ready(function () {
       let especialidad = $("#especialidad").val().trim();
 
       //si el valor de estos campos no es numerico
-      if(isNaN(especialidad)) return;
-      if(isNaN(centro)) return;
+      if (isNaN(especialidad)) return;
+      if (isNaN(centro)) return;
 
       //si los campos no estan rellenos, no hacemos nada
       if (colegiado == "") return;
       if (sala == "") return;
       if (especialidad == "") return;
 
-      $.post(localStorage.getItem("hc_base_url") + "Facultativos_controller/alta", { usuario: $("#usuario").val(), colegiado: colegiado, sala: sala, especialidad: especialidad, centro : centro }, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "Facultativos_controller/alta", { usuario: $("#usuario").val(), colegiado: colegiado, sala: sala, especialidad: especialidad, centro: centro }, (data) => {
          if (data == 1) {
             Swal.fire(
                'Hecho',
                `Se ha registrado al usuario ${$("#usuario").val()} como facultativo`,
                'success'
-             )
+            )
          }
       });
    });

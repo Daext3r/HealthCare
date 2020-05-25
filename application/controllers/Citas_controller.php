@@ -117,7 +117,7 @@ class Citas_controller extends CI_Controller
 
       $paciente = "";
 
-      if($this->input->post("paciente") != "") {
+      if ($this->input->post("paciente") != "") {
          $paciente = $this->input->post("paciente");
       } else {
          $paciente = $this->session->userdata("ciu");

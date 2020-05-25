@@ -27,7 +27,8 @@ class Informes_model extends CI_Model
       return $this->db->insert("informes", array("CIU_facultativo" => $fac, "CIU_paciente" => $paciente, "fecha" => $fecha, "hora" => $hora, "contenido" => $contenido, "episodio" => $episodio));
    }
 
-   public function leerInforme($id) {
+   public function leerInforme($id)
+   {
       $this->db->where("id", $id);
       return $this->db->get("vista_resumen_informes")->row_array();
    }
