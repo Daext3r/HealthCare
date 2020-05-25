@@ -77,7 +77,7 @@ class Login_controller extends CI_Controller
          $this->session->set_userdata("ciu", $ciu);
 
          //carga el head con una hoja de estilos
-         $this->load->view("modules/ViewModule_Head", array("hojas" => array("utils/perfiles"), "scripts" => array("utils/perfiles")));
+         $this->load->view("modules/ViewModule_Head", array("hojas" => array("public/perfiles"), "scripts" => array("public/perfiles")));
 
          //carga la vista de seleccion de perfil
          $this->load->view("Perfiles_v", array("perfiles" => $perfiles, "jwt" => $jwt, "correo" => ($correoSecreto) ? $correoSecreto : ""));

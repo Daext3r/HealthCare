@@ -14,7 +14,7 @@ class Login extends CI_Controller
       $this->session->sess_destroy();
 
       //carga el head con una hoja de estilos
-      $this->load->view("modules/ViewModule_Head", array("hojas" => array("utils/login"), "scripts" => array("utils/login")));
+      $this->load->view("modules/ViewModule_Head", array("hojas" => array("public/login"), "scripts" => array("public/login")));
 
       //carga la vista de login
       $this->load->view("Login_v");
