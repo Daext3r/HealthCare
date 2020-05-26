@@ -35,6 +35,7 @@
 
 
 function agregarPaciente(paciente) {
+   console.log(paciente);
    let div = document.createElement("div");
    div.classList.add("paciente");
    div.dataset.CIU = paciente.CIU;
@@ -189,7 +190,7 @@ $(document).ready(() => {
 
          //disparamos el evento de seleccion para que cargue los datos de ese paciente
          document.getElementById("pacientes").dispatchEvent(new CustomEvent('cambioPaciente', { 'detail': { 'CIU': data[0].CIU, 'nombre': data[0].nombre_completo } }));
-         
+
          //cerramos la ventana modal
          $("#modal-buscar-paciente").modal('toggle');
 

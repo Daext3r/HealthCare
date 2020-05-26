@@ -22,9 +22,9 @@ class Informes_model extends CI_Model
       return $informes;
    }
 
-   public function guardarInforme($contenido, $fac, $paciente, $episodio, $fecha, $hora)
+   public function guardarInforme($contenido, $fac, $paciente, $episodio, $fecha, $hora, $privado)
    {
-      return $this->db->insert("informes", array("CIU_facultativo" => $fac, "CIU_paciente" => $paciente, "fecha" => $fecha, "hora" => $hora, "contenido" => $contenido, "episodio" => $episodio));
+      return $this->db->insert("informes", array("CIU_facultativo" => $fac, "CIU_paciente" => $paciente, "fecha" => $fecha, "hora" => $hora, "contenido" => $contenido, "episodio" => $episodio, "privado" => $privado));
    }
 
    public function leerInforme($id)

@@ -10,7 +10,6 @@ $(document).ready(async function () {
       for (let child of document.getElementById("episodio").children) {
          if (child.value == episodio[1]) {
             child.setAttribute("selected", "");
-            console.log("found");
          }
       }
       mostrarInformes();
@@ -47,12 +46,15 @@ async function buscarInformesPaciente() {
 
    listaInformes = [];
 
+   //pequeño timeout para que de tiempo a guardar
+   await  setTimeout(()=>{}, 100);
+
    //leemos los informes del usuario seleccionado en la base de datos
    //esperamos a que se termine la funcion
    let seleccionado = JSON.parse(localStorage.getItem("hc_lista_pacientes")).filter(paciente => paciente.seleccionado == true);
 
    //si no se ha podido seleccionar un paciente, volvemos atras
-   if (!seleccionado) return;
+   if (!seleccionado[0]) return;
 
    await $.post(localStorage.getItem("hc_base_url") + "Informes/leerListaInformes", { propio: false, ciu: seleccionado[0].CIU }, (data) => {
       data = JSON.parse(data);

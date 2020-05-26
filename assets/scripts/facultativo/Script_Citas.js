@@ -63,7 +63,7 @@ function actualizar(id, elem) {
 //funcion que añade al paciente seleccionado a la variable de pacientes atendidos en localstorage
 function atender(ciu, nombre, elem) {
    let atendidos = JSON.parse(localStorage.getItem("hc_lista_pacientes"));
-   let paciente = { CIU: ciu, nombre: nombre, seleccionado: false };
+   let paciente = { CIU: ciu, nombre_completo: nombre, seleccionado: false };
 
    if (atendidos == null) atendidos = [];
 
@@ -77,7 +77,7 @@ function atender(ciu, nombre, elem) {
 $(document).ready(() => {
 
    //recuperamos todas las citas para este médico en el día de hoy
-   $.post(localStorage.getItem('hc_base_url') + "Citas/leerCitasFacultativo", {}, (data) => {
+   $.post(localStorage.getItem('hc_base_url') + "API/Citas/leerCitasFacultativo", {}, (data) => {
       data = JSON.parse(data);
 
       for (let cita of data) {

@@ -34,11 +34,12 @@ class Informes extends CI_Controller
       $fac = $this->session->userdata("ciu");
       $paciente = $this->input->post("paciente");
       $episodio = $this->input->post("episodio");
+      $privado = $this->input->post("privado");
 
       $fecha = new DateTime();
 
 
-      echo $this->Informes_model->guardarInforme($contenido, $fac, $paciente, $episodio, $fecha->format("Y-m-d"), $fecha->format("H:i:s"));
+      echo $this->Informes_model->guardarInforme($contenido, $fac, $paciente, $episodio, $fecha->format("Y-m-d"), $fecha->format("H:i:s"), $privado);
    }
 
    public function ver($id = null)
