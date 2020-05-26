@@ -39,7 +39,17 @@ $(document).ready(() => {
    $("#guardar").click(() => {
       //guardamos el contenido del informe en una variable y separamos por palabras
       let texto = document.getElementById("contenidoInforme").innerText.split(" ");
-
+      
+      //evitamos que envie un informe vacio
+      if (!texto[0]) {
+         Swal.fire({
+            icon: 'error',
+            title: "Error",
+            text: "No puedes guardar un informe vacío"
+         })
+         return;
+      }
+      
       //por cada index del array, lo partiremos en otro array basandonos en los saltos de linea, \n
       for (let i in texto) {
          //si la longitud al partirlo en array es mayor a 1, es que tiene mas de un elemento y hay salto de linea
