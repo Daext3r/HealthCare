@@ -1,5 +1,5 @@
 $(document).ready(() => {
-   $.post(localStorage.getItem("hc_base_url") + "Gerente_controller/leerTraslados", {}, (data) => {
+   $.post(localStorage.getItem("hc_base_url") + "API/Gerente/leerTraslados", {}, (data) => {
       data = JSON.parse(data);
 
       if (data.length == 0) {
@@ -22,7 +22,7 @@ $(document).ready(() => {
 });
 
 function resolverTraslado(id, res) {
-   $.post(localStorage.getItem("hc_base_url") + "Gerente_controller/resolverTraslado", { id: id, res: res }, (data) => {
+   $.post(localStorage.getItem("hc_base_url") + "API/Gerente/resolverTraslado", { id: id, res: res }, (data) => {
       console.log(data);
       if (data == 1) {
          Swal.fire({

@@ -5,7 +5,7 @@ $(document).ready(() => {
       //si no hay usuario cancelamos
       if (!usuario) return;
 
-      $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/buscarUsuarioCiu", { ciu: usuario }, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/buscarUsuarioCiu", { ciu: usuario }, (data) => {
          data = JSON.parse(data);
 
          if (data.length >= 1) {
@@ -20,7 +20,7 @@ $(document).ready(() => {
                //si no le da a 'si', cancelamos
                if (!e.value) return;
 
-               $.post(localStorage.getItem("hc_base_url") + "Gerente_controller/solicitarTraslado", { facultativo: usuario }, (respuesta) => {
+               $.post(localStorage.getItem("hc_base_url") + "API/Gerente/solicitarTraslado", { facultativo: usuario }, (respuesta) => {
                   console.log(respuesta);
                   if (respuesta == 1) {
                      Swal.fire({

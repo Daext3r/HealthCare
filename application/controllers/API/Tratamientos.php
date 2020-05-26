@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 //A esta clase solo está permitido el acceso por ajax.
 
-class Tratamientos_controller extends CI_Controller
+class Tratamientos extends CI_Controller
 {
    public function __construct()
    {

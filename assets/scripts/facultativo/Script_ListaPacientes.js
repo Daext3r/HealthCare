@@ -76,9 +76,6 @@ function agregarPaciente(paciente) {
    div.addEventListener("click", (e) => seleccionarPaciente(e));
 
    $("#pacientes").append($(div));
-
-   //disparamos el evento de seleccion para que cargue los datos de ese paciente
-   document.getElementById("pacientes").dispatchEvent(new CustomEvent('cambioPaciente', { 'detail': { 'CIU': paciente.CIU, 'nombre': paciente.nombre_completo } }));
 }
 
 function seleccionarPaciente(e) {
@@ -146,7 +143,7 @@ $(document).ready(() => {
       if ($("#usuario").val().trim() == "") return;
 
       interval = setTimeout(function () {
-         $.post(localStorage.getItem("hc_base_url") + "Pacientes_controller/buscarPacienteCiuNombre", { dato: $("#usuario").val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Pacientes/buscarPacienteCiuNombre", { dato: $("#usuario").val() }, (data) => {
             data = JSON.parse(data);
             for (let usuario of data) {
                let option = document.createElement("option");
@@ -160,7 +157,7 @@ $(document).ready(() => {
 
    $("#usuario").change(function () {
       //cuando se seleccione un usuario, buscamos los datos de ese usuario
-      $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/buscarUsuarioCiu", { ciu: $(this).val() }, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/buscarUsuarioCiu", { ciu: $(this).val() }, (data) => {
          data = JSON.parse(data);
          data[0].seleccionado = false;
 
@@ -190,6 +187,9 @@ $(document).ready(() => {
          //añadimos el nuevo paciente a pantalla 
          agregarPaciente(data[0]);
 
+         //disparamos el evento de seleccion para que cargue los datos de ese paciente
+         document.getElementById("pacientes").dispatchEvent(new CustomEvent('cambioPaciente', { 'detail': { 'CIU': data[0].CIU, 'nombre': data[0].nombre_completo } }));
+         
          //cerramos la ventana modal
          $("#modal-buscar-paciente").modal('toggle');
 

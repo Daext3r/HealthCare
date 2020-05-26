@@ -10,7 +10,7 @@ $(document).ready(function () {
       if ($("#CIU_gerente").val().trim() == "") return;
 
       interval = setTimeout(function () {
-         $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/buscarUsuarioCiu", { ciu: $("#CIU_gerente").val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/buscarUsuarioCiu", { ciu: $("#CIU_gerente").val() }, (data) => {
             data = JSON.parse(data);
             for (let usuario of data) {
                let option = document.createElement("option");
@@ -40,7 +40,7 @@ $(document).ready(function () {
       if ($("#centro").val().trim() == "") return;
 
       interval = setTimeout(function () {
-         $.post(localStorage.getItem("hc_base_url") + "Centros_controller/buscarCentroNombre", { centro: $("#centro").val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Centros/buscarCentroNombre", { centro: $("#centro").val() }, (data) => {
             data = JSON.parse(data);
             for (let centro of data) {
                let option = document.createElement("option");
@@ -56,7 +56,7 @@ $(document).ready(function () {
    //se cambia cuando hagamos clic en una opcion
    //lo usaremos para detectar cuando el usuario ha seleccionado una opcion del datalist
    $("#centro").change(function () {
-      $.post(localStorage.getItem("hc_base_url") + "Centros_controller/leerDatosCentro", { centro: $(this).val() }, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "API/Centros/leerDatosCentro", { centro: $(this).val() }, (data) => {
          data = JSON.parse(data);
 
          //si es menor a 0, es que no ha seleccionado un centro de la lista
@@ -171,7 +171,7 @@ $(document).ready(function () {
 
       console.log(datos);
 
-      $.post(localStorage.getItem("hc_base_url") + "Centros_controller/actualizarCentro", datos, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "API/Centros/actualizarCentro", datos, (data) => {
          console.log(data);
          if (data == 1) {
             Swal.fire({

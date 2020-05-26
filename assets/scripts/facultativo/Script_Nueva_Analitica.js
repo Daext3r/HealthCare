@@ -99,7 +99,7 @@ $(document).ready(() => {
       if (result.value) {
          let paciente = $("div.seleccionado")[0].dataset.CIU;
 
-         $.post(localStorage.getItem("hc_base_url") + "Analiticas_controller/nuevaAnalitica", { paciente: paciente, pruebas: JSON.stringify(pruebas) }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Analiticas/nuevaAnalitica", { paciente: paciente, pruebas: JSON.stringify(pruebas) }, (data) => {
             Swal.fire({
                icon: 'success',
                title: 'Hecho',

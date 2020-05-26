@@ -44,7 +44,7 @@ $(document).ready(() => {
          tomas.push(toma);
       }
 
-      $.post(localStorage.getItem("hc_base_url") + "Tratamientos_controller/agregarTratamiento", { paciente: paciente, fecha_inicio: inicio, fecha_fin: fin, episodio: episodio, tomas: JSON.stringify(tomas), nregistro: nregistro }, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "API/Tratamientos/agregarTratamiento", { paciente: paciente, fecha_inicio: inicio, fecha_fin: fin, episodio: episodio, tomas: JSON.stringify(tomas), nregistro: nregistro }, (data) => {
          console.log(data);
          if (data == 1) {
             Swal.fire({
@@ -58,7 +58,7 @@ $(document).ready(() => {
 })
 
 function cargarEpisodios(ciu) {
-   $.post(localStorage.getItem("hc_base_url") + "Pacientes_controller/leerEpisodios", { ciu: ciu }, (data) => {
+   $.post(localStorage.getItem("hc_base_url") + "API/Pacientes/leerEpisodios", { ciu: ciu }, (data) => {
       data = JSON.parse(data);
 
       //quitamos todos los episodios del select

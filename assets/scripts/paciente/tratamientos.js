@@ -2,7 +2,7 @@ $(document).ready(function () {
    //mostramos la cantidad de notificaciones
    $("#notificaciones").text(localStorage.getItem("notificaciones"));
 
-   $.post(localStorage.getItem("hc_base_url") + "Tratamientos_controller/leerTratamientos", {}, function (data) {
+   $.post(localStorage.getItem("hc_base_url") + "API/Tratamientos/leerTratamientos", {}, function (data) {
       data = JSON.parse(data);
       console.log(data);
       //si no hay datos, mostramos un mensaje de informacion y paramos la ejecucion

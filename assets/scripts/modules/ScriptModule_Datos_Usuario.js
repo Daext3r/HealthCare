@@ -13,7 +13,7 @@ $(document).ready(function () {
       if ($("#usuario").val().trim() == "") return;
 
       interval = setTimeout(function () {
-         $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/buscarUsuarioCiu", { ciu: $("#usuario").val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/buscarUsuarioCiu", { ciu: $("#usuario").val() }, (data) => {
             data = JSON.parse(data);
             for (let usuario of data) {
                let option = document.createElement("option");
@@ -29,7 +29,7 @@ $(document).ready(function () {
    //se cambia cuando hagamos clic en una opcion
    //lo usaremos para detectar cuando el usuario ha seleccionado una opcion del datalist
    $("#usuario").change(function () {
-      $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/leerDatosUsuario", { ciu: $(this).val() }, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/leerDatosUsuario", { ciu: $(this).val() }, (data) => {
          data = JSON.parse(data);
 
          //si es menor a 0, es que no ha seleccionado un usuario de la lista
@@ -66,7 +66,7 @@ $(document).ready(function () {
          return;
       }
 
-      $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/actualizarUsuario", $(this).serializeArray(), (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/actualizarUsuario", $(this).serializeArray(), (data) => {
          if (data == 1) {
             Swal.fire({
                icon: 'success',
@@ -95,7 +95,7 @@ $(document).ready(function () {
       }).then((e) => {
          //si no le ha dado a si, cancelamos
          if (e.value) {
-            $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/restaurarClave", { ciu: $("#usuario").val() }, (data) => {
+            $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/restaurarClave", { ciu: $("#usuario").val() }, (data) => {
                if (data == 1) {
                   Swal.fire({
                      icon: 'success',

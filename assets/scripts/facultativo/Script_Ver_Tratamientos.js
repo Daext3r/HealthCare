@@ -10,7 +10,7 @@ function listarTratamientos(paciente) {
    //quitamos los tratamientos que haya previamente
    $("#tratamientos").html("");
 
-   $.post(localStorage.getItem("hc_base_url") + "Tratamientos_controller/leerTratamientosFacultativo", { paciente: paciente }, async (data) => {
+   $.post(localStorage.getItem("hc_base_url") + "API/Tratamientos/leerTratamientosFacultativo", { paciente: paciente }, async (data) => {
       data = JSON.parse(data);
 
       //por cada tratamiento
@@ -52,7 +52,7 @@ function borrarTratamiento(tratamiento) {
       confirmButtonText: "Si"
    }).then((result) => {
       if (result.value) {
-         $.post(localStorage.getItem("hc_base_url") + "Tratamientos_controller/borrarTratamiento", { id: tratamiento }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Tratamientos/borrarTratamiento", { id: tratamiento }, (data) => {
             if (data == 1) {
                Swal.fire(
                   'Hecho',

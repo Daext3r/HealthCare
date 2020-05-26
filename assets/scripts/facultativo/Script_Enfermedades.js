@@ -32,7 +32,7 @@ function leerEnfermedades(paciente) {
    $(".listaEnfermedades")[0].innerHTML = "";
    listaEnfermedades = [];
 
-   $.post(localStorage.getItem("hc_base_url") + "Facultativos_controller/leerEnfermedadesPaciente", { paciente: paciente }, (data) => {
+   $.post(localStorage.getItem("hc_base_url") + "API/Facultativos/leerEnfermedadesPaciente", { paciente: paciente }, (data) => {
       try {
          data = JSON.parse(data);
       } catch (e) {
@@ -66,7 +66,7 @@ function generarEnfermedad(enf) {
 }
 
 function actualizarDatos() {
-   $.post(localStorage.getItem("hc_base_url") + "Facultativos_controller/actualizarEnfermedadesPaciente", { paciente: $("div.paciente.seleccionado")[0].dataset.CIU, enfermedades: JSON.stringify(listaEnfermedades) }, (data) => {
+   $.post(localStorage.getItem("hc_base_url") + "API/Facultativos/actualizarEnfermedadesPaciente", { paciente: $("div.paciente.seleccionado")[0].dataset.CIU, enfermedades: JSON.stringify(listaEnfermedades) }, (data) => {
       if (data == 1) {
          Swal.fire({
             icon: 'success',

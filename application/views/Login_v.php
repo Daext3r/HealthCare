@@ -3,7 +3,7 @@
 
       <img src="<?php echo base_url() ?>assets/img/logo.png" alt="" srcset="" class="col-12 col-md-8 col-l-7 col-xl-5">
 
-      <form method="POST" action="<?php echo base_url() ?>Login_controller/login" class="col-md-12 col-xl-5" id="form" style="display: none;">
+      <form method="POST" action="<?php echo base_url() ?>API/Login/login" class="col-md-12 col-xl-5" id="form" style="display: none;">
          <?php if ($this->session->flashdata('error') == 'no_user') { ?>
             <div class="alert alert-danger" role="alert">
                Datos de acceso incorrectos. Prueba de nuevo.

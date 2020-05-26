@@ -18,7 +18,7 @@ $(document).ready(() => {
       if ($("#especialidad").val().trim() == "") return;
 
       interval = setTimeout(function () {
-         $.post(localStorage.getItem("hc_base_url") + "Facultativos_controller/buscarEspecialidad", { especialidad: $("#especialidad").val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Facultativos/buscarEspecialidad", { especialidad: $("#especialidad").val() }, (data) => {
             data = JSON.parse(data);
             for (let especialidad of data) {
                let option = document.createElement("option");
@@ -57,7 +57,7 @@ $(document).ready(() => {
          return;
       }
 
-      $.post(localStorage.getItem("hc_base_url") + "Pacientes_controller/crearEpisodio", {
+      $.post(localStorage.getItem("hc_base_url") + "API/Pacientes/crearEpisodio", {
          descripcion: descripcion,
          especialidad: especialidad,
          paciente: paciente.dataset.CIU
@@ -85,9 +85,8 @@ $(document).ready(() => {
 });
 
 function leerEpisodiosPaciente(ciu) {
-   $.post(localStorage.getItem("hc_base_url") + "Pacientes_controller/leerEpisodios", { ciu: ciu }, (data) => {
+   $.post(localStorage.getItem("hc_base_url") + "API/Pacientes/leerEpisodios", { ciu: ciu }, (data) => {
       data = JSON.parse(data);
-      console.log(data);
 
       for (let episodio of data) {
          let div = $(`

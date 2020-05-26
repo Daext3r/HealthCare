@@ -14,7 +14,7 @@ $(document).ready(function () {
          return;
       }
 
-      $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/registrarUsuario", datos, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/registrarUsuario", datos, (data) => {
          if (data == 1) {
             Swal.fire({
                icon: 'success',

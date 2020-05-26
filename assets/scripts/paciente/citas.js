@@ -27,7 +27,7 @@ $(document).ready(function () {
 
          //propia indica al controlador si se quire borrar una cita propia o de otra persona.
          //hay que recordar que el controlador lo usaran varios tipos de usuario.
-         $.post(localStorage.getItem("hc_base_url") + "Citas_controller/borrarCita", { cita: id_cita, propia: true }, function (data) {
+         $.post(localStorage.getItem("hc_base_url") + "API/Citas/borrarCita", { cita: id_cita, propia: true }, function (data) {
             //si se ha borrado correctamente
             if (data == 1) {
                $(cita).fadeOut(500);
@@ -36,9 +36,8 @@ $(document).ready(function () {
                      title: 'Cita borrada correctamente',
                      html: `Acabas de anular la cita con ${medico}`,
                      icon: 'success',
-                     onDestroy: function () { window.location = localStorage.getItem("hc_base_url") + "paciente/inicio"; }
                   }
-               );
+               ).then((e) => window.location.reload())
                //redirigimos al inicio
             } else {
                Swal.fire(
@@ -74,7 +73,7 @@ $(document).ready(function () {
 
 
       //hacemos la peticion ajax al servidor con los datos solicitados
-      $.post(localStorage.getItem("hc_base_url") + "Citas_controller/buscarLibres", { medico: medico, fecha: fecha, hora: hora, minuto: minuto }, function (data) {
+      $.post(localStorage.getItem("hc_base_url") + "API/Citas/buscarLibres", { medico: medico, fecha: fecha, hora: hora, minuto: minuto }, function (data) {
          //cerramos la ventana de espera
          Swal.close();
 
@@ -104,7 +103,7 @@ $(document).ready(function () {
 
 
             btn.addEventListener("click", function () {
-               $.post(localStorage.getItem("hc_base_url") + "Citas_controller/seleccionarCita", { info: this.dataset.info_cita, medico: medico, paciente: "" }, function (data) {
+               $.post(localStorage.getItem("hc_base_url") + "API/Citas/seleccionarCita", { info: this.dataset.info_cita, medico: medico, paciente: "" }, function (data) {
                   if (data == 1) {
                      $("#citas-cerrar-buscador").click();
                      Swal.fire({

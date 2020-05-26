@@ -13,7 +13,7 @@ $(document).ready(function () {
       if ($("#usuario").val().trim() == "") return;
 
       interval = setTimeout(function () {
-         $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/buscarUsuarioNombre", { ciu: $("#usuario").val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/buscarUsuarioNombre", { ciu: $("#usuario").val() }, (data) => {
             data = JSON.parse(data);
             for (let usuario of data) {
                let option = document.createElement("option");
@@ -29,7 +29,7 @@ $(document).ready(function () {
    //se cambia cuando hagamos clic en una opcion
    //lo usaremos para detectar cuando el usuario ha seleccionado una opcion del datalist
    $("#usuario").change(function () {
-      $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/leerDatosUsuario", { ciu: $(this).val() }, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/leerDatosUsuario", { ciu: $(this).val() }, (data) => {
          data = JSON.parse(data);
 
          //si es menor a 0, es que no ha seleccionado un usuario de la lista
@@ -63,7 +63,7 @@ $(document).ready(function () {
       if (sala == "") return;
       if (especialidad == "") return;
 
-      $.post(localStorage.getItem("hc_base_url") + "Facultativos_controller/alta", { usuario: $("#usuario").val(), colegiado: colegiado, sala: sala, especialidad: especialidad, centro: centro }, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "API/Facultativos/alta", { usuario: $("#usuario").val(), colegiado: colegiado, sala: sala, especialidad: especialidad, centro: centro }, (data) => {
          if (data == 1) {
             Swal.fire(
                'Hecho',
@@ -80,7 +80,7 @@ $(document).ready(function () {
       $("#especialidades").html("");
 
       interval = setTimeout(() => {
-         $.post(localStorage.getItem("hc_base_url") + "Facultativos_controller/buscarEspecialidad", { especialidad: $(this).val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Facultativos/buscarEspecialidad", { especialidad: $(this).val() }, (data) => {
             data = JSON.parse(data);
 
             for (let especialidad of data) {
@@ -105,7 +105,7 @@ $(document).ready(function () {
       if ($("#centro").val().trim() == "") return;
 
       interval = setTimeout(function () {
-         $.post(localStorage.getItem("hc_base_url") + "Centros_controller/buscarCentroNombre", { centro: $("#centro").val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Centros/buscarCentroNombre", { centro: $("#centro").val() }, (data) => {
             data = JSON.parse(data);
             for (let centro of data) {
                let option = document.createElement("option");

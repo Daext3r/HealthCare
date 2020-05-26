@@ -1,5 +1,5 @@
 $(document).ready(() => {
-   $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/leerDatosInicio", {}, (data) => {
+   $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/leerDatosInicio", {}, (data) => {
       data = JSON.parse(data)[0];
       $("#cantidad-usuarios").html(data.usuarios);
       $("#cantidad-centros").html(data.centros);

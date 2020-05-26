@@ -5,7 +5,7 @@ require APPPATH . "vendor/autoload.php";
 
 use Firebase\JWT\JWT;
 
-class Login_controller extends CI_Controller
+class Login extends CI_Controller
 {
    public function __construct()
    {

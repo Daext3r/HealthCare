@@ -13,7 +13,7 @@ $(document).ready(function () {
       if ($("#usuario").val().trim() == "") return;
 
       interval = setTimeout(function () {
-         $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/buscarUsuarioNombre", { nombre: $("#usuario").val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/buscarUsuarioNombre", { nombre: $("#usuario").val() }, (data) => {
             data = JSON.parse(data);
             for (let usuario of data) {
                let option = document.createElement("option");
@@ -29,7 +29,7 @@ $(document).ready(function () {
    //se cambia cuando hagamos clic en una opcion
    //lo usaremos para detectar cuando el usuario ha seleccionado una opcion del datalist
    $("#usuario").change(function () {
-      $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/leerDatosUsuario", { ciu: $(this).val() }, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/leerDatosUsuario", { ciu: $(this).val() }, (data) => {
          data = JSON.parse(data);
 
          //si es menor a 0, es que no ha seleccionado un usuario de la lista
@@ -58,7 +58,7 @@ $(document).ready(function () {
       if (enfermero == "") return;
       if (grupo_sanguineo == "") return;
 
-      $.post(localStorage.getItem("hc_base_url") + "Pacientes_controller/alta", { usuario: $("#usuario").val(), grupo_sanguineo: grupo_sanguineo, medico: medico, enfermero: enfermero }, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "API/Pacientes/alta", { usuario: $("#usuario").val(), grupo_sanguineo: grupo_sanguineo, medico: medico, enfermero: enfermero }, (data) => {
          if (data == 1) {
             Swal.fire(
                'Hecho',
@@ -75,7 +75,7 @@ $(document).ready(function () {
       $("#fac1list").html("");
 
       interval = setTimeout(() => {
-         $.post(localStorage.getItem("hc_base_url") + "Facultativos_controller/buscarFacultativoNombre", { nombre: $(this).val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Facultativos/buscarFacultativoNombre", { nombre: $(this).val() }, (data) => {
             data = JSON.parse(data);
             console.log(data);
             for (let facultativo of data) {
@@ -95,7 +95,7 @@ $(document).ready(function () {
       $("#fac2list").html("");
 
       interval = setTimeout(() => {
-         $.post(localStorage.getItem("hc_base_url") + "Facultativos_controller/buscarFacultativoNombre", { nombre: $(this).val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Facultativos/buscarFacultativoNombre", { nombre: $(this).val() }, (data) => {
             data = JSON.parse(data);
 
             for (let facultativo of data) {

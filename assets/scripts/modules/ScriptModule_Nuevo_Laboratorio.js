@@ -13,7 +13,7 @@ $(document).ready(() => {
       if ($("#usuario").val().trim() == "") return;
 
       interval = setTimeout(function () {
-         $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/buscarUsuarioNombre", { ciu: $("#usuario").val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/buscarUsuarioNombre", { ciu: $("#usuario").val() }, (data) => {
             data = JSON.parse(data);
             for (let usuario of data) {
                let option = document.createElement("option");
@@ -29,7 +29,7 @@ $(document).ready(() => {
    //se cambia cuando hagamos clic en una opcion
    //lo usaremos para detectar cuando el usuario ha seleccionado una opcion del datalist
    $("#usuario").change(function () {
-      $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/leerDatosUsuario", { ciu: $(this).val() }, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/leerDatosUsuario", { ciu: $(this).val() }, (data) => {
          data = JSON.parse(data);
 
          //si es menor a 0, es que no ha seleccionado un usuario de la lista
@@ -53,7 +53,7 @@ $(document).ready(() => {
       if ($("#centro").val().trim() == "") return;
 
       interval = setTimeout(function () {
-         $.post(localStorage.getItem("hc_base_url") + "Centros_controller/buscarCentroNombre", { centro: $("#centro").val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Centros/buscarCentroNombre", { centro: $("#centro").val() }, (data) => {
             data = JSON.parse(data);
             for (let centro of data) {
                let option = document.createElement("option");
@@ -71,7 +71,7 @@ $(document).ready(() => {
       let usuario = $("#usuario").val().trim();
       let centro = $("#centro").val().trim();
 
-      $.post(localStorage.getItem("hc_base_url") + "Laboratorio_controller/registrarPersonal", { usuario: usuario, centro: centro }, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "API/Laboratorio/registrarPersonal", { usuario: usuario, centro: centro }, (data) => {
          if (data == 1) {
             Swal.fire(
                'Hecho',

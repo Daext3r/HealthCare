@@ -1,11 +1,7 @@
-$(document).ready(() => {
-   //fecha solicitud, cerrada
-   leerAnaliticas()
 
-   document.getElementById("pacientes").addEventListener("cambioPaciente", leerAnaliticas);
-});
 
-function leerAnaliticas() {
+async function leerAnaliticas() {
+   console.log("leer");
    //Borramos las analiticas que haya
    $(".analiticas").html("");
 
@@ -13,10 +9,16 @@ function leerAnaliticas() {
    $(".pruebas").fadeOut(200);
    setTimeout(() => { $(".analiticas").fadeIn(200); }, 200);
 
-   //buscamos el paciente que este activo
-   let paciente = JSON.parse(localStorage.getItem("hc_lista_pacientes")).filter(paciente => paciente.seleccionado == true)[0].CIU;
+   //pequeño timeout para que de tiempo a otro script a guardar el paciente seleccionado
+   await setTimeout(()=>{},100);
 
-   $.post(localStorage.getItem("hc_base_url") + "Facultativos_controller/leerAnaliticasPaciente", { paciente: paciente }, (data) => {
+   //buscamos el paciente que este activo
+   let paciente = JSON.parse(localStorage.getItem("hc_lista_pacientes")).filter(paciente => paciente.seleccionado == true)[0];
+   
+   //si no hay paciente cancelamos
+   if(!paciente) return;
+
+   $.post(localStorage.getItem("hc_base_url") + "API/Facultativos/leerAnaliticasPaciente", { paciente: paciente.CIU }, (data) => {
       data = JSON.parse(data);
 
       //si no hay analiticas cancelamos
@@ -48,7 +50,7 @@ function leerDatosAnalitica(codigo) {
    //borramos las pruebas que haya
    $(".pruebas").html("");
 
-   $.post(localStorage.getItem("hc_base_url") + "Analiticas_controller/leerPruebasAnalitica", { codigo: codigo }, async (data) => {
+   $.post(localStorage.getItem("hc_base_url") + "API/Analiticas/leerPruebasAnalitica", { codigo: codigo }, async (data) => {
       data = JSON.parse(data);
 
       //ocultamos la lista de analiticas y mostramos la de pruebas 
@@ -64,7 +66,11 @@ function leerDatosAnalitica(codigo) {
          </div>
          `);
       }
-
-
    })
 }
+
+$(document).ready(() => {
+   document.getElementById("pacientes").addEventListener("cambioPaciente", leerAnaliticas);
+
+   leerAnaliticas();
+});

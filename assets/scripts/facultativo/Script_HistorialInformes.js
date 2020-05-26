@@ -145,7 +145,7 @@ function generarInforme(informe) {
                <div>Fecha: ${new Date(informe.fecha).toLocaleDateString()}</div>
             </div>
          </div>
-      <div class="enlace"><a href="${localStorage.getItem("hc_base_url")}/Informes/ver/${informe.id}" target="_blank">Ver Informe</a></div>
+      <div class="enlace"><a href="${localStorage.getItem("hc_base_url")}Informes/ver/${informe.id}" target="_blank">Ver Informe</a></div>
    </div>
    `);
 

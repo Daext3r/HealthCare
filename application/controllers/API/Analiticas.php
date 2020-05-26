@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Analiticas_controller extends CI_Controller
+class Analiticas extends CI_Controller
 {
    public function __construct()
    {

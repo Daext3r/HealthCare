@@ -1,7 +1,7 @@
 $(document).ready(() => {
    $("#botonera").pagination({
       dataSource: (done) => {
-         $.post(localStorage.getItem("hc_base_url") + "Centros_controller/leerAdministrativosCentro", {}, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Centros/leerAdministrativosCentro", {}, (data) => {
             data = JSON.parse(data);
             done(data);
          });
@@ -45,7 +45,7 @@ $(document).ready(() => {
                   cancelButtonText: 'No, cancelar'
                }).then((e) => {
                   if (e.value) {
-                     $.post(localStorage.getItem("hc_base_url") + "Centros_controller/eliminarAdministrativo", { ciu: usuario.CIU_administrativo }, (data) => {
+                     $.post(localStorage.getItem("hc_base_url") + "API/Centros/eliminarAdministrativo", { ciu: usuario.CIU_administrativo }, (data) => {
                         if (data == 1) {
                            Swal.fire({
                               icon: 'success',
@@ -78,7 +78,7 @@ $(document).ready(() => {
       if ($("#usuario").val().trim() == "") return;
 
       interval = setTimeout(function () {
-         $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/buscarUsuarioCiuNombre", { dato: $("#usuario").val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/buscarUsuarioCiuNombre", { dato: $("#usuario").val() }, (data) => {
             data = JSON.parse(data);
             for (let usuario of data) {
                let option = document.createElement("option");
@@ -117,7 +117,7 @@ $(document).ready(() => {
          confirmButtonText: 'Si, añadirlo.'
       }).then((result) => {
          if (result.value) {
-            $.post(localStorage.getItem("hc_base_url") + "Centros_controller/agregarAdministrativo", { usuario: $(this).val() }, (data) => {
+            $.post(localStorage.getItem("hc_base_url") + "API/Centros/agregarAdministrativo", { usuario: $(this).val() }, (data) => {
                if (data == 1) {
                   Swal.fire(
                      'Hecho',

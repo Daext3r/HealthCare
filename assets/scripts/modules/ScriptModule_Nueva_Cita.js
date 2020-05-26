@@ -13,7 +13,7 @@ $(document).ready(() => {
       if ($("#facultativo").val().trim() == "") return;
 
       interval = setTimeout(function () {
-         $.post(localStorage.getItem("hc_base_url") + "Facultativos_controller/buscarFacultativoCiuNombre", { dato: $("#facultativo").val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Facultativos/buscarFacultativoCiuNombre", { dato: $("#facultativo").val() }, (data) => {
             data = JSON.parse(data);
             for (let usuario of data) {
                let option = document.createElement("option");
@@ -27,7 +27,7 @@ $(document).ready(() => {
 
    $("#facultativo").change(function () {
       //cargamos las horas de apertura del centro donde trabaja ese facultativo y las ponemos en el formulario
-      $.post(localStorage.getItem("hc_base_url") + "Centros_controller/leerHorasPorFacultativo", { ciu: $(this).val() }, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "API/Centros/leerHorasPorFacultativo", { ciu: $(this).val() }, (data) => {
          data = JSON.parse(data);
 
          //si no hay registros cancelamos
@@ -65,7 +65,7 @@ $(document).ready(() => {
 
       interval = setTimeout(function () {
 
-         $.post(localStorage.getItem("hc_base_url") + "Pacientes_controller/buscarPacienteCiuNombre", { dato: $("#paciente").val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Pacientes/buscarPacienteCiuNombre", { dato: $("#paciente").val() }, (data) => {
             data = JSON.parse(data);
 
             for (let usuario of data) {
@@ -80,7 +80,7 @@ $(document).ready(() => {
 
    $("#paciente").change(function () {
       //cargamos el ciu del medico y enfermero de referencia
-      $.post(localStorage.getItem("hc_base_url") + "Pacientes_controller/leerFacultativosReferencia", { ciu: $(this).val() }, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "API/Pacientes/leerFacultativosReferencia", { ciu: $(this).val() }, (data) => {
          data = JSON.parse(data);
 
          //deshabilitamos el campo de busqueda de paciente
@@ -123,7 +123,7 @@ $(document).ready(() => {
 
 
       //hacemos la peticion ajax al servidor con los datos solicitados
-      $.post(localStorage.getItem("hc_base_url") + "Citas_controller/buscarLibres", { medico: medico, fecha: fecha, hora: hora, minuto: minuto }, function (data) {
+      $.post(localStorage.getItem("hc_base_url") + "API/Citas/buscarLibres", { medico: medico, fecha: fecha, hora: hora, minuto: minuto }, function (data) {
          //cerramos la ventana de espera
          Swal.close();
 
@@ -153,7 +153,7 @@ $(document).ready(() => {
 
 
             btn.addEventListener("click", function () {
-               $.post(localStorage.getItem("hc_base_url") + "Citas_controller/seleccionarCita", { info: this.dataset.info_cita, medico: medico, paciente: paciente }, function (data) {
+               $.post(localStorage.getItem("hc_base_url") + "API/Citas/seleccionarCita", { info: this.dataset.info_cita, medico: medico, paciente: paciente }, function (data) {
                   console.log(data);
                   if (data == 1) {
                      $("#citas-cerrar-buscador").click();

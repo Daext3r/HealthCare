@@ -58,7 +58,7 @@ $(document).ready(function () {
    });
 
    //cuando el documento se haya cargado, leemos las notificaciones
-   $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/leerNotificaciones", {}, (data) => {
+   $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/leerNotificaciones", {}, (data) => {
       //convertimos a JSON
       data = JSON.parse(data);
 
@@ -92,7 +92,7 @@ $(document).ready(function () {
                      //cuando cierra la notificacion es que ya la ha leido
                      //mandamos borrarla de la bbdd
 
-                     $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/borrarNotificacion", { id: notificacion.id }, (data) => {
+                     $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/borrarNotificacion", { id: notificacion.id }, (data) => {
 
                         //reducimos la cantidad de notificaciones en uno en el localstorage
                         localStorage.setItem("notificaciones", parseInt(localStorage.getItem("notificaciones")) - 1);
@@ -140,7 +140,7 @@ $(document).ready(function () {
                   datos.correo = $("#perf-correo").val();
                   datos.img = img;
 
-                  $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/actualizarUsuario", datos, (data) => {
+                  $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/actualizarUsuario", datos, (data) => {
                      if (data == 1) {
                         Swal.fire({
                            icon: 'success',
@@ -160,7 +160,7 @@ $(document).ready(function () {
                datos.telefono = $("#perf-telefono").val();
                datos.correo = $("#perf-correo").val();
 
-               $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/actualizarUsuario", datos, (data) => {
+               $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/actualizarUsuario", datos, (data) => {
                   if (data == 1) {
                      Swal.fire({
                         icon: 'success',
@@ -190,7 +190,7 @@ $(document).ready(function () {
       }).then((e) => {
          if (!e.value) return;
 
-         $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/cambiarClave", { clave: e.value }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/cambiarClave", { clave: e.value }, (data) => {
             if (data == 1) {
                Swal.fire({
                   icon: 'success',

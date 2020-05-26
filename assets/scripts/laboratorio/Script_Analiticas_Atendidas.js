@@ -2,7 +2,7 @@ let pruebas = [];
 let analiticaSeleccionada;
 
 $(document).ready(() => {
-   $.post(localStorage.getItem("hc_base_url") + "Laboratorio_controller/leerAnaliticasAtendidas", {}, (data) => {
+   $.post(localStorage.getItem("hc_base_url") + "API/Laboratorio/leerAnaliticasAtendidas", {}, (data) => {
       data = JSON.parse(data);
       console.log(data);
 
@@ -25,7 +25,7 @@ $(document).ready(() => {
    });
 
    $("#guardarCambios").click(() => {
-      $.post(localStorage.getItem("hc_base_url") + "Analiticas_controller/actualizarAnalitica", { pruebas: JSON.stringify(pruebas), analitica: analiticaSeleccionada }, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "API/Analiticas/actualizarAnalitica", { pruebas: JSON.stringify(pruebas), analitica: analiticaSeleccionada }, (data) => {
          if (data == 1) {
             Swal.fire({
                icon: 'success',
@@ -53,7 +53,7 @@ function leerPruebasAnalitica(codigo) {
    //guardamos la analitica seleccionada
    analiticaSeleccionada = codigo;
 
-   $.post(localStorage.getItem("hc_base_url") + "Analiticas_controller/leerPruebasAnalitica", { codigo: codigo }, (data) => {
+   $.post(localStorage.getItem("hc_base_url") + "API/Analiticas/leerPruebasAnalitica", { codigo: codigo }, (data) => {
       data = JSON.parse(data);
       pruebas = JSON.parse(data.pruebas);
 
@@ -86,7 +86,7 @@ function cerrarAnalitica(codigo) {
       }).then((e) => {
          if (!e.isConfirmed) return;
 
-         $.post(localStorage.getItem("hc_base_url") + "Analiticas_controller/cerrarAnalitica", { codigo: codigo, observacion: e.value }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Analiticas/cerrarAnalitica", { codigo: codigo, observacion: e.value }, (data) => {
             if (data == 1) {
                Swal.fire({
                   icon: 'success',

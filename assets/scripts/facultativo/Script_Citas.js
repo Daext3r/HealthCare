@@ -39,7 +39,7 @@ function estaAtendido(ciu, nombre) {
 }
 
 function actualizar(id, elem) {
-   $.post(localStorage.getItem("hc_base_url") + "Citas_controller/actualizarCita", { id: id, estado: elem.value }, (data) => {
+   $.post(localStorage.getItem("hc_base_url") + "API/Citas/actualizarCita", { id: id, estado: elem.value }, (data) => {
       if (data == 1) {
          Swal.fire(
             'Hecho',
@@ -77,7 +77,7 @@ function atender(ciu, nombre, elem) {
 $(document).ready(() => {
 
    //recuperamos todas las citas para este médico en el día de hoy
-   $.post(localStorage.getItem('hc_base_url') + "Citas_controller/leerCitasFacultativo", {}, (data) => {
+   $.post(localStorage.getItem('hc_base_url') + "Citas/leerCitasFacultativo", {}, (data) => {
       data = JSON.parse(data);
 
       for (let cita of data) {

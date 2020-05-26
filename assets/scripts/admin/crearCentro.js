@@ -47,7 +47,7 @@ $(document).ready(() => {
       if ($("#gerente").val().trim() == "") return;
 
       interval = setTimeout(function () {
-         $.post(localStorage.getItem("hc_base_url") + "Usuarios_controller/buscarUsuarioNombre", { nombre: $("#gerente").val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/buscarUsuarioNombre", { nombre: $("#gerente").val() }, (data) => {
             data = JSON.parse(data);
             for (let usuario of data) {
                let option = document.createElement("option");
@@ -86,7 +86,7 @@ $(document).ready(() => {
       let datos = $("#form").serializeArray();
       datos.push({ name: 'telefonos', value: numeros.join(',') });
 
-      $.post(localStorage.getItem("hc_base_url") + "Centros_controller/crearCentro", datos, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "API/Centros/crearCentro", datos, (data) => {
          if (data == 1) {
             Swal.fire({
                icon: 'success',

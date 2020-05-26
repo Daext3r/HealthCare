@@ -4,7 +4,7 @@ $(document).ready(() => {
 
       if (codigo == "") return;
 
-      $.post(localStorage.getItem("hc_base_url") + "Analiticas_controller/buscarAnalitica", { id: codigo }, (data) => {
+      $.post(localStorage.getItem("hc_base_url") + "API/Analiticas/buscarAnalitica", { id: codigo }, (data) => {
          data = JSON.parse(data);
 
          if (data.length == 0) {
@@ -25,7 +25,7 @@ $(document).ready(() => {
                //si pulsa cancelar
                if (!e.value) return;
 
-               $.post(localStorage.getItem("hc_base_url") + "Analiticas_controller/atenderAnalitica", { id: codigo }, (respuesta) => {
+               $.post(localStorage.getItem("hc_base_url") + "API/Analiticas/atenderAnalitica", { id: codigo }, (respuesta) => {
                   if (respuesta == 1) {
                      Swal.fire({
                         icon: 'success',
