@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-05-2020 a las 16:45:45
+-- Tiempo de generación: 26-05-2020 a las 16:40:28
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -79,7 +79,6 @@ CREATE TABLE `analiticas` (
   `CIU_personal` varchar(64) COLLATE utf8_spanish_ci DEFAULT NULL,
   `CIU_facultativo` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
   `pruebas` text COLLATE utf8_spanish_ci NOT NULL,
-  `resultados` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `fecha_solicitud` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fecha_resultado` date DEFAULT NULL,
   `observaciones_personal` text COLLATE utf8_spanish_ci
@@ -246,8 +245,6 @@ CREATE TABLE `informes` (
 
 --
 -- RELACIONES PARA LA TABLA `informes`:
---   `episodio`
---       `episodios` -> `id`
 --   `CIU_facultativo`
 --       `facultativos` -> `CIU_facultativo`
 --   `CIU_paciente`
@@ -258,7 +255,7 @@ CREATE TABLE `informes` (
 -- Disparadores `informes`
 --
 DELIMITER $$
-CREATE TRIGGER `notificaciones-informes` BEFORE INSERT ON `informes` FOR EACH ROW INSERT INTO notificaciones(CIU_usuario, resumen, informacion) VALUES (new.CIU_paciente, "Nuevo informe", CONCAT("El facultativo ", new.CIU_facultativo, " ha realizado un nuevo informe"))
+CREATE TRIGGER `notificaciones-informes` BEFORE INSERT ON `informes` FOR EACH ROW INSERT INTO notificaciones(CIU_usuario, resumen, informacion) VALUES (new.CIU_paciente, "Nuevo informe", CONCAT("El facultativo ", (SELECT nombre_completo FROM vista_usuarios_nombre WHERE CIU = new.CIU_facultativo ), " ha realizado un nuevo informe"))
 $$
 DELIMITER ;
 
@@ -713,7 +710,7 @@ ALTER TABLE `traslados`
 ALTER TABLE `tratamientos`
   ADD PRIMARY KEY (`id`),
   ADD KEY `tratamientos_pacientes` (`CIU_paciente`),
-  ADD KEY `tratamientos_episodios` (`episodio`);
+  ADD KEY `tratamientos_episodio` (`episodio`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -837,7 +834,6 @@ ALTER TABLE `facultativos`
 -- Filtros para la tabla `informes`
 --
 ALTER TABLE `informes`
-  ADD CONSTRAINT `informes_episodio` FOREIGN KEY (`episodio`) REFERENCES `episodios` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `informes_facultativos` FOREIGN KEY (`CIU_facultativo`) REFERENCES `facultativos` (`CIU_facultativo`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `informes_paciente` FOREIGN KEY (`CIU_paciente`) REFERENCES `pacientes` (`CIU_paciente`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
@@ -872,7 +868,7 @@ ALTER TABLE `traslados`
 -- Filtros para la tabla `tratamientos`
 --
 ALTER TABLE `tratamientos`
-  ADD CONSTRAINT `tratamientos_episodios` FOREIGN KEY (`episodio`) REFERENCES `episodios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tratamientos_episodio` FOREIGN KEY (`episodio`) REFERENCES `episodios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tratamientos_pacientes` FOREIGN KEY (`CIU_paciente`) REFERENCES `pacientes` (`CIU_paciente`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
