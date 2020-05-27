@@ -11,12 +11,12 @@ class Analiticas_model extends CI_Model
    public function nuevaAnalitica($paciente, $facultativo, $pruebas)
    {
       $this->db->insert("analiticas", array("CIU_paciente" => $paciente, "CIU_facultativo" => $facultativo, "pruebas" => $pruebas));
-      return 1;
+      return $this->db->insert_id();
    }
 
    public function buscarAnalitica($id)
    {
-      return $this->db->query("SELECT (SELECT nombre_completo FROM vista_usuarios_nombre WHERE vista_usuarios_nombre.CIU = analiticas.CIU_paciente) AS paciente FROM analiticas WHERE codigo_analitica = ?", array($id))->result_array();
+      return $this->db->query("SELECT COUNT(*) AS existe  FROM analiticas WHERE codigo_analitica = ?", array($id))->result_array();
    }
 
    public function atenderAnalitica($id)

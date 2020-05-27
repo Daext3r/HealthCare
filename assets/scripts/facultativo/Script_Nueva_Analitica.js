@@ -103,7 +103,7 @@ $(document).ready(() => {
             Swal.fire({
                icon: 'success',
                title: 'Hecho',
-               text: `Se ha registrado la solicitud de la analítica para ${paciente}`
+               html: `Se ha registrado la solicitud de la analítica para <b>${$("div.seleccionado").children().eq(0).html()}</b> con ID <b>${data}</b>`
             }).then(() => window.location.reload());
          });
       }

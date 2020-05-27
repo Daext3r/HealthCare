@@ -6,8 +6,8 @@ $(document).ready(() => {
 
       $.post(localStorage.getItem("hc_base_url") + "API/Analiticas/buscarAnalitica", { id: codigo }, (data) => {
          data = JSON.parse(data);
-
-         if (data.length == 0) {
+         
+         if (data[0].existe == 0) {
             Swal.fire({
                icon: 'error',
                title: 'Error',
@@ -17,7 +17,7 @@ $(document).ready(() => {
             Swal.fire({
                icon: 'question',
                title: 'Confirmación',
-               text: `¿Quieres atender la analítica de ${data[0].paciente}?`,
+               text: `¿Quieres atender la analítica con ID ${codigo}?`,
                confirmButtonText: 'Si',
                showCancelButton: true,
                cancelButtonText: 'No'

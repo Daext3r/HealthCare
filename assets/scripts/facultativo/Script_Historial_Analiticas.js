@@ -66,6 +66,14 @@ function leerDatosAnalitica(codigo) {
          </div>
          `);
       }
+
+      //por ultimo añadimos las observaciones del personal
+      $(".pruebas").append(`
+         <div class="row alert alert-secondary prueba">
+            <b>Observaciones del personal:</b><br>
+            ${data.observaciones_personal}
+         </div>
+      `);
    })
 }
 
