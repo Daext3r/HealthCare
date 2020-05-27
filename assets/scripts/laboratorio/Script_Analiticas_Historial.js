@@ -18,7 +18,7 @@ async function leerAnaliticas() {
    //si no hay paciente cancelamos
    if(!paciente) return;
 
-   $.post(localStorage.getItem("hc_base_url") + "API/Facultativos/leerAnaliticasPaciente", { paciente: paciente.CIU }, (data) => {
+   $.post(localStorage.getItem("hc_base_url") + "API/Laboratorio/leerAnaliticasTerminadas", {}, (data) => {
       data = JSON.parse(data);
 
       //si no hay analiticas cancelamos
@@ -31,7 +31,6 @@ async function leerAnaliticas() {
          <div class="alert alert-secondary row analitica">
             <div class="col">
                Fecha de solicitud: ${analitica.fecha_solicitud} | Fecha de resultado: ${analitica.fecha_resultado != null ? analitica.fecha_resultado : "N/D"} <br>
-               Especialidad: ${analitica.especialidad}
             </div>
             <div class="col col-2">
                
@@ -78,7 +77,5 @@ function leerDatosAnalitica(codigo) {
 }
 
 $(document).ready(() => {
-   document.getElementById("pacientes").addEventListener("cambioPaciente", leerAnaliticas);
-
    leerAnaliticas();
 });

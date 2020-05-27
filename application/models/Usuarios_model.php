@@ -49,7 +49,7 @@ class Usuarios_model extends CI_Model
             break;
          case 'laboratorio':
             //devuelve la cantidad de pruebas pendientes, pruebas cerradas, y pruebas realizadas por el
-            $datos = $this->db->query("SELECT () AS pendientes, () AS cerradas, () AS realizadas")->result_array();
+            $datos = $this->db->query("SELECT (SELECT COUNT(*) FROM analiticas WHERE fecha_resultado IS NULL) AS pendientes, (SELECT COUNT(*) FROM analiticas WHERE fecha_resultado IS NOT NULL) AS cerradas, (SELECT COUNT(*) FROM analiticas WHERE fecha_resultado IS NOT NULL AND CIU_personal = ?) AS realizadas", array($this->session->userdata("ciu")))->result_array();
             break;
          case 'paciente':
             //devuelve la cantidad de notificaciones, citas, y tratamientos activos que tiene

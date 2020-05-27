@@ -4,11 +4,13 @@
 //vamos a comprobar si existe la imagen de perfil
 $imgPerfil;
 if (count(glob($this->config->item("local_profile_path") . $this->session->userdata("ciu") . ".*")) >= 1) {
-   $imgPerfil = $this->config->item("online_profile_path") . $this->session->userdata("ciu") . ".jpeg";
+   $formato = glob($this->config->item("local_profile_path") . $this->session->userdata("ciu") . ".*");
+   $formato = explode(".", $formato[0])[1];
+
+   $imgPerfil = $this->config->item("online_profile_path") . $this->session->userdata("ciu") . "." . $formato;
 } else {
    $imgPerfil = "https://www.jennstrends.com/wp-content/uploads/2013/10/bad-profile-pic-2-768x768.jpeg";
 }
-
 ?>
 
 <body style="height: 100vh!important">

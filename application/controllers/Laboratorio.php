@@ -19,8 +19,8 @@ class Laboratorio extends CI_Controller
    {
       //carga el head con las hojas de estilos y scripts necesarios
       $this->load->view("modules/ViewModule_Head", array(
-         "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive"),
-         "scripts" => array("modules/ScriptModule_Panel")
+         "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "laboratorio/Style_Inicio"),
+         "scripts" => array("modules/ScriptModule_Panel", "laboratorio/Script_Inicio")
       ));
 
       //carga el modulo principal
@@ -58,7 +58,16 @@ class Laboratorio extends CI_Controller
             break;
 
          case 'historial':
+            //carga el head con las hojas de estilos y scripts necesarios
+            $this->load->view("modules/ViewModule_Head", array(
+               "hojas" => array("modules/StyleModule_Panel", "modules/StyleModule_Panel_Responsive", "laboratorio/Style_Analiticas_Historial"),
+               "scripts" => array("modules/ScriptModule_Panel", "laboratorio/Script_Analiticas_Historial")
+            ));
 
+            //carga el modulo principal
+            $this->load->view("modules/ViewModule_Panel");
+
+            $this->load->view("laboratorio/View_Analiticas_Historial");
             break;
       }
    }

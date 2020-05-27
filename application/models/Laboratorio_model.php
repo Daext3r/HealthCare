@@ -24,4 +24,9 @@ class Laboratorio_model extends CI_Model
       $this->db->where("fecha_resultado", null);
       return $this->db->get("analiticas")->result_array();
    }
+
+   public function leerAnaliticasTerminadas($lab)
+   {
+      return $this->db->query("SELECT codigo_analitica, fecha_solicitud, fecha_resultado FROM analiticas WHERE CIU_personal = ? ORDER BY fecha_resultado DESC", array($lab))->result_array();
+   }
 }

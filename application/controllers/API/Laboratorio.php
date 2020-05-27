@@ -27,4 +27,10 @@ class Laboratorio extends CI_Controller
 
       echo json_encode($this->Laboratorio_model->leerAnaliticasAtendidas($lab));
    }
+
+   public function leerAnaliticasTerminadas()
+   {
+      $lab = $this->session->userdata("ciu");
+      echo json_encode($this->Laboratorio_model->leerAnaliticasTerminadas($lab));
+   }
 }
