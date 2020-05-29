@@ -16,6 +16,9 @@ if (count(glob($this->config->item("local_profile_path") . $this->session->userd
 <body style="height: 100vh!important">
    <!--seccion del menu lateral-->
    <section id="menu">
+      <div id="toggle-menu">
+         <i class="fas fa-sliders-h"></i>
+      </div>
       <div id="perfil">
          <div id="imgperfil">
             <img src="<?php echo $imgPerfil ?> " alt="">
