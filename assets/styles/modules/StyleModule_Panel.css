@@ -237,6 +237,5 @@ body.toggle-menu div#pagina {
    font-size: 2em;
    font-weight: bold;
    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-
-
+   cursor: pointer;
 }

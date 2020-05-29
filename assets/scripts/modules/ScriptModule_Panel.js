@@ -202,7 +202,7 @@ $(document).ready(function () {
       });
    });
 
-   $("#toggle-menu").children().eq(0).click(() => {
+   $("#toggle-menu").click(() => {
       //añadimos al body una clase que ocultara el menu
       document.getElementsByTagName("body")[0].classList.toggle("toggle-menu");
    })
