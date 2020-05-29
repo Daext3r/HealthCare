@@ -136,7 +136,7 @@ $(document).ready(function () {
                   let datos = {};
                   datos.fijo = $("#perf-fijo").val();
                   datos.direccion = $("#perf-direccion").val();
-                  datos.telefono = $("#tperf-elefono").val();
+                  datos.telefono = $("#perf-telefono").val();
                   datos.correo = $("#perf-correo").val();
                   datos.img = img;
 

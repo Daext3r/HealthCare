@@ -1,5 +1,6 @@
-
-
+/**
+ * Lee las analiticas
+ */
 async function leerAnaliticas() {
    console.log("leer");
    //Borramos las analiticas que haya
@@ -8,15 +9,6 @@ async function leerAnaliticas() {
    //mostramos la lista de analiticas y ocultamos la de pruebas
    $(".pruebas").fadeOut(200);
    setTimeout(() => { $(".analiticas").fadeIn(200); }, 200);
-
-   //pequeño timeout para que de tiempo a otro script a guardar el paciente seleccionado
-   await setTimeout(()=>{},100);
-
-   //buscamos el paciente que este activo
-   let paciente = JSON.parse(localStorage.getItem("hc_lista_pacientes")).filter(paciente => paciente.seleccionado == true)[0];
-   
-   //si no hay paciente cancelamos
-   if(!paciente) return;
 
    $.post(localStorage.getItem("hc_base_url") + "API/Laboratorio/leerAnaliticasTerminadas", {}, (data) => {
       data = JSON.parse(data);
@@ -45,6 +37,10 @@ async function leerAnaliticas() {
    });
 }
 
+/**
+ * lee las pruebas de una analitica
+ * @param {int} codigo codigo de la analitica
+ */
 function leerDatosAnalitica(codigo) {
    //borramos las pruebas que haya
    $(".pruebas").html("");

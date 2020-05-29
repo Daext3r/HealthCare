@@ -16,6 +16,10 @@ class Citas extends CI_Controller
       $this->load->model("Citas_model");
    }
 
+   /**
+    * Borra una cita. Devuelve true o false segun se ha borrado o no
+    * @return boolean
+   */
    public function borrarCita()
    {
       $cita = $this->input->post("cita");
@@ -31,7 +35,10 @@ class Citas extends CI_Controller
       echo ($this->Citas_model->borrarCita($cita, $paciente)) ? true : false;
    }
 
-   //metodo para buscar huecos para un medico
+   /**
+    * Busca las posibles c ita para un facultativo desde una fecha y hora especificada
+    * @return object
+    */
    public function buscarLibres()
    {
       $medico = $this->input->post("medico");
@@ -100,6 +107,10 @@ class Citas extends CI_Controller
       echo json_encode($libres);
    }
 
+   /**
+    * Selecciona una cita a una hora concreta que haya proporcionado anteriormente el metodo de arriba
+    * @return boolean
+    */
    public function seleccionarCita()
    {
       $medico = $this->input->post("medico");
@@ -130,6 +141,10 @@ class Citas extends CI_Controller
       }
    }
 
+   /**
+    * Lee las citas de un facultativo
+    * @return object
+    */
    public function leerCitasFacultativo()
    {
       $fecha = new DateTime("now");
@@ -137,6 +152,10 @@ class Citas extends CI_Controller
       echo json_encode($this->Citas_model->leerCitasFacultativo($ciu, $fecha->format("Y-m-d")));
    }
 
+   /**
+    * Actualiza el estado de una cita (P, NA, A)
+    * @return int
+    */
    public function actualizarcita()
    {
       echo $this->Citas_model->actualizarCita($this->input->post("id"), $this->input->post("estado"));

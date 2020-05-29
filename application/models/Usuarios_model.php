@@ -8,6 +8,11 @@ class Usuarios_model extends CI_Model
       parent::__construct();
    }
 
+   /**
+    * Lee ciertos datos del usuario que deben ser privados
+    * @param string $ciu
+    * @return object
+    */
    public function leerDatosPrivados($ciu)
    {
       $this->db->select("ciu, dni, direccion, telefono, fijo, correo");
@@ -15,6 +20,11 @@ class Usuarios_model extends CI_Model
       return $this->db->get("usuarios")->row_array();
    }
 
+   /**
+    * Lee ciertos datos del usuario que pueden ser publicos
+    * @param string $ciu
+    * @return object
+    */
    public function leerDatosPublicos($ciu)
    {
       $this->db->select("sexo, nombre, apellidos, nacionalidad, fecha_nacimiento");
@@ -22,11 +32,15 @@ class Usuarios_model extends CI_Model
       return $this->db->get("usuarios")->row_array();
    }
 
-   public function leerDatosInicio($usuario)
+   /**
+    * Lee los datos del apartado de inicio de un tipo de usuario
+    * @param string $tipo
+    */
+   public function leerDatosInicio($tipo)
    {
       $datos = array();
 
-      switch ($usuario) {
+      switch ($tipo) {
          case 'admin':
             //devuelve la cantidad de usuarios, centros, y tratamientos que hay en el sistema
             $datos = $this->db->query("SELECT (SELECT COUNT(*) FROM usuarios) as usuarios, (SELECT COUNT(*) FROM centros) as centros, (SELECT COUNT(*) FROM tratamientos) as tratamientos;")->result_array();
@@ -60,6 +74,11 @@ class Usuarios_model extends CI_Model
       return $datos;
    }
 
+   /**
+    * Lee las notificaciones de un usuario
+    * @param string $ciu
+    * @return object
+    */
    public function leerNotificaciones($ciu)
    {
       $this->db->where("CIU_usuario", $ciu);
@@ -68,6 +87,10 @@ class Usuarios_model extends CI_Model
       return $datos;
    }
 
+   /**
+    * Borra una notificacion
+    * @param int $id
+    */
    public function borrarNotificacion($id)
    {
       $this->db->delete('notificaciones', array("id" => $id));
@@ -82,18 +105,35 @@ class Usuarios_model extends CI_Model
       }
    }
 
+   /**
+    * Busca un usuario por una parte del CIU
+    * @param string $ciu
+    * @deprecated
+    * @return object
+    */
    public function buscarUsuarioCiu($ciu)
    {
       $this->db->like("CIU", $ciu);
       return $this->db->get("vista_usuarios_nombre")->result_array();
    }
 
+   /**
+    * Busca un usuario por parte del nombre
+    * @param string $nombre
+    * @deprecated
+    * @return object
+    */
    public function buscarUsuarioNombre($nombre)
    {
       $this->db->like("nombre_completo", $nombre);
       return $this->db->get("vista_usuarios_nombre")->result_array();
    }
 
+   /**
+    * Busca un usuario por una parte del nombre o del CIU
+    * @param string $dato
+    * @return object
+    */
    public function buscarUsuarioCiuNombre($dato)
    {
       $this->db->like('CIU', $dato);
@@ -102,6 +142,11 @@ class Usuarios_model extends CI_Model
       return $this->db->get("vista_usuarios_nombre")->result_array();
    }
 
+   /**
+    * Lee datos de un usuario
+    * @param string $ciu
+    * @return object
+    */
    public function leerDatosUsuario($ciu)
    {
       $this->db->select("CIU, nombre, apellidos, dni, sexo, nacionalidad, fecha_nacimiento, correo, direccion, telefono, fijo");
@@ -109,6 +154,12 @@ class Usuarios_model extends CI_Model
       return $this->db->get("usuarios")->row_array();
    }
 
+   /**
+    * Actualiza los datos de un usuario
+    * @param string $ciu
+    * @param object $datos
+    * @return int 
+    */
    public function actualizarUsuario($ciu, $datos)
    {
       $this->db->where("CIU", $ciu);
@@ -120,12 +171,22 @@ class Usuarios_model extends CI_Model
       }
    }
 
+   /**
+    * Comprueba si un usuario existe 
+    * @param string $ciu
+    * @return int
+    */
    public function comprobarExistencia($ciu)
    {
       $this->db->where('CIU', $ciu);
       return $this->db->count_all_results('usuarios');
    }
 
+   /**
+    * Cambia la clave de un usuario
+    * @param string $ciu
+    * @param string $ciu
+    */
    public function cambiarClave($ciu, $clave)
    {
       $this->db->where("CIU", $ciu);

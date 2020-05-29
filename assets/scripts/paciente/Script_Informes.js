@@ -68,6 +68,9 @@ $(document).ready(async function () {
    });
 });
 
+/**
+ * Filtra los informes y deja los que cumplan las condiciones del filtro
+ */
 function mostrarInformes() {
    let nuevaLista = [];
 
@@ -94,10 +97,12 @@ function mostrarInformes() {
    for (let informe of nuevaLista) {
       generarInforme(informe);
    }
-
-
 }
 
+/**
+ * Añade un nuevo informe a la pantalla
+ * @param {object} informe Informe a mostrar
+ */
 function generarInforme(informe) {
    console.log(informe);
    let elem = $(`

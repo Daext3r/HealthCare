@@ -8,6 +8,12 @@ class Login_model extends CI_Model
       parent::__construct();
    }
 
+   /**
+    * Verifica la identidad del usuario y si es ok, devuelve los perfiles a los que tiene acceso
+    * @param string $correo
+    * @param string $clave
+    * @return object
+    */
    public function autenticar($correo, $clave)
    {
       //recibe por parametros el correo y la clave con la que se debe autenticar el usuario
@@ -36,6 +42,11 @@ class Login_model extends CI_Model
       }
    }
 
+   /**
+    * Lee los perfiles a los que tiene acceso un usuario
+    * @param string $ciu
+    * @return object
+    */
    public function leerPerfiles($ciu)
    {
       //variable que almacenará todos los perfiles a los que tiene acceso

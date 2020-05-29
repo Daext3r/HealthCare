@@ -1,3 +1,7 @@
+/**
+ * Muestra una nueva cita en pantalla
+ * @param {object} cita 
+ */
 function crearCita(cita) {
    let contenido = $(`
    <tr data-id="${cita.id}">
@@ -17,6 +21,12 @@ function crearCita(cita) {
    $("#tabla").append($(contenido));
 }
 
+/**
+ * 
+ * @param {string} ciu CIU del usuario
+ * @param {string} nombre Nombre del usuario
+ * @returns {DomElement} Elemento del dom a mostrar
+ */
 function estaAtendido(ciu, nombre) {
    let atendidos = JSON.parse(localStorage.getItem("hc_lista_pacientes"));
 
@@ -38,6 +48,11 @@ function estaAtendido(ciu, nombre) {
    }
 }
 
+/**
+ * 
+ * @param {int} id id de la cita a actualizar
+ * @param {DOMElement} elem elemento del dom
+ */
 function actualizar(id, elem) {
    $.post(localStorage.getItem("hc_base_url") + "API/Citas/actualizarCita", { id: id, estado: elem.value }, (data) => {
       if (data == 1) {
@@ -60,7 +75,13 @@ function actualizar(id, elem) {
 
 }
 
-//funcion que añade al paciente seleccionado a la variable de pacientes atendidos en localstorage
+
+/**
+ * Funcion que añade al paciente seleccionado a la variable de pacientes atendidos en localstorage
+ * @param {string} ciu CIU del usuario a atender
+ * @param {string} nombre Nombre del usuario a atender
+ * @param {DOMElement} elem Documento del dom
+ */
 function atender(ciu, nombre, elem) {
    let atendidos = JSON.parse(localStorage.getItem("hc_lista_pacientes"));
    let paciente = { CIU: ciu, nombre_completo: nombre, seleccionado: false };

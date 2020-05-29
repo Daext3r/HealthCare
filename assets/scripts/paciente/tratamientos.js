@@ -53,18 +53,6 @@ $(document).ready(function () {
 
                $(caja).appendTo("#lista");
 
-
-
-
-               /**
-                *  <div class="card bg-light mb-3" style="max-width: 18rem;">
-                                <div class="card-body">
-                                   <img src="https://cima.aemps.es/cima/fotos/thumbnails/materialas/51347/51347_materialas.jpg" srcset="">
-                                </div>
-                                <div class="card-header">Toujeo 300 unidades/ml SoloStar, solución inyectable en pluma precargada</div>
-                             </div>
-               
-                */
                let tomas = JSON.parse(tratamiento.tomas);
 
                let contenidoModal = "";

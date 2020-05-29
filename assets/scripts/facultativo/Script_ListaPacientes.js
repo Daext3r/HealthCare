@@ -33,9 +33,11 @@
 </div>
  */
 
-
+/**
+ * Muestra en pantalla un nuevo paciente
+ * @param {object} paciente Objeto de paciente a mostrar
+ */
 function agregarPaciente(paciente) {
-   console.log(paciente);
    let div = document.createElement("div");
    div.classList.add("paciente");
    div.dataset.CIU = paciente.CIU;
@@ -79,6 +81,10 @@ function agregarPaciente(paciente) {
    $("#pacientes").append($(div));
 }
 
+/**
+ * Evento de click al seleccionar paciente
+ * @param {Event} e Evento de seleccion de paciente
+ */
 function seleccionarPaciente(e) {
    //si hacemos click en otro sitio que no sea en el fade (por ejemplo, la cruz de quitar) cancelamos el evento;
    if (!e.target.classList.contains("myfade")) return;

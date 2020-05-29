@@ -17,21 +17,37 @@ class Tratamientos extends CI_Controller
       $this->load->model("Tratamientos_model");
    }
 
+   /**
+    * Lee los tratamientos de un paciente. Accesible para pacientes
+    * @return object
+    */
    public function leerTratamientos()
    {
       echo json_encode($this->Tratamientos_model->leerTratamientos($this->session->userdata("ciu")));
    }
 
-   //este metodo es usado por los facultativos. el anterior solo por pacientes
+   /**
+    * Lee los tratamientos de un paciente. Accesible para facultativos
+    * @return object
+    */
    public function leerTratamientosFacultativo()
    {
       echo json_encode($this->Tratamientos_model->leerTratamientosFacultativo($this->input->post("paciente")));
    }
 
+   /**
+    * Borra un tratamiento
+    * @return int
+    */
    public function borrarTratamiento()
    {
       echo $this->Tratamientos_model->borrarTratamiento($this->input->post("id"));
    }
+
+   /**
+    * Agrega un nuevo tratamiento a un paciente
+    * @return int
+    */
    public function agregarTratamiento()
    {
       $nregistro = $this->input->post("nregistro");

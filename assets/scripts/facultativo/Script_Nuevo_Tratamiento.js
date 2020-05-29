@@ -57,6 +57,10 @@ $(document).ready(() => {
    });
 })
 
+/**
+ * Lee los episodios de un paciente
+ * @param {string} ciu CIU del paciente
+ */
 function cargarEpisodios(ciu) {
    $.post(localStorage.getItem("hc_base_url") + "API/Pacientes/leerEpisodios", { ciu: ciu }, (data) => {
       data = JSON.parse(data);
@@ -81,6 +85,10 @@ function cargarEpisodios(ciu) {
 function quitarToma(elem) {
    elem.parentNode.parentNode.remove();
 }
+
+/**
+ * Genera una nueva toma y la añade a la pantalla
+ */
 function agregarToma() {
    let toma = $(`
    <div class="alert alert-secondary w-75 mx-auto toma row">

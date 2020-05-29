@@ -1,10 +1,13 @@
 var listaEnfermedades = [];
 
 $(document).ready(() => {
+   //leemos las enfermedades del paciente seleccionado
    leerEnfermedades($("div.paciente.seleccionado")[0].dataset.CIU);
 
+   //si cambiamos de paciente volvemos a buscar las enfermedades de ese paciente
    document.getElementById("pacientes").addEventListener("cambioPaciente", (e) => leerEnfermedades(e.detail.CIU));
 
+   //evento para cuando pulsamos el boton de nueva enfermedad
    $("#nuevaEnfermedad").click(() => {
       Swal.fire({
          icon: 'question',
@@ -27,6 +30,10 @@ $(document).ready(() => {
    });
 });
 
+/**
+ * Lee las enfermedades de un paciente
+ * @param {string} paciente 
+ */
 function leerEnfermedades(paciente) {
    //borramos las enfermedades que haya
    $(".listaEnfermedades")[0].innerHTML = "";
@@ -50,6 +57,10 @@ function leerEnfermedades(paciente) {
    });
 }
 
+/**
+ * Muestra en pantalla una nueva enfermedad
+ * @param {string} enf 
+ */
 function generarEnfermedad(enf) {
    let enfermedad = $(`
          <div class="enfermedad row alert alert-secondary">
@@ -65,6 +76,9 @@ function generarEnfermedad(enf) {
    $(".listaEnfermedades").append($(enfermedad));
 }
 
+/**
+ * Actualiza la lista de enfermedades del paciente atendido
+ */
 function actualizarDatos() {
    $.post(localStorage.getItem("hc_base_url") + "API/Facultativos/actualizarEnfermedadesPaciente", { paciente: $("div.paciente.seleccionado")[0].dataset.CIU, enfermedades: JSON.stringify(listaEnfermedades) }, (data) => {
       if (data == 1) {
@@ -77,6 +91,10 @@ function actualizarDatos() {
    });
 }
 
+/**
+ * Borra una enfermedad de un paciente
+ * @param {string} enf 
+ */
 function borrarEnfermedad(enf) {
    //borramos la enfermedad del array
    let nuevoarray = []

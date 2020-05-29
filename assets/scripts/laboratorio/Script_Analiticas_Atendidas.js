@@ -37,6 +37,12 @@ $(document).ready(() => {
    });
 });
 
+/**
+ * Actualiza el resultado de una prueba
+ * @param {string} grupo Grupo de la prueba
+ * @param {string} prueba Nombre de la prueba
+ * @param {mixed} valor Valor de la prueba
+ */
 function actualizarPrueba(grupo, prueba, valor) {
    for (let pruebaLista of pruebas) {
       if (pruebaLista.grupo == grupo && pruebaLista.prueba == prueba) {
@@ -45,6 +51,10 @@ function actualizarPrueba(grupo, prueba, valor) {
    }
 }
 
+/**
+ * Lee los detalles de una analitica
+ * @param {int} codigo codigo de la analitica
+ */
 function leerPruebasAnalitica(codigo) {
    //ocultamos la lista de analiticas
    $(".listaAnaliticas").fadeOut(200);
@@ -68,6 +78,10 @@ function leerPruebasAnalitica(codigo) {
    });
 }
 
+/**
+ * Cierra una analitica
+ * @param {int} codigo Codigo de la analitica
+ */
 function cerrarAnalitica(codigo) {
    Swal.fire({
       icon: 'question',

@@ -13,11 +13,11 @@ class Login extends CI_Controller
       $this->load->model("Login_model");
    }
 
-   public function test()
-   {
-      var_dump($_POST);
-   }
-
+   /**
+    * Inicia sesion mediante usuario y contrasela O JWT
+    * @return void
+    * Carga vistas
+    */
    public function login()
    {
       //metodo llamado por el formulario de login

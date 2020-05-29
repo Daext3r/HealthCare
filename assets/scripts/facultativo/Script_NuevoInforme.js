@@ -85,6 +85,7 @@ $(document).ready(() => {
       //agregamos la pagina actual a la lista de paginas
       paginas.appendChild(paginaActual);
 
+      // CON TODO ESTO REALIZAMOS LA PAGINACION DEL INFORME
       for (let palabra of texto) {
          //primero comprobamos si la palabra es un array
          if (Array.isArray(palabra)) {
@@ -149,6 +150,11 @@ $(document).ready(() => {
    });
 });
 
+/**
+ * 
+ * @param {string} palabra Palabra a añadir
+ * @param {DOMElement} paginaActual pagina actual del informe
+ */
 function agregarPalabra(palabra, paginaActual) {
    palabra += " ";
    //si la altura actual de la pagina no es menor a 960, devolvemos false
@@ -169,6 +175,10 @@ function agregarPalabra(palabra, paginaActual) {
    }
 }
 
+/**
+ * Lee los episodios del paciente
+ * @param {string} ciu CIU del paciente
+ */
 function cargarEpisodios(ciu) {
    $.post(localStorage.getItem("hc_base_url") + "API/Pacientes/leerEpisodios", { ciu: ciu }, (data) => {
       data = JSON.parse(data);

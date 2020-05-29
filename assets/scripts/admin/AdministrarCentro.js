@@ -171,8 +171,9 @@ $(document).ready(function () {
 
       console.log(datos);
 
+      //actualiza los datos del centro
       $.post(localStorage.getItem("hc_base_url") + "API/Centros/actualizarCentro", datos, (data) => {
-         console.log(data);
+         //si el dato es 1 muestra un mensaje satisfactorio
          if (data == 1) {
             Swal.fire({
                icon: 'success',
@@ -181,6 +182,7 @@ $(document).ready(function () {
             });
          }
       }).catch(() => {
+         //si la promesa da error mostramos mensaje de error
          Swal.fire({
             icon: 'error',
             title: 'Error',

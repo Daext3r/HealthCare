@@ -8,6 +8,11 @@ class Facultativos_model extends CI_Model
       parent::__construct();
    }
 
+   /**
+    * Devuelve una lista de especialidades que coincidan con la parte proporcionada
+    * @param string $pista
+    * @return object
+    */
    public function buscarEspecialidad($pista)
    {
       $this->db->select("id, denominacion");
@@ -15,6 +20,15 @@ class Facultativos_model extends CI_Model
       return $this->db->get("especialidades")->result_array();
    }
 
+   /**
+    * Crea un nuevo facultativo
+    * @param string $usuario
+    * @param int $colegiado
+    * @param int $especialidad
+    * @param string $sala
+    * @param int $centro
+    * @return int
+    */
    public function alta($usuario, $colegiado, $especialidad, $sala, $centro)
    {
       if ($this->db->insert('facultativos', array('CIU_facultativo' => $usuario, 'numero_colegiado' => $colegiado, 'especialidad' => $especialidad, 'sala' => $sala, 'centro' => $centro))) {
@@ -24,6 +38,12 @@ class Facultativos_model extends CI_Model
       }
    }
 
+   /**
+    * Busca un facultativo por parte del nombre
+    * @deprecated
+    * @param string $nombre
+    * @return object
+    */
    public function buscarFacultativoNombre($nombre)
    {
       $this->db->select("CIU, nombre_completo");
@@ -31,6 +51,11 @@ class Facultativos_model extends CI_Model
       return $this->db->get("vista_usuarios_facultativos")->result_array();
    }
 
+   /**
+    * Busca un facultativo por parte del CIU o del nombre
+    * @param stirng $dato
+    * @return object
+    */
    public function buscarFacultativoCiuNombre($dato)
    {
       $this->db->select("CIU, nombre_completo");
@@ -40,6 +65,11 @@ class Facultativos_model extends CI_Model
       return $this->db->get("vista_usuarios_facultativos")->result_array();
    }
 
+   /**
+    * Lee las enfermedades de un paciente
+    * @param string $paciente
+    * @return object
+    */
    public function leerEnfermedadesPaciente($paciente)
    {
       $this->db->where("CIU_paciente", $paciente);
@@ -47,6 +77,12 @@ class Facultativos_model extends CI_Model
       return $this->db->get("pacientes")->row_array()['enfermedades'];
    }
 
+   /**
+    * Actualiza las enfermedades de un paciente
+    * @param string $paciente
+    * @param object $enfermedades
+    * @return int
+    */
    public function actualizarEnfermedadesPaciente($paciente, $enfermedades)
    {
       $this->db->where("CIU_paciente", $paciente);
@@ -59,6 +95,12 @@ class Facultativos_model extends CI_Model
       }
    }
 
+   /**
+    * Cambia el centro en el cual trabaja un facultativo
+    * @param string $facultativo
+    * @param int $centro
+    * @return int
+    */
    public function actualizarCentro($facultativo, $centro)
    {
       $this->db->where("CIU_facultativo", $facultativo);
@@ -71,6 +113,11 @@ class Facultativos_model extends CI_Model
       }
    }
 
+   /**
+    * Lee las analiticas de un paciente
+    * @param string $paciente
+    * @return object
+    */
    public function leerAnaliticasPaciente($paciente)
    {
       return $this->db->query("SELECT codigo_analitica, fecha_solicitud, fecha_resultado, (SELECT especialidad FROM vista_usuarios_facultativos WHERE CIU  = analiticas.CIU_facultativo) AS especialidad FROM analiticas WHERE CIU_paciente = ?", array($paciente))->result_array();

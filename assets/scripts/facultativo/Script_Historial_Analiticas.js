@@ -1,5 +1,8 @@
 
-
+/**
+ * Lee las analiticas del paciente seleccionado
+ * Ha de ser asincrona por que en otro script escribe en localstorage
+ */
 async function leerAnaliticas() {
    console.log("leer");
    //Borramos las analiticas que haya
@@ -46,6 +49,10 @@ async function leerAnaliticas() {
    });
 }
 
+/**
+ * Lee los datos de una analitica
+ * @param {int} codigo codigo de la analitica
+ */
 function leerDatosAnalitica(codigo) {
    //borramos las pruebas que haya
    $(".pruebas").html("");

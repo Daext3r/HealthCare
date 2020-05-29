@@ -16,24 +16,39 @@ class Usuarios extends CI_Controller
       }
    }
 
+   /**
+    * Lee los datos de inicio de cualquier usuario segun su tipo
+    * @return object
+    */
    public function leerDatosInicio()
    {
       $tipo = $this->session->userdata("tipo");
       echo json_encode($this->Usuarios_model->leerDatosInicio($tipo));
    }
 
+   /**
+    * Lee las notificaciones de un usuario
+    * @return object
+    */
    public function leerNotificaciones()
    {
       //cargamos las notificaciones y las devolvemos
       echo json_encode($this->Usuarios_model->leerNotificaciones($this->session->userdata("ciu")));
    }
 
+   /**
+    * Borra una notificacion
+    */
    public function borrarNotificacion()
    {
       //borramos la notifiacion
       $this->Usuarios_model->borrarNotificacion($this->input->post("id"));
    }
 
+   /**
+    * Crea un nuevo usuario
+    * @return int
+    */
    public function registrarUsuario()
    {
       $datos = array();
@@ -51,6 +66,13 @@ class Usuarios extends CI_Controller
       echo $this->Usuarios_model->registrarUsuario($datos) ? 1 : 0;
    }
 
+   /**
+    * Metodo para generar el CIU en funcion de varios datos
+    * @return string
+    * @param string $nombre
+    * @param string $apellidos
+    * @param string $fnac
+    */
    public function generarCiu($nombre, $apellidos, $fnac)
    {
       //ponemos la primera letra en mayuscula y separamos el nombre en caracteres
@@ -104,26 +126,48 @@ class Usuarios extends CI_Controller
       return $nuevoCiu;
    }
 
+   /**
+    * Busca un usuario segun su ciu
+    * @return object
+    * @deprecated
+    */
    public function buscarUsuarioCiu()
    {
       echo json_encode($this->Usuarios_model->buscarUsuarioCiu($this->input->post("ciu")));
    }
 
+   /**
+    * Busca un usuario por una parte de su nombre
+    * @return object
+    * @deprecated
+    */
    public function buscarUsuarioNombre()
    {
       echo json_encode($this->Usuarios_model->buscarUsuarioNombre($this->input->post("nombre")));
    }
 
+   /**
+    * Busca un usuario pro una parte de su nombre o su CIU
+    * @return object
+    */
    public function buscarUsuarioCiuNombre()
    {
       echo json_encode($this->Usuarios_model->buscarUsuarioCiuNombre($this->input->post("dato")));
    }
 
+   /**
+    * Lee los datos de un usuario
+    * @return object
+    */
    public function leerDatosUsuario()
    {
       echo json_encode($this->Usuarios_model->leerDatosUsuario($this->input->post("ciu")));
    }
 
+   /**
+    * Actualiza los datos de un usuario
+    * @return int
+    */
    public function actualizarUsuario()
    {
       //quitamos el id del array y lo guardamos a parte
@@ -140,16 +184,28 @@ class Usuarios extends CI_Controller
       echo $this->Usuarios_model->actualizarUsuario($ciu, $datos);
    }
 
+   /**
+    * Restaura la clave de un usuario a 12345678
+    * @return int
+    */
    public function restaurarClave()
    {
       echo $this->Usuarios_model->cambiarClave($this->input->post("ciu"), hash("sha512", "12345678"));
    }
 
+   /**
+    * Cambia la clave de un usuario a la especificada
+    * @return int
+    */
    public function cambiarClave()
    {
       echo $this->Usuarios_model->cambiarClave($this->session->userdata("ciu"), hash("sha512", $this->input->post("clave")));
    }
 
+   /**
+    * Actualiza SOLO la imagen de perfil
+    * @return void
+    */
    public function actualizarImagenPerfil($imagenBase)
    {
       //cargamos el helper de file
