@@ -9,6 +9,10 @@ class Gerente extends CI_Controller
       $this->load->model("Gerente_model");
    }
 
+   /**
+    * Solicitar el traslado de un facultativo de un centro a otro
+    * @return int
+    */
    public function solicitarTraslado()
    {
       //cargamos el modelo de centros
@@ -35,13 +39,21 @@ class Gerente extends CI_Controller
       echo $this->Gerente_model->nuevoTraslado($facultativo, $centro_destino['id']);
    }
 
+   /**
+    * Lee los traslados actuales de un centro
+    * @return object
+    */
    public function leerTraslados()
    {
       $this->load->model("Centros_model");
-      //leemos los traslados que hay para este centro. lo hacemos buscando los medicos que estén en una vista y que sean del centro de este gerente
+      //leemos los traslados que hay para este centro.
       echo json_encode($this->Gerente_model->leerTraslados($this->Centros_model->leerCentroPorGerente($this->session->userdata("ciu"))['id']));
    }
 
+   /**
+    * Resuelve el traslado, de forma satisfactoria o fallida
+    * @return int
+    */
    public function resolverTraslado()
    {
       $res = $this->input->post("res");

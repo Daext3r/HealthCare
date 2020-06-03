@@ -8,6 +8,11 @@ class Laboratorio_model extends CI_Model
       parent::__construct();
    }
 
+   /**
+    * Registra un nuevo personal de laboratorio en un centro
+    * @param string $usuario
+    * @param int $centro
+    */
    public function registrarPersonal($usuario, $centro)
    {
       if ($this->db->insert("laboratorio", array("CIU_personal" => $usuario, "centro" => $centro))) {
@@ -17,6 +22,11 @@ class Laboratorio_model extends CI_Model
       }
    }
 
+   /**
+    * Lee las analiticas atendidas por un personal de laboratorio X
+    * @param string $lab
+    * @return object
+    */
    public function leerAnaliticasAtendidas($lab)
    {
       $this->db->select("codigo_analitica, fecha_solicitud");
@@ -25,6 +35,11 @@ class Laboratorio_model extends CI_Model
       return $this->db->get("analiticas")->result_array();
    }
 
+   /**
+    * Lee las analiticas terminadas de un personal de laboratorio
+    * @param string $lab
+    * @return object
+    */
    public function leerAnaliticasTerminadas($lab)
    {
       return $this->db->query("SELECT codigo_analitica, fecha_solicitud, fecha_resultado FROM analiticas WHERE CIU_personal = ? ORDER BY fecha_resultado DESC", array($lab))->result_array();

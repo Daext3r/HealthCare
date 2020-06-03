@@ -17,11 +17,19 @@ class Facultativos extends CI_Controller
       $this->load->model("Facultativos_model");
    }
 
+   /**
+    * Devuelve los facultativos que cumplan esa especialidad
+    * @return object
+    */
    public function buscarEspecialidad()
    {
       echo json_encode($this->Facultativos_model->buscarEspecialidad($this->input->post("especialidad")));
    }
 
+   /**
+    * Da de alta un nuevo facultativo
+    * @return int
+    */
    public function alta()
    {
       $usuario = $this->input->post("usuario");
@@ -33,26 +41,47 @@ class Facultativos extends CI_Controller
       echo $this->Facultativos_model->alta($usuario, $colegiado, $especialidad, $sala, $centro);
    }
 
+   /**
+    * Busca un facultativo segun parte del nombre
+    * @return object
+    * @deprecated
+    */
    public function buscarFacultativoNombre()
    {
       echo json_encode($this->Facultativos_model->buscarFacultativoNombre($this->input->post("nombre")));
    }
 
+   /**
+    * Busca un facultativo segun parte del nombre o parte del CIU
+    * @return object
+    */
    public function buscarFacultativoCiuNombre()
    {
       echo json_encode($this->Facultativos_model->buscarFacultativoCiuNombre($this->input->post("dato")));
    }
 
+   /**
+    * Lee las enfermedades de un paciente
+    * @return int
+    */
    public function leerEnfermedadesPaciente()
    {
       echo $this->Facultativos_model->leerEnfermedadesPaciente($this->input->post("paciente"));
    }
 
+   /**
+    * Actualiza las enfermedades de un paciente
+    * @return int
+    */
    public function actualizarEnfermedadesPaciente()
    {
       echo $this->Facultativos_model->actualizarEnfermedadesPaciente($this->input->post("paciente"), $this->input->post("enfermedades"));
    }
 
+   /**
+    * Lee las analiticas de un paciente
+    * @return object
+    */
    public function leerAnaliticasPaciente()
    {
       echo json_encode($this->Facultativos_model->leerAnaliticasPaciente($this->input->post("paciente")));

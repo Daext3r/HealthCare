@@ -8,6 +8,11 @@ class Tratamientos_model extends CI_Model
       parent::__construct();
    }
 
+   /**
+    * Lee los tratamientos de un paciente (desde paciente)
+    * @param string $ciu
+    * @return object
+    */
    public function leerTratamientos($ciu)
    {
       $this->db->where("CIU_paciente", $ciu);
@@ -17,6 +22,16 @@ class Tratamientos_model extends CI_Model
       return $tratamientos;
    }
 
+   /**
+    * Crea un nuevo tratamiento
+    * @param int $nregistro
+    * @param string $paciente
+    * @param date $fecha_fin
+    * @param date $fecha_inicio
+    * @param object $tomas
+    * @param int $episodio
+    * @return int 
+    */
    public function agregarTratamiento($nregistro, $paciente, $fecha_inicio, $fecha_fin, $tomas, $episodio)
    {
       $datos =  array("nregistro" => $nregistro, "CIU_paciente" => $paciente, "fecha_inicio" => $fecha_inicio, "fecha_fin" => $fecha_fin, "tomas" => $tomas);
@@ -30,12 +45,23 @@ class Tratamientos_model extends CI_Model
       }
    }
 
+
+   /**
+    * Lee los tratamientos de un paciente (desde facultativo)
+    * @param string $paciente
+    * @return object
+    */
    public function leerTratamientosFacultativo($paciente)
    {
       $this->db->where("CIU_paciente", $paciente);
       return  $this->db->get("tratamientos")->result_array();
    }
 
+   /**
+    * Borra un tratamiento
+    * @param int $id
+    * @return int
+    */
    public function borrarTratamiento($id)
    {
       $this->db->where("id", $id);

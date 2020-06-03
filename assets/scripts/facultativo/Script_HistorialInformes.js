@@ -36,6 +36,9 @@ $(document).ready(async function () {
    });
 });
 
+/**
+ * Lee los informes del paciente seleccionado
+ */
 async function buscarInformesPaciente() {
    //borramos los informes que ya haya
    $("#lista").html("");
@@ -46,7 +49,7 @@ async function buscarInformesPaciente() {
 
    listaInformes = [];
 
-   //pequeño timeout para que de tiempo a guardar
+   //pequeño timeout para que de tiempo a guardar a otro script
    await  setTimeout(()=>{}, 100);
 
    //leemos los informes del usuario seleccionado en la base de datos
@@ -105,6 +108,9 @@ async function buscarInformesPaciente() {
    }
 }
 
+/**
+ * Actualiza los informes segun los criterios de busqueda
+ */
 function mostrarInformes() {
    let nuevaLista = [];
    //miramos que el valor de especialidad no sea 'todas'
@@ -134,6 +140,10 @@ function mostrarInformes() {
    }
 }
 
+/**
+ * Genera un nuevo informe y lo muestra en la pantalla
+ * @param {object} informe Objeto informe
+ */
 function generarInforme(informe) {
    let elem = $(`
    <div class="alert alert-secondary">

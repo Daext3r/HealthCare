@@ -6,6 +6,10 @@ $(document).ready(() => {
    document.getElementById("pacientes").addEventListener("cambioPaciente", (e) => { listarTratamientos(e.detail.CIU) });
 });
 
+/**
+ * Lee la lista de tratamientos de un paciente y la muestra en pantalla
+ * @param {string} paciente CIU del paciente
+ */
 function listarTratamientos(paciente) {
    //quitamos los tratamientos que haya previamente
    $("#tratamientos").html("");
@@ -42,6 +46,10 @@ function listarTratamientos(paciente) {
    });
 }
 
+/**
+ * Borra un tratamiento
+ * @param {int} tratamiento ID del tratamiento a borrar
+ */
 function borrarTratamiento(tratamiento) {
    Swal.fire({
       icon: 'question',

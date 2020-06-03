@@ -16,6 +16,10 @@ class Centros extends CI_Controller
       $this->load->model("Centros_model");
    }
 
+   /**
+    * Crea un nuevo centro con los datos mandados por POST
+    * @return int
+    */
    public function crearCentro()
    {
       $datos = array();
@@ -29,6 +33,10 @@ class Centros extends CI_Controller
       echo $this->Centros_model->crearCentro($datos);
    }
 
+   /**
+    * Actualiza los datos de un centro
+    * @return int
+    */
    public function actualizarCentro()
    {
       $datos = $_POST;
@@ -37,18 +45,30 @@ class Centros extends CI_Controller
       echo $this->Centros_model->actualizarCentro($id, $datos);
    }
 
+   /**
+    * Busca un centro por una parte del nombre. Devuelve todas las coincidencias
+    * @return object
+    */
    public function buscarCentroNombre()
    {
       //buscamos el centro por el modelo y escribimos en formato JSON
       echo json_encode($this->Centros_model->buscarCentroNombre($this->input->post("centro")));
    }
 
+   /**
+    * Lee los datos de un centro
+    * @return object
+    */
    public function leerDatosCentro()
    {
       //buscamos los datos del centro por el modelo y escribimos en formato JSON
       echo json_encode($this->Centros_model->leerDatosCentro($this->input->post("centro")));
    }
 
+   /**
+    * Agrega un nuevo administrativo a un centro
+    * @return int
+    */
    public function agregarAdministrativo()
    {
       $centro = $this->Centros_model->leerCentroPorGerente($this->session->userdata("ciu"));
@@ -56,17 +76,29 @@ class Centros extends CI_Controller
       echo $this->Centros_model->agregarAdministrativo(array("CIU_administrativo" => $this->input->post("usuario"), "id_centro" => $centro['id']));
    }
 
+   /**
+    * Lee los administrativos de un centro
+    * @return object
+    */
    public function leerAdministrativosCentro()
    {
       $centro = $this->Centros_model->leerCentroPorGerente($this->session->userdata("ciu"));
       echo json_encode($this->Centros_model->leerAdministrativosCentro($centro['id']));
    }
 
+   /**
+    * Elimina un administrativo de un centro
+    * @return int
+    */
    public function eliminarAdministrativo()
    {
       echo $this->Centros_model->eliminarAdministrativo($this->input->post("ciu"));
    }
 
+   /**
+    * Lee las horas de apertura y de cierre segun el facultativo que se indique
+    * @return object
+    */
    public function leerHorasPorFacultativo()
    {
       echo json_encode($this->Centros_model->leerHorasPorFacultativo($this->input->post("ciu")));

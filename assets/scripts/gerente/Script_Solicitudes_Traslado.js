@@ -21,9 +21,13 @@ $(document).ready(() => {
    })
 });
 
+/**
+ * Confirma o cancela el traslado
+ * @param {int} id ID del traslado
+ * @param {string} res Resultado del traslado
+ */
 function resolverTraslado(id, res) {
    $.post(localStorage.getItem("hc_base_url") + "API/Gerente/resolverTraslado", { id: id, res: res }, (data) => {
-      console.log(data);
       if (data == 1) {
          Swal.fire({
             icon: 'success',

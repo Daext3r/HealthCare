@@ -14,10 +14,7 @@ body {
    flex-basis: 15%;
    box-shadow: 21px 0px 10px -21px rgba(0, 0, 0, 0.30);
    background-color: white;
-   display: flex;
-   justify-content: center;
-   align-items: flex-start;
-   flex-wrap: wrap;
+   position: relative;
 }
 
 #pagina {
@@ -86,6 +83,7 @@ body {
    display: flex;
    justify-content: center;
    flex-wrap: wrap;
+   position: relative;
 }
 
 #imgperfil img {
@@ -213,4 +211,31 @@ body {
 
 .row {
    margin-top: 0.5em;
+}
+
+body.toggle-menu section#menu {
+   transform: translateX(-100%);
+   position: relative;
+   z-index: 2;
+}
+
+body.toggle-menu div#pagina {
+   height: 100%;
+   position: absolute;
+   z-index: 1;
+   width: 100%;
+}
+
+#toggle-menu {
+   background-color: white;
+   transform: translateX(100%);
+   padding: 0.3em;
+   right: 0;
+   border-radius: 0 1em 1em 0;
+   margin-top: 0.75em;
+   position: absolute;
+   font-size: 2em;
+   font-weight: bold;
+   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+   cursor: pointer;
 }

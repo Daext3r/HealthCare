@@ -8,6 +8,12 @@ class Gerente_model extends CI_Model
       parent::__construct();
    }
 
+   /**
+    * Crea una nueva solicitud de traslado
+    * @param string $facultativo
+    * @param int $centro
+    * @return int
+    */
    public function nuevoTraslado($facultativo, $centro)
    {
       if ($this->db->insert("traslados", array("centro_destino" => $centro, "CIU_facultativo" => $facultativo))) {
@@ -17,12 +23,22 @@ class Gerente_model extends CI_Model
       }
    }
 
+   /**
+    * Leemos los traslados cuyo facultativo trabaje en el centro que se especifique
+    * @param int $centro
+    * @return object
+    */
    public function leerTraslados($centro)
    {
-      //leemos los traslados cuyo facultativo trabaje en el centro que se especifique
+
       return $this->db->query("SELECT * FROM vista_traslados WHERE CIU_facultativo IN (SELECT CIU_facultativo FROM facultativos WHERE centro = ?)", array($centro))->result_array();
    }
 
+   /**
+    * Lee el centro del destino al que va el facultativo de un traslado X
+    * @param int $id
+    * @return object
+    */
    public function leerNuevoCentro($id)
    {
       $this->db->where("id", $id);
@@ -30,6 +46,11 @@ class Gerente_model extends CI_Model
       return $this->db->get("vista_traslados")->row_array();
    }
 
+   /**
+    * Lee el facultativo pertenenciente a un traslado
+    * @param int $id
+    * @return object
+    */
    public function leerNuevoFacultativo($id)
    {
       $this->db->where("id", $id);
@@ -37,6 +58,11 @@ class Gerente_model extends CI_Model
       return $this->db->get("vista_traslados")->row_array();
    }
 
+   /**
+    * Borra un traslado
+    * @param int $id
+    * @return object
+    */
    public function borrarTraslado($id)
    {
       $this->db->where("id", $id);
@@ -47,6 +73,11 @@ class Gerente_model extends CI_Model
       }
    }
 
+   /**
+    * Busca si un facultativo ya esta siendo trasladado
+    * @param string $facultativo
+    * @return object
+    */
    public function comprobarUsuarioTraslado($facultativo)
    {
       $this->db->where("CIU_facultativo", $facultativo);

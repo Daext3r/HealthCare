@@ -84,6 +84,10 @@ $(document).ready(() => {
 
 });
 
+/**
+ * Lee los  episodios de un paciente y los muestra en pantalla
+ * @param {string} ciu Ciu del paciente
+ */
 function leerEpisodiosPaciente(ciu) {
    $.post(localStorage.getItem("hc_base_url") + "API/Pacientes/leerEpisodios", { ciu: ciu }, (data) => {
       data = JSON.parse(data);
