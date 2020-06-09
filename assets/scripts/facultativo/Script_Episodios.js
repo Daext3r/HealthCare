@@ -94,7 +94,7 @@ function leerEpisodiosPaciente(ciu) {
 
       for (let episodio of data) {
          let div = $(`
-            <div class="alert alert-secondary w-75" data-id="${episodio.id}">
+            <div class="alert alert-secondary w-100" data-id="${episodio.id}">
             <div>Especialidad: <i>${episodio.especialidad}</i></div>
                <div>
                   <span>Descripción: <i>${episodio.descripcion}</i></span> | <span><a href="${localStorage.getItem("hc_base_url")}facultativo/informes/historial?episodio=${episodio.id}"}">Ver Informes de este episodio</a></span>

@@ -79,8 +79,8 @@ INSERT INTO `especialidades` (`id`, `denominacion`) VALUES
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`CIU`, `nombre`, `apellidos`, `dni`, `sexo`, `nacionalidad`, `direccion`, `telefono`, `fijo`, `fecha_nacimiento`, `clave`, `correo`, `foto_perfil`) VALUES
-('root', 'Administrador', 'General', '00000000T', 'H', 'Española', 'localhost', '000000000', '000000000', '0000-00-00', 'd404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db', 'root@localhost.com', NULL);
+INSERT INTO `usuarios` (`CIU`, `nombre`, `apellidos`, `dni`, `sexo`, `nacionalidad`, `direccion`, `telefono`, `fijo`, `fecha_nacimiento`, `clave`, `correo`) VALUES
+('root', 'Administrador', 'General', '00000000T', 'H', 'Española', 'localhost', '000000000', '000000000', '0000-00-00', 'd404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db', 'root@localhost.com');
 COMMIT;
 
 

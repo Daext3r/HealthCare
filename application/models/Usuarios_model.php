@@ -113,7 +113,7 @@ class Usuarios_model extends CI_Model
     */
    public function buscarUsuarioCiu($ciu)
    {
-      $this->db->like("CIU", $ciu);
+      $this->db->where("CIU", $ciu);
       return $this->db->get("vista_usuarios_nombre")->result_array();
    }
 

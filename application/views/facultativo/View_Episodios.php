@@ -5,7 +5,7 @@
          <i class="fas fa-plus"></i>
       </div>
    </nav>
-   <button class="btn btn-outline-primary w-50 nuevo" id="nuevoEpisodio" data-toggle="modal" data-target="#modal-nuevo-episodio">Nuevo episodio</button>
+   <button class="btn btn-outline-primary w-75 nuevo" id="nuevoEpisodio" data-toggle="modal" data-target="#modal-nuevo-episodio">Nuevo episodio</button>
    <section id="episodios"></section>
 </section>
 </div>

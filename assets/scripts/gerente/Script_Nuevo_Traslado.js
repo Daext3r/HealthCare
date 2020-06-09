@@ -47,7 +47,7 @@ $(document).ready(() => {
             Swal.fire({
                icon: 'error',
                title: 'Error',
-               text: `No existe ningún usuario con el CIU ${usuario}?`,
+               text: `No existe ningún usuario con el CIU ${usuario}`,
             })
          }
       })
