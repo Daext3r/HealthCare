@@ -10,7 +10,7 @@ $(document).ready(function () {
       if ($("#CIU_gerente").val().trim() == "") return;
 
       interval = setTimeout(function () {
-         $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/buscarUsuarioCiu", { ciu: $("#CIU_gerente").val() }, (data) => {
+         $.post(localStorage.getItem("hc_base_url") + "API/Usuarios/buscarUsuarioCiuNombre", { dato: $("#CIU_gerente").val() }, (data) => {
             data = JSON.parse(data);
             for (let usuario of data) {
                let option = document.createElement("option");
